@@ -66,7 +66,7 @@ class Fields
   end
 end
 
-namespace :db do
+namespace :eit do
   desc 'Ports data from old database to new format'
   task :synchronize_databases => :environment do
     DB_CONFIG = YAML::load(File.open("#{RAILS_ROOT}/config/database.yml"))
@@ -111,7 +111,8 @@ namespace :db do
       #'nband:new_group'
     ]
     removed_fields = [
-      'modified'
+      'modified',
+      'nband'
     ]
     not_null_fields = [
       'group'
