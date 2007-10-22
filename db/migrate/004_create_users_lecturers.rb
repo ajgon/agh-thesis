@@ -1,7 +1,8 @@
-class UsersLecturer < ActiveRecord::Migration
+class CreateUsersLecturers < ActiveRecord::Migration
   def self.up
     create_table :users_lecturers do |t|
-      t.column :users_id, :integer, :null => false
+      t.column :user_id, :integer, :null => false
+      t.column :cathedral_id, :integer, :null => false
       t.column :place, :string, :limit => 30
       t.column :title, :string, :limit => 50
       t.column :cathedral, :integer, :limit => 4
