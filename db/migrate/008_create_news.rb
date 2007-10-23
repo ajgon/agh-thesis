@@ -1,6 +1,7 @@
 class CreateNews < ActiveRecord::Migration
   def self.up
     create_table :news do |t|
+      t.column :user_id, :integer, :null => false
       t.column :head, :string, :null => false
       t.column :body, :text, :null => false
       t.column :ip, :string, :limit => 15

@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 17) do
+ActiveRecord::Schema.define(:version => 13) do
 
   create_table "cathedrals", :force => true do |t|
     t.column "name", :string, :limit => 20
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 17) do
   add_index "groups_users", ["group_id"], :name => "group_id"
 
   create_table "news", :force => true do |t|
+    t.column "user_id",      :integer,                                :null => false
     t.column "head",         :string,                                 :null => false
     t.column "body",         :text,                                   :null => false
     t.column "ip",           :string,    :limit => 15
@@ -47,27 +48,10 @@ ActiveRecord::Schema.define(:version => 17) do
     t.column "for_year",     :integer,                                :null => false
   end
 
+  add_index "news", ["user_id"], :name => "user_id"
+
   create_table "news_types", :force => true do |t|
     t.column "name", :string, :limit => 20, :null => false
-  end
-
-  create_table "news_users", :force => true do |t|
-    t.column "new_id",  :integer, :null => false
-    t.column "user_id", :integer, :null => false
-  end
-
-  add_index "news_users", ["new_id"], :name => "new_id"
-  add_index "news_users", ["user_id"], :name => "user_id"
-
-  create_table "statistics", :force => true do |t|
-    t.column "ip",              :string,    :limit => 15
-    t.column "browser_name",    :string,    :limit => 100
-    t.column "browser_version", :string,    :limit => 50
-    t.column "os_name",         :string,    :limit => 100
-    t.column "os_version",      :string,    :limit => 50
-    t.column "resolution",      :string,    :limit => 10
-    t.column "color_depth",     :string,    :limit => 2
-    t.column "date",            :timestamp,                :null => false
   end
 
   create_table "subject_users", :force => true do |t|
@@ -86,36 +70,25 @@ ActiveRecord::Schema.define(:version => 17) do
 
   add_index "subjects", ["user_id"], :name => "user_id"
 
-  create_table "subjects_ufiles", :force => true do |t|
-    t.column "subject_id", :integer, :null => false
-    t.column "ufile_id",   :integer, :null => false
-  end
-
-  add_index "subjects_ufiles", ["subject_id"], :name => "subject_id"
-  add_index "subjects_ufiles", ["ufile_id"], :name => "ufile_id"
-
   create_table "ufiles", :force => true do |t|
-    t.column "filename", :string,                 :null => false
-    t.column "head",     :string,                 :null => false
-    t.column "body",     :text
-    t.column "date",     :timestamp,              :null => false
-    t.column "kind",     :string,    :limit => 0, :null => false
+    t.column "user_id",    :integer,                :null => false
+    t.column "subject_id", :integer,                :null => false
+    t.column "filename",   :string,                 :null => false
+    t.column "head",       :string,                 :null => false
+    t.column "body",       :text
+    t.column "date",       :timestamp,              :null => false
+    t.column "kind",       :string,    :limit => 0, :null => false
   end
 
-  create_table "ufiles_users", :force => true do |t|
-    t.column "user_id",  :integer, :null => false
-    t.column "ufile_id", :integer, :null => false
-  end
-
-  add_index "ufiles_users", ["user_id"], :name => "user_id"
-  add_index "ufiles_users", ["ufile_id"], :name => "ufile_id"
+  add_index "ufiles", ["user_id"], :name => "user_id"
+  add_index "ufiles", ["subject_id"], :name => "subject_id"
 
   create_table "users", :force => true do |t|
     t.column "login",           :string,    :limit => 50,                     :null => false
     t.column "password",        :string,    :limit => 40,                     :null => false
     t.column "email",           :string,    :limit => 50,                     :null => false
-    t.column "registered",      :timestamp,                                   :null => false
-    t.column "last_activity",   :timestamp,                                   :null => false
+    t.column "created_on",      :timestamp,                                   :null => false
+    t.column "updated_at",      :timestamp,                                   :null => false
     t.column "firstname",       :string,    :limit => 50
     t.column "lastname",        :string,    :limit => 50
     t.column "privileges",      :integer,                                     :null => false
@@ -146,10 +119,10 @@ ActiveRecord::Schema.define(:version => 17) do
 
   create_table "users_students", :force => true do |t|
     t.column "user_id",   :integer,               :null => false
-    t.column "group",     :string,  :limit => 4,  :null => false
+    t.column "sgroup",    :string,  :limit => 7,  :null => false
     t.column "module",    :integer, :limit => 4,  :null => false
-    t.column "new_group", :string,  :limit => 6,  :null => false
-    t.column "index",     :integer, :limit => 6,  :null => false
+    t.column "new_group", :string,  :limit => 7,  :null => false
+    t.column "sindex",    :integer, :limit => 6,  :null => false
     t.column "gadu_gadu", :integer, :limit => 15
     t.column "icq",       :integer, :limit => 15
     t.column "cell",      :string,  :limit => 15
@@ -166,19 +139,15 @@ ActiveRecord::Schema.define(:version => 17) do
   add_foreign_key "groups_users", ["user_id"], "users", ["id"], :name => "groups_users_ibfk_1"
   add_foreign_key "groups_users", ["group_id"], "groups", ["id"], :name => "groups_users_ibfk_2"
 
-  add_foreign_key "news_users", ["new_id"], "news", ["id"], :name => "news_users_ibfk_1"
-  add_foreign_key "news_users", ["user_id"], "users", ["id"], :name => "news_users_ibfk_2"
+  add_foreign_key "news", ["user_id"], "users", ["id"], :name => "news_ibfk_1"
 
   add_foreign_key "subject_users", ["user_id"], "users", ["id"], :name => "subject_users_ibfk_1"
   add_foreign_key "subject_users", ["subject_id"], "subjects", ["id"], :name => "subject_users_ibfk_2"
 
   add_foreign_key "subjects", ["user_id"], "users", ["id"], :name => "subjects_ibfk_1"
 
-  add_foreign_key "subjects_ufiles", ["subject_id"], "subjects", ["id"], :name => "subjects_ufiles_ibfk_1"
-  add_foreign_key "subjects_ufiles", ["ufile_id"], "ufiles", ["id"], :name => "subjects_ufiles_ibfk_2"
-
-  add_foreign_key "ufiles_users", ["user_id"], "users", ["id"], :name => "ufiles_users_ibfk_1"
-  add_foreign_key "ufiles_users", ["ufile_id"], "ufiles", ["id"], :name => "ufiles_users_ibfk_2"
+  add_foreign_key "ufiles", ["user_id"], "users", ["id"], :name => "ufiles_ibfk_1"
+  add_foreign_key "ufiles", ["subject_id"], "subjects", ["id"], :name => "ufiles_ibfk_2"
 
   add_foreign_key "users_lecturers", ["user_id"], "users", ["id"], :name => "users_lecturers_ibfk_1"
   add_foreign_key "users_lecturers", ["cathedral_id"], "cathedrals", ["id"], :name => "users_lecturers_ibfk_2"

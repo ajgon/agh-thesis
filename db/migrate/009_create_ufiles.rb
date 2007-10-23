@@ -1,6 +1,8 @@
 class CreateUfiles < ActiveRecord::Migration
   def self.up
     create_table :ufiles do |t|
+      t.column :user_id, :integer, :null => false
+      t.column :subject_id, :integer, :null => false
       t.column :filename, :string, :null => false
       t.column :head, :string, :null => false
       t.column :body, :text

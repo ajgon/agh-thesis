@@ -4,8 +4,8 @@ class CreateUsers < ActiveRecord::Migration
       t.column :login, :string, :limit => 50, :null => false
       t.column :password, :string, :limit => 40, :null => false
       t.column :email, :string, :limit => 50, :null => false
-      t.column :registered, :timestamp, :null => false
-      t.column :last_activity, :timestamp, :null => false
+      t.column :created_on, :timestamp, :null => false
+      t.column :updated_at, :timestamp, :null => false
       t.column :firstname, :string, :limit => 50
       t.column :lastname, :string, :limit => 50
       t.column :privileges, :integer, :null => false
@@ -19,8 +19,8 @@ class CreateUsers < ActiveRecord::Migration
       t.column :activated, :boolean, :null => false, :default => false
       t.columns << 'kind enum(\'student\', \'lecturer\') NOT NULL'
     end
-    execute 'ALTER TABLE users CHANGE registered registered timestamp(14) NOT NULL'
-    execute 'ALTER TABLE users CHANGE last_activity last_activity timestamp(14) NOT NULL'
+    execute 'ALTER TABLE users CHANGE created_on created_on timestamp(14) NOT NULL'
+    execute 'ALTER TABLE users CHANGE updated_at updated_at timestamp(14) NOT NULL'
   end
 
   def self.down
