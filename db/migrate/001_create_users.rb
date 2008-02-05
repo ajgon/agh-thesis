@@ -1,26 +1,24 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
-      t.column :login, :string, :limit => 50, :null => false
-      t.column :password, :string, :limit => 40, :null => false
-      t.column :email, :string, :limit => 50, :null => false
-      t.column :created_on, :timestamp, :null => false
-      t.column :updated_at, :timestamp, :null => false
-      t.column :firstname, :string, :limit => 50
-      t.column :lastname, :string, :limit => 50
-      t.column :privileges, :integer, :null => false
-      t.column :question, :text
-      t.column :answer, :text
-      t.column :www_page, :string, :limit => 200
-      t.column :www_description, :text
-      t.column :voted, :boolean, :null => false, :default => false
-      t.column :signature, :text
-      t.column :last_ip, :string, :limit => 15
-      t.column :activated, :boolean, :null => false, :default => false
-      t.columns << 'kind enum(\'student\', \'lecturer\') NOT NULL'
+      t.string :login, :limit => 50, :null => false
+      t.string :password, :limit => 40, :null => false
+      t.string :email, :limit => 50, :null => false
+      t.date :created_on, :null => false
+      t.datetime :updated_at, :null => false
+      t.string :firstname, :limit => 50
+      t.string :lastname, :limit => 50
+      t.integer :privileges, :null => false
+      t.text :question
+      t.text :answer
+      t.string :www_page, :limit => 200
+      t.text :www_description
+      t.boolean :voted, :null => false, :default => false
+      t.string :kind, :limit => 20, :null => false  # student/lecturer/absolvent
+      t.text :signature
+      t.string :last_ip, :limit => 15, :null => false
+      t.boolean :activated, :null => false, :default => false
     end
-    execute 'ALTER TABLE users CHANGE created_on created_on timestamp(14) NOT NULL'
-    execute 'ALTER TABLE users CHANGE updated_at updated_at timestamp(14) NOT NULL'
   end
 
   def self.down

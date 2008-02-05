@@ -1,14 +1,13 @@
 class CreateUsersStudents < ActiveRecord::Migration
   def self.up
     create_table :users_students do |t|
-      t.column :user_id, :integer, :null => false
-      t.column :sgroup, :string, :limit => 7, :null => false
-      t.column :module, :integer, :limit => 4, :null => false
-      t.column :new_group, :string, :limit => 7, :null => false
-      t.column :sindex, :integer, :limit => 6, :null => false
-      t.column :gadu_gadu, :integer, :limit => 15
-      t.column :icq, :integer, :limit => 15
-      t.column :cell, :string, :limit => 15
+      t.references :user
+      t.string :sgroup, :limit => 7, :null => false
+      t.integer :module, :limit => 4, :null => false
+      t.integer :sindex, :limit => 6, :null => false
+      t.integer :gadu_gadu, :limit => 15
+      t.integer :icq, :limit => 15
+      t.string :cell, :limit => 15
     end
   end
 

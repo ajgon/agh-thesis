@@ -6,11 +6,18 @@ module RedHillConsulting::Core::ActiveRecord::ConnectionAdapters
       end
     end
 
-    def create_table_with_redhillonrails_core(name, options = {})
+    def create_table_with_redhillonrails_core(name, options = {}, &block)
+      if options.include?(:comment)
+        options = options.dup
+        comment = options.delete(:comment)
+      end
+
       create_table_without_redhillonrails_core(name, options) do |table_defintion|
         table_defintion.name = name
         yield table_defintion
       end
+
+      set_table_comment(name, comment) if comment
     end
   end
 end

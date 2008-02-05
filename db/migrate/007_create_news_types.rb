@@ -1,7 +1,7 @@
 class CreateNewsTypes < ActiveRecord::Migration
   def self.up
     create_table :news_types do |t|
-      t.column :name, :string, :limit => 20, :null => false
+      t.string :name, :limit => 20, :null => false
     end
   end
 

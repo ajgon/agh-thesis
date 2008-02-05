@@ -1,9 +1,9 @@
 class CreateGroups < ActiveRecord::Migration
   def self.up
     create_table :groups do |t|
-      t.column :code, :string, :limit => 80
-      t.column :head, :string, :null => false
-      t.column :body, :text
+      t.string :code, :limit => 80
+      t.string :head, :null => false
+      t.text :body
     end
   end
 

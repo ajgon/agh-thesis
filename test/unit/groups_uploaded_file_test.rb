@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class GroupUfileTest < Test::Unit::TestCase
-  fixtures :group_ufiles
-
+class GroupsUploadedFileTest < ActiveSupport::TestCase
   # Replace this with your real tests.
   def test_truth
     assert true

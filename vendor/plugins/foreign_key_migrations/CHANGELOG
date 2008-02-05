@@ -1,3 +1,17 @@
+[REVISION 20071128]
+
+[FIXED] Workaround to ensure plugin is only ever loaded once.
+
+[REVISION 20070905]
+
+[FIXED] "some_column_name" referenced in foreign key constraint does not exist.
+
+[REVISION 20070904]
+
+[NEW] Support :references keyword when calling primary_key().
+
+[NEW] [#11995] the parameter :references needs the second argument referencing the field name.
+
 [REVISION 20070707]
 
 [NEW] Support acts_as_tree convention: if a column is named parent_id it will be treated as a circular reference to the table in which it is defined.

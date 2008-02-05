@@ -1,0 +1,30 @@
+original:
+  adapter: mysql
+  database: eit_old
+  username: root
+  password: 123123
+  host: localhost
+
+converted:
+  adapter: mysql
+  database: eit_new
+  username: root
+  password: 123123
+  host: localhost
+
+development:
+  adapter: mysql
+  database: eit_new
+  username: root
+  password: 123123
+  host: localhost
+
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  timeout: 5000
+
+production:
+  adapter: sqlite3
+  database: db/production.sqlite3
+  timeout: 5000

@@ -30,6 +30,14 @@ foreign-key to be generated, you can use <code>:references => nil</code>:
     ...
   end
 
+Sometimes you may (for legacy reasons) need to reference a primary key column that is
+named something other than +id+. In this case you can specify the name of the column:
+
+  create_table :orders do |t|
+    t.column :ordered_by_pk, :integer, :null => false, :references => [:customers, :pk]
+    ...
+  end
+
 You also have the option of specifying what to do on delete/update using
 <code>:on_delete</code>/<code>:on_update</code>, respectively to one of:
 <code>:cascade</code>; <code>:restrict</code>; and <code>:set_null</code>:
@@ -48,6 +56,15 @@ If your database supports it (for example PostgreSQL) you can also mark the cons
 
 By convention, if a column is named +parent_id+ it will be treated as a circular reference to
 the table in which it is defined.
+
+Sometimes you may (for legacy reasons) need to name your primary key column such that it
+would be misinterpreted as a foreign-key (say for example if you named the primary key
++order_id+). In this case you can manually create the primary key as follows:
+
+  create_table :orders, :id => false do |t|
+    ...
+    t.primary_key :order_id, :references => nil
+  end
 
 The plugin fully supports and understands the following active-record
 configuration properties:
