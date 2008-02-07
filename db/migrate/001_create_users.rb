@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :updated_at, :null => false
       t.string :firstname, :limit => 50
       t.string :lastname, :limit => 50
-      t.integer :privileges, :null => false
+      t.integer :privileges, :null => false, :default => 0
       t.text :question
       t.text :answer
       t.string :www_page, :limit => 200
@@ -16,7 +16,7 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :voted, :null => false, :default => false
       t.string :kind, :limit => 20, :null => false  # student/lecturer/absolvent
       t.text :signature
-      t.string :last_ip, :limit => 15, :null => false
+      t.string :last_ip, :limit => 15
       t.boolean :activated, :null => false, :default => false
     end
   end

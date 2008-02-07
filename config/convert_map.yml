@@ -1,0 +1,40 @@
+# schema
+# <new_table_name>:
+#   <first_table>:
+#     <column>: [include only changed columns]
+#       [use only parameters which changes]
+#       action: <new_action> [default: copy] (valid: copy, add, remove)
+#       name: <new_column_name> [id - not necessary] (name == id ? action = remove)
+#     <column2>:
+#       <...>
+#     <...>
+#   <second_table>:
+#     <...>
+#   <...>
+users:
+  users:
+    pass:
+      name: password
+    time:
+      name: created_on
+    timeact:
+      name: updated_at
+    priv:
+      name: privileges
+    s_hydview:
+      action: remove
+    www:
+      name: www_page
+    wwwdesc:
+      name: www_description
+    sunuml:
+      action: remove
+    surname:
+      name: lastname
+    privileges:
+      action: remove
+cathedrals:
+  cathedrals:
+
+    
+  

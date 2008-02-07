@@ -12,7 +12,7 @@
 ActiveRecord::Schema.define(:version => 13) do
 
   create_table "cathedrals", :force => true do |t|
-    t.string "name", :limit => 20
+    t.string "name", :limit => 50, :null => false
   end
 
   create_table "groups", :force => true do |t|
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(:version => 13) do
     t.datetime "updated_at",                                        :null => false
     t.string   "firstname",       :limit => 50
     t.string   "lastname",        :limit => 50
-    t.integer  "privileges",                                        :null => false
+    t.integer  "privileges",                     :default => 0,     :null => false
     t.text     "question"
     t.text     "answer"
     t.string   "www_page",        :limit => 200
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(:version => 13) do
     t.boolean  "voted",                          :default => false, :null => false
     t.string   "kind",            :limit => 20,                     :null => false
     t.text     "signature"
-    t.string   "last_ip",         :limit => 15,                     :null => false
+    t.string   "last_ip",         :limit => 15
     t.boolean  "activated",                      :default => false, :null => false
   end
 
