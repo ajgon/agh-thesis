@@ -64,4 +64,13 @@
       name: cathedral_id
     consul:
       name: consultations
-    
+05_subjects:
+  specs:
+    name:
+      name: head
+    acronim:
+      name: acronym
+    type:
+      action: remove
+    season:
+      action: remove

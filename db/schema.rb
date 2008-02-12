@@ -64,8 +64,10 @@ ActiveRecord::Schema.define(:version => 13) do
   end
 
   create_table "subjects", :force => true do |t|
-    t.string "head", :null => false
+    t.string "acronym", :limit => 10, :null => false
+    t.string "head",                  :null => false
     t.text   "body"
+    t.string "code",    :limit => 6
   end
 
   create_table "subjects_users", :id => false, :force => true do |t|

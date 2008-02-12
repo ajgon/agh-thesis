@@ -61,6 +61,7 @@ class Converter
       Object.const_set("OldTable", Class.new(ActiveRecord::Base))
       OldTable.set_table_name old_table_name
       OldTable.establish_connection @old_base_details
+      OldTable.inheritance_column = 'cb757e5dca' # SAT hack
       @OldTable = OldTable
       raise 'Wrong table name given (' + old_table_name + ')' unless @OldTable.table_exists?
     rescue
