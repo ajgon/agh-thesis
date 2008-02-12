@@ -5,13 +5,17 @@
 #       [use only parameters which changes]
 #       action: <new_action> [default: copy] (valid: copy, add, remove)
 #       name: <new_column_name> [id - not necessary] (name == id ? action = remove)
+#       from: <new_table_name> [take values from this table using mapping from 'from' table
+#                                i.e. you have x2 table and you want to port ids from it but
+#                                mapped as those ids from x1 table (one-to-one relation)
+#                                only for ids!]
 #     <column2>:
 #       <...>
 #     <...>
 #   <second_table>:
 #     <...>
 #   <...>
-users:
+01_users:
   users:
     pass:
       name: password
@@ -33,8 +37,31 @@ users:
       name: lastname
     privileges:
       action: remove
-cathedrals:
+02_cathedrals:
   cathedrals:
-
+03_users_students:
+  users_k1:
+    id:
+      from: users
+      name: user_id
+    band:
+      name: sgroup
+    indeks:
+      name: sindex
+    gg:
+      name: gadu_gadu
+    modified:
+      action: remove
+    nband:
+      action: remove
+04_users_lecturers:
+  users_k2:
+    id:
+      from: users
+      name: user_id
+    cathedral:
+      from: cathedrals
+      name: cathedral_id
+    consul:
+      name: consultations
     
-  

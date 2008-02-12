@@ -1,7 +1,7 @@
 class CreateUsersStudents < ActiveRecord::Migration
   def self.up
     create_table :users_students do |t|
-      t.references :user
+      t.references :user, :null => false
       t.string :sgroup, :limit => 7, :null => false
       t.integer :module, :limit => 4, :null => false
       t.integer :sindex, :limit => 6, :null => false

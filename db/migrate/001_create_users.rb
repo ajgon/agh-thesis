@@ -2,8 +2,8 @@ class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
       t.string :login, :limit => 50, :null => false
-      t.string :password, :limit => 40, :null => false
-      t.string :email, :limit => 50, :null => false
+      t.string :password, :limit => 40, :null => false, :default => 'da39a3ee5e6b4b0d3255bfef95601890afd80709' # sha1('')
+      t.string :email, :limit => 50
       t.date :created_on, :null => false
       t.datetime :updated_at, :null => false
       t.string :firstname, :limit => 50

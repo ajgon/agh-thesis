@@ -90,28 +90,28 @@ ActiveRecord::Schema.define(:version => 13) do
   add_index "uploaded_files", ["user_id"], :name => "user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "login",           :limit => 50,                     :null => false
-    t.string   "password",        :limit => 40,                     :null => false
-    t.string   "email",           :limit => 50,                     :null => false
-    t.date     "created_on",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
+    t.string   "login",           :limit => 50,                                                          :null => false
+    t.string   "password",        :limit => 40,  :default => "da39a3ee5e6b4b0d3255bfef95601890afd80709", :null => false
+    t.string   "email",           :limit => 50
+    t.date     "created_on",                                                                             :null => false
+    t.datetime "updated_at",                                                                             :null => false
     t.string   "firstname",       :limit => 50
     t.string   "lastname",        :limit => 50
-    t.integer  "privileges",                     :default => 0,     :null => false
+    t.integer  "privileges",                     :default => 0,                                          :null => false
     t.text     "question"
     t.text     "answer"
     t.string   "www_page",        :limit => 200
     t.text     "www_description"
-    t.boolean  "voted",                          :default => false, :null => false
-    t.string   "kind",            :limit => 20,                     :null => false
+    t.boolean  "voted",                          :default => false,                                      :null => false
+    t.string   "kind",            :limit => 20,                                                          :null => false
     t.text     "signature"
     t.string   "last_ip",         :limit => 15
-    t.boolean  "activated",                      :default => false, :null => false
+    t.boolean  "activated",                      :default => false,                                      :null => false
   end
 
   create_table "users_lecturers", :force => true do |t|
     t.integer "cathedral_id"
-    t.integer "user_id"
+    t.integer "user_id",                     :null => false
     t.string  "place",         :limit => 30
     t.string  "title",         :limit => 50
     t.string  "consultations", :limit => 50
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(:version => 13) do
   add_index "users_lecturers", ["user_id"], :name => "user_id"
 
   create_table "users_students", :force => true do |t|
-    t.integer "user_id"
+    t.integer "user_id",                 :null => false
     t.string  "sgroup",    :limit => 7,  :null => false
     t.integer "module",    :limit => 4,  :null => false
     t.integer "sindex",    :limit => 6,  :null => false

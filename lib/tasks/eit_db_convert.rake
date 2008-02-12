@@ -34,7 +34,10 @@ class Converter
   end
   
   def convert(schema)
-    schema.each_pair do |new_table_name, old_tables|
+    @id_map = {}
+    schema.sort.each do |hash|
+      new_table_name = hash[0].gsub(/^[0-9]+_/, '')
+      old_tables = hash[1]
       parse_new_table new_table_name
       old_tables.each_pair do |old_table_name, with_rules|
         parse_old_table old_table_name
@@ -65,24 +68,78 @@ class Converter
     end
   end
   
+  # port_data
+  
+  def populate_maps rules
+    @map = create_column_map(populate(rules))
+    @relation_map = create_relation_map rules
+    @id_map[@NewModel.table_name] = {}
+    @id_map[@NewModel.table_name]['old_name'] = @NewModel.table_name
+    @id_map[@NewModel.table_name]['id_map'] = {}
+  end
+  
+  def create_relation_map rules
+    related_columns = populate(rules)
+    related_columns.delete_if do |column_name, params|
+      params['from'].nil?
+    end
+    relation_map = {}
+    unless related_columns.empty?
+      related_columns.each_pair do |column, params|
+        relation_map[params['name']] = @id_map[params['from']]['id_map']      
+      end
+    end
+    relation_map
+  end
+  
+  def sync_columns_with_map row
+    row.delete_if do |column_name, value|
+      !@map.has_key? column_name
+    end
+    row
+  end
+  
+  def fix_not_null_columns row
+    new_row = {}
+    row.each_pair do |column_name, value|
+      new_value = value
+      new_column = @NewModel.columns.find_all { |column| column.name == @map[column_name]}.first
+      column_not_null = !new_column.null
+      column_default = new_column.default
+      new_value = column_default if new_value.nil? and column_not_null
+      new_row[@map[column_name]] = new_value
+    end
+    new_row
+  end
+  
+  def fix_related_columns new_row
+    unless @relation_map.empty?          
+      new_row.each_pair do |column_name, value|
+        @relation_map.each_pair do |relation_map_column, id_map|
+          if relation_map_column == column_name
+            new_row[column_name] = id_map[new_row[column_name]]
+          end
+        end
+      end
+    end
+    new_row
+  end
+  
   def port_data(rules)
-    map = create_column_map(populate(rules))
+    populate_maps rules
     @OldTable.find(:all).each do |row|
-      new_row = {}
-      row = row.attributes
-      row.delete_if do |column_name, value|
-        !map.has_key? column_name
-      end
-      row.each_pair do |column_name, value|
-        new_value = value
-        new_column = @NewModel.columns.find_all { |column| column.name == map[column_name]}.first
-        column_not_null = !new_column.null
-        column_default = new_column.default
-        new_value = column_default if new_value.nil? and column_not_null
-        new_row[map[column_name]] = new_value
-      end
       begin
-      @NewModel.new(new_row).save!
+        old_id = row.id
+        new_row = fix_not_null_columns(
+          sync_columns_with_map(
+            row.attributes
+          )
+        )
+        new_row = fix_related_columns new_row
+        insertion = @NewModel.new(new_row)
+        insertion.save!
+        new_id = insertion.id
+        @id_map[@NewModel.table_name]['id_map'][old_id] = new_id
       rescue Exception => e
         puts e.inspect
         #TODO: Log wrong inserts
@@ -96,7 +153,6 @@ class Converter
     end
     rules.each_pair do |column_name, params|
       params['action'] = 'copy' if params['action'].nil?
-      params['action'] = 'remove' if params['name'] == 'id'
       params['name'] = column_name if params['name'].nil?
     end
     rules
@@ -113,7 +169,7 @@ class Converter
     rules.each_pair do |old_column_name, params|
       map.delete_if do |old_column, new_column|
         (params['action'] == 'remove' and old_column == old_column_name) or
-          old_column == 'id' or new_column == 'id'
+          (old_column == 'id' and new_column == 'id')
       end
     end
     map
