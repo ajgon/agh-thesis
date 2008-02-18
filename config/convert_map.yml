@@ -9,6 +9,7 @@
 #                                i.e. you have x2 table and you want to port ids from it but
 #                                mapped as those ids from x1 table (one-to-one relation)
 #                                only for ids!]
+#       field: <new_table_field> [if mapping is not by id, but by other field, put here its name]
 #     <column2>:
 #       <...>
 #     <...>
@@ -74,3 +75,53 @@
       action: remove
     season:
       action: remove
+06_news_types:
+  news_types:
+07_news:
+  news:
+    alogin:
+      from: users
+      field: login
+      name: user_id
+    aname:
+      action: remove
+    year:
+      name: for_year
+    piece:
+      name: body
+    mreads:
+      name: times_readed
+    spec:
+      action: remove
+    thread:
+      action: remove
+    type:
+      action: remove
+    nyear:
+      action: remove
+#07_uploaded_files:
+#  files:
+#    filename1:
+#      action: remove
+#    name:
+#      name: head
+#    time:
+#      name: date
+#    alogin:
+#      action: remove
+#    aid:
+#      from: users
+#      name: user_id
+#    down:
+#      name: downloads
+#    spec:
+#      from: subjects
+#      name: subject_id
+#    rlogin:
+#      action: remove
+#    rid:
+#      action: remove
+#    sectype:
+#      action: remove
+#    secgroup:
+#      action: remove

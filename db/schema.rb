@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 13) do
+ActiveRecord::Schema.define(:version => 12) do
 
   create_table "cathedrals", :force => true do |t|
     t.string "name", :limit => 50, :null => false
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 13) do
     t.string  "head",                                      :null => false
     t.text    "body",                                      :null => false
     t.string  "ip",           :limit => 15
-    t.date    "datetime",                                  :null => false
+    t.date    "datetime"
     t.integer "times_readed",               :default => 0, :null => false
     t.integer "for_year",                                  :null => false
   end
@@ -70,22 +70,15 @@ ActiveRecord::Schema.define(:version => 13) do
     t.string "code",    :limit => 6
   end
 
-  create_table "subjects_users", :id => false, :force => true do |t|
-    t.integer "subject_id"
-    t.integer "user_id"
-  end
-
-  add_index "subjects_users", ["subject_id"], :name => "subject_id"
-  add_index "subjects_users", ["user_id"], :name => "user_id"
-
   create_table "uploaded_files", :force => true do |t|
-    t.integer  "subject_id"
-    t.integer  "user_id"
-    t.string   "filename",                 :null => false
-    t.string   "head",                     :null => false
+    t.integer  "subject_id",                              :null => false
+    t.integer  "user_id",                                 :null => false
+    t.string   "filename",                                :null => false
+    t.string   "head",                                    :null => false
     t.text     "body"
-    t.datetime "date",                     :null => false
+    t.datetime "date",                                    :null => false
     t.string   "kind",       :limit => 15
+    t.integer  "downloads",                :default => 0, :null => false
   end
 
   add_index "uploaded_files", ["subject_id"], :name => "subject_id"
@@ -147,9 +140,6 @@ ActiveRecord::Schema.define(:version => 13) do
 
   add_foreign_key "news", ["news_type_id"], "news_types", ["id"], :name => "news_ibfk_1"
   add_foreign_key "news", ["user_id"], "users", ["id"], :name => "news_ibfk_2"
-
-  add_foreign_key "subjects_users", ["subject_id"], "subjects", ["id"], :name => "subjects_users_ibfk_1"
-  add_foreign_key "subjects_users", ["user_id"], "users", ["id"], :name => "subjects_users_ibfk_2"
 
   add_foreign_key "uploaded_files", ["subject_id"], "subjects", ["id"], :name => "uploaded_files_ibfk_1"
   add_foreign_key "uploaded_files", ["user_id"], "users", ["id"], :name => "uploaded_files_ibfk_2"

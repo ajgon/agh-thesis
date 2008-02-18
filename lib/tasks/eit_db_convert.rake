@@ -52,7 +52,7 @@ class Converter
       @NewModel = new_table_name.classify.constantize
     rescue
       raise 'Can\'t find model ' + new_table_name.classify.to_s + ' - wrong ' +
-            'migrations or misspelled new table name'
+            'migrations or mispelled new table name'
     end
   end
   
@@ -70,6 +70,28 @@ class Converter
   end
   
   # port_data
+  def port_data(rules)
+    populate_maps rules
+    @OldTable.find(:all).each do |row|
+      begin
+        old_id = row.id
+        new_row = fix_not_null_columns(
+          sync_columns_with_map(
+            row.attributes
+          )
+        )
+        new_row = fix_related_columns new_row
+        puts new_row.inspect if @NewModel.table_name == 'news'
+        insertion = @NewModel.new(new_row)
+        insertion.save!
+        new_id = insertion.id
+        @id_map[@NewModel.table_name]['id_map'][old_id] = new_id
+      rescue Exception => e
+        puts e.inspect
+        #TODO: Log wrong inserts
+      end
+    end
+  end
   
   def populate_maps rules
     @map = create_column_map(populate(rules))
@@ -85,10 +107,28 @@ class Converter
       params['from'].nil?
     end
     relation_map = {}
+    additional_relation_map = {}
     unless related_columns.empty?
-      related_columns.each_pair do |column, params|
-        relation_map[params['name']] = @id_map[params['from']]['id_map']      
-      end
+      #begin
+        related_columns.each_pair do |column, params|
+          relation_map[params['name']] = @id_map[params['from']]['id_map']      
+          unless params['field'].nil?
+            additional_relation_map[params['name']] = {}
+            Object.const_set("FromTable", Class.new(ActiveRecord::Base))
+            FromTable.set_table_name params['from']
+            FromTable.establish_connection @new_base_details
+            FromTable.inheritance_column = 'cb757e5dca' # SAT hack
+            relation_map[params['name']].each_pair do |id_from, id_to|
+              additional_relation_map[params['name']][FromTable.find(id_to)[params['field']]] = id_to
+            end
+          end
+        end
+        relation_map.keys.each do |key|
+          relation_map[key] = relation_map[key].merge additional_relation_map[key] unless additional_relation_map[key].nil?
+        end
+      #rescue
+      #  raise 'An error occured while creating relation map. Did you map tables used in \'from\' field before?'
+      #end
     end
     relation_map
   end
@@ -105,16 +145,18 @@ class Converter
     row.each_pair do |column_name, value|
       new_value = value
       new_column = @NewModel.columns.find_all { |column| column.name == @map[column_name]}.first
-      column_not_null = !new_column.null
-      column_default = new_column.default
-      new_value = column_default if new_value.nil? and column_not_null
-      new_row[@map[column_name]] = new_value
+      unless new_column.nil?
+        column_not_null = !new_column.null
+        column_default = new_column.default
+        new_value = column_default if new_value.nil? and column_not_null
+        new_row[@map[column_name]] = new_value
+      end
     end
     new_row
   end
   
   def fix_related_columns new_row
-    unless @relation_map.empty?          
+    unless @relation_map.empty? 
       new_row.each_pair do |column_name, value|
         @relation_map.each_pair do |relation_map_column, id_map|
           if relation_map_column == column_name
@@ -125,28 +167,8 @@ class Converter
     end
     new_row
   end
-  
-  def port_data(rules)
-    populate_maps rules
-    @OldTable.find(:all).each do |row|
-      begin
-        old_id = row.id
-        new_row = fix_not_null_columns(
-          sync_columns_with_map(
-            row.attributes
-          )
-        )
-        new_row = fix_related_columns new_row
-        insertion = @NewModel.new(new_row)
-        insertion.save!
-        new_id = insertion.id
-        @id_map[@NewModel.table_name]['id_map'][old_id] = new_id
-      rescue Exception => e
-        puts e.inspect
-        #TODO: Log wrong inserts
-      end
-    end
-  end
+
+  #---
   
   def populate(rules)
     if rules.nil? 
