@@ -81,7 +81,6 @@ class Converter
           )
         )
         new_row = fix_related_columns new_row
-        puts new_row.inspect if @NewModel.table_name == 'news'
         insertion = @NewModel.new(new_row)
         insertion.save!
         new_id = insertion.id

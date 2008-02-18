@@ -99,29 +99,29 @@
       action: remove
     nyear:
       action: remove
-#07_uploaded_files:
-#  files:
-#    filename1:
-#      action: remove
-#    name:
-#      name: head
-#    time:
-#      name: date
-#    alogin:
-#      action: remove
-#    aid:
-#      from: users
-#      name: user_id
-#    down:
-#      name: downloads
-#    spec:
-#      from: subjects
-#      name: subject_id
-#    rlogin:
-#      action: remove
-#    rid:
-#      action: remove
-#    sectype:
-#      action: remove
-#    secgroup:
-#      action: remove
+08_uploaded_files:
+  files:
+    filename1:
+      action: remove
+    name:
+      name: head
+    time:
+      name: date
+    alogin:
+      action: remove
+    aid:
+      from: users
+      name: user_id
+    down:
+      name: downloads
+    spec:
+      from: subjects
+      name: subject_id
+    rlogin:
+      action: remove
+    rid:
+      action: remove
+    sectype:
+      action: remove
+    secgroup:
+      action: remove
