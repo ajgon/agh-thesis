@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>Aktualności :: Elektronika i Telekomunikacja AGH : Strona kierunku </title>
+  <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+  <meta name="Description" content="Studia - kierunek Elektronika i Telekomunikacja AGH Kraków. Podyplomowe - sieci i usługi." />
+  <meta name="Keywords" content="Studia, podyplomowe, Telekomunikacja, Elektronika, materiały, forum" />
+  <meta name="Author" content="Igor Rzegocki" />
+  <meta name="Copyright" content="Copyright (c) 2001-<%= Time.now.year %> EiTeam" />
+  <meta name="Robots" content="index, follow, all" />
+  <meta name="Revisit-after" content="7 days" />
+
+<% # RSS %>
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+  <%= stylesheet_link_tag 'eit.css' %>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="top">
+      <h1>Strona kierunku <strong>Elektronika <span>&amp;</span> Telekomunikacja</strong></h1>
+      <h2><span>Aktualności</span></h2>
+    </div>
+<%= render :partial => '_partials/menu' %>
+    <div id="content">
+<%= yield :layout %>
+    </div>
+    <div id="footer">
+      <ul>
+        <li><a href="mailto:eiteam@eit.agh.edu.pl">Napisz do nas</a></li>
+        <li><a href="#top">.&nbsp;:&nbsp;.</a></li>
+        <li><a href="">Copyright &copy; 2001-<%= Time.now.year %> <strong>EiTeam</strong>. Wszelkie prawa zastrzeżone.</a></li>
+        <li><a href="http://www.kt.agh.edu.pl/">Strona należy do serwisu <strong>KT AGH</strong>.</a></li>
+        <li><a href="">Mapa serwisu &raquo;</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

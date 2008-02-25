@@ -1,0 +1,212 @@
+/* =initializing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+body, h1, h2, h3, h4, h5, h6,
+blockquote, p, address, form, fieldset,
+ul, ol, dl, dt, dd, li, hr, table, td, th {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #000000;
+    background: #f7f2ea url(/images/bg.gif) repeat-x left top;
+}
+
+a, a:visited {
+    outline: none !important;
+    color: #000000;
+}
+
+a:hover {
+    color: #cc0000;
+}
+
+fieldset, img { 
+    border: none; 
+}
+
+ul {
+    list-style: none;
+}
+
+input, select, textarea {
+    background: #f6e7c8;
+    font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
+    font-size: 11px;
+    border: 1px solid #444444;
+    height: 16px;
+}
+
+#wrapper {
+    width: 760px;
+    margin: 0 auto;
+    background: url(/images/main.gif) repeat-y;
+}
+
+#menu, #content {
+    height: 100%;
+}
+
+/* =top
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#top {
+    height: 4.66em;
+    background: #f1c36b url('/images/top.gif') no-repeat right top;
+}
+
+
+#top h1 {
+    font-size: 14px;
+    color: #80590c;
+    font-weight: bold;
+    float: right;
+    letter-spacing: 1px;
+    line-height: 1.1em;
+    width: 14em;
+    overflow: hidden;
+}
+
+#top h1 strong {
+    font-size: 18px;
+    color: #000000;
+    font-weight: normal;
+    display: block;
+    text-align: right;
+    position: relative;
+    padding-right: 1em;
+}
+
+#top h1 strong span {
+    position: absolute;
+    top: 0.2em;
+    right: 0px;
+    color: #be8411;
+    font-size: 2.3em;
+    z-index: -1;
+}
+
+#top h2 {
+    padding-left: 124px;
+    background: url(/images/sections/index.jpg) repeat-y;
+    height: 100%;
+    position: relative;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+#top h2 span {
+    position: absolute;
+    bottom: 3px;
+    left: 140px;
+}
+
+/* =menu
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#menu {
+    width: 124px;
+    overflow: hidden;
+    background: #f1c36b;
+    float: left;
+}
+
+#menu ul {
+    background: #f6dba9;
+    padding-bottom: 2px;
+}
+
+#menu ul li {
+    border-left: 11px solid #e49f15;
+    text-transform: uppercase;
+    padding-left: 5px;
+    margin-top: 2px;
+    background: #f1c36b;
+    font-weight: bold;
+    color: #543b08;
+}
+
+#menu ul li.submenu {
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    display: none;
+}
+
+#menu ul li.submenu ul {
+    padding-bottom: 0px;
+}
+
+#menu ul li.submenu ul li {
+    border-left: 11px solid #f0b94a;
+    text-transform: lowercase;
+    padding: 2px 0px 0px 5px;
+    margin: 0px;
+    background: #f2ce88;
+    overflow: hidden;
+}
+
+#menu ul li.login {
+    display: list-item;
+}
+
+#menu ul li.login input {
+    width: 100px;
+}
+
+#menu ul li.login input[type="checkbox"] {
+    width: auto;
+}
+
+#menu ul li.login input[type="submit"] {
+    width: 50px;
+    float: left;
+    margin-left: 5px;
+    padding: 0px;
+    border: none;
+    background: none;
+    color: #543b08;
+    text-transform: lowercase;
+    text-align: left;
+}
+
+#menu ul li.login input[type="submit"]:first-child {
+    margin-left: 0px;
+}
+
+/* =content
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#content {
+    background: #f6e7c8;
+    overflow: hidden;
+}
+
+/* =content
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#footer {
+    background: #e49f15;
+    padding: 2px;
+    clear: both;
+}
+
+#footer a {
+    text-decoration: none;
+}
+
+#footer ul {
+    text-align: right;
+    overflow: hidden;
+}
+
+#footer ul li:first-child {
+    float: left;
+}
+
+#footer ul li {
+    display: inline;
+}

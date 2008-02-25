@@ -1,0 +1,112 @@
+    <div id="menu">
+      <ul>
+        <li>Logowanie WWW</li>
+        <li class="submenu login">
+          <% form_for :user, :url => {:controller => 'signin'} do |f| %>
+            <ul>
+              <li>
+                <label for="user_login">Użytkownik:</label>
+                <%= f.text_field :login %>
+              </li>
+              <li>
+                <label for="user_password">Hasło:</label>
+                <%= f.password_field :password %>
+              </li>
+              <li>
+                <label for="remember_me"><%= check_box_tag :remember_me %>
+                Pamiętaj</label>
+              </li>
+              <li>
+                <%= submit_tag 'Nowy' %>
+                <%= submit_tag 'Zaloguj' %>
+              </li>
+            </ul>
+          <% end %>
+        </li>
+        <li>Aktualności</li>
+        <li class="submenu">
+          <ul>
+            <li>Twoje</li>
+            <li>Wszystkie</li>
+            <li>Wyszukiwarka</li>
+            <li>Egzaminy</li>
+          </ul>
+        </li>
+        <li>Dziekanat</li>
+        <li class="submenu">
+          <ul>
+            <li>Informacje</li>
+            <li>Plany Zajęć</li>
+            <li>Praktyki Telekomunikacji</li>
+            <li>Praktyki Elektroniki</li>
+            <li>Przedmioty</li>
+            <li>Przedmioty Obieralne</li>
+            <li>English</li>
+            <li>Pliki</li>
+            <li>Międzynarodowy Program Edukacyjny</li>
+            <li>Deklaracje</li>
+            <li>Kalendarz</li>
+          </ul>
+        </li>
+        <li>Materiały</li>
+        <li class="submenu">
+          <ul>
+            <li>I&nbsp;rok</li>
+            <li>II&nbsp;rok</li>
+            <li>III&nbsp;rok</li>
+            <li>IV&nbsp;rok</li>
+            <li>V&nbsp;rok</li>
+            <li>Oceny</li>
+          </ul>
+        </li>
+        <li>Prowadzący</li>
+        <li class="submenu">
+          <ul>
+            <li>Elektronika</li>
+            <li>Telekomunikacja</li>
+          </ul>
+        </li>
+        <li>Studenci</li>
+        <li class="submenu">
+          <ul>
+            <li>Wyszukiwarka</li>
+            <li>Własna Strona</li>
+            <li>Strony WWW</li>
+          </ul>
+        </li>
+        <li>Podyplomowe</li>
+        <li class="submenu">
+          <ul>
+            <li>Ulotka</li>
+            <li>Regulamin</li>
+            <li>Harmonogram</li>
+            <li>Program</li>
+            <li>Plan</li>
+          </ul>
+        </li>
+        <li>O Stronie</li>
+        <li class="submenu">
+          <ul>
+            <li>Informacje</li>
+            <li>EiTeam</li>
+            <li>Mapa Serwisu</li>
+            <li>FAQ</li>
+          </ul>
+        </li>
+        <li>Twoje Konto</li>
+        <li>Panel Sterowania</li>
+        <li class="submenu">
+          <ul>
+            <li>Aktualności</li>
+            <li>Materiały</li>
+            <li>Oceny</li>
+            <li>Grupy Studentów</li>
+            <li>Linki</li>
+            <li>Dyskusje</li>
+            <li>Ankiety</li>
+            <li>Deklaracje</li>
+            <li>Kalendarz</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
