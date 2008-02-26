@@ -1,6 +1,6 @@
 class CreateUsersStudents < ActiveRecord::Migration
   def self.up
-    create_table :users_students do |t|
+    create_table :users_students, :options => 'character set utf8 collate utf8_polish_ci engine InnoDB' do |t|
       t.references :user, :null => false
       t.string :sgroup, :limit => 7, :null => false
       t.integer :module, :limit => 4, :null => false

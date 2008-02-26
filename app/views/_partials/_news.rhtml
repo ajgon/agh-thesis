@@ -1,0 +1,11 @@
+<div class="content">
+  <h3 class="news">Aktualności</h3>
+  <ul>
+<%  News.find(:all, :include => :user, :order => 'news.id desc', :limit => 7).each do |news| -%>
+    <li>
+      <h4><strong><%= short_date(news.date) -%></strong><em> - <%= news.years %> rok / <%= news.user.login %></em></h4>
+      <p><%= news.head %></p>
+    </li>
+<% end -%>
+  </ul>
+</div>

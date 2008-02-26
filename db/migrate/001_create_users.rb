@@ -1,6 +1,6 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
-    create_table :users do |t|
+    create_table :users, :options => 'character set utf8 collate utf8_polish_ci engine InnoDB' do |t|
       t.string :login, :limit => 50, :null => false
       t.string :password, :limit => 40, :null => false, :default => 'da39a3ee5e6b4b0d3255bfef95601890afd80709' # sha1('')
       t.string :email, :limit => 50

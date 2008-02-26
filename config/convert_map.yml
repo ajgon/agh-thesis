@@ -85,7 +85,7 @@
       name: user_id
     aname:
       action: remove
-    year:
+    nyear:
       name: for_year
     piece:
       name: body
@@ -97,7 +97,7 @@
       action: remove
     type:
       action: remove
-    nyear:
+    year:
       action: remove
 08_uploaded_files:
   files:

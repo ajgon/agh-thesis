@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(:version => 12) do
 
   create_table "groups_news", :id => false, :force => true do |t|
     t.integer "group_id"
-    t.integer "new_id"
+    t.integer "news_id"
   end
 
   add_index "groups_news", ["group_id"], :name => "group_id"
-  add_index "groups_news", ["new_id"], :name => "new_id"
+  add_index "groups_news", ["news_id"], :name => "news_id"
 
   create_table "groups_uploaded_files", :id => false, :force => true do |t|
     t.integer "group_id"
@@ -46,14 +46,14 @@ ActiveRecord::Schema.define(:version => 12) do
   add_index "groups_users", ["user_id"], :name => "user_id"
 
   create_table "news", :force => true do |t|
-    t.integer "news_type_id"
-    t.integer "user_id"
-    t.string  "head",                                      :null => false
-    t.text    "body",                                      :null => false
-    t.string  "ip",           :limit => 15
-    t.date    "datetime"
-    t.integer "times_readed",               :default => 0, :null => false
-    t.integer "for_year",                                  :null => false
+    t.integer  "news_type_id"
+    t.integer  "user_id",                                   :null => false
+    t.string   "head",                                      :null => false
+    t.text     "body",                                      :null => false
+    t.string   "ip",           :limit => 15
+    t.datetime "date"
+    t.integer  "times_readed",               :default => 0, :null => false
+    t.integer  "for_year",                                  :null => false
   end
 
   add_index "news", ["news_type_id"], :name => "news_type_id"
@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(:version => 12) do
   add_index "users_students", ["user_id"], :name => "user_id"
 
   add_foreign_key "groups_news", ["group_id"], "groups", ["id"], :name => "groups_news_ibfk_1"
-  add_foreign_key "groups_news", ["new_id"], "news", ["id"], :name => "groups_news_ibfk_2"
+  add_foreign_key "groups_news", ["news_id"], "news", ["id"], :name => "groups_news_ibfk_2"
 
   add_foreign_key "groups_uploaded_files", ["group_id"], "groups", ["id"], :name => "groups_uploaded_files_ibfk_1"
   add_foreign_key "groups_uploaded_files", ["uploaded_file_id"], "uploaded_files", ["id"], :name => "groups_uploaded_files_ibfk_2"
