@@ -1,0 +1,5 @@
+<% unless @profile.users_student.nil? -%>
+<%= render :partial => '_partials/profile' %>
+<% else -%>
+<%= render :partial => '_partials/profile', :locals => { :left => true } %>
+<% end -%>

@@ -82,4 +82,17 @@ module ApplicationHelper
       gsub(/([0-1][0-9]),/) { roman_month($1) + ','}.
       gsub(/ 0([0-9]) /) { " #{$1} "}
   end
+  
+  def dt_dd title, definition
+    "<dt>#{title}</dt><dd>#{definition}</dd>"
+  end
+  
+  def encode_string email, where
+    output = ''
+    for i in 0..email.length
+      output << sprintf("&#x%x;", email[i])
+    end
+    output
+    where.gsub(email, output).gsub(/x([0-9]);/) { "x0#{$1};" }
+  end
 end

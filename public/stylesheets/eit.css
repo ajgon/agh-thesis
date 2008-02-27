@@ -19,9 +19,19 @@ body {
     background: #f7f2ea url(/images/bg.gif) repeat-x left top;
 }
 
+em {
+    color: #87785d;
+    font-style: normal;
+}
+
 a, a:visited {
     outline: none !important;
     color: #000000;
+}
+
+em a, em a:visited {
+    color: #87785d;
+    text-decoration: none;
 }
 
 a:hover {
@@ -181,12 +191,99 @@ input, select, textarea {
 
 /* =content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+div.center {
+    text-align: center;
+}
 #content {
     background: #f6e7c8;
     overflow: hidden;
+    padding: 5px 6px 10px 4px;
 }
 
-/* =content
+div.content {
+    padding: 13px 10px 10px;
+    border: solid 1px #f2ce88;
+    position: relative;
+    background: #f6dba9;
+}
+
+div.content-left {
+    width: 413px;
+}
+
+div.content h3 {
+    font-size: 11px;
+    background: #f2ce88;
+    border-left: #f0b94a solid 11px;
+    padding-left: 4px;
+    margin: -14px -11px 12px;
+}
+
+div.content ul li {
+    margin-bottom: 7px;
+}
+
+div.content h3 abbr {
+    text-indent: -1000em;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: block;
+    float: right;
+    width: 20px;
+    height: 20px;
+    margin: -7px 4px 0px 0px;
+}
+
+/* news */
+
+h3.news abbr {
+    background-image: url(/images/abbr/news.gif);
+}
+
+/* users */
+
+h3.users abbr {
+    background-image: url(/images/abbr/users.gif);
+}
+
+h5 {
+    font-size: 18px;
+    text-align: center;
+    font-weight: normal;
+}
+
+dl.profile {
+    overflow: hidden;
+    border-top: #f6e7c8 3px solid;
+    border-right: #f6e7c8 1px solid;
+    border-bottom: #f6e7c8 3px solid;
+    border-left: #f6e7c8 1px solid;
+    width: 381px;
+    margin: 10px auto 0px;
+}
+
+dl.profile dt,
+dl.profile dd {
+    float: left;
+    border: #f6e7c8 1px solid;
+    padding: 7px 11px;
+}
+
+dl.profile dt {
+    width: 86px;
+    background: #f0b94a;
+    font-weight: bold;
+    text-align: right;
+    clear: left;
+}
+
+dl.profile dd {
+    width: 247px;
+    background: #f2ce88;
+    min-height: 13px;
+}
+
+/* =footer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #footer {
     background: #e49f15;

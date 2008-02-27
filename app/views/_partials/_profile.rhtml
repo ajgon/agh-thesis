@@ -1,0 +1,32 @@
+<div class="content<%= (left ? ' content-left' : '') %>">
+  <h3 class="users"><abbr>Users</abbr> Informacje o użytkowniku</h3>
+<% unless @profile.nil? or !(@profile.users_lecturer.nil? ^ @profile.users_student.nil?) -%>
+  <h5><%= @profile.firstname %> <%= @profile.lastname %></h5>
+  <dl class="profile">
+<%   unless @profile.users_lecturer.nil? %>
+    <%= dt_dd 'Katedra', @profile.users_lecturer.cathedral.name %>
+    <%= dt_dd 'Konsultacje', @profile.users_lecturer.consultations %>
+    <%= dt_dd 'Gdzie na AGH', @profile.users_lecturer.place %>
+    <%= dt_dd 'Telefon wewn.', @profile.users_lecturer.phone %>
+    <%= dt_dd 'Login na WWW', @profile.login%>
+    <%= dt_dd 'Ost. logowanie', @profile.updated_at.to_s(:updated_at) %>
+    <%= dt_dd 'Adres e-mail', encode_string(@profile.email, mail_to(@profile.email, nil, :encode => 'hex')) %>
+    <%= dt_dd 'Strona WWW', (@profile.www_page.nil? ? '' : link_to(@profile.www_page, @profile.www_page)) %>
+<%   else -%>
+    <%= dt_dd 'Rok studiów', '## TODO ##' %>
+    <%= dt_dd 'Grupa', @profile.users_student.sgroup %>
+    <%= dt_dd 'Moduł', '## TODO ##' %>
+    <%= dt_dd 'Login na WWW', @profile.login %>
+    <%= dt_dd 'Adres e-mail', encode_string(@profile.email, mail_to(@profile.email, nil, :encode => 'hex')) %>
+    <%= dt_dd 'Strona WWW', (@profile.www_page.nil? ? '' : link_to(@profile.www_page, @profile.www_page)) %>
+    <%= dt_dd 'Numer GSM', @profile.users_student.cell %>
+    <%= dt_dd 'Numer GG', @profile.users_student.gadu_gadu %>
+    <%= dt_dd 'Numer ICQ', @profile.users_student.icq %>
+<%   end %>
+  </dl>
+<% else -%>
+  <div class="center">
+    <strong>Nie odnaleziono użytkownika w bazie danych.</strong>
+  </div>
+<% end -%>
+</div>

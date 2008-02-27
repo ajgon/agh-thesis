@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   before_filter :set_charset
+  layout 'index'
 
   def initialize
     @xhtml = false

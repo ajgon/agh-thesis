@@ -81,6 +81,7 @@ class Converter
           )
         )
         new_row = fix_related_columns new_row
+        new_row = convert_encodings new_row
         insertion = @NewModel.new(new_row)
         insertion.save!
         new_id = insertion.id
@@ -163,6 +164,13 @@ class Converter
           end
         end
       end
+    end
+    new_row
+  end
+  
+  def convert_encodings new_row
+    new_row.each_pair do |name, value| 
+      new_row[name] = Iconv.conv(@new_base_details['encoding'].capitalize, @old_base_details['encoding'].capitalize, value) if value.class.to_s == 'String'
     end
     new_row
   end

@@ -59,3 +59,4 @@ Rails::Initializer.run do |config|
 end
 
 Time::DATE_FORMATS[:short_time] = "%Y %d %m, %A, %H:%M"
+Time::DATE_FORMATS[:updated_at] = "%Y-%m-%d, godz. %H:%M"
