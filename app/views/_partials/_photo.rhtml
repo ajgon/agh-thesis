@@ -1,0 +1,10 @@
+<div class="content<%= content_type (defined?(content).nil? ? 'right' : content) %>">
+  <h3 class="photo"><abbr>Photo</abbr>Fotografia</h3>
+  <div class="center">
+<% if !@profile.users_lecturer.nil? and !@profile.users_lecturer.photo.nil? and !@profile.users_lecturer.photo.empty? and File.exists?('public/images/photos/' + @profile.users_lecturer.photo) %>
+    <img src="/images/photos/<%= @profile.users_lecturer.photo %>" alt="<%= @profile.firstname %> <%= @profile.lastname %>" />
+<% else %>
+    -- brak fotografii --
+<% end %>
+  </div>
+</div>

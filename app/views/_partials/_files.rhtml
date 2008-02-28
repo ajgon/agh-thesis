@@ -1,0 +1,16 @@
+<% content = (defined?(content).nil? ? '' : content) -%>
+<div class="content<%= content_type content %>">
+  <h3 class="files"><abbr>Files</abbr>Materiały</h3>
+<% unless content == 'right' %>
+<% else%>
+  <ul class="files">
+<% @files.each do |file| %>
+    <li>
+      <a href="##TODO##" title="[<%= file.subject.head %> / <%= file.user.firstname %> <%= file.user.lastname %>">
+         <%= file.head %>&nbsp;(<em><%= file.downloads %></em>)
+      </a>
+    </li>
+<% end %>
+  </ul>
+<% end %>
+</div>

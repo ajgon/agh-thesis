@@ -8,10 +8,6 @@ ul, ol, dl, dt, dd, li, hr, table, td, th {
     padding: 0;
 }
 
-html, body {
-    height: 100%;
-}
-
 body {
     font-family: Arial, Verdana, Helvetica, sans-serif;
     font-size: 11px;
@@ -32,6 +28,7 @@ a, a:visited {
 em a, em a:visited {
     color: #87785d;
     text-decoration: none;
+    font-weight: normal;
 }
 
 a:hover {
@@ -205,10 +202,15 @@ div.content {
     border: solid 1px #f2ce88;
     position: relative;
     background: #f6dba9;
+    margin-bottom: 17px;
 }
 
 div.content-left {
     width: 413px;
+}
+
+div.content-right {
+    width: 158px;
 }
 
 div.content h3 {
@@ -234,6 +236,40 @@ div.content h3 abbr {
     margin: -7px 4px 0px 0px;
 }
 
+dl.data {
+    overflow: hidden;
+    border-top: #f6e7c8 3px solid;
+    border-right: #f6e7c8 1px solid;
+    border-bottom: #f6e7c8 3px solid;
+    border-left: #f6e7c8 1px solid;
+    width: 381px;
+    margin: 10px auto 0px;
+}
+
+dl.data dt,
+dl.data dd {
+    float: left;
+    border: #f6e7c8 1px solid;
+    padding: 7px 11px;
+    border-color: #f6dba9;
+}
+
+dl.data dt {
+    width: 86px;
+    background: #f0b94a;
+    font-weight: bold;
+    text-align: right;
+    clear: left;
+    background: #f1c36b;
+}
+
+dl.data dd {
+    width: 247px;
+    background: #f2ce88;
+    min-height: 13px;
+    background: #f6e7c8;
+}
+
 /* news */
 
 h3.news abbr {
@@ -252,36 +288,41 @@ h5 {
     font-weight: normal;
 }
 
-dl.profile {
-    overflow: hidden;
-    border-top: #f6e7c8 3px solid;
-    border-right: #f6e7c8 1px solid;
-    border-bottom: #f6e7c8 3px solid;
-    border-left: #f6e7c8 1px solid;
-    width: 381px;
-    margin: 10px auto 0px;
+/* subjects */
+h3.subjects abbr {
+    background-image: url(/images/abbr/subjects.gif);
 }
 
-dl.profile dt,
-dl.profile dd {
-    float: left;
-    border: #f6e7c8 1px solid;
-    padding: 7px 11px;
+dl.subjects {
+    background: none;
+    border: none;
+}
+dl.subjects dt,
+dl.subjects dd {
+    padding: 5px 11px;
 }
 
-dl.profile dt {
-    width: 86px;
-    background: #f0b94a;
-    font-weight: bold;
-    text-align: right;
-    clear: left;
+dl.subjects dt {
+    float: right;
+    width: 53px;
+    text-align: center;
 }
 
-dl.profile dd {
-    width: 247px;
-    background: #f2ce88;
-    min-height: 13px;
+dl.subjects dd {
+    width: 280px;
 }
+
+/* photo */
+
+h3.photo abbr {
+    background-image: url(/images/abbr/users.gif);
+}
+
+/* files */
+h3.files abbr {
+    background-image: url(/images/abbr/subjects.gif);
+}
+
 
 /* =footer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

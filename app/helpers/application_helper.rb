@@ -95,4 +95,8 @@ module ApplicationHelper
     output
     where.gsub(email, output).gsub(/x([0-9]);/) { "x0#{$1};" }
   end
+  
+  def content_type content = nil
+    (content == 'left' ? ' content-left' : (content == 'right' ? ' content-right' : ''))
+  end
 end

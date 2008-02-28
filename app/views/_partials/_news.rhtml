@@ -1,7 +1,7 @@
-<div class="content content-left">
+<div class="content<%= content_type (defined?(content).nil? ? '' : content) %>">
   <h3 class="news"><abbr>Info</abbr>Aktualności</h3>
   <ul>
-<%  News.find(:all, :include => :user, :order => 'news.id desc', :limit => 7).each do |news| -%>
+<%  @news.each do |news| -%>
     <li>
       <h4><strong><%= short_date(news.date) -%></strong><em> - <%= news.years %> rok / <%= link_to news.user.login, {:controller => 'profile', :action => news.user.login} %></em></h4>
       <p><%= news.head %></p>

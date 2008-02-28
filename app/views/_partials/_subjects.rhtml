@@ -1,0 +1,9 @@
+<div class="content<%= content_type (defined?(content).nil? ? '' : content) %>">
+  <h3 class="subjects"><abbr>Subjects</abbr>Przedmioty prowadzone</h3>
+  <dl class="data subjects">
+<% UploadedFile.find(:all, :include => [:user, :subject], :conditions => ['users.id = ?', @profile.id], :group => 'subjects.head').each do |subject| -%>
+    <dt><a href="##TODO##">materiały</a></dt>
+    <dd><%= subject.subject.head %></dd>
+<% end %>
+  </dl>
+</div>
