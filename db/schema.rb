@@ -9,15 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 12) do
+ActiveRecord::Schema.define(:version => 13) do
 
   create_table "cathedrals", :force => true do |t|
     t.string "name", :limit => 50, :null => false
   end
 
   create_table "groups", :force => true do |t|
-    t.string "code", :limit => 80
-    t.string "head",               :null => false
+    t.string "head", :null => false
     t.text   "body"
   end
 
@@ -61,6 +60,10 @@ ActiveRecord::Schema.define(:version => 12) do
 
   create_table "news_types", :force => true do |t|
     t.string "name", :limit => 20, :null => false
+  end
+
+  create_table "specialities", :force => true do |t|
+    t.string "head", :limit => 50, :null => false
   end
 
   create_table "subjects", :force => true do |t|
@@ -118,16 +121,17 @@ ActiveRecord::Schema.define(:version => 12) do
   add_index "users_lecturers", ["user_id"], :name => "user_id"
 
   create_table "users_students", :force => true do |t|
-    t.integer "user_id",                 :null => false
-    t.string  "sgroup",    :limit => 7,  :null => false
-    t.integer "module",    :limit => 4,  :null => false
-    t.integer "sindex",    :limit => 6,  :null => false
-    t.integer "gadu_gadu", :limit => 15
-    t.integer "icq",       :limit => 15
-    t.string  "cell",      :limit => 15
+    t.integer "user_id",                     :null => false
+    t.integer "speciality_id",               :null => false
+    t.string  "sgroup",        :limit => 7,  :null => false
+    t.integer "sindex",        :limit => 6,  :null => false
+    t.integer "gadu_gadu",     :limit => 15
+    t.integer "icq",           :limit => 15
+    t.string  "cell",          :limit => 15
   end
 
   add_index "users_students", ["user_id"], :name => "user_id"
+  add_index "users_students", ["speciality_id"], :name => "speciality_id"
 
   add_foreign_key "groups_news", ["group_id"], "groups", ["id"], :name => "groups_news_ibfk_1"
   add_foreign_key "groups_news", ["news_id"], "news", ["id"], :name => "groups_news_ibfk_2"
@@ -148,5 +152,6 @@ ActiveRecord::Schema.define(:version => 12) do
   add_foreign_key "users_lecturers", ["user_id"], "users", ["id"], :name => "users_lecturers_ibfk_2"
 
   add_foreign_key "users_students", ["user_id"], "users", ["id"], :name => "users_students_ibfk_1"
+  add_foreign_key "users_students", ["speciality_id"], "specialities", ["id"], :name => "users_students_ibfk_2"
 
 end

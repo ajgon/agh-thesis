@@ -1,7 +1,72 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+all:
+  id: 1
+  head: 'Administratorzy'
+  body: ''
+speciality1:
+  id: 2
+  head: 'Elektronika'
+  body: ''
+speciality2:
+  id: 3
+  head: 'Telekomunikacja'
+  body: ''
+year1:
+  id: 4
+  head: 'I rok'
+  body: ''
+year2:
+  id: 5
+  head: 'II rok'
+  body: ''
+year3:
+  id: 6
+  head: 'III rok'
+  body: ''
+year4:
+  id: 7
+  head: 'IV rok'
+  body: ''
+year5:
+  id: 8
+  head: 'V rok'
+  body: ''
+group1:
+  id: 9
+  head: 'Grupa Dziekanatowa nr 1'
+  body: ''
+group2:
+  id: 10
+  head: 'Grupa Dziekanatowa nr 2'
+  body: ''
+group3:
+  id: 11
+  head: 'Grupa Dziekanatowa nr 3'
+  body: ''
+group4:
+  id: 12
+  head: 'Grupa Dziekanatowa nr 4'
+  body: ''
+group5:
+  id: 13
+  head: 'Grupa Dziekanatowa nr 5'
+  body: ''
+group6:
+  id: 14
+  head: 'Grupa Dziekanatowa nr 6'
+  body: ''
+group7:
+  id: 15
+  head: 'Grupa Dziekanatowa nr 7'
+  body: ''
+group8:
+  id: 16
+  head: 'Grupa Dziekanatowa nr 8'
+  body: ''
+group9:
+  id: 17
+  head: 'Grupa Dziekanatowa nr 9'
+  body: ''
+group10:
+  id: 18
+  head: 'Grupa Dziekanatowa nr 10'
+  body: ''

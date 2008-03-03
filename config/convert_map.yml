@@ -51,6 +51,8 @@
       name: sindex
     gg:
       name: gadu_gadu
+    module:
+      name: speciality_id
     modified:
       action: remove
     nband:

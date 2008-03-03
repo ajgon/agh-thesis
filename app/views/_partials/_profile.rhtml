@@ -15,7 +15,9 @@
 <%   else -%>
     <%= dt_dd 'Rok studiów', '## TODO ##' %>
     <%= dt_dd 'Grupa', @profile.users_student.sgroup %>
-    <%= dt_dd 'Moduł', '## TODO ##' %>
+<%     unless @profile.users_student.speciality.head.empty? %>
+    <%= dt_dd 'Moduł', @profile.users_student.speciality.head %>
+<%     end %>
     <%= dt_dd 'Login na WWW', @profile.login %>
     <%= dt_dd 'Adres e-mail', encode_string(@profile.email, mail_to(@profile.email, nil, :encode => 'hex')) %>
     <%= dt_dd 'Strona WWW', (@profile.www_page.nil? ? '' : link_to(@profile.www_page, @profile.www_page)) %>
