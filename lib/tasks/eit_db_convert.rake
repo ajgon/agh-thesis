@@ -86,6 +86,9 @@ class Converter
         insertion.save!
         new_id = insertion.id
         @id_map[@NewModel.table_name]['id_map'][old_id] = new_id
+        @function_map.each_pair do |column, function|
+          @NewModel.update_all(column + ' = ' + function.sub('@', '\'' + insertion.send(column).to_s + '\''), 'id = ' + new_id.to_s)
+        end
       rescue Exception => e
         puts e.inspect
         #TODO: Log wrong inserts
@@ -96,13 +99,24 @@ class Converter
   def populate_maps rules
     @map = create_column_map(populate(rules))
     @relation_map = create_relation_map rules
+    @function_map = create_function_map(populate(rules))
     @id_map[@NewModel.table_name] = {}
     @id_map[@NewModel.table_name]['old_name'] = @NewModel.table_name
     @id_map[@NewModel.table_name]['id_map'] = {}
   end
   
+  def create_function_map rules
+    function_map = {}
+    rules.each_pair do |key, value|
+      if value.has_key? 'function'
+        function_map[value['name']] = value['function']
+      end
+    end
+    function_map
+  end
+  
   def create_relation_map rules
-    related_columns = populate(rules)
+    related_columns = populate(rules).clone
     related_columns.delete_if do |column_name, params|
       params['from'].nil?
     end

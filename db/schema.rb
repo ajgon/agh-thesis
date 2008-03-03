@@ -21,24 +21,24 @@ ActiveRecord::Schema.define(:version => 13) do
   end
 
   create_table "groups_news", :id => false, :force => true do |t|
-    t.integer "group_id"
-    t.integer "news_id"
+    t.integer "group_id", :null => false
+    t.integer "news_id",  :null => false
   end
 
   add_index "groups_news", ["group_id"], :name => "group_id"
   add_index "groups_news", ["news_id"], :name => "news_id"
 
   create_table "groups_uploaded_files", :id => false, :force => true do |t|
-    t.integer "group_id"
-    t.integer "uploaded_file_id"
+    t.integer "group_id",         :null => false
+    t.integer "uploaded_file_id", :null => false
   end
 
   add_index "groups_uploaded_files", ["group_id"], :name => "group_id"
   add_index "groups_uploaded_files", ["uploaded_file_id"], :name => "uploaded_file_id"
 
   create_table "groups_users", :id => false, :force => true do |t|
-    t.integer "group_id"
-    t.integer "user_id"
+    t.integer "group_id", :null => false
+    t.integer "user_id",  :null => false
   end
 
   add_index "groups_users", ["group_id"], :name => "group_id"

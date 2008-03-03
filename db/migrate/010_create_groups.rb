@@ -1,4 +1,4 @@
-require 'active_record/fixtures'
+#require 'active_record/fixtures'
 
 class CreateGroups < ActiveRecord::Migration
   def self.up
@@ -6,10 +6,10 @@ class CreateGroups < ActiveRecord::Migration
       t.string :head, :null => false
       t.text :body
     end
-    Fixtures.create_fixtures( 
-      File.join(File.dirname(__FILE__), '..', '..', 'test', 'fixtures'),
-      'groups'
-    )
+#    Fixtures.create_fixtures( 
+#      File.join(File.dirname(__FILE__), '..', '..', 'test', 'fixtures'),
+#      'groups'
+#    )
   end
 
   def self.down

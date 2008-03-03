@@ -10,6 +10,7 @@
 #                                mapped as those ids from x1 table (one-to-one relation)
 #                                only for ids!]
 #       field: <new_table_field> [if mapping is not by id, but by other field, put here its name]
+#       function: <function(@)> apply a SQL function on inserted data @ represents field)
 #     <column2>:
 #       <...>
 #     <...>
@@ -20,6 +21,7 @@
   users:
     pass:
       name: password
+      function: SHA1(@)
     time:
       name: created_on
     timeact:
@@ -124,6 +126,59 @@
     rid:
       action: remove
     sectype:
-      action: remove
+      name: kind
+      function: CASE FLOOR(@ / 10) WHEN 1 THEN 'material' WHEN 2 THEN 'grade' ELSE '' END
     secgroup:
+      action: remove
+09_groups:
+  groupstruct:
+    name:
+      name: head
+    aid:
+      action: remove
+    alogin:
+      action: remove
+    king:
+      action: remove
+    since:
+      action: remove
+10_groups_users:
+  groupmembs:
+    gid:
+     from: groups
+     name: group_id
+    uid:
+     from: users
+     name: user_id
+11_groups_uploaded_files:
+  files:
+    secgrp:
+      from: groups
+      name: group_id
+    id:
+      from: uploaded_files
+      name: uploaded_file_id
+    filename1:
+      action: remove
+    name:
+      action: remove
+    time:
+      action: remove
+    body:
+      action: remove
+    alogin:
+      action: remove
+    aid:
+      action: remove
+    down:
+      action: remove
+    spec:
+      action: remove
+    rlogin:
+      action: remove
+    rid:
+      action: remove
+    sectype:
+      action: remove
+    filename:
       action: remove
