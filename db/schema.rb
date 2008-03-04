@@ -67,10 +67,11 @@ ActiveRecord::Schema.define(:version => 13) do
   end
 
   create_table "subjects", :force => true do |t|
-    t.string "acronym", :limit => 10, :null => false
-    t.string "head",                  :null => false
-    t.text   "body"
-    t.string "code",    :limit => 6
+    t.string  "acronym", :limit => 10, :null => false
+    t.string  "head",                  :null => false
+    t.text    "body"
+    t.string  "code",    :limit => 6
+    t.integer "season",  :limit => 4,  :null => false
   end
 
   create_table "uploaded_files", :force => true do |t|

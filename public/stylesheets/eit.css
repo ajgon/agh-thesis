@@ -66,18 +66,28 @@ input, select, textarea {
 #top {
     height: 4.66em;
     background: #f1c36b url('/images/top.gif') no-repeat right top;
+    overflow: hidden;
 }
 
 
 #top h1 {
+    float: right;
+    overflow: hidden;
+    width: 10em;
+}
+
+#top h1 a {
     font-size: 14px;
     color: #80590c;
     font-weight: bold;
-    float: right;
+    text-decoration: none;
     letter-spacing: 1px;
     line-height: 1.1em;
     width: 14em;
+    display: block;
     overflow: hidden;
+    float: right;
+    cursor: pointer;
 }
 
 #top h1 strong {
@@ -106,6 +116,7 @@ input, select, textarea {
     position: relative;
     font-size: 18px;
     font-weight: normal;
+    float: left;
 }
 
 #top h2 span {
@@ -191,10 +202,26 @@ input, select, textarea {
 div.center {
     text-align: center;
 }
+
+div.right {
+    text-align: right;
+}
+
 #content {
     background: #f6e7c8;
     overflow: hidden;
     padding: 5px 6px 10px 4px;
+}
+
+div.column-left {
+    width: 435px;
+    float: left;
+}
+
+div.column-right {
+    width: 180px;
+    float: left;
+    margin-left: 11px;
 }
 
 div.content {
@@ -219,6 +246,11 @@ div.content h3 {
     border-left: #f0b94a solid 11px;
     padding-left: 4px;
     margin: -14px -11px 12px;
+}
+
+div.content h4.head {
+    background: #f6e7c8;
+    margin-bottom: 15px;
 }
 
 div.content ul li {
@@ -321,6 +353,16 @@ h3.photo abbr {
 /* files */
 h3.files abbr {
     background-image: url(/images/abbr/subjects.gif);
+}
+
+ul.files {
+    list-style: disc;
+    padding-left: 10px;
+}
+
+/* grades */
+h3.grades abbr {
+    background-image: url(/images/abbr/grades.gif);
 }
 
 

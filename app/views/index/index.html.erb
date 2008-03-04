@@ -1,1 +1,4 @@
-<%= render :partial => '_partials/news' %>
+<div class="column-left">
+<%= render :partial => '_partials/news', :locals => { :content => 'left' } %>
+<%= render :partial => '_partials/files_detailed', :locals => { :content => 'left' } %>
+</div>

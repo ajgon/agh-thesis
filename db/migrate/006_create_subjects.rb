@@ -5,6 +5,7 @@ class CreateSubjects < ActiveRecord::Migration
       t.string :head, :null => false
       t.text :body
       t.string :code, :limit => 6
+      t.integer :season, :limit => 4, :null => false
     end
   end
 

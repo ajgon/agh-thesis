@@ -77,8 +77,6 @@
       name: acronym
     type:
       action: remove
-    season:
-      action: remove
 06_news_types:
   news_types:
 07_news:

@@ -1,11 +1,18 @@
 <div class="content<%= content_type (defined?(content).nil? ? '' : content) %>">
+<% if news.class.to_s == 'Array'%>
   <h3 class="news"><abbr>Info</abbr>Aktualności</h3>
   <ul>
-<%  @news.each do |news| -%>
+<%   news.each do |news| -%>
     <li>
       <h4><strong><%= short_date(news.date) -%></strong><em> - <%= news.years %> rok / <%= link_to news.user.login, {:controller => 'profile', :action => news.user.login} %></em></h4>
-      <p><%= news.head %></p>
+      <p><%= news.head %> <%= link_to 'więcej', :controller => 'news', :action => 'read', :id => IdEncoder.encode(news.id) %></p>
     </li>
-<% end -%>
+<%   end -%>
   </ul>
+<% else %>
+  <h3 class="news"><abbr>News</abbr><%= news.date.to_s(:created_at).gsub(/^([0-9]+. )([^ ]+)/) { $1 + en_to_pl($2).downcase }%></h3>
+  <h4 class="head"><%= news.head %></h4>
+  <p><%= h(news.body).gsub(/\n/, '<br />') %></p>
+  <div class="right"><em><%= link_to news.user.login, :controller => 'profile', :action => news.user.login %></em></div>
+<% end %>
 </div>

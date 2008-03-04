@@ -17,7 +17,7 @@
 <body>
   <div id="wrapper">
     <div id="top">
-      <h1>Strona kierunku <strong>Elektronika <span>&amp;</span> Telekomunikacja</strong></h1>
+      <h1><%= link_to 'Strona kierunku <strong>Elektronika <span>&amp;</span> Telekomunikacja</strong>', :controller => 'index', :action => 'index' %></h1>
       <h2><span>Aktualności</span></h2>
     </div>
 <%= render :partial => '_partials/menu' %>

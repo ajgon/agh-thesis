@@ -1,0 +1,17 @@
+<% content = (defined?(content).nil? ? '' : content) -%>
+<div class="content<%= content_type content %>">
+  <h3 class="grades"><abbr>Grades</abbr>Oceny</h3>
+<% unless @grades.empty? %>
+  <ul class="files grades">
+<%   @grades.each do |file| %>
+    <li>
+      <em><%= file.subject.acronym %>:</em>&nbsp;<a href="##TODO##" title="[<%= file.subject.head %> / <%= file.user.firstname %> <%= file.user.lastname %>"><%= file.head.empty? ? file.filename.gsub('_', ' ') : file.head %></a> (<em><%= file.downloads %></em>)
+    </li>
+<%   end %>
+  </ul>
+<% else %>
+  <div class="center">
+    -- brak ocen --
+  </div>
+<% end %>
+</div>
