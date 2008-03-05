@@ -1,9 +1,9 @@
 <div class="content<%= content_type (defined?(content).nil? ? '' : content) %>">
-  <h3 class="subjects"><abbr>Subjects</abbr>Przedmioty prowadzone</h3>
+  <h3 class="users"><abbr>Users</abbr>Prowadzący</h3>
   <dl class="data subjects">
-<% @subjects.each do |subject| -%>
+<% @profiles.each do |profile| -%>
     <dt><a href="##TODO##">materiały</a></dt>
-    <dd><%= subject.subject.head %></dd>
+    <dd><%= profile.user.firstname %> <%= profile.user.lastname %></dd>
 <% end %>
   </dl>
 </div>

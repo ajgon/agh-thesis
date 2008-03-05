@@ -71,38 +71,49 @@ class Converter
   
   # port_data
   def port_data(rules)
+    rules = rules.nil? ? {} : rules
+    unless rules['__BEFORE'].nil?
+      @OldTable.connection.execute(rules['__BEFORE'].sub('@', @OldTable.table_name))
+      rules.delete '__BEFORE'
+    end
+    after_query = rules['__AFTER']
+    rules.delete '__AFTER'
     populate_maps rules
-    @OldTable.find(:all).each do |row|
+    @OldTable.find(:all, :order => (@OldTable.column_names.include?('id') ? 'id' : '1')).each do |row|
       begin
         old_id = row.id
-        new_row = fix_not_null_columns(
+        new_row = remap_columns(
           sync_columns_with_map(
             row.attributes
           )
         )
         new_row = fix_related_columns new_row
+        new_row = fix_not_null_columns new_row
         new_row = convert_encodings new_row
         insertion = @NewModel.new(new_row)
         insertion.save!
         new_id = insertion.id
         @id_map[@NewModel.table_name]['id_map'][old_id] = new_id
         @function_map.each_pair do |column, function|
-          @NewModel.update_all(column + ' = ' + function.sub('@', '\'' + insertion.send(column).to_s + '\''), 'id = ' + new_id.to_s)
+          @NewModel.update_all(column + ' = ' + function.sub('@', '\'' + new_row[column].to_s + '\''), 'id = ' + new_id.to_s)
         end
       rescue Exception => e
         puts e.inspect
         #TODO: Log wrong inserts
       end
     end
+    unless after_query.nil?
+      @OldTable.connection.execute(after_query.sub('@', @OldTable.table_name))
+    end
   end
   
   def populate_maps rules
-    @map = create_column_map(populate(rules))
-    @relation_map = create_relation_map rules
-    @function_map = create_function_map(populate(rules))
     @id_map[@NewModel.table_name] = {}
     @id_map[@NewModel.table_name]['old_name'] = @NewModel.table_name
     @id_map[@NewModel.table_name]['id_map'] = {}
+    @map = create_column_map(populate(rules))
+    @relation_map = create_relation_map rules
+    @function_map = create_function_map(populate(rules))
   end
   
   def create_function_map rules
@@ -148,13 +159,14 @@ class Converter
   end
   
   def sync_columns_with_map row
-    row.delete_if do |column_name, value|
+    row_clone = row.clone
+    row_clone.delete_if do |column_name, value|
       !@map.has_key? column_name
     end
-    row
+    row_clone
   end
   
-  def fix_not_null_columns row
+  def remap_columns row
     new_row = {}
     row.each_pair do |column_name, value|
       new_value = value
@@ -162,8 +174,20 @@ class Converter
       unless new_column.nil?
         column_not_null = !new_column.null
         column_default = new_column.default
-        new_value = column_default if new_value.nil? and column_not_null
         new_row[@map[column_name]] = new_value
+      end
+    end
+    new_row
+  end
+
+  def fix_not_null_columns row
+    new_row = row.clone
+    row.each_pair do |column_name, value|
+      new_column = @NewModel.columns.find_all { |column| column.name == column_name}.first
+      unless new_column.nil?
+        column_not_null = !new_column.null
+        column_default = new_column.default
+        new_row[column_name] = column_default if column_not_null and new_row[column_name].nil?
       end
     end
     new_row

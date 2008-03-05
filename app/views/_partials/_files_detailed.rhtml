@@ -4,7 +4,7 @@
 <% @files.each do |file| %>
     <li>
       <h4><strong><%= file.head.empty? ? file.filename.gsub('_', ' ') : file.head %></strong> ##TODO## - material niepubliczny</h4>
-      <em><%= file.subject.head %> / <a href="<%= url_for :controller => 'profile', :action => file.user.login %>"><%= file.user.firstname %> <%= file.user.lastname%></a></em>
+      <em><a href="<%= url_for :controller => 'subject', :action => file.subject.acronym %>"><%= file.subject.head %></a> / <a href="<%= url_for :controller => 'profile', :action => file.user.login %>"><%= file.user.firstname %> <%= file.user.lastname%></a></em>
       <p>
         rok: <em><strong><%= roman_month('0' + (file.subject.season / 2).ceil.to_s) %></strong></em>, 
         semestr: <em><strong><%= file.subject.season %></strong></em>,

@@ -299,7 +299,6 @@ dl.data dd {
     width: 247px;
     background: #f2ce88;
     min-height: 13px;
-    background: #f6e7c8;
 }
 
 /* news */
@@ -342,6 +341,7 @@ dl.subjects dt {
 
 dl.subjects dd {
     width: 280px;
+    background: #f6e7c8;
 }
 
 /* photo */

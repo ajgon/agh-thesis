@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 13) do
+ActiveRecord::Schema.define(:version => 14) do
 
   create_table "cathedrals", :force => true do |t|
     t.string "name", :limit => 50, :null => false
@@ -67,11 +67,19 @@ ActiveRecord::Schema.define(:version => 13) do
   end
 
   create_table "subjects", :force => true do |t|
-    t.string  "acronym", :limit => 10, :null => false
-    t.string  "head",                  :null => false
+    t.integer "subjects_type_id",               :null => false
+    t.string  "acronym",          :limit => 10, :null => false
+    t.string  "head",                           :null => false
     t.text    "body"
-    t.string  "code",    :limit => 6
-    t.integer "season",  :limit => 4,  :null => false
+    t.string  "code",             :limit => 6
+    t.integer "season",           :limit => 4,  :null => false
+  end
+
+  add_index "subjects", ["subjects_type_id"], :name => "subjects_type_id"
+
+  create_table "subjects_types", :force => true do |t|
+    t.string  "head",      :limit => 50,                   :null => false
+    t.boolean "mandatory",               :default => true, :null => false
   end
 
   create_table "uploaded_files", :force => true do |t|
@@ -102,15 +110,14 @@ ActiveRecord::Schema.define(:version => 13) do
     t.string   "www_page",        :limit => 200
     t.text     "www_description"
     t.boolean  "voted",                          :default => false,                                      :null => false
-    t.string   "kind",            :limit => 20,                                                          :null => false
     t.text     "signature"
     t.string   "last_ip",         :limit => 15
     t.boolean  "activated",                      :default => false,                                      :null => false
   end
 
   create_table "users_lecturers", :force => true do |t|
-    t.integer "cathedral_id"
-    t.integer "user_id",                     :null => false
+    t.integer "cathedral_id",                :default => 1, :null => false
+    t.integer "user_id",                                    :null => false
     t.string  "place",         :limit => 30
     t.string  "title",         :limit => 50
     t.string  "consultations", :limit => 50
@@ -145,6 +152,8 @@ ActiveRecord::Schema.define(:version => 13) do
 
   add_foreign_key "news", ["news_type_id"], "news_types", ["id"], :name => "news_ibfk_1"
   add_foreign_key "news", ["user_id"], "users", ["id"], :name => "news_ibfk_2"
+
+  add_foreign_key "subjects", ["subjects_type_id"], "subjects_types", ["id"], :name => "subjects_ibfk_1"
 
   add_foreign_key "uploaded_files", ["subject_id"], "subjects", ["id"], :name => "uploaded_files_ibfk_1"
   add_foreign_key "uploaded_files", ["user_id"], "users", ["id"], :name => "uploaded_files_ibfk_2"

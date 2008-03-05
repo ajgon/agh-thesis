@@ -14,7 +14,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :www_page, :limit => 200
       t.text :www_description
       t.boolean :voted, :null => false, :default => false
-      t.string :kind, :limit => 20, :null => false  # student/lecturer/absolvent
       t.text :signature
       t.string :last_ip, :limit => 15
       t.boolean :activated, :null => false, :default => false

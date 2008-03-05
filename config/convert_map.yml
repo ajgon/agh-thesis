@@ -1,6 +1,8 @@
 # schema
 # <new_table_name>:
 #   <first_table>:
+#     __BEFORE: SQL query executed on the OLD database before conversion, @ represents table name
+#     __AFTER: SQL query executed on the OLD database after conversion, @ represents table name
 #     <column>: [include only changed columns]
 #       [use only parameters which changes]
 #       action: <new_action> [default: copy] (valid: copy, add, remove)
@@ -40,10 +42,13 @@
       name: lastname
     privileges:
       action: remove
+    kind:
+      action: remove
 02_cathedrals:
   cathedrals:
 03_users_students:
   users_k1:
+    __BEFORE: INSERT INTO @ (id) SELECT id FROM users WHERE id NOT IN (SELECT id FROM users_k1) AND id NOT IN (SELECT id from users_k2) AND login IS NOT NULL AND kind = 1
     id:
       from: users
       name: user_id
@@ -61,6 +66,8 @@
       action: remove
 04_users_lecturers:
   users_k2:
+    __BEFORE: INSERT INTO @ (id) SELECT id FROM users WHERE id NOT IN (SELECT id FROM users_k1) AND id NOT IN (SELECT id from users_k2) AND login IS NOT NULL AND kind = 2
+    __AFTER: INSERT INTO specs_types VALUES (10, 'Przedmioty innego typu')
     id:
       from: users
       name: user_id
@@ -69,17 +76,27 @@
       name: cathedral_id
     consul:
       name: consultations
-05_subjects:
+05_subjects_types:
+  specs_types:
+    __BEFORE: ALTER TABLE @ CHANGE typ typ integer
+    __AFTER: ALTER TABLE @ CHANGE typ typ boolean
+    opis:
+      name: head
+    typ:
+      name: mandatory
+      function: @ NOT IN (4,6,10)
+06_subjects:
   specs:
+    __BEFORE: DELETE FROM specs_types WHERE typ = 10
     name:
       name: head
     acronim:
       name: acronym
     type:
-      action: remove
-06_news_types:
+      name: subjects_type_id
+07_news_types:
   news_types:
-07_news:
+08_news:
   news:
     alogin:
       from: users
@@ -101,7 +118,7 @@
       action: remove
     year:
       action: remove
-08_uploaded_files:
+09_uploaded_files:
   files:
     filename1:
       action: remove
@@ -128,7 +145,7 @@
       function: CASE FLOOR(@ / 10) WHEN 1 THEN 'material' WHEN 2 THEN 'grade' ELSE '' END
     secgroup:
       action: remove
-09_groups:
+10_groups:
   groupstruct:
     name:
       name: head
@@ -140,7 +157,7 @@
       action: remove
     since:
       action: remove
-10_groups_users:
+11_groups_users:
   groupmembs:
     gid:
      from: groups
@@ -148,7 +165,7 @@
     uid:
      from: users
      name: user_id
-11_groups_uploaded_files:
+12_groups_uploaded_files:
   files:
     secgrp:
       from: groups

@@ -1,0 +1,17 @@
+<div class="content<%= content_type (defined?(content).nil? ? '' : content) %>">
+  <h3 class="subjects"><abbr>Subjects</abbr> Informacje o przedmiocie</h3>
+<% unless @subject.nil? -%>
+  <h5><%= @subject.head %></h5>
+  <dl class="data">
+    <%= dt_dd 'Typ', (@subject.subjects_type.mandatory ? 'Obowiązkowy' : 'Obieralny') %>
+    <%= dt_dd 'Rodzaj', @subject.subjects_type.head %>
+    <%= dt_dd 'Semestr', @subject.season %>
+    <%= dt_dd 'Kod', @subject.code %>
+    <%= dt_dd 'Skrót', @subject.acronym %>
+  </dl>
+<% else -%>
+  <div class="center">
+    <strong>Nie odnaleziono przedmiotu w bazie danych.</strong>
+  </div>
+<% end -%>
+</div>
