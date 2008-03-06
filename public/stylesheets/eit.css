@@ -22,16 +22,16 @@ em {
 
 a, a:visited {
     outline: none !important;
+    text-decoration: none;
     color: #000000;
 }
 
 em a, em a:visited {
     color: #87785d;
-    text-decoration: none;
     font-weight: normal;
 }
 
-a:hover {
+a:hover, em a:hover {
     color: #cc0000;
 }
 
@@ -365,6 +365,45 @@ h3.grades abbr {
     background-image: url(/images/abbr/grades.gif);
 }
 
+/* search */
+h3.search abbr {
+    background-image: url(/images/abbr/search.gif);
+}
+
+div.google form {
+    text-align: center;
+}
+
+div.google input#q {
+    width: 158px;
+    margin-bottom: 5px;
+}
+
+/* poll */
+div.polls h4 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+h3.polls abbr {
+    background-image: url(/images/abbr/polls.gif);
+}
+
+ul.poll {
+    list-style: disc;
+    padding-left: 10px;
+}
+
+ul.poll li div.bar {
+    width: 100%;
+    height: 7px;
+    background: #f6ecdc;
+    margin-top: 3px;
+}
+
+ul.poll li div.bar div.filling {
+    background: #e5a713;
+    height: 7px;
+}
 
 /* =footer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

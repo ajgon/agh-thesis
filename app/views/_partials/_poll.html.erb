@@ -1,0 +1,15 @@
+<% content = (defined?(content).nil? ? '' : content) -%>
+<div class="content<%= content_type content %> polls">
+  <h3 class="polls"><abbr>Polls</abbr>Ankieta</h3>
+  <h4><%= @poll.question %></h4>
+  <ul class="poll">
+<% @poll.polls_answers.each do |polls_answer| %>
+  <li>
+    <%= polls_answer.answer %> 
+    <div class="bar">
+      <div class="filling" style="width: <%= polls_answer.quantity * 100 / @polls_answers_amount %>%;"></div>
+    </div>
+  </li>
+<% end %>
+  </ul>
+</div>

@@ -1,72 +1,76 @@
 all:
   id: 1
+  head: 'Wszyscy'
+  body: ''
+admins:
+  id: 2
   head: 'Administratorzy'
   body: ''
 speciality1:
-  id: 2
+  id: 3
   head: 'Elektronika'
   body: ''
 speciality2:
-  id: 3
+  id: 4
   head: 'Telekomunikacja'
   body: ''
 year1:
-  id: 4
+  id: 5
   head: 'I rok'
   body: ''
 year2:
-  id: 5
+  id: 6
   head: 'II rok'
   body: ''
 year3:
-  id: 6
+  id: 7
   head: 'III rok'
   body: ''
 year4:
-  id: 7
+  id: 8
   head: 'IV rok'
   body: ''
 year5:
-  id: 8
+  id: 9
   head: 'V rok'
   body: ''
 group1:
-  id: 9
+  id: 10
   head: 'Grupa Dziekanatowa nr 1'
   body: ''
 group2:
-  id: 10
+  id: 11
   head: 'Grupa Dziekanatowa nr 2'
   body: ''
 group3:
-  id: 11
+  id: 12
   head: 'Grupa Dziekanatowa nr 3'
   body: ''
 group4:
-  id: 12
+  id: 13
   head: 'Grupa Dziekanatowa nr 4'
   body: ''
 group5:
-  id: 13
+  id: 14
   head: 'Grupa Dziekanatowa nr 5'
   body: ''
 group6:
-  id: 14
+  id: 15
   head: 'Grupa Dziekanatowa nr 6'
   body: ''
 group7:
-  id: 15
+  id: 16
   head: 'Grupa Dziekanatowa nr 7'
   body: ''
 group8:
-  id: 16
+  id: 17
   head: 'Grupa Dziekanatowa nr 8'
   body: ''
 group9:
-  id: 17
+  id: 18
   head: 'Grupa Dziekanatowa nr 9'
   body: ''
 group10:
-  id: 18
+  id: 19
   head: 'Grupa Dziekanatowa nr 10'
   body: ''

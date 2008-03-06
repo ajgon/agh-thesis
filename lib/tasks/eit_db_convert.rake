@@ -78,8 +78,10 @@ class Converter
     end
     after_query = rules['__AFTER']
     rules.delete '__AFTER'
+    where = (rules['__WHERE'].nil? ? '1' : rules['__WHERE'])
+    rules.delete '__WHERE'
     populate_maps rules
-    @OldTable.find(:all, :order => (@OldTable.column_names.include?('id') ? 'id' : '1')).each do |row|
+    @OldTable.find(:all, :order => (@OldTable.column_names.include?('id') ? 'id' : '1'), :conditions => where).each do |row|
       begin
         old_id = row.id
         new_row = remap_columns(
@@ -94,7 +96,9 @@ class Converter
         insertion.save!
         new_id = insertion.id
         @id_map[@NewModel.table_name]['id_map'][old_id] = new_id
+        puts @function_map.inspect if @OldTable.table_name == 'files'
         @function_map.each_pair do |column, function|
+          #puts column + ' = ' + function.sub('@', '\'' + new_row[column].to_s + '\'')
           @NewModel.update_all(column + ' = ' + function.sub('@', '\'' + new_row[column].to_s + '\''), 'id = ' + new_id.to_s)
         end
       rescue Exception => e

@@ -1,0 +1,10 @@
+<% content = (defined?(content).nil? ? '' : content) -%>
+<div class="google content<%= content_type content %>">
+  <h3 class="search"><abbr>Search</abbr>Google AGH</h3>
+  <% form_tag 'http://www.google.com/u/agh', :method => 'get' do %>
+    <fieldset>
+      <%= text_field_tag 'q' %>
+      <%= submit_tag 'Google Search' %>
+    </fieldset>
+  <% end %>
+</div>

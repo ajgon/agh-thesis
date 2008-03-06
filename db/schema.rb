@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 14) do
+ActiveRecord::Schema.define(:version => 16) do
 
   create_table "cathedrals", :force => true do |t|
     t.string "name", :limit => 50, :null => false
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(:version => 14) do
   add_index "groups_news", ["news_id"], :name => "news_id"
 
   create_table "groups_uploaded_files", :id => false, :force => true do |t|
-    t.integer "group_id",         :null => false
-    t.integer "uploaded_file_id", :null => false
+    t.integer "group_id",         :default => 2, :null => false
+    t.integer "uploaded_file_id",                :null => false
   end
 
   add_index "groups_uploaded_files", ["group_id"], :name => "group_id"
@@ -61,6 +61,24 @@ ActiveRecord::Schema.define(:version => 14) do
   create_table "news_types", :force => true do |t|
     t.string "name", :limit => 20, :null => false
   end
+
+  create_table "polls_answers", :force => true do |t|
+    t.integer "polls_question_id",                :null => false
+    t.string  "answer",                           :null => false
+    t.integer "quantity",          :default => 0, :null => false
+  end
+
+  add_index "polls_answers", ["polls_question_id"], :name => "polls_question_id"
+
+  create_table "polls_questions", :force => true do |t|
+    t.integer  "user_id",                       :null => false
+    t.string   "question",                      :null => false
+    t.datetime "start_time",                    :null => false
+    t.datetime "end_time"
+    t.boolean  "anonymous",  :default => false, :null => false
+  end
+
+  add_index "polls_questions", ["user_id"], :name => "user_id"
 
   create_table "specialities", :force => true do |t|
     t.string "head", :limit => 50, :null => false
@@ -152,6 +170,10 @@ ActiveRecord::Schema.define(:version => 14) do
 
   add_foreign_key "news", ["news_type_id"], "news_types", ["id"], :name => "news_ibfk_1"
   add_foreign_key "news", ["user_id"], "users", ["id"], :name => "news_ibfk_2"
+
+  add_foreign_key "polls_answers", ["polls_question_id"], "polls_questions", ["id"], :name => "polls_answers_ibfk_1"
+
+  add_foreign_key "polls_questions", ["user_id"], "users", ["id"], :name => "polls_questions_ibfk_1"
 
   add_foreign_key "subjects", ["subjects_type_id"], "subjects_types", ["id"], :name => "subjects_ibfk_1"
 
