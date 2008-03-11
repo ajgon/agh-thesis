@@ -17,7 +17,7 @@
       <p>
         rok: <em><strong><%= roman_month('0' + (file.subject.season / 2).ceil.to_s) %></strong></em>, 
         semestr: <em><strong><%= file.subject.season %></strong></em>,
-        rozmiar: <em><strong>##TODO##</strong></em>,
+        rozmiar: <em><strong><%= add_units(File.size?(RAILS_ROOT + '/files/' + file.filename)) %></strong></em>,
         dodany: <em><strong><%= file.date.to_s(:time) %></strong></em>,
         pobrań: <em><strong><%= file.downloads %></strong></em>
       </p>

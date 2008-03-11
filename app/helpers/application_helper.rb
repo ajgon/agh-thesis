@@ -99,4 +99,18 @@ module ApplicationHelper
   def content_type content = nil
     (content == 'left' ? ' content-left' : (content == 'right' ? ' content-right' : ''))
   end
+  
+  def add_units number
+    number = number.to_i
+    case true
+      when (number / 1024).round == 0
+        return number.to_s + ' B'
+      when (number / (1024 * 1024)).round == 0
+        return (number / 1024).round.to_s + ' KB'
+      when (number / (1024 * 1024 * 1024)).round == 0
+        return (number / (1024 * 1024)).round.to_s + ' MB'
+      else
+        return (number / (1024 * 1024 * 1024)).round.to_s + ' GB'
+    end
+  end
 end
