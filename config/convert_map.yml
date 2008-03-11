@@ -45,38 +45,38 @@
       action: remove
     kind:
       action: remove
-#02_cathedrals:
-#  cathedrals:
-#03_users_students:
-#  users_k1:
-#    __BEFORE: INSERT INTO @ (id) SELECT id FROM users WHERE id NOT IN (SELECT id FROM users_k1) AND id NOT IN (SELECT id from users_k2) AND login IS NOT NULL AND kind = 1
-#    id:
-#      from: users
-#      name: user_id
-#    band:
-#      name: sgroup
-#    indeks:
-#      name: sindex
-#    gg:
-#      name: gadu_gadu
-#    module:
-#      name: speciality_id
-#    modified:
-#      action: remove
-#    nband:
-#      action: remove
-#04_users_lecturers:
-#  users_k2:
-#    __BEFORE: INSERT INTO @ (id) SELECT id FROM users WHERE id NOT IN (SELECT id FROM users_k1) AND id NOT IN (SELECT id from users_k2) AND login IS NOT NULL AND kind = 2
-#    __AFTER: INSERT INTO specs_types VALUES (10, 'Przedmioty innego typu')
-#    id:
-#      from: users
-#      name: user_id
-#    cathedral:
-#      from: cathedrals
-#      name: cathedral_id
-#    consul:
-#      name: consultations
+02_cathedrals:
+  cathedrals:
+03_users_students:
+  users_k1:
+    __BEFORE: INSERT INTO @ (id) SELECT id FROM users WHERE id NOT IN (SELECT id FROM users_k1) AND id NOT IN (SELECT id from users_k2) AND login IS NOT NULL AND kind = 1
+    id:
+      from: users
+      name: user_id
+    band:
+      name: sgroup
+    indeks:
+      name: sindex
+    gg:
+      name: gadu_gadu
+    module:
+      name: speciality_id
+    modified:
+      action: remove
+    nband:
+      action: remove
+04_users_lecturers:
+  users_k2:
+    __BEFORE: INSERT INTO @ (id) SELECT id FROM users WHERE id NOT IN (SELECT id FROM users_k1) AND id NOT IN (SELECT id from users_k2) AND login IS NOT NULL AND kind = 2
+    __AFTER: INSERT INTO specs_types VALUES (10, 'Przedmioty innego typu')
+    id:
+      from: users
+      name: user_id
+    cathedral:
+      from: cathedrals
+      name: cathedral_id
+    consul:
+      name: consultations
 05_subjects_types:
   specs_types:
     __BEFORE: ALTER TABLE @ CHANGE typ typ integer
@@ -95,30 +95,30 @@
       name: acronym
     type:
       name: subjects_type_id
-#07_news_types:
-#  news_types:
-#08_news:
-#  news:
-#    alogin:
-#      from: users
-#      field: login
-#      name: user_id
-#    aname:
-#      action: remove
-#    nyear:
-#      name: for_year
-#    piece:
-#      name: body
-#    mreads:
-#      name: times_readed
-#    spec:
-#      action: remove
-#    thread:
-#      action: remove
-#    type:
-#      action: remove
-#    year:
-#      action: remove
+07_news_types:
+  news_types:
+08_news:
+  news:
+    alogin:
+      from: users
+      field: login
+      name: user_id
+    aname:
+      action: remove
+    nyear:
+      name: for_year
+    piece:
+      name: body
+    mreads:
+      name: times_readed
+    spec:
+      action: remove
+    thread:
+      action: remove
+    type:
+      action: remove
+    year:
+      action: remove
 09_groups:
   groupstruct:
     name:
@@ -131,14 +131,14 @@
       action: remove
     since:
       action: remove
-#10_groups_users:
-#  groupmembs:
-#    gid:
-#     from: groups
-#     name: group_id
-#    uid:
-#     from: users
-#     name: user_id
+10_groups_users:
+  groupmembs:
+    gid:
+     from: groups
+     name: group_id
+    uid:
+     from: users
+     name: user_id
 10_uploaded_files:
   files:
     filename1:
@@ -168,9 +168,25 @@
       action: remove
 11_groups_uploaded_files:
   files:
-    __BEFORE: UPDATE @ SET secgrp = 1000 WHERE secgrp = 0
-    __AFTER: UPDATE @ SET secgrp = 0 WHERE secgrp = 1000
-    __WHERE: sectype IN (10, 20)
+    __WHERE: sectype IN (11, 21)
+    secgrp:
+      name: group_id
+      function: @ + 4
+    id:
+      from: uploaded_files
+      name: uploaded_file_id
+11a_groups_uploaded_files:
+  files:
+    __WHERE: sectype IN (12, 22)
+    secgrp:
+      name: group_id
+      function: @ + 19
+    id:
+      from: uploaded_files
+      name: uploaded_file_id
+11b_groups_uploaded_files:
+  files:
+    __WHERE: sectype IN (13, 23)
     secgrp:
       name: group_id
       function: '1'

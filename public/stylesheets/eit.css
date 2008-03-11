@@ -355,6 +355,14 @@ h3.files abbr {
     background-image: url(/images/abbr/subjects.gif);
 }
 
+abbr.private {
+    background-image: url(/images/abbr/private.gif);
+    padding-left: 15px;
+    text-decoration: none;
+    border: none;
+    font-size: 14px;
+}
+
 ul.files {
     list-style: disc;
     padding-left: 10px;

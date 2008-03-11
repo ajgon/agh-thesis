@@ -1,6 +1,6 @@
-all:
+logged:
   id: 1
-  head: 'Wszyscy'
+  head: 'Zalogowani'
   body: ''
 admins:
   id: 2

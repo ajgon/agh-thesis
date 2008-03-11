@@ -36,7 +36,7 @@ class Converter
   def convert(schema)
     @id_map = {}
     schema.sort.each do |hash|
-      new_table_name = hash[0].gsub(/^[0-9]+_/, '')
+      new_table_name = hash[0].gsub(/^[0-9]+[a-z]?_/, '')
       old_tables = hash[1]
       parse_new_table new_table_name
       old_tables.each_pair do |old_table_name, with_rules|
@@ -71,6 +71,7 @@ class Converter
   
   # port_data
   def port_data(rules)
+    conversion_log = File.new(File.join(File.dirname(__FILE__), '..', '..', 'log', 'conversion.log'), 'w+')
     rules = rules.nil? ? {} : rules
     unless rules['__BEFORE'].nil?
       @OldTable.connection.execute(rules['__BEFORE'].sub('@', @OldTable.table_name))
@@ -92,23 +93,21 @@ class Converter
         new_row = fix_related_columns new_row
         new_row = fix_not_null_columns new_row
         new_row = convert_encodings new_row
+        @function_map.each_pair do |column, function|
+          new_row[column] = parse_function(function.sub('@', '\'' + new_row[column].to_s + '\''))
+        end
         insertion = @NewModel.new(new_row)
         insertion.save!
         new_id = insertion.id
         @id_map[@NewModel.table_name]['id_map'][old_id] = new_id
-        puts @function_map.inspect if @OldTable.table_name == 'files'
-        @function_map.each_pair do |column, function|
-          #puts column + ' = ' + function.sub('@', '\'' + new_row[column].to_s + '\'')
-          @NewModel.update_all(column + ' = ' + function.sub('@', '\'' + new_row[column].to_s + '\''), 'id = ' + new_id.to_s)
-        end
       rescue Exception => e
-        puts e.inspect
-        #TODO: Log wrong inserts
+        conversion_log.puts e.inspect
       end
     end
     unless after_query.nil?
       @OldTable.connection.execute(after_query.sub('@', @OldTable.table_name))
     end
+    conversion_log.close
   end
   
   def populate_maps rules
@@ -138,7 +137,7 @@ class Converter
     relation_map = {}
     additional_relation_map = {}
     unless related_columns.empty?
-      #begin
+      begin
         related_columns.each_pair do |column, params|
           relation_map[params['name']] = @id_map[params['from']]['id_map']      
           unless params['field'].nil?
@@ -155,9 +154,9 @@ class Converter
         relation_map.keys.each do |key|
           relation_map[key] = relation_map[key].merge additional_relation_map[key] unless additional_relation_map[key].nil?
         end
-      #rescue
-      #  raise 'An error occured while creating relation map. Did you map tables used in \'from\' field before?'
-      #end
+      rescue
+        raise 'An error occured while creating relation map. Did you map tables used in \'from\' field before?'
+      end
     end
     relation_map
   end
@@ -245,6 +244,10 @@ class Converter
       end
     end
     map
+  end
+  
+  def parse_function function
+    @NewModel.connection.select_one('SELECT ' + function).to_a.first.last.to_s
   end
   
 end
