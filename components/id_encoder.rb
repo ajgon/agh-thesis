@@ -5,6 +5,7 @@ class IdEncoder
   @precision = 6
   
   def self.encode id
+    return '' if id.nil?
     counted_id = (id ^ @hash).to_s
     salt_position = counted_id[counted_id.length-1].chr.to_i
     counted_id = ((counted_id.to_i * @salt[salt_position..salt_position+9].to_i).to_s + salt_position.to_s).to_i.to_s(28)
@@ -12,14 +13,18 @@ class IdEncoder
   end
   
   def self.decode hash
-    hash = hash.gsub(/[^0-9a-r]/, '')
-    hash = hash.to_i(28).to_s
-    return false if hash[hash.length-1].nil?
-    salt_position = hash[hash.length-1].chr.to_i
-    hash[hash.length-1] = ''
-    return_id = hash.to_f / @salt[salt_position..salt_position+9].to_f
-    if (((return_id - return_id.round) * 10 ** @precision).to_i.zero? && return_id.round ^ @hash < 2147483648)
-      return return_id.round ^ @hash
+    unless !defined?(hash) or hash.nil? or hash.length < 13
+      hash = hash.gsub(/[^0-9a-r]/, '')
+      hash = hash.to_i(28).to_s
+      return false if hash[hash.length-1].nil?
+      salt_position = hash[hash.length-1].chr.to_i
+      hash[hash.length-1] = ''
+      return_id = hash.to_f / @salt[salt_position..salt_position+9].to_f
+      if (((return_id - return_id.round) * 10 ** @precision).to_i.zero? && return_id.round ^ @hash < 2147483648)
+        return return_id.round ^ @hash
+      else
+        return false
+      end
     else
       return false
     end

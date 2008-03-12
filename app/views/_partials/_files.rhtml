@@ -1,11 +1,18 @@
 <% content = (defined?(content).nil? ? '' : content) -%>
 <div class="content<%= content_type content %>">
-  <h3 class="files"><abbr>Files</abbr>Materiały</h3>
-<% unless @files.empty? %>
+  <h3 class="files">
+    <abbr>Files</abbr>
+<% if defined?(title).nil? or title.nil? -%>
+  Materiały
+<% else -%>
+  <%= title %>
+<% end -%>
+  </h3>
+<% unless files.empty? %>
 <%   unless content == 'right' %>
 <%   else %>
   <ul class="files">
-<%     @files.each do |file| %>
+<%     files.each do |file| %>
     <li>
       <a href="<%= url_for :controller => 'file', :action => 'download', :id => IdEncoder.encode(file.id) %>" title="[<%= file.subject.head %> / <%= file.user.firstname %> <%= file.user.lastname %> ]"><%= file.head.empty? ? file.filename.gsub('_', ' ') : file.head %></a>&nbsp;(<em><%= file.downloads %></em>)
     </li>

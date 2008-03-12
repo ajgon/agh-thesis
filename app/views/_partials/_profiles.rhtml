@@ -2,7 +2,7 @@
   <h3 class="users"><abbr>Users</abbr>Prowadzący</h3>
   <dl class="data subjects">
 <% @profiles.each do |profile| -%>
-    <dt><a href="##TODO##">materiały</a></dt>
+    <dt><a href="<%= create_search_link_for({'profile' => profile.user.id}) %>">materiały</a></dt>
     <dd><%= profile.user.firstname %> <%= profile.user.lastname %></dd>
 <% end %>
   </dl>

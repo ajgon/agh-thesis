@@ -1,0 +1,9 @@
+<div class="column-left">
+<%= render :partial => '_partials/files_search', :locals => { :content => 'left' } %>
+<%= render :partial => '_partials/subjects', :locals => { :content => 'left' } %>
+<%= render :partial => '_partials/profiles', :locals => { :content => 'left' } %>
+<%= render :partial => '_partials/files_detailed', :locals => { :content => 'left' } %>
+</div>
+<div class="column-right">
+<%= render :partial => '_partials/files', :locals => { :content => 'right', :files => @files_top, :title => 'Top 10' } %>
+</div>

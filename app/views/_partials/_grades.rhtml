@@ -5,7 +5,7 @@
   <ul class="files grades">
 <%   @grades.each do |file| %>
     <li>
-      <em><%= file.subject.acronym %>:</em>&nbsp;<a href="##TODO##" title="[<%= file.subject.head %> / <%= file.user.firstname %> <%= file.user.lastname %>"><%= file.head.empty? ? file.filename.gsub('_', ' ') : file.head %></a> (<em><%= file.downloads %></em>)
+      <em><%= file.subject.acronym %>:</em>&nbsp;<a href="<%= url_for :controller => 'file', :action => 'download', :id => IdEncoder.encode(file.id) %>" title="[<%= file.subject.head %> / <%= file.user.firstname %> <%= file.user.lastname %>"><%= file.head.empty? ? file.filename.gsub('_', ' ') : file.head %></a> (<em><%= file.downloads %></em>)
     </li>
 <%   end %>
   </ul>

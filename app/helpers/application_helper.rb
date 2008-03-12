@@ -113,4 +113,14 @@ module ApplicationHelper
         return (number / (1024 * 1024 * 1024)).round.to_s + ' GB'
     end
   end
+  
+  def create_search_link_for hash
+    hash = {} if hash.nil?
+    hash['subject'] = IdEncoder.encode(hash['subject'])
+    hash['profile'] = IdEncoder.encode(hash['profile'])
+    hash.each_pair do |key, value|
+      hash[key] = value.gsub(',', ' ')
+    end
+    url_for :controller => 'materials', :action => 'search', :id => "#{hash['subject']},#{hash['profile']},#{hash['semester']},#{hash['query']},#{hash['sort']}"
+  end
 end

@@ -2,7 +2,7 @@
   <h3 class="subjects"><abbr>Subjects</abbr>Przedmioty prowadzone</h3>
   <dl class="data subjects">
 <% @subjects.each do |subject| -%>
-    <dt><a href="##TODO##">materiały</a></dt>
+    <dt><a href="<%= create_search_link_for({'subject' => subject.subject.id}) %>">materiały</a></dt>
     <dd><%= subject.subject.head %></dd>
 <% end %>
   </dl>

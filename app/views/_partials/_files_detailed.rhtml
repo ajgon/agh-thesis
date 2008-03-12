@@ -15,7 +15,7 @@
       </h4>
       <em><a href="<%= url_for :controller => 'subject', :action => file.subject.acronym %>"><%= file.subject.head %></a> / <a href="<%= url_for :controller => 'profile', :action => file.user.login %>"><%= file.user.firstname %> <%= file.user.lastname%></a></em>
       <p>
-        rok: <em><strong><%= roman_month('0' + (file.subject.season / 2).ceil.to_s) %></strong></em>, 
+        rok: <em><strong><%= roman_month('0' + (file.subject.season / 2.0).ceil.to_s) %></strong></em>, 
         semestr: <em><strong><%= file.subject.season %></strong></em>,
         rozmiar: <em><strong><%= add_units(File.size?(RAILS_ROOT + '/files/' + file.filename)) %></strong></em>,
         dodany: <em><strong><%= file.date.to_s(:time) %></strong></em>,

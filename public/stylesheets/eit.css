@@ -268,6 +268,49 @@ div.content h3 abbr {
     margin: -7px 4px 0px 0px;
 }
 
+dl,
+div.submit {
+    background: #f2ce88;
+    border: solid 1px #f6e7c8;
+    padding: 10px;
+}
+
+div.submit {
+    text-align: center;
+}
+
+div.submit input[type='submit'] {
+    width: 288px;
+}
+
+dl dt,
+dl dd {
+    padding: 5px 0px;
+    height: 20px;
+    line-height: 20px;
+}
+
+dl dt {
+    width: 80px;
+    padding-right: 20px;
+    text-align: right;
+    float: left;
+}
+
+dl dd {
+    overflow: hidden;
+    width: 290px;
+}
+
+dl dd input[type='text'],
+dl dd textarea {
+    width: 288px;
+}
+
+dl dd select {
+    width: 290px;
+}
+
 dl.data {
     overflow: hidden;
     border-top: #f6e7c8 3px solid;
