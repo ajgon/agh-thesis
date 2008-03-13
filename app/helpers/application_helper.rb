@@ -119,8 +119,17 @@ module ApplicationHelper
     hash['subject'] = IdEncoder.encode(hash['subject'])
     hash['profile'] = IdEncoder.encode(hash['profile'])
     hash.each_pair do |key, value|
-      hash[key] = value.gsub(',', ' ')
+      hash[key] = value.to_s.gsub(',', ' ')
     end
     url_for :controller => 'materials', :action => 'search', :id => "#{hash['subject']},#{hash['profile']},#{hash['semester']},#{hash['query']},#{hash['sort']}"
+  end
+  
+  def show_list_item_if_controllers controllers
+    controllers = controllers.to_a
+    if controllers.include? params[:controller]
+      return ' style="display: list-item;"'
+    else
+      return ''
+    end
   end
 end

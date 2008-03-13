@@ -170,7 +170,7 @@ input, select, textarea {
 }
 
 #menu ul li.login {
-    display: list-item;
+    display: list-item !important;
 }
 
 #menu ul li.login input {

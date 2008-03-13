@@ -34,6 +34,7 @@ class MaterialsController < ApplicationController
       redirect_to :action => 'search', :id => "#{c['subject']},#{c['profile']},#{c['semester']},#{c['query']},#{c['sort']}"
     end
   end
+  
   def search
     r = params[:id].nil? ? [] : params[:id].split(',')
     rules = {
@@ -56,6 +57,7 @@ class MaterialsController < ApplicationController
       end
     conditions += ')'
     end
+    
     @files = UploadedFile.find(:all, :include => [:subject, :user], :conditions => conditions, :order => (rules['sort'] + (rules['sort'] == 'head' ? '' : ' DESC')))
     @profiles = UploadedFile.find(:all, :include => [:user, :subject], :conditions => ['subjects.id = ?', rules['subject']], :group => 'users.id')
     @subjects = UploadedFile.find(:all, :include => [:user, :subject], :conditions => ['users.id = ?', rules['profile']], :group => 'subjects.id')
@@ -63,6 +65,7 @@ class MaterialsController < ApplicationController
     params[:criteria][:subject] = IdEncoder.encode(params[:criteria][:subject]) if params[:criteria][:subject]
     params[:criteria][:profile] = IdEncoder.encode(params[:criteria][:profile]) if params[:criteria][:profile]
     params[:criteria][:semester] = params[:criteria][:semester].to_s
-    @criteria = HashWithMethods.new(params[:criteria])
+    pager_params = {:controller => params[:controller], :action => params[:action], :id => params[:id], :page => params[:page]}
+    @pager = Pager.new(pager_params, @files, :page)
   end
 end

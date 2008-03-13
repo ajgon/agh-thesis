@@ -1,7 +1,7 @@
 <div class="content<%= content_type content %>">
   <h3 class="files"><abbr>Files</abbr>Materiały</h3>
   <ul>
-<% @files.each do |file| %>
+<% files.each do |file| %>
     <li>
       <h4>
         <strong>
@@ -24,4 +24,5 @@
     </li>
 <% end %>
   </ul>
+<%= render :partial => '_partials/pager' if defined? @pager and !@pager.nil? %>
 </div>

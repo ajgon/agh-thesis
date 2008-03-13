@@ -23,8 +23,8 @@
             </ul>
           <% end %>
         </li>
-        <li>Aktualności</li>
-        <li class="submenu">
+        <li><a class="menu-item">Aktualności</a></li>
+        <li class="submenu"<%= show_list_item_if_controllers 'index' %>>
           <ul>
             <li>Twoje</li>
             <li>Wszystkie</li>
@@ -32,7 +32,7 @@
             <li>Egzaminy</li>
           </ul>
         </li>
-        <li>Dziekanat</li>
+        <li><a class="menu-item">Dziekanat</a></li>
         <li class="submenu">
           <ul>
             <li>Informacje</li>
@@ -48,25 +48,26 @@
             <li>Kalendarz</li>
           </ul>
         </li>
-        <li>Materiały</li>
+        <li><a class="menu-item" href="<%= url_for :controller => 'materials' %>">Materiały</a></li>
         <li class="submenu">
           <ul>
-            <li>I&nbsp;rok</li>
-            <li>II&nbsp;rok</li>
-            <li>III&nbsp;rok</li>
-            <li>IV&nbsp;rok</li>
-            <li>V&nbsp;rok</li>
+            <li><a href="<%= url_for :controller => 'materials' %>">Wyszukiwarka</a></li>
+            <li><a href="<%= create_search_link_for({'semester' => 101}) %>">I&nbsp;rok</a></li>
+            <li><a href="<%= create_search_link_for({'semester' => 102}) %>">II&nbsp;rok</a></li>
+            <li><a href="<%= create_search_link_for({'semester' => 103}) %>">III&nbsp;rok</a></li>
+            <li><a href="<%= create_search_link_for({'semester' => 104}) %>">IV&nbsp;rok</a></li>
+            <li><a href="<%= create_search_link_for({'semester' => 105}) %>">V&nbsp;rok</a></li>
             <li>Oceny</li>
           </ul>
         </li>
-        <li>Prowadzący</li>
+        <li><a class="menu-item">Prowadzący</a></li>
         <li class="submenu">
           <ul>
             <li>Elektronika</li>
             <li>Telekomunikacja</li>
           </ul>
         </li>
-        <li>Studenci</li>
+        <li><a class="menu-item">Studenci</a></li>
         <li class="submenu">
           <ul>
             <li>Wyszukiwarka</li>
@@ -74,7 +75,7 @@
             <li>Strony WWW</li>
           </ul>
         </li>
-        <li>Podyplomowe</li>
+        <li><a class="menu-item">Podyplomowe</a></li>
         <li class="submenu">
           <ul>
             <li>Ulotka</li>
@@ -84,7 +85,7 @@
             <li>Plan</li>
           </ul>
         </li>
-        <li>O Stronie</li>
+        <li><a class="menu-item">O Stronie</a></li>
         <li class="submenu">
           <ul>
             <li>Informacje</li>
@@ -94,7 +95,7 @@
           </ul>
         </li>
         <li>Twoje Konto</li>
-        <li>Panel Sterowania</li>
+        <li><a class="menu-item">Panel Sterowania</a></li>
         <li class="submenu">
           <ul>
             <li>Aktualności</li>
@@ -110,3 +111,6 @@
         </li>
       </ul>
     </div>
+    <script type="text/javascript">
+      Menu.initialize();
+    </script>

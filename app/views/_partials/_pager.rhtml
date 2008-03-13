@@ -1,0 +1,9 @@
+<div class="pager">
+  <ul>
+    <li><a href="<%= url_for(@pager.url_for_previous_page) %>">Previous</a></li>
+    <li><a href="<%= url_for(@pager.url_for_next_page) %>">Next</a></li>
+    <li>Wyniki: <strong><%= @pager.results_range %></strong></li>
+    <li>Znaleziono: <strong><%= @pager.results_count %></strong></li>
+  </ul>
+<%= @pager.array_of_pages.inspect %>
+</div>
