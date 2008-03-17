@@ -8,6 +8,10 @@ class Pager
     @results_per_page = results_per_page  
   end
   
+  def params_key
+    @params_key
+  end
+  
   def count
       (@results.length.to_f / @results_per_page.to_f).ceil    
   end
@@ -29,11 +33,15 @@ class Pager
   end
   
   def last_page
-    ((actual_page - 1 ) * 10 + 10) > results_count ? results_count : ((actual_page - 1 ) * 10 + 10)
+    (((actual_page - 1 ) * 10 + 10) - 1) > results_count ? results_count : (((actual_page - 1 ) * 10 + 10) - 1)
   end
   
   def results
     @results[((actual_page - 1) * 10)..last_page]
+  end
+  
+  def all_results
+    @results
   end
   
   def results_count

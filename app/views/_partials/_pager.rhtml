@@ -9,8 +9,8 @@
   </ul>
   <ul class="pages">
 <% @pager.array_of_pages.each do |page| %>
-  <li<%= (page == (params[:page].nil? ? 1 : params[:page]).to_i) ? ' class="active"' : '' %>>
-<% unless page == '...' %>    <a href="<%= url_for :page => page %>"><% end %>
+  <li<%= (page == (params[@pager.params_key].nil? ? 1 : params[@pager.params_key]).to_i) ? ' class="active"' : '' %>>
+<% unless page == '...' %>    <a href="<%= url_for @pager.params_key => page %>"><% end %>
       <%= page %>
 <% unless page == '...' %>    </a><% end %>
   </li>

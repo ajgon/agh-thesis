@@ -1,4 +1,10 @@
 class NewsController < ApplicationController
+  
+  def index
+    @news = News.find(:all, :include => :user, :order => 'news.id desc')
+    @pager = Pager.new({:controller => params[:controller], :action => params[:action], :id => params[:id]}, @news)
+  end
+  
   def read
     news_id = IdEncoder.decode(params[:id])
     if news_id and News.exists?(news_id)

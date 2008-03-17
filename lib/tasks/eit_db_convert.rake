@@ -1,4 +1,5 @@
 require "#{RAILS_ROOT}/config/environment.rb"
+require 'cgi'
 
 require 'rake'
 require 'rake/testtask'
@@ -92,6 +93,7 @@ class Converter
         )
         new_row = fix_related_columns new_row
         new_row = fix_not_null_columns new_row
+        new_row = fix_entities new_row
         new_row = convert_encodings new_row
         @function_map.each_pair do |column, function|
           new_row[column] = parse_function(function.sub('@', '\'' + new_row[column].to_s + '\''))
@@ -205,6 +207,13 @@ class Converter
           end
         end
       end
+    end
+    new_row
+  end
+
+  def fix_entities new_row
+    new_row.each_pair do |name, value| 
+      new_row[name] = CGI::escapeHTML(CGI::unescapeHTML(value)).gsub("'", '&#039;') if value.class.to_s == 'String'
     end
     new_row
   end
