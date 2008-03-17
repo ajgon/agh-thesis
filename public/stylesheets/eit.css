@@ -197,6 +197,72 @@ input, select, textarea {
     margin-left: 0px;
 }
 
+/* =pager
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+div.pager {
+    clear: both;
+    overflow: hidden;
+    padding-top: 7px;
+}
+
+div.pager ul.pager {
+    background: #f6e6c8;
+}
+
+div.pager ul.pager li.navigation {
+    float: right;
+    margin: -7px 15px 0px 0px;
+}
+
+div.pager ul.pager li.navigation a {
+    float: left;
+    display: block;
+    width: 20px;
+    height: 20px;
+    text-indent: -1000em;
+    font-size: 0px;
+    background-repeat: no-repeat;
+    background-position: top left;
+}
+
+div.pager ul.pager li.navigation a.previous {
+    background-image: url(/images/icons/left.gif);
+}
+
+div.pager ul.pager li.navigation a.next {
+    background-image: url(/images/icons/right.gif);
+}
+
+div.pager ul.pager li.navigation a.previous-disabled {
+    background-image: url(/images/icons/left-disabled.gif);
+}
+
+div.pager ul.pager li.navigation a.next-disabled {
+    background-image: url(/images/icons/right-disabled.gif);
+}
+
+div.pager ul.pager li.results {
+    float: left;
+}
+
+div.pager ul.pager li.found {
+    text-align: center;
+}
+
+div.pager ul.pages {
+    overflow: hidden;
+    text-align: center;
+}
+
+div.pager ul.pages li {
+    display: inline;
+    margin: 0px 2px;
+}
+
+div.pager ul.pages li.active a {
+    font-weight: bold;
+}
+
 /* =content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 div.center {

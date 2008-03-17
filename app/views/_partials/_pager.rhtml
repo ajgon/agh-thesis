@@ -1,9 +1,19 @@
 <div class="pager">
-  <ul>
-    <li><a href="<%= url_for(@pager.url_for_previous_page) %>">Previous</a></li>
-    <li><a href="<%= url_for(@pager.url_for_next_page) %>">Next</a></li>
-    <li>Wyniki: <strong><%= @pager.results_range %></strong></li>
-    <li>Znaleziono: <strong><%= @pager.results_count %></strong></li>
+  <ul class="pager">
+    <li class="navigation">
+      <a class="previous<%= @pager.first_page? ? ' previous-disabled' : '' %>"<% unless @pager.first_page? %> href="<%= url_for(@pager.url_for_previous_page) %>"<% end %>>Previous</a>
+      <a class="next<%= @pager.last_page? ? ' next-disabled' : '' %>"<% unless @pager.last_page? %> href="<%= url_for(@pager.url_for_next_page) %>"<% end %>>Next</a>
+    </li>
+    <li class="results">Wyniki: <strong><%= @pager.results_range %></strong></li>
+    <li class="found">Znaleziono: <strong><%= @pager.results_count %></strong></li>
   </ul>
-<%= @pager.array_of_pages.inspect %>
+  <ul class="pages">
+<% @pager.array_of_pages.each do |page| %>
+  <li<%= (page == (params[:page].nil? ? 1 : params[:page]).to_i) ? ' class="active"' : '' %>>
+<% unless page == '...' %>    <a href="<%= url_for :page => page %>"><% end %>
+      <%= page %>
+<% unless page == '...' %>    </a><% end %>
+  </li>
+<% end %>
+  </ul>
 </div>

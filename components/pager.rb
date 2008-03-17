@@ -28,8 +28,12 @@ class Pager
     return pages_array
   end
   
+  def last_page
+    ((actual_page - 1 ) * 10 + 10) > results_count ? results_count : ((actual_page - 1 ) * 10 + 10)
+  end
+  
   def results
-    @results[((actual_page - 1) * 10)..((actual_page - 1) * 10 + 9)]
+    @results[((actual_page - 1) * 10)..last_page]
   end
   
   def results_count
@@ -37,7 +41,7 @@ class Pager
   end
   
   def results_range separator = ' - '
-    [((actual_page - 1) * 10) + 1, ((actual_page - 1 ) * 10 + 10)].join separator
+    [((actual_page - 1) * 10) + 1, last_page].join separator
   end
   
   def actual_page
@@ -70,6 +74,14 @@ class Pager
 
   def url_for_previous_page
     url_for_page check_page(actual_page - 1)
+  end
+  
+  def first_page?
+    actual_page == 1
+  end
+  
+  def last_page?
+    actual_page == count
   end
   
 end
