@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
   has_many :uploaded_files
   has_many :groups_user
   has_many :polls_questions
+  has_many :exams
 end

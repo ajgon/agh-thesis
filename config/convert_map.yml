@@ -213,3 +213,15 @@
       from: polls_questions
     quant:
       name: quantity
+14_exams:
+  exams:
+    spec:
+      name: subject_id
+      from: subjects
+    pro:
+      name: examiner
+    aid:
+      name: user_id
+    dt_year:
+      connect: dt_month, dt_day, dt_hour, dt_min
+      pattern: {dt_year}-{dt_month}-{dt_day} {dt_hour}:{dt_min}
