@@ -9,11 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 16) do
+ActiveRecord::Schema.define(:version => 17) do
 
   create_table "cathedrals", :force => true do |t|
     t.string "name", :limit => 50, :null => false
   end
+
+  create_table "exams", :force => true do |t|
+    t.integer  "subject_id",              :null => false
+    t.integer  "user_id"
+    t.string   "examiner",                :null => false
+    t.datetime "date",                    :null => false
+    t.string   "core",       :limit => 3, :null => false
+    t.string   "place",                   :null => false
+    t.integer  "term",                    :null => false
+  end
+
+  add_index "exams", ["subject_id"], :name => "subject_id"
+  add_index "exams", ["user_id"], :name => "user_id"
 
   create_table "groups", :force => true do |t|
     t.string "head", :null => false
@@ -158,6 +171,9 @@ ActiveRecord::Schema.define(:version => 16) do
 
   add_index "users_students", ["user_id"], :name => "user_id"
   add_index "users_students", ["speciality_id"], :name => "speciality_id"
+
+  add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_1"
+  add_foreign_key "exams", ["user_id"], "users", ["id"], :name => "exams_ibfk_2"
 
   add_foreign_key "groups_news", ["group_id"], "groups", ["id"], :name => "groups_news_ibfk_1"
   add_foreign_key "groups_news", ["news_id"], "news", ["id"], :name => "groups_news_ibfk_2"

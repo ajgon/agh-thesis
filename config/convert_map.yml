@@ -95,124 +95,124 @@
       name: acronym
     type:
       name: subjects_type_id
-07_news_types:
-  news_types:
-08_news:
-  news:
-    alogin:
-      from: users
-      field: login
-      name: user_id
-    aname:
-      action: remove
-    nyear:
-      name: for_year
-    piece:
-      name: body
-    mreads:
-      name: times_readed
-    spec:
-      action: remove
-    thread:
-      action: remove
-    type:
-      action: remove
-    year:
-      action: remove
-09_groups:
-  groupstruct:
-    name:
-      name: head
-    aid:
-      action: remove
-    alogin:
-      action: remove
-    king:
-      action: remove
-    since:
-      action: remove
-10_groups_users:
-  groupmembs:
-    gid:
-     from: groups
-     name: group_id
-    uid:
-     from: users
-     name: user_id
-10_uploaded_files:
-  files:
-    filename1:
-      action: remove
-    name:
-      name: head
-    time:
-      name: date
-    alogin:
-      action: remove
-    aid:
-      from: users
-      name: user_id
-    down:
-      name: downloads
-    spec:
-      from: subjects
-      name: subject_id
-    rlogin:
-      action: remove
-    rid:
-      action: remove
-    sectype:
-      name: kind
-      function: CASE FLOOR(@ / 10) WHEN 1 THEN 'material' WHEN 2 THEN 'grade' ELSE '' END
-    secgroup:
-      action: remove
-11_groups_uploaded_files:
-  files:
-    __WHERE: sectype IN (11, 21)
-    secgrp:
-      name: group_id
-      function: @ + 4
-    id:
-      from: uploaded_files
-      name: uploaded_file_id
-11a_groups_uploaded_files:
-  files:
-    __WHERE: sectype IN (12, 22)
-    secgrp:
-      name: group_id
-      function: @ + 19
-    id:
-      from: uploaded_files
-      name: uploaded_file_id
-11b_groups_uploaded_files:
-  files:
-    __WHERE: sectype IN (13, 23)
-    secgrp:
-      name: group_id
-      function: '1'
-    id:
-      from: uploaded_files
-      name: uploaded_file_id
-12_polls_questions:
-  polls_q:
-    date_b:
-      name: start_time
-    date_e:
-      name: end_time
-    anonim:
-      name: anonymous
-    author_id:
-      from: users
-      name: user_id
-    author_lg:
-      action: remove
-13_polls_answers:
-  polls_a:
-    r_id:
-      name: polls_question_id
-      from: polls_questions
-    quant:
-      name: quantity
+#07_news_types:
+#  news_types:
+#08_news:
+#  news:
+#    alogin:
+#      from: users
+#      field: login
+#      name: user_id
+#    aname:
+#      action: remove
+#    nyear:
+#      name: for_year
+#    piece:
+#      name: body
+#    mreads:
+#      name: times_readed
+#    spec:
+#      action: remove
+#    thread:
+#      action: remove
+#    type:
+#      action: remove
+#    year:
+#      action: remove
+#09_groups:
+#  groupstruct:
+#    name:
+#      name: head
+#    aid:
+#      action: remove
+#    alogin:
+#      action: remove
+#    king:
+#      action: remove
+#    since:
+#      action: remove
+#10_groups_users:
+#  groupmembs:
+#    gid:
+#     from: groups
+#     name: group_id
+#    uid:
+#     from: users
+#     name: user_id
+#10_uploaded_files:
+#  files:
+#    filename1:
+#      action: remove
+#    name:
+#      name: head
+#    time:
+#      name: date
+#    alogin:
+#      action: remove
+#    aid:
+#      from: users
+#      name: user_id
+#    down:
+#      name: downloads
+#    spec:
+#      from: subjects
+#      name: subject_id
+#    rlogin:
+#      action: remove
+#    rid:
+#      action: remove
+#    sectype:
+#      name: kind
+#      function: CASE FLOOR(@ / 10) WHEN 1 THEN 'material' WHEN 2 THEN 'grade' ELSE '' END
+#    secgroup:
+#      action: remove
+#11_groups_uploaded_files:
+#  files:
+#    __WHERE: sectype IN (11, 21)
+#    secgrp:
+#      name: group_id
+#      function: @ + 4
+#    id:
+#      from: uploaded_files
+#      name: uploaded_file_id
+#11a_groups_uploaded_files:
+#  files:
+#    __WHERE: sectype IN (12, 22)
+#    secgrp:
+#      name: group_id
+#      function: @ + 19
+#    id:
+#      from: uploaded_files
+#      name: uploaded_file_id
+#11b_groups_uploaded_files:
+#  files:
+#    __WHERE: sectype IN (13, 23)
+#    secgrp:
+#      name: group_id
+#      function: '1'
+#    id:
+#      from: uploaded_files
+#      name: uploaded_file_id
+#12_polls_questions:
+#  polls_q:
+#    date_b:
+#      name: start_time
+#    date_e:
+#      name: end_time
+#    anonim:
+#      name: anonymous
+#    author_id:
+#      from: users
+#      name: user_id
+#    author_lg:
+#      action: remove
+#13_polls_answers:
+#  polls_a:
+#    r_id:
+#      name: polls_question_id
+#      from: polls_questions
+#    quant:
+#      name: quantity
 14_exams:
   exams:
     spec:
@@ -222,6 +222,8 @@
       name: examiner
     aid:
       name: user_id
+      from: users
     dt_year:
-      connect: dt_month, dt_day, dt_hour, dt_min
-      pattern: {dt_year}-{dt_month}-{dt_day} {dt_hour}:{dt_min}
+      name: date
+      connect: "dt_year, dt_month, dt_day, dt_hour, dt_min"
+      pattern: "{dt_year}-{dt_month}-{dt_day} {dt_hour}:{dt_min}"

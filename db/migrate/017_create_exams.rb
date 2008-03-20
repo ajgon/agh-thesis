@@ -1,12 +1,12 @@
 class CreateExams < ActiveRecord::Migration
   def self.up
     create_table :exams do |t|
-      t.references :subject_id, :null => false
-      t.references :user_id, :null => false
+      t.references :subject, :null => false
+      t.references :user
       t.string :examiner, :null => false
       t.datetime :date, :null => false
       t.string :core, :null => false, :limit => 3
-      t.string :pace, :null => false
+      t.string :place, :null => false
       t.integer :term, :null => false
     end
   end

@@ -95,15 +95,16 @@ class Converter
         new_row = fix_not_null_columns new_row
         new_row = fix_entities new_row
         new_row = convert_encodings new_row
-        @function_map.each_pair do |column, function|
-          new_row[column] = parse_function(function.sub('@', '\'' + new_row[column].to_s + '\''))
-        end
+        new_row = apply_functions new_row
+        new_row = apply_connections new_row, row
+
         insertion = @NewModel.new(new_row)
         insertion.save!
         new_id = insertion.id
         @id_map[@NewModel.table_name]['id_map'][old_id] = new_id
       rescue Exception => e
         conversion_log.puts e.inspect
+        puts e.inspect
       end
     end
     unless after_query.nil?
@@ -119,6 +120,7 @@ class Converter
     @map = create_column_map(populate(rules))
     @relation_map = create_relation_map rules
     @function_map = create_function_map(populate(rules))
+    @connections_map = create_connections_map(populate(rules))
   end
   
   def create_function_map rules
@@ -129,6 +131,18 @@ class Converter
       end
     end
     function_map
+  end
+  
+  def create_connections_map rules
+    connections_map = {}
+    rules.each_pair do |key, value|
+      if value.has_key? 'connect' and value.has_key? 'pattern'
+        connections_map[value['name']] = {}
+        connections_map[value['name']]['connect'] = value['connect']
+        connections_map[value['name']]['pattern'] = value['pattern']
+      end
+    end
+    connections_map
   end
   
   def create_relation_map rules
@@ -177,8 +191,6 @@ class Converter
       new_value = value
       new_column = @NewModel.columns.find_all { |column| column.name == @map[column_name]}.first
       unless new_column.nil?
-        column_not_null = !new_column.null
-        column_default = new_column.default
         new_row[@map[column_name]] = new_value
       end
     end
@@ -221,6 +233,24 @@ class Converter
   def convert_encodings new_row
     new_row.each_pair do |name, value| 
       new_row[name] = Iconv.conv(@new_base_details['encoding'].capitalize, @old_base_details['encoding'].capitalize, value) if value.class.to_s == 'String'
+    end
+    new_row
+  end
+
+  def apply_functions new_row
+    @function_map.each_pair do |column, function|
+      new_row[column] = parse_function(function.sub('@', '\'' + new_row[column].to_s + '\''))
+    end
+    new_row
+  end
+  
+  def apply_connections new_row, row
+    @connections_map.each_pair do |column, connection|
+      pattern = connection['pattern']
+      connection['connect'].split(',').each do |column_name|
+        pattern = pattern.gsub(Regexp.new('\{(' + column_name.strip + ')\}')) {row[$1]}
+      end
+      new_row[column] = pattern
     end
     new_row
   end
