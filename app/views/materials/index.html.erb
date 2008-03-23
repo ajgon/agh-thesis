@@ -1,6 +1,6 @@
 <div class="column-left">
 <%= render :partial => '_partials/files_search', :locals => { :content => 'left' } %>
-<%= render :partial => '_partials/files_detailed', :locals => { :content => 'left' } %>
+<%= render :partial => '_partials/files_detailed', :locals => { :files => @files, :content => 'left' } %>
 </div>
 <div class="column-right">
 <%= render :partial => '_partials/files', :locals => { :content => 'right', :files => @files_top, :title => 'Top 10' } %>

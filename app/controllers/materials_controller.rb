@@ -67,5 +67,6 @@ class MaterialsController < ApplicationController
     params[:criteria][:semester] = params[:criteria][:semester].to_s
     pager_params = {:controller => params[:controller], :action => params[:action], :id => params[:id], :page => params[:page]}
     @pager = Pager.new(pager_params, @files, :page)
+    @criteria = HashWithMethods.new(params[:criteria])
   end
 end

@@ -62,4 +62,5 @@ Time::DATE_FORMATS[:short_time] = "%Y %d %m, %A, %H:%M"
 Time::DATE_FORMATS[:updated_at] = "%Y-%m-%d, godz. %H:%M"
 Time::DATE_FORMATS[:created_at] = "%d. %B %Y, godz. %H:%M"
 Time::DATE_FORMATS[:time] = '%H:%M'
+Time::DATE_FORMATS[:date] = '%Y-%m-%d'
 Time::DATE_FORMATS[:exam] = '%d %m %H:%M'

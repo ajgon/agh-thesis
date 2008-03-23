@@ -33,19 +33,18 @@
           </ul>
         </li>
         <li><a class="menu-item">Dziekanat</a></li>
-        <li class="submenu">
+        <li class="submenu"<%= show_list_item_if_controllers 'deanery' %>>
           <ul>
-            <li>Informacje</li>
-            <li>Plany Zajęć</li>
-            <li>Praktyki Telekomunikacji</li>
-            <li>Praktyki Elektroniki</li>
-            <li>Przedmioty</li>
+            <li><a href="<%= url_for :controller => 'deanery' %>">Informacje</a></li>
+            <li><a href="<%= url_for :controller => 'deanery', :action => 'skeds' %>">Plany Zajęć</a></li>
+            <li><a href="<%= url_for :controller => 'deanery', :action => 'experience' %>">Praktyki</a></li>
+            <li><a href="<%= url_for :controller => 'deanery', :action => 'subjects' %>">Przedmioty</a></li>
             <li>Przedmioty Obieralne</li>
-            <li>English</li>
-            <li>Pliki</li>
-            <li>Międzynarodowy Program Edukacyjny</li>
+            <li><a href="<%= url_for :controller => 'deanery', :action => 'english' %>">English</a></li>
+            <li><a href="<%= create_search_link_for({'subject' => 126})%>">Pliki</a></li>
+            <li><a href="<%= url_for :controller => 'deanery', :action => 'iep' %>">Międzynarodowy Program Edukacyjny</a></li>
             <li>Deklaracje</li>
-            <li>Kalendarz</li>
+            <li><a href="<%= url_for :controller => 'deanery', :action => 'calendar' %>">Kalendarz</a></li>
           </ul>
         </li>
         <li><a class="menu-item" href="<%= url_for :controller => 'materials' %>">Materiały</a></li>

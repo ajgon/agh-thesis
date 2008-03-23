@@ -1,9 +1,4 @@
-class News < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :news_type
-  has_many :groups_news
-  
-  ## TODO - jest to w dwoch miejsach - a fe! ( => event)
+class Event < ActiveRecord::Base
   def years
     number = (self.for_year > 30 or self.for_year < 0) ? 0 : self.for_year
     year_no = 0

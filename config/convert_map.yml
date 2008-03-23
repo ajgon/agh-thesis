@@ -88,7 +88,8 @@
       function: @ NOT IN (4,6,10)
 06_subjects:
   specs:
-    __BEFORE: DELETE FROM specs_types WHERE typ = 10
+    __BEFORE: UPDATE @ SET type = NULL where type = 0
+    __AFTER: UPDATE @ SET type = 0 where type IS NULL
     name:
       name: head
     acronim:
@@ -97,6 +98,7 @@
       name: subjects_type_id
 07_news_types:
   news_types:
+    __BEFORE: DELETE FROM specs_types WHERE typ = 10
 08_news:
   news:
     alogin:
@@ -229,3 +231,13 @@
       name: date
       connect: "dt_year, dt_month, dt_day, dt_hour, dt_min"
       pattern: "{dt_year}-{dt_month}-{dt_day} {dt_hour}:{dt_min}"
+15_events:
+  calendar:
+    start:
+      name: beginning
+    deadline:
+      name: ending
+    event:
+      name: head
+    year:
+      name: for_year

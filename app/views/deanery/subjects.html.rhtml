@@ -1,0 +1,74 @@
+<div class="content deanery">
+  <h3 class="news"><abbr>Info</abbr> Przedmioty</h3>
+  <h4>Nowy Program Studiów</h4>
+  <p><a href="/_ext/dziekanat/przedmioty/nowy-program.zip">Plik ZIP</a> 2MB - 
+  wykaz przedmiotów na studiach stacjonarnych, niestacjonarnych, podyplomowych i 
+  doktoranckich od roku 2007/2008.</p>
+  <p>Poniższa lista jest aktualna na rok akademicki 2007/2008. To znaczy semestry 
+  1. i 2. są według nowego programu, wyższe według starego.</p>
+  <h4>Przedmioty Obowiązkowe</h4>
+  <ul class="files">
+<% @subjects.each_with_index do |season, season_index| %>
+<%   unless season.nil? %>
+     <li><strong>Semestr <%= season_index %></strong></li>
+     <li class="submenu">
+       <ul>
+<%     season.each_pair do |module_name, subjects| %>
+<%       unless module_name == 'O' %>
+         <li><strong>Moduł <%= module_name %></strong></li>
+<%       end %>
+         <li>
+           <ul>
+<%       subjects.each do |subject| %>
+  <li><a href="<%= url_for :controller => 'subject', :action => subject.acronym %>"><%= subject.head %></a> (<em><%= subject.acronym %></em>)</li>
+<%       end %>
+           </ul>
+         </li>
+<%     end %>
+       </ul>
+     </li>
+<%   end %>
+<% end %>
+  </ul>
+  <h4>Opisy przedmiotów pogrupowane według typów</h4>
+  <p>Można też zerknąć na <a href="http://www.syllabus.agh.edu.pl/pl/EL/main.html">Syllabus</a> Wydziału.</p>
+  <ul class="files">
+    <li>
+      P_p01-24
+      (<a href="/_ext/dziekanat/przedmioty/P_p01-24.doc">DOC</a> /
+      <a href="/_ext/dziekanat/przedmioty/P_p01-24.pdf">PDF</a>)
+    </li>
+    <li>
+      PE_e01-13
+      (<a href="/_ext/dziekanat/przedmioty/PE_e01-13.doc">DOC</a> /
+      <a href="/_ext/dziekanat/przedmioty/PE_e01-13.pdf">PDF</a>)
+    </li>
+    <li>
+      PE_E1_e01-07
+      (<a href="/_ext/dziekanat/przedmioty/PE_E1_e01-07.doc">DOC</a> /
+      <a href="/_ext/dziekanat/przedmioty/PE_E1_e01-07.pdf">PDF</a>)
+    </li>
+    <li>
+      PE_E2_e01-07
+      (<a href="/_ext/dziekanat/przedmioty/PE_E2_e01-07.doc">DOC</a> /
+      <a href="/_ext/dziekanat/przedmioty/PE_E2_e01-07.pdf">PDF</a>)
+    </li>
+    <li>
+      PE_E3_e01-07
+      (<a href="/_ext/dziekanat/przedmioty/PE_E3_e01-07.doc">DOC</a> /
+      <a href="/_ext/dziekanat/przedmioty/PE_E3_e01-07.pdf">PDF</a>)
+    </li>
+    <li>
+      PT_t01-15
+      (<a href="/_ext/dziekanat/przedmioty/PT_t01-15.doc">DOC</a> /
+      <a href="/_ext/dziekanat/przedmioty/PT_t01-15.pdf">PDF</a>)
+    </li>
+    <li>
+      PT_t1_t01-07
+      (<a href="/_ext/dziekanat/przedmioty/PT_t1_t01-07.doc">DOC</a> /
+      <a href="/_ext/dziekanat/przedmioty/PT_t1_t01-07.pdf">PDF</a>)
+    </li>
+    <li><a href="/_ext/dziekanat/przedmioty/przedmioty_doc.zip">przedmioty_doc.zip</a></li>
+    <li><a href="/_ext/dziekanat/przedmioty/przedmioty_pdf.zip">przedmioty_pdf.zip</a></li>
+  </ul>
+</div>

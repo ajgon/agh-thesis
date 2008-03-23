@@ -415,6 +415,7 @@ table {
     background: #f6e7c8;
     border-collapse: separate;
     border-spacing: 1px;
+    width: 100%;
 }
 
 table th {
@@ -547,6 +548,72 @@ ul.poll li div.bar {
 ul.poll li div.bar div.filling {
     background: #e5a713;
     height: 7px;
+}
+
+/* deanery */
+
+div.deanery p,
+div.deanery ul li {
+    margin: 15px 0px;
+    overflow: hidden;
+}
+
+div.deanery ul li p {
+    margin: 0px;
+}
+
+div.deanery ul li div {
+    float: left;
+}
+
+div.deanery div.days {
+    margin: 0px 10px 0px 40px;
+    padding: 5px 0px;
+    height: 23px;
+    width: 80px;
+    text-align: right;
+}
+
+div.deanery div.separator {
+    height: 100%;
+    width: 9px;
+    border: solid 1px #000000;
+    border-left: none;
+    height: 21px;
+}
+
+div.deanery div.hours {
+    margin-left: 20px;
+    height: 100%;
+    line-height: 23px;
+    height: 23px;
+}
+
+div.deanery ul li.more div.days {
+    height: 52px;
+}
+
+div.deanery ul li.more div.separator {
+    height: 60px;
+}
+
+div.deanery ul li.more div.hours {
+    height: 62px;
+    line-height: 62px;
+}
+
+div.deanery ul.files {
+    margin: 10px 0px 10px 10px;
+}
+
+div.deanery ul.files li.submenu {
+    list-style: none;
+}
+
+div.deanery ul.files li {
+    margin: 0px;
+    padding-left: 10px;
+    overflow: visible;
 }
 
 /* =footer

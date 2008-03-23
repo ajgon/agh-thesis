@@ -9,15 +9,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 18) do
+ActiveRecord::Schema.define(:version => 19) do
 
   create_table "cathedrals", :force => true do |t|
     t.string "name", :limit => 50, :null => false
   end
 
+  create_table "events", :force => true do |t|
+    t.date    "beginning"
+    t.date    "ending",                    :null => false
+    t.string  "head",                      :null => false
+    t.integer "for_year",  :default => 31, :null => false
+    t.string  "url"
+  end
+
   create_table "exams", :force => true do |t|
     t.integer  "subject_id",                 :null => false
-    t.integer  "user_id"
+    t.integer  "user_id",                    :null => false
     t.string   "exams_name_id", :limit => 3, :null => false
     t.string   "examiner",                   :null => false
     t.datetime "date",                       :null => false
@@ -105,12 +113,12 @@ ActiveRecord::Schema.define(:version => 18) do
   end
 
   create_table "subjects", :force => true do |t|
-    t.integer "subjects_type_id",               :null => false
-    t.string  "acronym",          :limit => 10, :null => false
-    t.string  "head",                           :null => false
+    t.integer "subjects_type_id"
+    t.string  "acronym",          :limit => 10,                :null => false
+    t.string  "head",                                          :null => false
     t.text    "body"
     t.string  "code",             :limit => 6
-    t.integer "season",           :limit => 4,  :null => false
+    t.integer "season",           :limit => 4,  :default => 0, :null => false
   end
 
   add_index "subjects", ["subjects_type_id"], :name => "subjects_type_id"

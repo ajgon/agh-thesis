@@ -1,0 +1,36 @@
+<div class="content deanery">
+  <h3 class="news"><abbr>Info</abbr> Dziekanat</h3>
+  <p>Dziekanat znajduje się na parterze budynku <strong>B1</strong></p>
+  <h4>Godziny Pracy</h4>
+  <ul>
+    <li class="more">
+      <div class="days">
+        <p>Poniedziałek</p>
+        <p>Wtorek</p>
+        <p>Środa</p>
+        <p>Piątek</p>
+      </div>
+      <div class="separator"></div>
+      <div class="hours">09:00&nbsp;&ndash;&nbsp;12:00</div>
+    </li>
+    <li>
+      <div class="days">Czwartek</div>
+      <div class="separator"></div>
+      <div class="hours">nieczynny</div>
+    </li>
+  </ul>
+  <h4>Uwagi organizacyjne</h4>
+  <p>Sprawy dotyczące całej grupy powinni załatwiać starości - na pewno skróci to kolejkę.</p>
+  <h4>Sekcje</h4>
+  <ul>
+<% unless @didactic.nil? -%>
+    <li>Sprawy dydaktyki: indeksy, sesja, zaświadczenia <%= link_to "#{@didactic.firstname} #{@didactic.lastname}", {:controller => 'profile', :action => @didactic.login} %>,</li>
+<% end %>
+<% unless @social.nil? -%>
+    <li>Sprawy socjalne: akademiki, stypendia naukowe i socjalne <%= link_to "#{@social.firstname} #{@social.lastname}", {:controller => 'profile', :action => @social.login} %>,</li>
+<% end %>
+<% unless @experience.nil? -%>
+    <li>Sprawy praktyk: akademiki na czas praktyk, odbiór zaświadczeń do Banku <%= link_to "#{@experience.firstname} #{@experience.lastname}", {:controller => 'profile', :action => @experience.login} %>,</li>
+<% end %>
+  </ul>
+</div>
