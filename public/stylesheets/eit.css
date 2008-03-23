@@ -410,6 +410,33 @@ dl.data dd {
     min-height: 13px;
 }
 
+table {
+    border: solid 1px #f0b94a;
+    background: #f6e7c8;
+    border-collapse: separate;
+    border-spacing: 1px;
+}
+
+table th {
+    background: #f0b94a;
+}
+
+table tr.hr td {
+    background: #f2ce88;
+    padding: 2px 0px;
+    font-weight: bold;
+}
+
+table td {
+    background: #f6dba9;
+    padding: 5px 2px;
+}
+
+table th,
+table td {
+    text-align: center;
+}
+
 /* news */
 
 h3.news abbr {

@@ -5,6 +5,10 @@ class NewsController < ApplicationController
     @pager = Pager.new({:controller => params[:controller], :action => params[:action], :id => params[:id]}, @news)
   end
   
+  def exams
+    @exams = Exam.find(:all, :order => 'exams_name_id, subject_id, date', :include => [:exams_name, :user, :subject])
+  end
+  
   def read
     news_id = IdEncoder.decode(params[:id])
     if news_id and News.exists?(news_id)

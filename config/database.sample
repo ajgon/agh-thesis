@@ -3,6 +3,7 @@ original:
   database: eit_old
   username: root
   password: 123123
+  encoding: latin2
   host: localhost
 
 converted:
@@ -10,6 +11,7 @@ converted:
   database: eit_new
   username: root
   password: 123123
+  encoding: utf8
   host: localhost
 
 development:
@@ -17,6 +19,7 @@ development:
   database: eit_new
   username: root
   password: 123123
+  encoding: utf8
   host: localhost
 
 test:

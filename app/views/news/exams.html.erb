@@ -1,0 +1,36 @@
+<div class="content">
+  <h3 class="news"><abbr>Exams</abbr> Terminy Egzaminów</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th title="Termin">T.</th>
+        <th>Przedmiot</th>
+        <th>Prowadzący</th>
+        <th>Miejsce</th>
+        <th>Dodał</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+<% exams_name_id = '' %>
+<% @exams.each do |exam| %>
+<%   if exams_name_id != exam.exams_name_id %>
+      <tr class="hr">
+        <td colspan="7"><%= exam.exams_name.head %></td>
+      </tr>
+<%   exams_name_id = exam.exams_name_id %>
+<%   end %>
+      <tr>
+        <td><%= exam.date.to_s(:exam).gsub(/ ([0-9]{2}) /) { ' ' + roman_month($1) + ' ' } %></td>
+        <td><%= exam.term %></td>
+        <td><%= exam.subject.head %></td>
+        <td><%= exam.examiner %></td>
+        <td><%= exam.place %></td>
+        <td><%= link_to exam.user.login, {:controller => 'profile', :action => exam.user.login} %></td>
+        <td></td>
+      </tr>
+<% end %>
+    </tbody>
+  </table>
+</div>

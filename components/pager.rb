@@ -16,7 +16,7 @@ class Pager
       (@results.length.to_f / @results_per_page.to_f).ceil    
   end
   
-  def array_of_pages page_number = nil, pages_padding = 1
+  def array_of_pages page_number = nil, pages_padding = 3
     if page_number.nil?
       page_number = actual_page
     end

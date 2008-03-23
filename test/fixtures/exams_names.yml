@@ -1,0 +1,51 @@
+one:
+  id: 1Ka
+  head: "1 rok - Elektronika i Telekomunikacja rok A"
+two:
+  id: 1Kb
+  head: "1 rok - Elektronika i Telekomunikacja rok B"
+three:
+  id: Z01
+  head: "1 rok - Studia zaoczne"
+four:
+  id: 2Ka
+  head: "2 rok - Elektronika i Telekomunikacja rok A"
+five:
+  id: 2Kb
+  head: "2 rok - Elektronika i Telekomunikacja rok B"
+six:
+  id: Z02
+  head: "2 rok - Studia zaoczne"
+seven:
+  id: 3KL
+  head: "3 rok - Elektronika"
+eight:
+  id: Z03
+  head: "3 rok - Studia zaoczne"
+nine:
+  id: 3KM
+  head: "3 rok - Telekomunikacja"
+ten:
+  id: 4KL
+  head: "4 rok - Elektronika"
+eleven:
+  id: Z04
+  head: "4 rok - Studia zaoczne"
+twelve:
+  id: 4KM
+  head: "4 rok - Telekomunikacja"
+thirteen:
+  id: 5KE
+  head: "5 rok - Aparatura elektroniczna"
+fourteen:
+  id: Z05
+  head: "5 rok - Studia zaoczne"
+fifteen:
+  id: 5KA
+  head: "5 rok - Systemy automatyki i aparatura medyczna"
+sixteen:
+  id: 5KT
+  head: "5 rok - Telekomunikacja"
+seventeen:
+  id: 5KU
+  head: "5 rok - Urzadzenia i sieci teleinformatyczne"

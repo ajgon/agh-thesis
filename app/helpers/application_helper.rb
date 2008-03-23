@@ -88,12 +88,16 @@ module ApplicationHelper
   end
   
   def encode_string email, where
-    output = ''
-    for i in 0..email.length
-      output << sprintf("&#x%x;", email[i])
+    unless email.nil?
+      output = ''
+      for i in 0..email.length
+        output << sprintf("&#x%x;", email[i])
+      end
+      output
+      where.gsub(email, output).gsub(/x([0-9]);/) { "x0#{$1};" }
+    else
+      where
     end
-    output
-    where.gsub(email, output).gsub(/x([0-9]);/) { "x0#{$1};" }
   end
   
   def content_type content = nil

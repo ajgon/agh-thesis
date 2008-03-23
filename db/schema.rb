@@ -9,24 +9,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 17) do
+ActiveRecord::Schema.define(:version => 18) do
 
   create_table "cathedrals", :force => true do |t|
     t.string "name", :limit => 50, :null => false
   end
 
   create_table "exams", :force => true do |t|
-    t.integer  "subject_id",              :null => false
+    t.integer  "subject_id",                 :null => false
     t.integer  "user_id"
-    t.string   "examiner",                :null => false
-    t.datetime "date",                    :null => false
-    t.string   "core",       :limit => 3, :null => false
-    t.string   "place",                   :null => false
-    t.integer  "term",                    :null => false
+    t.string   "exams_name_id", :limit => 3, :null => false
+    t.string   "examiner",                   :null => false
+    t.datetime "date",                       :null => false
+    t.string   "place",                      :null => false
+    t.integer  "term",                       :null => false
   end
 
   add_index "exams", ["subject_id"], :name => "subject_id"
   add_index "exams", ["user_id"], :name => "user_id"
+  add_index "exams", ["exams_name_id"], :name => "exams_name_id"
+
+  create_table "exams_names", :force => true do |t|
+    t.string "head"
+  end
+
+  add_index "exams_names", ["id"], :name => "index_exams_names_on_id", :unique => true
 
   create_table "groups", :force => true do |t|
     t.string "head", :null => false
@@ -174,6 +181,7 @@ ActiveRecord::Schema.define(:version => 17) do
 
   add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_1"
   add_foreign_key "exams", ["user_id"], "users", ["id"], :name => "exams_ibfk_2"
+  add_foreign_key "exams", ["exams_name_id"], "exams_names", ["id"], :name => "exams_ibfk_3"
 
   add_foreign_key "groups_news", ["group_id"], "groups", ["id"], :name => "groups_news_ibfk_1"
   add_foreign_key "groups_news", ["news_id"], "news", ["id"], :name => "groups_news_ibfk_2"
