@@ -1,0 +1,62 @@
+<div class="content deanery eiteam">
+  <h3 class="news"><abbr>Info</abbr> EiTeam</h3>
+  <p>
+    <img src="/images/photos/eiteam/kj.jpg" alt="Krzysztof Juszkiewicz" />
+    <h4><a href="<%= url_for :controller => 'profile', :action => 'juszkiew' %>">Krzysztof Juszkiewicz - juszkiew</a></h4>
+    Opiekun strony, współprojektant głównych koncepcji. 
+  </p>
+  <p>
+    <h4>Osoby, które tworzyły serwis</h4>
+    Wszyscy chętni mile widziani.
+  </p>
+  <p class="right">
+    <img src="/images/photos/eiteam/ajgon.jpg" alt="Igor Rzegocki" />
+    <h4><a href="http://www.rzegocki.pl/">Igor Rzegocki - ajgon</a></h4>
+    Autor silnika strony, kodu HTML, arkuszy stylów i JavaScriptu
+  </p>
+  <p>
+    <img src="/images/photos/eiteam/tomp.jpg" alt="Tomasz Pawełek" />
+    <h4><a href="<%= url_for :controller => 'profile', :action => 'tompaw' %>">Tomasz Pawełek - tompaw</a></h4>
+    Autor poprzedniego silnika strony opartego o PHP
+  </p>
+  <p class="right">
+    <img src="/images/photos/eiteam/lucassus.jpg" alt="Łukasz Bandzarewicz" />
+    <h4><a href="<%= url_for :controller => 'profile', :action => 'lucassus' %>">Łukasz Bandzarewicz - lucassus</a></h4>
+    Współpraca przy rozwijaniu serwisu
+  </p>
+  <p>
+    <img src="/images/photos/eiteam/zwk.jpg" alt="Wojciech Krawczyk" />
+    <h4>Wojciech Krawczyk - wojtekk</h4>
+    Autor wcześniejszych wersji strony
+  </p>
+</div>
+<div class="content">
+  <h3 class="news"><abbr>Info</abbr> Osoby mogące zamieszczać newsy</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Login</th>
+        <th>Imię i nazwisko</th>
+        <th>Grupa</th>
+        <th>Gadu-Gadu</th>
+      </tr>
+    </thead>
+    <tbody>
+<% @news_users.each do |user| %>
+<%   unless user.users_student.nil? %>
+      <tr>
+        <td><%= link_to user.login, :controller => 'profile', :action => user.login %></td>
+        <td><%= link_to "#{user.firstname} #{user.lastname}", :controller => 'profile', :action => user.login %></td>
+        <td><%= user.users_student.sgroup.to_s %></td>
+        <td>
+<%     unless user.users_student.gadu_gadu.nil? or user.users_student.gadu_gadu < 1000 %>
+          <img src="http://www.gadu-gadu.pl/users/status.asp?id=<%= user.users_student.gadu_gadu %>&amp;styl=1" alt="Status <%= user.login %> na Gadu Gadu" />
+          <%= user.users_student.gadu_gadu %>
+<%     end %>
+        </td>
+      </tr>
+<%   end %>
+<% end %>
+    </tbody>
+  </table>
+</div>

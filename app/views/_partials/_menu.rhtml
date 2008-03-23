@@ -85,12 +85,12 @@
           </ul>
         </li>
         <li><a class="menu-item">O Stronie</a></li>
-        <li class="submenu">
+        <li class="submenu"<%= show_list_item_if_controllers 'about' %>>
           <ul>
-            <li>Informacje</li>
-            <li>EiTeam</li>
+            <li><a href="<%= url_for :controller => 'about' %>">Informacje</a></li>
+            <li><a href="<%= url_for :controller => 'about', :action => 'eiteam' %>">EiTeam</a></li>
             <li>Mapa Serwisu</li>
-            <li>FAQ</li>
+            <li><a href="<%= url_for :controller => 'about', :action => 'faq' %>">FAQ</a></li>
           </ul>
         </li>
         <li>Twoje Konto</li>

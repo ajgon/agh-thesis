@@ -655,6 +655,25 @@ div.deanery p.notop {
     margin-top: 0px;
 }
 
+/* about */
+div.eiteam p img {
+    float: left;
+    margin: 0px 20px;
+}
+
+div.eiteam p.right img {
+    float: right;
+}
+
+div.eiteam p h4 {
+    margin-top: 25px;
+}
+
+div.eiteam p.right h4,
+div.eiteam p.right {
+    text-align: right;
+}
+
 /* =footer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #footer {
