@@ -410,12 +410,36 @@ dl.data dd {
     min-height: 13px;
 }
 
+dl.list {
+    width: 582px;
+}
+
+dl.list dt {
+    text-align: center;
+}
+
+dl.list dd {
+    width: 448px;
+    background: #f6dba9;
+    margin-bottom: 2px;
+}
+
+dl.list dt,
+dl.list dd {
+    height: auto;
+    line-height: normal;
+}
+
 table {
     border: solid 1px #f0b94a;
     background: #f6e7c8;
     border-collapse: separate;
     border-spacing: 1px;
     width: 100%;
+}
+
+table.sked {
+    background: #f0b94a;
 }
 
 table th {
@@ -602,18 +626,33 @@ div.deanery ul li.more div.hours {
     line-height: 62px;
 }
 
+div.deanery ol,
 div.deanery ul.files {
     margin: 10px 0px 10px 10px;
 }
 
+div.deanery ol {
+    margin-left: 20px;
+}
+
+div.deanery ol li.submenu,
 div.deanery ul.files li.submenu {
     list-style: none;
 }
 
+div.deanery ol li,
 div.deanery ul.files li {
     margin: 0px;
     padding-left: 10px;
     overflow: visible;
+}
+
+div.deanery ol li {
+    padding-left: 0px;
+}
+
+div.deanery p.notop {
+    margin-top: 0px;
 }
 
 /* =footer

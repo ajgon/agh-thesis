@@ -75,13 +75,13 @@
           </ul>
         </li>
         <li><a class="menu-item">Podyplomowe</a></li>
-        <li class="submenu">
+        <li class="submenu"<%= show_list_item_if_controllers 'postgraduate' %>>
           <ul>
-            <li>Ulotka</li>
-            <li>Regulamin</li>
-            <li>Harmonogram</li>
-            <li>Program</li>
-            <li>Plan</li>
+            <li><a href="<%= url_for :controller => 'postgraduate' %>">Ulotka</a></li>
+            <li><a href="<%= url_for :controller => 'postgraduate', :action => 'regulations' %>">Regulamin</a></li>
+            <li><a href="<%= url_for :controller => 'postgraduate', :action => 'schedule' %>">Harmonogram</a></li>
+            <li><a href="<%= url_for :controller => 'postgraduate', :action => 'program' %>">Program</a></li>
+            <li><a href="<%= url_for :controller => 'postgraduate', :action => 'sked' %>">Plan</a></li>
           </ul>
         </li>
         <li><a class="menu-item">O Stronie</a></li>
