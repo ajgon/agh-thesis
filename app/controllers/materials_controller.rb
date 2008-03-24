@@ -1,27 +1,28 @@
 class MaterialsController < ApplicationController
 
   def initialize
-      @files_top = UploadedFile.find(:all, :include => [:subject, :user], :limit => 10, :order => 'downloads DESC')
-      @form_subjects = [['', '']] + UploadedFile.find(:all, :include => :subject, :group => 'subject_id', :order => 'subjects.head').collect { |i| [ i.subject.head, IdEncoder.encode(i.subject.id) ] }
-      @form_profiles = [['', '']] + UploadedFile.find(:all, :include => :user, :group => 'user_id', :order => 'users.lastname').collect { |i| [ i.user.lastname + ' ' + i.user.firstname, IdEncoder.encode(i.user.id) ] }
-      @form_semesters = [
-        ['', ''],
-        ['I. Rok', '101'],
-        ['   1. Semestr', '1'],
-        ['   2. Semestr', '2'],
-        ['II. Rok', '102'],
-        ['   3. Semestr', '3'],
-        ['   4. Semestr', '4'],
-        ['III. Rok', '103'],
-        ['   5. Semestr', '5'],
-        ['   6. Semestr', '6'],
-        ['IV. Rok', '104'],
-        ['   7. Semestr', '7'],
-        ['   8. Semestr', '8'],
-        ['V. Rok', '105'],
-        ['   9. Semestr', '9'],
-        ['   10. Semestr', '10'],
-      ]
+    super
+    @files_top = UploadedFile.find(:all, :include => [:subject, :user], :limit => 10, :order => 'downloads DESC')
+    @form_subjects = [['', '']] + UploadedFile.find(:all, :include => :subject, :group => 'subject_id', :order => 'subjects.head').collect { |i| [ i.subject.head, IdEncoder.encode(i.subject.id) ] }
+    @form_profiles = [['', '']] + UploadedFile.find(:all, :include => :user, :group => 'user_id', :order => 'users.lastname').collect { |i| [ i.user.lastname + ' ' + i.user.firstname, IdEncoder.encode(i.user.id) ] }
+    @form_semesters = [
+      ['', ''],
+      ['I. Rok', '101'],
+      ['   1. Semestr', '1'],
+      ['   2. Semestr', '2'],
+      ['II. Rok', '102'],
+      ['   3. Semestr', '3'],
+      ['   4. Semestr', '4'],
+      ['III. Rok', '103'],
+      ['   5. Semestr', '5'],
+      ['   6. Semestr', '6'],
+      ['IV. Rok', '104'],
+      ['   7. Semestr', '7'],
+      ['   8. Semestr', '8'],
+      ['V. Rok', '105'],
+      ['   9. Semestr', '9'],
+      ['   10. Semestr', '10'],
+    ]
   end
   def index
     if params[:criteria].nil?

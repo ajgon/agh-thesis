@@ -674,6 +674,20 @@ div.eiteam p.right {
     text-align: right;
 }
 
+.letter {
+    color: #cc0000;
+    text-align: center;
+}
+
+.letter a {
+    font-size: 1.5em;
+    color: #cc0000;
+}
+
+p.letter {
+    margin-bottom: 10px;
+}
+
 /* =footer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #footer {

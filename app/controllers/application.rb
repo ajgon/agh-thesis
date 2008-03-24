@@ -8,6 +8,18 @@ class ApplicationController < ActionController::Base
 
   def initialize
     @xhtml = false
+    @controllers_map = {
+      'about' => 'O Stronie',
+      'deanery' => 'Dziekanat',
+      'file' => 'Pliki',
+      'index' => 'Aktualności',
+      'lecturers' => 'Prowadzący',
+      'materials' => 'Materiały',
+      'news' => 'Aktualności',
+      'postgraduate' => 'Podyplomowe',
+      'profile' => 'Profile',
+      'subject' => 'Przedmioty'
+    }
   end
 
   def set_charset

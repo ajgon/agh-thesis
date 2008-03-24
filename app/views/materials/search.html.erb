@@ -1,7 +1,11 @@
 <div class="column-left">
 <%= render :partial => '_partials/files_search', :locals => { :content => 'left' } %>
+<% unless @subjects.empty? %>
 <%= render :partial => '_partials/subjects', :locals => { :content => 'left' } %>
+<% end %>
+<% unless @profiles.empty? %>
 <%= render :partial => '_partials/profiles', :locals => { :content => 'left' } %>
+<% end %>
 <%= render :partial => '_partials/files_detailed', :locals => { :content => 'left', :files => @pager.results } %>
 </div>
 <div class="column-right">

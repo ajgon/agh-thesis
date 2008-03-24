@@ -23,8 +23,8 @@
             </ul>
           <% end %>
         </li>
-        <li><a class="menu-item">Aktualności</a></li>
-        <li class="submenu"<%= show_list_item_if_controllers 'index' %>>
+        <li><a class="menu-item" href="<%= url_for :controller => 'news' %>">Aktualności</a></li>
+        <li class="submenu"<%= show_list_item_if_controllers ['index', 'news'] %>>
           <ul>
             <li>Twoje</li>
             <li><a href="<%= url_for :controller => 'news' %>">Wszystkie</a></li>
@@ -32,7 +32,7 @@
             <li><a href="<%= url_for :controller => 'news', :action => 'exams' %>">Egzaminy</a></li>
           </ul>
         </li>
-        <li><a class="menu-item">Dziekanat</a></li>
+        <li><a class="menu-item" href="<%= url_for :controller => 'deanery' %>">Dziekanat</a></li>
         <li class="submenu"<%= show_list_item_if_controllers 'deanery' %>>
           <ul>
             <li><a href="<%= url_for :controller => 'deanery' %>">Informacje</a></li>
@@ -48,7 +48,7 @@
           </ul>
         </li>
         <li><a class="menu-item" href="<%= url_for :controller => 'materials' %>">Materiały</a></li>
-        <li class="submenu">
+        <li class="submenu"<%= show_list_item_if_controllers 'materials' %>>
           <ul>
             <li><a href="<%= url_for :controller => 'materials' %>">Wyszukiwarka</a></li>
             <li><a href="<%= create_search_link_for({'semester' => 101}) %>">I&nbsp;rok</a></li>
@@ -59,11 +59,12 @@
             <li>Oceny</li>
           </ul>
         </li>
-        <li><a class="menu-item">Prowadzący</a></li>
-        <li class="submenu">
+        <li><a class="menu-item" href="<%= url_for :controller => 'lecturers' %>">Prowadzący</a></li>
+        <li class="submenu"<%= show_list_item_if_controllers 'lecturers' %>>
           <ul>
-            <li>Elektronika</li>
-            <li>Telekomunikacja</li>
+            <li><a href="<%= url_for :controller => 'lecturers' %>">Wszyscy</a></li>
+            <li><a href="<%= url_for :controller => 'lecturers', :action => 'electronics' %>">Elektronika</a></li>
+            <li><a href="<%= url_for :controller => 'lecturers', :action => 'telecommunication' %>">Telekomunikacja</a></li>
           </ul>
         </li>
         <li><a class="menu-item">Studenci</a></li>
@@ -74,7 +75,7 @@
             <li>Strony WWW</li>
           </ul>
         </li>
-        <li><a class="menu-item">Podyplomowe</a></li>
+        <li><a class="menu-item" href="<%= url_for :controller => 'postgraduate' %>">Podyplomowe</a></li>
         <li class="submenu"<%= show_list_item_if_controllers 'postgraduate' %>>
           <ul>
             <li><a href="<%= url_for :controller => 'postgraduate' %>">Ulotka</a></li>
@@ -84,7 +85,7 @@
             <li><a href="<%= url_for :controller => 'postgraduate', :action => 'sked' %>">Plan</a></li>
           </ul>
         </li>
-        <li><a class="menu-item">O Stronie</a></li>
+        <li><a class="menu-item" href="<%= url_for :controller => 'about' %>">O Stronie</a></li>
         <li class="submenu"<%= show_list_item_if_controllers 'about' %>>
           <ul>
             <li><a href="<%= url_for :controller => 'about' %>">Informacje</a></li>

@@ -1,5 +1,5 @@
 <div class="content<%= content_type content %>">
-  <h3 class="files"><abbr>Files</abbr>Materiały - Formularz wyszukiwania</h3>
+  <h3 class="files"><abbr>Files</abbr>Formularz Wyszukiwania</h3>
 <% form_for :criteria, :url => {:action => 'index'} do |f| %>
   <dl>
     <%= dt_dd 'Przedmiot', f.select('subject', @form_subjects ) %>

@@ -1,0 +1,20 @@
+<div class="content">
+  <h3 class="news"><abbr>Info</abbr> <%= @title %></h3>
+  <p class="letter">
+<% @letters.each do |letter| %>
+    <a href="#letter<%= letter %>"><%= letter %></a>
+<% end %>
+  </p>
+<% lecturer_letter = '' %>
+<% @lecturers.each do |lecturer| %>
+<%   unless lecturer_letter == lecturer.user.lastname.first %>
+<% unless lecturer_letter == '' %>
+  </ul>
+<% end %>
+  <div class="center" id="letter<%= lecturer_letter = lecturer.user.lastname.first %>">--- <strong class="letter"><%= lecturer_letter %></strong>:</div>
+  <ul>
+<%   end %>
+    <li><a href="<%= url_for :controller => 'profile', :action => lecturer.user.login %>"><strong><%= lecturer.user.firstname %> <%= lecturer.user.lastname %></strong>, <%= lecturer.title %></a> <em><%= lecturer.cathedral.name %></em></li>
+<% end %>
+  </ul>
+</div>
