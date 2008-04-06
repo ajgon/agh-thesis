@@ -1,0 +1,55 @@
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Dane użytkownika</h3>
+  <p>Witaj w panelu sterowania Twojego konta na stronie EiT. Za pomocą poniższego 
+  formularza możesz zmienić niektóre swoje dane. Pamiętaj jednak, że dane wpisane 
+  przez Ciebie do bazy będą dostępne dla wszystkich przeglądających stronę WWW EiT.</p>
+
+<%= error_messages_for 'user', :header_message => nil, :message => 'Przy próbie poprawienia danych, wystąpiły następujące błędy:' %>
+
+    <dl class="data long">
+      <%= dt_dd 'Imię', @user.firstname %>
+      <%= dt_dd 'Nazwisko', @user.lastname %>
+<% if @users_student -%>
+      <%= dt_dd 'Numer indeksu', @users_student.sindex %>
+      <%= dt_dd 'Rok studiów', '##TODO##' %>
+      <%= dt_dd 'Grupa', @users_student.sgroup %>
+<% end -%>
+    </dl>
+
+<% form_for :user do |f| -%>
+    <dl class="data long">
+      <%= dt_dd '<label for="user_login">Login</label>', f.text_field(:login) %>
+      <%= dt_dd '<label for="user_pass">Hasło</label>', f.password_field(:pass) %>
+      <%= dt_dd '<label for="user_pass_confirmation">Hasło (jeszcze raz)</label>', f.password_field(:pass_confirmation) %>
+    </dl>
+    <dl class="data long">
+      <%= dt_dd '<label for="user_question">Twoje Pytanie</label>', f.text_field(:question) %>
+      <%= dt_dd '<label for="user_answer">Twoja Odpowiedź</label>', f.text_field(:answer) %>
+    </dl>
+    <dl class="data long">
+      <%= dt_dd '<label for="user_email">Email</label>', f.text_field(:email) %>
+      <%= dt_dd '<label for="user_www_page">Strona WWW</label>', f.text_field(:www_page) %>
+      <%= dt_dd '<label for="user_www_description">Opis strony</label>', f.text_field(:www_description) %>
+      <%= dt_dd '<label for="user_signature">Sygnaturka</label>', f.text_area(:signature) %>
+    </dl>
+<% if @users_student -%>
+    <dl class="data long">
+      <%= dt_dd '<label for="users_student_cell">Numer GSM</label>', text_field(:users_student, :cell) %>
+      <%= dt_dd '<label for="users_student_gadu_gadu">Numer Gadu Gadu</label>', text_field(:users_student, :gadu_gadu) %>
+      <%= dt_dd '<label for="users_student_icq">Numer ICQ</label>', text_field(:users_student, :icq) %>
+    </dl>
+<% end -%>
+<% if @users_lecturer -%>
+    <dl class="data long">
+      <%= dt_dd '<label for="users_lecturer_cathedral_id">Katedra</label>', select(:users_lecturer, :cathedral_id, @users_lecturers_cathedral) %>
+      <%= dt_dd '<label for="users_lecturer_title">Tytuł naukowy</label>', text_field(:users_lecturer, :title) %>
+      <%= dt_dd '<label for="users_lecturer_place">Lokacja na AGH</label>', text_field(:users_lecturer, :place) %>
+      <%= dt_dd '<label for="users_lecturer_phone">Telefon</label>', text_field(:users_lecturer, :phone) %>
+      <%= dt_dd '<label for="users_lecturer_consultations">Konsultacje</label>', text_field(:users_lecturer, :consultations) %>
+    </dl>
+<% end %>
+    <div class="submit">
+      <%= submit_tag 'Zapisz zmiany' %>
+    </div>
+<% end %>
+</div>

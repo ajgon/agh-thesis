@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   
   def pass=(pass)
     @pass = pass
-    self.password = Digest::SHA1.hexdigest(pass)
+    self.password = Digest::SHA1.hexdigest(pass) unless pass.nil? or pass.empty? or pass == '3aed121ab9caaf2e277f716312aa62e67d1d3ba0'
   end
   
   private

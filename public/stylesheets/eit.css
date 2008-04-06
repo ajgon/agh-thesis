@@ -51,6 +51,10 @@ input, select, textarea {
     height: 16px;
 }
 
+textarea {
+    height: 80px;
+}
+
 #wrapper {
     width: 760px;
     margin: 0 auto;
@@ -454,10 +458,13 @@ dl.long {
 
 dl.long dt {
     width: 126px;
+    min-height: 22px;
 }
 
 dl.long dd {
     width: 408px;
+    height: auto;
+    min-height: 22px;
 }
 
 dl.long dd input[type="text"],

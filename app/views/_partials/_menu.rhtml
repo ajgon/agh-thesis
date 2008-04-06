@@ -100,7 +100,7 @@
             <li><a href="<%= url_for :controller => 'about', :action => 'faq' %>">FAQ</a></li>
           </ul>
         </li>
-        <li>Twoje Konto</li>
+        <li><a href="<% if @logged_user %><%= url_for :controller => 'settings', :action => 'profile' %><% else %><%= url_for :controller => 'register' %><% end %>">Twoje Konto</a></li>
         <li><a class="menu-item">Panel Sterowania</a></li>
         <li class="submenu">
           <ul>
