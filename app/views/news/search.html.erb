@@ -1,0 +1,4 @@
+<%= render :partial => '_partials/news_search' %>
+<% if @pager %>
+<%= render :partial => '_partials/news', :locals => { :news => @pager.results } %>
+<% end %>

@@ -1,0 +1,14 @@
+<div class="content">
+  <h3 class="news"><abbr>News</abbr>Formularz Wyszukiwania</h3>
+<% form_for :criteria, :url => {:action => 'index'} do |f| %>
+  <dl class="long">
+    <%= dt_dd 'Szukaj', f.text_field('query') %>
+    <%= dt_dd 'Sortuj wyniki', f.select('sort', @sort) %>
+    <%= dt_dd 'Przeszukaj', f.check_box('head') + 'Tematy ' + f.check_box('body') + 'Treści'  %>
+  </dl>
+  <div class="submit">
+    <%= f.submit 'Szukaj' %>
+  </div>  
+<% end %>
+</div>
+

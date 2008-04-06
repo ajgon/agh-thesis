@@ -32,9 +32,8 @@
         <li><a class="menu-item" href="<%= url_for :controller => 'news' %>">Aktualności</a></li>
         <li class="submenu"<%= show_list_item_if_controllers ['index', 'news'] %>>
           <ul>
-            <li>Twoje</li>
             <li><a href="<%= url_for :controller => 'news' %>">Wszystkie</a></li>
-            <li>Wyszukiwarka</li>
+            <li><a href="<%= url_for :controller => 'news', :action => 'search' %>">Wyszukiwarka</a></li>
             <li><a href="<%= url_for :controller => 'news', :action => 'exams' %>">Egzaminy</a></li>
           </ul>
         </li>

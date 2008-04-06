@@ -15,4 +15,7 @@
   <p><%= h(news.body).gsub(/\n/, '<br />') %></p>
   <div class="right"><em><%= link_to news.user.login, :controller => 'profile', :action => news.user.login %></em></div>
 <% end %>
+<% if @pager -%>
+<%= render :partial => '_partials/pager' %>
+<% end %>
 </div>
