@@ -3,10 +3,11 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  before_filter :set_charset
+  before_filter :set_charset, :check_logged_user
   layout 'index'
 
   def initialize
+    super
     @xhtml = false
     @controllers_map = {
       'about' => 'O Stronie',
@@ -18,7 +19,9 @@ class ApplicationController < ActionController::Base
       'news' => 'Aktualności',
       'postgraduate' => 'Podyplomowe',
       'profile' => 'Profile',
-      'subject' => 'Przedmioty'
+      'subject' => 'Przedmioty',
+      'register' => 'Rejestracja',
+      'signin' => 'Panel sterujący'
     }
   end
 
@@ -41,6 +44,13 @@ class ApplicationController < ActionController::Base
       headers["Content-Type"] = 'text/html; charset=utf-8'
     end
 
+  end
+  
+  def check_logged_user
+    @logged_user = nil
+    if session[:user_id]
+      @logged_user = User.find(session[:user_id])
+    end
   end
   
   # See ActionController::RequestForgeryProtection for details

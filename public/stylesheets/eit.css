@@ -61,6 +61,34 @@ input, select, textarea {
     height: 100%;
 }
 
+div.errorExplanation {
+    border: #f1c36b solid 1px;
+    background: #f7f2ea;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+div.errorExplanation p {
+    margin: 0px 0px 5px;
+    font-weight: bold;
+}
+
+div.errorExplanation ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+div.errorExplanation ul li {
+    color: #cc0000;
+}
+
+div.fieldWithErrors input[type="text"],
+div.fieldWithErrors input[type="password"],
+div.fieldWithErrors select,
+div.fieldWithErrors textarea {
+    border: solid 1px #cc0000;
+}
+
 /* =top
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #top {
@@ -169,6 +197,11 @@ input, select, textarea {
     overflow: hidden;
 }
 
+#menu ul li.submenu ul.normal li {
+    text-transform: none;
+    text-align: center;
+}
+
 #menu ul li.login {
     display: list-item !important;
 }
@@ -194,7 +227,12 @@ input, select, textarea {
 }
 
 #menu ul li.login input[type="submit"]:first-child {
-    margin-left: 0px;
+    margin-left: 23px;
+}
+
+#menu div.fieldWithErrors input[type="text"],
+#menu div.fieldWithErrors input[type="password"] {
+    border: solid 1px #444444;
 }
 
 /* =pager
@@ -346,7 +384,7 @@ div.submit {
 }
 
 div.submit input[type='submit'] {
-    width: 288px;
+    width: 75%;
 }
 
 dl dt,
@@ -409,6 +447,27 @@ dl.data dd {
     background: #f2ce88;
     min-height: 13px;
 }
+
+dl.long {
+    width: 582px;
+}
+
+dl.long dt {
+    width: 126px;
+}
+
+dl.long dd {
+    width: 408px;
+}
+
+dl.long dd input[type="text"],
+dl.long dd input[type="password"],
+dl.long dd select,
+dl.long dd textarea {
+    width: 380px;
+}
+
+
 
 dl.list {
     width: 582px;

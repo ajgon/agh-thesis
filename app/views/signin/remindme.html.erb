@@ -1,0 +1,14 @@
+<div class="content deanery eiteam">
+  <h3 class="settings"><abbr>Settings</abbr> Zapomniane hasło</h3>
+  <p>Jeżeli zapomniałaś/-eś loginu/hasła skorzystaj z poniższego formularza: </p>
+  <% form_for :user do |f| -%>
+    <dl class="data long">
+      <%= dt_dd '<label for="user_firstname">Imię</label>', f.text_field(:firstname) %>
+      <%= dt_dd '<label for="user_lastname">Nazwisko</label>', f.text_field(:lastname) %>
+      <%= dt_dd '<label for="user_sindex">Nr indeksu</label>', text_field(:users_student, :sindex) %>
+    </dl>
+    <div class="submit">
+      <%= submit_tag 'Zapomniałem loginu i hasła' %>
+    </div>
+<% end %>
+</div>

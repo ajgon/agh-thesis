@@ -1,0 +1,37 @@
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Formularz Rejestracji</h3>
+  <p>Witaj w panelu sterowania kontem na stronie EiT. W tej chwili 
+  <strong>nie jesteś zalogowany</strong>. Aby móc edytować parametry konta, 
+  musisz się najpierw <strong>zalogować</strong>, korzystając z formularza 
+  w okienku nad menu po lewej stronie.</p>
+  <p>Jeżeli Nie posiadasz jeszcze konta na stronie EiT, możesz je 
+  <strong>założyć</strong>, wypełniając poniższy formularz (dodatkowe dane, 
+  takie jak e-mail czy strona WWW będziesz mógł ustawić po założeniu konta):</p>
+<%= error_messages_for 'user', :header_message => nil, :message => 'Przy próbie założenia konta, wystąpiły następujące błędy:' %>
+<% form_for :user do |f| -%>
+    <dl class="data long">
+      <%= dt_dd '<label for="user_firstname">Imię</label>', f.text_field(:firstname) %>
+      <%= dt_dd '<label for="user_lastname">Nazwisko</label>', f.text_field(:lastname) %>
+      <%= dt_dd '<label for="user_sindex">Nr indeksu</label>', text_field(:users_student, :sindex) %>
+    </dl>
+    <dl class="data long">
+      <%= dt_dd '<label for="user_login">Proponowany Login</label>', f.text_field(:login) %>
+      <%= dt_dd '<label for="user_pass">Hasło</label>', f.password_field(:pass) %>
+      <%= dt_dd '<label for="user_pass_confirmation">Hasło (jeszcze raz)</label>', f.password_field(:pass_confirmation) %>
+    </dl>
+    <dl class="data long">
+      <%= dt_dd '<label for="user_question">Twoje Pytanie *</label>', f.text_field(:question) %>
+      <%= dt_dd '<label for="user_answer">Twoja Odpowiedź *</label>', f.text_field(:answer) %>
+    </dl>
+    <div class="submit">
+      <%= submit_tag 'Załóż konto w serwisie EiT' %>
+    </div>
+<% end %>
+    <p><strong>*</strong> - Twoje Pytanie i Odpowiedź są potrzebne w procedurze 
+    odzyskania hasła, jednak nie są obowiązkowe. Jeżeli nie chcesz, to nie wypełniaj 
+    tych pól, jednakże wtedy odzyskanie hasła może okazać się procesem bardzo 
+    długim (lub niemożliwym).</p>
+    <p><strong>UWAGA: PROWADZĄCY chcący posiadać konto na WWW EiT proszeni są o 
+    <a href="<%= url_for :controller => 'about', :action => 'eiteam' %>">kontakt</a> z 
+    administratorami.</strong></p>
+</div>

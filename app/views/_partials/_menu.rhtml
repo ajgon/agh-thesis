@@ -2,6 +2,7 @@
       <ul>
         <li>Logowanie WWW</li>
         <li class="submenu login">
+<% if @logged_user.nil? -%>
           <% form_for :user, :url => {:controller => 'signin'} do |f| %>
             <ul>
               <li>
@@ -16,12 +17,17 @@
                 <label for="remember_me"><%= check_box_tag :remember_me %>
                 Pamiętaj</label>
               </li>
-              <li>
-                <%= submit_tag 'Nowy' %>
-                <%= submit_tag 'Zaloguj' %>
-              </li>
+              <li style="text-align: center;"><%= submit_tag 'Zaloguj' %></li>
+              <li><%= link_to 'Zarejestruj', :controller => 'register' %></li>
+              <li><%= link_to 'Zapomniane Hasło', :controller => 'signin', :action => 'remindme' %></li>
             </ul>
           <% end %>
+<% else -%>
+            <ul class="normal">
+              <li>użytkownik</li>
+              <li><a href="<%= url_for :controller => 'signin', :action => 'signout' %>"><%= @logged_user.firstname %> <%= @logged_user.lastname %></a></li>
+            </ul>
+<% end -%>
         </li>
         <li><a class="menu-item" href="<%= url_for :controller => 'news' %>">Aktualności</a></li>
         <li class="submenu"<%= show_list_item_if_controllers ['index', 'news'] %>>
