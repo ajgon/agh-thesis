@@ -38,6 +38,22 @@ class User < ActiveRecord::Base
     self.password = Digest::SHA1.hexdigest(pass) unless pass.nil? or pass.empty? or pass == '3aed121ab9caaf2e277f716312aa62e67d1d3ba0'
   end
   
+  def is_student?
+    if self.users_student
+      return true
+    else
+      return false
+    end
+  end
+  
+  def is_lecturer?
+    if self.users_lecturer
+      return true
+    else
+      return false
+    end
+  end
+  
   private
   def set_created_and_updated
     unless self.created_on

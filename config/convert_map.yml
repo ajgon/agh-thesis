@@ -13,7 +13,7 @@
 #                                mapped as those ids from x1 table (one-to-one relation)
 #                                only for ids!]
 #       field: <new_table_field> [if mapping is not by id, but by other field, put here its name]
-#       function: <function(@)> apply a SQL function on inserted data @ represents field)
+#       function: <function(@)> apply a SQL function on inserted data => @ represents field, @@ represents old database name)
 #     <column2>:
 #       <...>
 #     <...>
@@ -137,13 +137,26 @@
       action: remove
 10_groups_users:
   groupmembs:
+    __AFTER: ALTER TABLE groupmembs ADD uid2 integer DEFAULT null
     gid:
      from: groups
      name: group_id
     uid:
      from: users
      name: user_id
-10_uploaded_files:
+10a_groups_users:
+  groupmembs:
+    __BEFORE: UPDATE groupmembs SET uid2 = uid
+    __AFTER:  ALTER TABLE groupmembs DROP uid2
+    uid:
+      name: group_id
+      function: (FLOOR(REPLACE((SELECT @@.users_k1.band FROM @@.users_k1 ORDER BY @@.users_k1.band DESC LIMIT 1), 'K', '') / 10) - FLOOR(REPLACE((SELECT @@.users_k1.band FROM @@.users_k1 WHERE @@.users_k1.id = @), 'K', '') / 10) + 5)
+    uid2:
+      from: users
+      name: user_id
+    gid:
+      action: remove
+11_uploaded_files:
   files:
     filename1:
       action: remove
@@ -170,7 +183,7 @@
       function: CASE FLOOR(@ / 10) WHEN 1 THEN 'material' WHEN 2 THEN 'grade' ELSE '' END
     secgroup:
       action: remove
-11_groups_uploaded_files:
+12_groups_uploaded_files:
   files:
     __WHERE: sectype IN (11, 21)
     secgrp:
@@ -179,7 +192,7 @@
     id:
       from: uploaded_files
       name: uploaded_file_id
-11a_groups_uploaded_files:
+12a_groups_uploaded_files:
   files:
     __WHERE: sectype IN (12, 22)
     secgrp:
@@ -188,7 +201,7 @@
     id:
       from: uploaded_files
       name: uploaded_file_id
-11b_groups_uploaded_files:
+12b_groups_uploaded_files:
   files:
     __WHERE: sectype IN (13, 23)
     secgrp:
@@ -197,7 +210,7 @@
     id:
       from: uploaded_files
       name: uploaded_file_id
-12_polls_questions:
+13_polls_questions:
   polls_q:
     date_b:
       name: start_time
@@ -210,14 +223,14 @@
       name: user_id
     author_lg:
       action: remove
-13_polls_answers:
+14_polls_answers:
   polls_a:
     r_id:
       name: polls_question_id
       from: polls_questions
     quant:
       name: quantity
-14_exams:
+15_exams:
   exams:
     spec:
       name: subject_id
@@ -233,7 +246,7 @@
       name: date
       connect: "dt_year, dt_month, dt_day, dt_hour, dt_min"
       pattern: "{dt_year}-{dt_month}-{dt_day} {dt_hour}:{dt_min}"
-15_events:
+16_events:
   calendar:
     start:
       name: beginning

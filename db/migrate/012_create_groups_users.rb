@@ -4,6 +4,7 @@ class CreateGroupsUsers < ActiveRecord::Migration
       t.references :group, :null => false
       t.references :user, :null => false
     end
+    add_index :groups_users, [:group_id, :user_id], :unique => true
   end
 
   def self.down

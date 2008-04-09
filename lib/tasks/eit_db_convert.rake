@@ -239,7 +239,7 @@ class Converter
 
   def apply_functions new_row
     @function_map.each_pair do |column, function|
-      new_row[column] = parse_function(function.sub('@', '\'' + new_row[column].to_s + '\''))
+      new_row[column] = parse_function(function.gsub('@@', @old_base_details['database']).gsub('@', '\'' + new_row[column].to_s + '\''))
     end
     new_row
   end
