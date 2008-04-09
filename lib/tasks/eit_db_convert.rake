@@ -99,7 +99,7 @@ class Converter
         new_row = apply_connections new_row, row
 
         insertion = @NewModel.new(new_row)
-        insertion.save!
+        insertion.save_without_validation!
         new_id = insertion.id
         @id_map[@NewModel.table_name]['id_map'][old_id] = new_id
       rescue Exception => e

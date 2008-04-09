@@ -46,7 +46,7 @@
     kind:
       action: remove
     activated:
-      function: true
+      function: '1'
 02_cathedrals:
   cathedrals:
 03_users_students:
