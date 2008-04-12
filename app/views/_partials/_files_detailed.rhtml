@@ -9,7 +9,7 @@
             <%= file.head.empty? ? file.filename.gsub('_', ' ') : file.head %>
           </a>
         </strong>
-<% unless UploadedFile.is_public? file.id -%>
+        <% unless UploadedFile.is_public? file.id or (@logged_user and UploadedFile.can_user_get_file?(@logged_user.id, file.id)) -%>
         <abbr title="Materiał Niepubliczny" class="private"></abbr>
 <% end %>
       </h4>

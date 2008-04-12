@@ -11,7 +11,7 @@
       <%= dt_dd 'Nazwisko', @user.lastname %>
 <% if @users_student -%>
       <%= dt_dd 'Numer indeksu', @users_student.sindex %>
-      <%= dt_dd 'Rok studiów', '##TODO##' %>
+      <%= dt_dd 'Rok studiów', @users_student.year %>
       <%= dt_dd 'Grupa', @users_student.sgroup %>
 <% end -%>
     </dl>
