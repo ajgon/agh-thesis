@@ -1,6 +1,6 @@
 Menu = {
     initialize: function() {
-        $$('a.menu-item').each(function(menuItem) {
+        $$('#menu a.menu-item').each(function(menuItem) {
             menuItem.setAttribute('href', 'javascript:void(0);');
             Event.observe(menuItem, 'click', function(event) {
                 Menu.clear_menu();
@@ -9,7 +9,7 @@ Menu = {
         });
     },
     clear_menu: function() {
-        $$('a.menu-item').each(function(menuItem) {
+        $$('#menu a.menu-item').each(function(menuItem) {
             Element.setStyle(menuItem.up('li').next('li.submenu'), {'display': 'none'});
         });
     }

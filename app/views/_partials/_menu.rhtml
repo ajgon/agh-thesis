@@ -1,121 +1,116 @@
-    <div id="menu">
-      <ul>
-        <li>Logowanie WWW</li>
-        <li class="submenu login">
+<ul>
+  <li class="www-login">Logowanie WWW</li>
+  <li class="submenu login">
 <% if @logged_user.nil? -%>
-          <% form_for :user, :url => {:controller => 'signin'} do |f| %>
-            <ul>
-              <li>
-                <label for="user_login">Użytkownik:</label>
-                <%= f.text_field :login %>
-              </li>
-              <li>
-                <label for="user_password">Hasło:</label>
-                <%= f.password_field :password %>
-              </li>
-              <li>
-                <label for="remember_me"><%= check_box_tag :remember_me %>
-                Pamiętaj</label>
-              </li>
-              <li style="text-align: center;"><%= submit_tag 'Zaloguj' %></li>
-              <li><%= link_to 'Zarejestruj', :controller => 'register' %></li>
-              <li><%= link_to 'Zapomniane Hasło', :controller => 'signin', :action => 'remindme' %></li>
-            </ul>
-          <% end %>
-<% else -%>
-            <ul class="normal">
-              <li>użytkownik</li>
-              <li><a href="<%= url_for :controller => 'signin', :action => 'signout' %>"><%= @logged_user.firstname %> <%= @logged_user.lastname %></a></li>
-            </ul>
-<% end -%>
+    <% form_for :user, :url => {:controller => 'signin'} do |f| %>
+      <ul>
+        <li>
+          <label for="user_login">Użytkownik:</label>
+          <%= f.text_field :login %>
         </li>
-        <li><a class="menu-item" href="<%= url_for :controller => 'news' %>">Aktualności</a></li>
-        <li class="submenu"<%= show_list_item_if_controllers ['index', 'news'] %>>
-          <ul>
-            <li><a href="<%= url_for :controller => 'news' %>">Wszystkie</a></li>
-            <li><a href="<%= url_for :controller => 'news', :action => 'search' %>">Wyszukiwarka</a></li>
-            <li><a href="<%= url_for :controller => 'news', :action => 'exams' %>">Egzaminy</a></li>
-          </ul>
+        <li>
+          <label for="user_password">Hasło:</label>
+          <%= f.password_field :password %>
         </li>
-        <li><a class="menu-item" href="<%= url_for :controller => 'deanery' %>">Dziekanat</a></li>
-        <li class="submenu"<%= show_list_item_if_controllers 'deanery' %>>
-          <ul>
-            <li><a href="<%= url_for :controller => 'deanery' %>">Informacje</a></li>
-            <li><a href="<%= url_for :controller => 'deanery', :action => 'skeds' %>">Plany Zajęć</a></li>
-            <li><a href="<%= url_for :controller => 'deanery', :action => 'experience' %>">Praktyki</a></li>
-            <li><a href="<%= url_for :controller => 'deanery', :action => 'subjects' %>">Przedmioty</a></li>
-            <li>Przedmioty Obieralne</li>
-            <li><a href="<%= url_for :controller => 'deanery', :action => 'english' %>">English</a></li>
-            <li><a href="<%= create_search_link_for({'subject' => 126})%>">Pliki</a></li>
-            <li><a href="<%= url_for :controller => 'deanery', :action => 'iep' %>">Międzynarodowy Program Edukacyjny</a></li>
-            <li>Deklaracje</li>
-            <li><a href="<%= url_for :controller => 'deanery', :action => 'calendar' %>">Kalendarz</a></li>
-          </ul>
+        <li>
+          <label for="remember_me"><%= check_box_tag :remember_me %>
+          Pamiętaj</label>
         </li>
-        <li><a class="menu-item" href="<%= url_for :controller => 'materials' %>">Materiały</a></li>
-        <li class="submenu"<%= show_list_item_if_controllers 'materials' %>>
-          <ul>
-            <li><a href="<%= url_for :controller => 'materials' %>">Wyszukiwarka</a></li>
-            <li><a href="<%= create_search_link_for({'semester' => 101}) %>">I&nbsp;rok</a></li>
-            <li><a href="<%= create_search_link_for({'semester' => 102}) %>">II&nbsp;rok</a></li>
-            <li><a href="<%= create_search_link_for({'semester' => 103}) %>">III&nbsp;rok</a></li>
-            <li><a href="<%= create_search_link_for({'semester' => 104}) %>">IV&nbsp;rok</a></li>
-            <li><a href="<%= create_search_link_for({'semester' => 105}) %>">V&nbsp;rok</a></li>
-            <li>Oceny</li>
-          </ul>
-        </li>
-        <li><a class="menu-item" href="<%= url_for :controller => 'lecturers' %>">Prowadzący</a></li>
-        <li class="submenu"<%= show_list_item_if_controllers 'lecturers' %>>
-          <ul>
-            <li><a href="<%= url_for :controller => 'lecturers' %>">Wszyscy</a></li>
-            <li><a href="<%= url_for :controller => 'lecturers', :action => 'electronics' %>">Elektronika</a></li>
-            <li><a href="<%= url_for :controller => 'lecturers', :action => 'telecommunication' %>">Telekomunikacja</a></li>
-          </ul>
-        </li>
-        <li><a class="menu-item">Studenci</a></li>
-        <li class="submenu">
-          <ul>
-            <li>Wyszukiwarka</li>
-            <li>Własna Strona</li>
-            <li>Strony WWW</li>
-          </ul>
-        </li>
-        <li><a class="menu-item" href="<%= url_for :controller => 'postgraduate' %>">Podyplomowe</a></li>
-        <li class="submenu"<%= show_list_item_if_controllers 'postgraduate' %>>
-          <ul>
-            <li><a href="<%= url_for :controller => 'postgraduate' %>">Ulotka</a></li>
-            <li><a href="<%= url_for :controller => 'postgraduate', :action => 'regulations' %>">Regulamin</a></li>
-            <li><a href="<%= url_for :controller => 'postgraduate', :action => 'schedule' %>">Harmonogram</a></li>
-            <li><a href="<%= url_for :controller => 'postgraduate', :action => 'program' %>">Program</a></li>
-            <li><a href="<%= url_for :controller => 'postgraduate', :action => 'sked' %>">Plan</a></li>
-          </ul>
-        </li>
-        <li><a class="menu-item" href="<%= url_for :controller => 'about' %>">O Stronie</a></li>
-        <li class="submenu"<%= show_list_item_if_controllers 'about' %>>
-          <ul>
-            <li><a href="<%= url_for :controller => 'about' %>">Informacje</a></li>
-            <li><a href="<%= url_for :controller => 'about', :action => 'eiteam' %>">EiTeam</a></li>
-            <li>Mapa Serwisu</li>
-            <li><a href="<%= url_for :controller => 'about', :action => 'faq' %>">FAQ</a></li>
-          </ul>
-        </li>
-        <li><a href="<% if @logged_user %><%= url_for :controller => 'settings', :action => 'profile' %><% else %><%= url_for :controller => 'register' %><% end %>">Twoje Konto</a></li>
-        <li><a class="menu-item">Panel Sterowania</a></li>
-        <li class="submenu">
-          <ul>
-            <li>Aktualności</li>
-            <li>Materiały</li>
-            <li>Oceny</li>
-            <li>Grupy Studentów</li>
-            <li>Linki</li>
-            <li>Dyskusje</li>
-            <li>Ankiety</li>
-            <li>Deklaracje</li>
-            <li>Kalendarz</li>
-          </ul>
-        </li>
+        <li style="text-align: center;"><%= submit_tag 'Zaloguj' %></li>
+        <li><%= link_to 'Zarejestruj', :controller => 'register' %></li>
+        <li><%= link_to 'Zapomniane Hasło', :controller => 'signin', :action => 'remindme' %></li>
       </ul>
-    </div>
-    <script type="text/javascript">
-      Menu.initialize();
-    </script>
+    <% end %>
+<% else -%>
+      <ul class="normal">
+        <li>użytkownik</li>
+        <li><a href="<%= url_for :controller => 'signin', :action => 'signout' %>"><%= @logged_user.firstname %> <%= @logged_user.lastname %></a></li>
+      </ul>
+<% end -%>
+  </li>
+  <li><a class="menu-item" href="<%= url_for :controller => 'news' %>">Aktualności</a></li>
+  <li class="submenu"<%= show_list_item_if_controllers ['index', 'news'] %>>
+    <ul>
+      <li><a href="<%= url_for :controller => 'news' %>">Wszystkie</a></li>
+      <li><a href="<%= url_for :controller => 'news', :action => 'search' %>">Wyszukiwarka</a></li>
+      <li><a href="<%= url_for :controller => 'news', :action => 'exams' %>">Egzaminy</a></li>
+    </ul>
+  </li>
+  <li><a class="menu-item" href="<%= url_for :controller => 'deanery' %>">Dziekanat</a></li>
+  <li class="submenu"<%= show_list_item_if_controllers 'deanery' %>>
+    <ul>
+      <li><a href="<%= url_for :controller => 'deanery' %>">Informacje</a></li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'skeds' %>">Plany Zajęć</a></li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'experience' %>">Praktyki</a></li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'subjects' %>">Przedmioty</a></li>
+      <li>Przedmioty Obieralne</li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'english' %>">English</a></li>
+      <li><a href="<%= create_search_link_for({'subject' => 126})%>">Pliki</a></li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'iep' %>">Międzynarodowy Program Edukacyjny</a></li>
+      <li>Deklaracje</li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'calendar' %>">Kalendarz</a></li>
+    </ul>
+  </li>
+  <li><a class="menu-item" href="<%= url_for :controller => 'materials' %>">Materiały</a></li>
+  <li class="submenu"<%= show_list_item_if_controllers 'materials' %>>
+    <ul>
+      <li><a href="<%= url_for :controller => 'materials' %>">Wyszukiwarka</a></li>
+      <li><a href="<%= create_search_link_for({'semester' => 101}) %>">I&nbsp;rok</a></li>
+      <li><a href="<%= create_search_link_for({'semester' => 102}) %>">II&nbsp;rok</a></li>
+      <li><a href="<%= create_search_link_for({'semester' => 103}) %>">III&nbsp;rok</a></li>
+      <li><a href="<%= create_search_link_for({'semester' => 104}) %>">IV&nbsp;rok</a></li>
+      <li><a href="<%= create_search_link_for({'semester' => 105}) %>">V&nbsp;rok</a></li>
+      <li><a href="<%= url_for :controller => 'materials', :action => 'grades' %>">Oceny</a></li>
+    </ul>
+  </li>
+  <li><a class="menu-item" href="<%= url_for :controller => 'lecturers' %>">Prowadzący</a></li>
+  <li class="submenu"<%= show_list_item_if_controllers 'lecturers' %>>
+    <ul>
+      <li><a href="<%= url_for :controller => 'lecturers' %>">Wszyscy</a></li>
+      <li><a href="<%= url_for :controller => 'lecturers', :action => 'electronics' %>">Elektronika</a></li>
+      <li><a href="<%= url_for :controller => 'lecturers', :action => 'telecommunication' %>">Telekomunikacja</a></li>
+    </ul>
+  </li>
+  <li><a href="<%= url_for :controller => 'students'%>" class="menu-item">Studenci</a></li>
+  <li class="submenu"<%= show_list_item_if_controllers 'students' %>>
+    <ul>
+      <li><a href="<%= url_for :controller => 'students'%>">Wyszukiwarka</a></li>
+      <li><a href="<%= url_for :controller => 'students', :action => 'own_webpage' %>">Własna Strona</a></li>
+      <li><a href="<%= url_for :controller => 'students', :action => 'webpages' %>">Strony WWW</a></li>
+    </ul>
+  </li>
+  <li><a class="menu-item" href="<%= url_for :controller => 'postgraduate' %>">Podyplomowe</a></li>
+  <li class="submenu"<%= show_list_item_if_controllers 'postgraduate' %>>
+    <ul>
+      <li><a href="<%= url_for :controller => 'postgraduate' %>">Ulotka</a></li>
+      <li><a href="<%= url_for :controller => 'postgraduate', :action => 'regulations' %>">Regulamin</a></li>
+      <li><a href="<%= url_for :controller => 'postgraduate', :action => 'schedule' %>">Harmonogram</a></li>
+      <li><a href="<%= url_for :controller => 'postgraduate', :action => 'program' %>">Program</a></li>
+      <li><a href="<%= url_for :controller => 'postgraduate', :action => 'sked' %>">Plan</a></li>
+    </ul>
+  </li>
+  <li><a class="menu-item" href="<%= url_for :controller => 'about' %>">O Stronie</a></li>
+  <li class="submenu"<%= show_list_item_if_controllers 'about' %>>
+    <ul>
+      <li><a href="<%= url_for :controller => 'about' %>">Informacje</a></li>
+      <li><a href="<%= url_for :controller => 'about', :action => 'eiteam' %>">EiTeam</a></li>
+      <li><a href="<%= url_for :controller => 'about', :action => 'map' %>">Mapa Serwisu</a></li>
+      <li><a href="<%= url_for :controller => 'about', :action => 'faq' %>">FAQ</a></li>
+    </ul>
+  </li>
+  <li><a class="menuitem" href="<% if @logged_user %><%= url_for :controller => 'settings', :action => 'profile' %><% else %><%= url_for :controller => 'register' %><% end %>">Twoje Konto</a></li>
+  <li><a class="menu-item">Panel Sterowania</a></li>
+  <li class="submenu">
+    <ul>
+      <li>Aktualności</li>
+      <li>Materiały</li>
+      <li>Oceny</li>
+      <li>Grupy Studentów</li>
+      <li>Linki</li>
+      <li>Dyskusje</li>
+      <li>Ankiety</li>
+      <li>Deklaracje</li>
+      <li>Kalendarz</li>
+    </ul>
+  </li>
+</ul>

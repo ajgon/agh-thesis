@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
       'subject' => 'Przedmioty',
       'register' => 'Rejestracja',
       'signin' => 'Panel sterujący',
-      'settings' => 'Panel sterujący'
+      'settings' => 'Panel sterujący',
+      'students' => 'Studenci'
     }
   end
 

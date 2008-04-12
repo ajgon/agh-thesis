@@ -70,4 +70,12 @@ class MaterialsController < ApplicationController
     @pager = Pager.new(pager_params, @files, :page)
     @criteria = HashWithMethods.new(params[:criteria])
   end
+  
+  def grades
+    if @logged_user
+      @grades = UploadedFile.find_materials_for_user(session[:user_id], 'grade', false)
+    else
+      render :template => 'signin/signin'
+    end
+  end
 end

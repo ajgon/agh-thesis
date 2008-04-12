@@ -1,0 +1,34 @@
+<table style="margin-top: 15px;">
+  <tbody>
+<% subject_id = 0 %>
+<% grades.each do |grade| %>
+<%   unless subject_id == grade.subject.id %>
+    <tr class="hr">
+      <td colspan="4"><%= grade.subject.head %></td>
+    </tr>
+<%   end %>
+<% subject_id = grade.subject.id %>
+    <tr>
+      <td>
+        <a href="<%= url_for :controller => 'file', :action => 'download', :id => IdEncoder.encode(grade.id) %>">
+          <%= grade.head.empty? ? grade.filename.gsub('_', ' ') : grade.head %>
+        </a>
+      </td>
+      <td>
+        <%= grade.user.users_lecturer.title if grade.user.users_lecturer %>&nbsp;<%= grade.user.firstname %>&nbsp;<%= grade.user.lastname %>
+      </td>
+      <td>
+        <%= grade.date.to_s(:date) %>
+      </td>
+      <td>
+        <%= add_units(File.size?(RAILS_ROOT + '/files/' + grade.filename)) %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+<% if grades.empty? %>
+  <div class="center">
+    <strong>W tej chwili, nie masz żadnych ocen do pobrania.</strong>
+  </div>
+<% end %>

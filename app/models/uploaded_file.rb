@@ -14,6 +14,9 @@ class UploadedFile < ActiveRecord::Base
     user_groups = []
     user_groups = [1] if include_non_logged
     GroupsUser.find(:all, :conditions => ['user_id = ?', id]).each {|groups_user| user_groups.push groups_user.group_id}
-    return UploadedFile.find(:all, :include => :groups_uploaded_files, :conditions => "groups_uploaded_files.group_id IN (#{user_groups.join(', ')})#{kind}")
+    if user_groups.empty?
+      return []
+    end
+    return UploadedFile.find(:all, :include => [:groups_uploaded_files, :subject, :user], :conditions => "groups_uploaded_files.group_id IN (#{user_groups.join(', ')})#{kind}", :order => 'subject_id')
   end
 end

@@ -754,6 +754,68 @@ p.letter {
     margin-bottom: 10px;
 }
 
+/* signin */
+div.signin {
+    width: 202px;
+    float: left;
+    margin: 15px 10px 0px 0px;
+    overflow: hidden;
+}
+
+div.signin label {
+    width: 100px;
+    float: left;
+    margin: 3px 0px;
+    clear: left;
+}
+
+div.signin label.cbox {
+    float: none;
+    width: 202px;
+}
+
+div.signin input[type="text"],
+div.signin input[type="password"] {
+    width: 100px;
+    margin-bottom: 2px;
+}
+
+div.signin input[type="submit"] {
+    float: right;
+    margin-top: 5px;
+}
+
+/* sitemap */
+div.map li.login {
+    display: none;
+}
+
+div.map ul {
+    list-style: disc;
+}
+
+div.map ul li {
+    margin: 0px;
+    list-style: disc;
+    margin-left: 15px;
+    overflow: visible;
+}
+
+div.map ul li.submenu {
+    list-style: none;
+}
+
+div.map ul li a.menu-item,
+div.map ul li a.menuitem {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+div.map ul li.www-login {
+    display: none;
+}
+
+
 /* =footer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #footer {

@@ -9,4 +9,8 @@ class AboutController < ApplicationController
   def faq
     #TODO - przeredagowac pytania
   end
+  
+  def map
+    
+  end
 end

@@ -1,0 +1,30 @@
+<div class="content deanery">
+  <h3 class="settings"><abbr>Settings</abbr> Zaloguj się</h3>
+  <div class="center">
+    <h4>Ta część serwisu wymaga zalogowania się</h4>
+  </div>
+  <div class="signin">
+    <% form_for :user, :url => {:controller => 'signin'} do |f| %>
+      <label for="user_login">Użytkownik:</label>
+      <%= f.text_field :login %>
+      <label for="user_password">Hasło:</label>
+      <%= f.password_field :password %>
+      <%= submit_tag 'Zaloguj' %>
+      <label class="cbox" for="remember_me"><%= check_box_tag :remember_me %>
+      Pamiętaj</label>
+    <% end %>
+  </div>
+  <p>Jako zalogowany użytkownik będziesz miał dostęp do dodatkowych funkcji 
+  serwisu. Prezentowanie niektórych informacji będzie automatycznie dostosowywane 
+  do Twoich potrzeb, dzięki czemu będziesz widział informacje dotyczące Twojego 
+  roku. Będziesz miał również dostęp do wszystkich materiałów.</p>
+  <p><strong>pamiętaj</strong> - Zaznacz jeżeli używasz komputera prywatnego 
+  (np.: w domu, akademiku) - Twoja sesja będzie wtedy aktualna znacznie dłużej i 
+  nie będziesz się musiał tak często logować. Pamiętaj jednak o tym, że do 
+  Twoich danych mają wtedy dostęp wszyscy korzystający z Twojego komputera.</p>
+  <p>Jeżeli nie masz jeszcze konta i studiujesz Elektronikę i Telekomunikację na AGH, 
+  to możesz <a href="<%= url_for :controller => 'register' %>">je sobie założyć</a>.</p>
+  <p>Jeżeli zapomniałeś hasła lub loginu do swojego konta, skorzystaj z
+  <a href="<%= url_for :controller => 'signin', :action => 'remindme' %>">odpowiedniego
+  formularza</a></p>.
+</div>

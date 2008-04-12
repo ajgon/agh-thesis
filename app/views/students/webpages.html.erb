@@ -1,0 +1,21 @@
+<div class="content deanery">
+  <h3 class="news"><abbr>Info</abbr> Strony WWW</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Login</th>
+        <th>Imię i nazwisko</th>
+        <th>Opis strony domowej</th>
+      </tr>
+    </thead>
+    <tbody>
+<% @webpages.each do |webpage| %>
+      <tr>
+        <td><a href="http://sunum.kt.agh.edu.pl/~<%= webpage[0] %>"><%= webpage[0] %></a></td>
+        <td><%= webpage[1] %></td>
+        <td><%= webpage[2] %></td>
+      </tr>
+<% end %>
+    </tbody>
+  </table>
+</div>

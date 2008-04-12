@@ -1,0 +1,22 @@
+<div class="content deanery">
+  <h3 class="news"><abbr>Info</abbr> Własna strona WWW</h3>
+    <p>Jesli posiadasz konto w domenie kt.agh.edu.pl mozesz zalozyc sobie swoja wlasna strone WWW.</p>
+    <h4>Krok 1</h4>
+    <p>W tym celu nalezy zalozyc w swoim katalogu domowym podkatalog public_html (np. mkdir public_html). Nalezy zadbac aby ten katalog mial odpowiednie prawa. Uwaga ta dotyczy takze wszystkich podkatalogów public_html. Wystarczy zatem, aby wszystkie katalogi (lacznie z domowym) mialy prawa do wykonywania dla wszystkich (chmod go+x public_html). Od tej zasady sa dwa odstepstwa: strony wielojezyczne oraz wykazy zawartosci katalogów.</p>
+    <h4>Krok 2</h4>
+    <p>Kolejnym krokiem jest utworzenie pliku index.html lub index.htm, w którym znajduje sie wlasciwa zawartosc strony WWW. Wlasciwym formatem tego pliku jest HTML. Aby strona byla widoczna, plik musi miec prawa do czytania dla wszystkich (chmod go+r index.html). Powyzsza uwaga dotyczy wszystkich plików bedacych odnosnikami z kolejnych stron. Jesli po wykonaniu powyzszych czynnosci strona nie jest dostepna jako http://www.kt.agh.edu.pl/~login_name/ lub http://eit.agh.edu.pl/~login_name/ naklezy skontaktowac sie z administratorem www@www.kt.agh.edu.pl Brak jednego z powyzszych plików typu index w danym katalogu spowoduje wyswietlenie zawartosci tego katalogu o ile ustawione sa prawa do czytania dla tego katalogu.</p>
+    <h4>Indeksowanie</h4>
+    <p>Utworzone strony sa indeksowane w nocy. Tworzona jest wówczas lista stron uzytkowników z podzialem na pracowników i studentów. Program indeksujacy sprawdza poprawnosc (istnienie) linków. W przypadku braku poprawnosci chociaz jednego z linków strona nie zostanie dodana do spisu stron uzytkowników.</p>
+    <h4>Linki na stronie glównej AGH</h4>
+    <p>Ponadto dzieki uprzejmosci administratora www.agh.edu.pl strony pracowników i studentów sa zaindeksowane jako strony AGH pod adresem <a href="http://www.agh.edu.pl/~homepages">http://www.agh.edu.pl/~homepages</a>.</p>
+    <h4>.webinfo</h4>
+    <p>Na serwerze studenckim mozna dodatkowo umiescic krótki (jednolinijkowy) opis strony w pliku .webinfo w w katalogu public_html.</p>
+    <h4>Strony wielojezyczne</h4>
+    <p>W zwiazku z istnieniem wersji jezykowych stron WWW zamiast pliku index.html mozna stworzyc pliki z wersja angielska index.html.en oraz polska index.html.pl itp. Uwaga ta odnosi sie do kazdego pliku z rozszerzeniem .html lub .htm. Aby strony jezykowe byly widziane przez odwolanie bez koncówki jezykowej (index.html) katalog musi miec prawa do czytania i wówczas nie trzeba tworzyc dodatkowego pliku bez koncówki jezykowej (index.html).</p>
+    <h4>Dodatki</h4>
+    <p>Dla wygody uzytkowników mozna umieszczac na swoich stronach skrypty CGI (tylko rozszerzenie .cgi) oraz wstawki SSI, wlacznie z wykonywalnymi (tylko rozszerzenie .shtml lub atrybuty do wykonywania dla innych rozszerzen). Dzieki plikom .htaccess mozna tworzyc strony na haslo.</p>
+    <div class="right">
+      Milego tworzenia zyczy<br />
+      Webmaster (KJ)
+    </div>
+</div>

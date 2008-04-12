@@ -21,7 +21,12 @@
       <h1><%= link_to 'Strona kierunku <strong>Elektronika <span>&amp;</span> Telekomunikacja</strong>', :controller => 'index', :action => 'index' %></h1>
       <h2><span><%= @controllers_map[params[:controller]].gsub(' ', '&nbsp;') %></span></h2>
     </div>
-<%= render :partial => '_partials/menu' %>
+      <div id="menu">
+<%= render :partial => '_partials/menu'%>
+      <script type="text/javascript">
+        Menu.initialize();
+      </script>
+    </div>
     <div id="content">
 <%= yield :layout %>
     </div>
@@ -29,9 +34,9 @@
       <ul>
         <li><a href="mailto:eiteam@eit.agh.edu.pl">Napisz do nas</a></li>
         <li><a href="#top">.&nbsp;:&nbsp;.</a></li>
-        <li><a href="">Copyright &copy; 2001-<%= Time.now.year %> <strong>EiTeam</strong>. Wszelkie prawa zastrzeżone.</a></li>
+        <li><a href="<%= url_for :controller => 'about', :action => 'eiteam' %>">Copyright &copy; 2001-<%= Time.now.year %> <strong>EiTeam</strong>. Wszelkie prawa zastrzeżone.</a></li>
         <li><a href="http://www.kt.agh.edu.pl/">Strona należy do serwisu <strong>KT AGH</strong>.</a></li>
-        <li><a href="">Mapa serwisu &raquo;</a></li>
+        <li><a href="<%= url_for :controller => 'about', :action => 'map' %>">Mapa serwisu &raquo;</a></li>
       </ul>
     </div>
   </div>

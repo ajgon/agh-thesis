@@ -9,6 +9,12 @@ class SigninController < ApplicationController
         if params[:remember_me]
           // ##TODO##
         end
+        if request.env['HTTP_REFERER']
+          redirect_to request.env['HTTP_REFERER']
+        else
+          redirect_to :controller => 'index'
+        end
+        return
       else
         flash[:notice] = 'Nieprawidłowa nazwa użytkownika lub hasło'
       end
@@ -62,4 +68,5 @@ class SigninController < ApplicationController
       redirect_to :controller => 'index'
     end
   end
+
 end
