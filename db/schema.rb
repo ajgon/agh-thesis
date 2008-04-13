@@ -9,11 +9,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 19) do
+ActiveRecord::Schema.define(:version => 20) do
 
   create_table "cathedrals", :force => true do |t|
     t.string "name", :limit => 50, :null => false
   end
+
+  create_table "declarations", :force => true do |t|
+    t.integer  "subject_id", :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "term",       :null => false
+  end
+
+  add_index "declarations", ["subject_id"], :name => "subject_id"
+  add_index "declarations", ["user_id"], :name => "user_id"
 
   create_table "events", :force => true do |t|
     t.date    "beginning"
@@ -186,6 +195,9 @@ ActiveRecord::Schema.define(:version => 19) do
 
   add_index "users_students", ["user_id"], :name => "user_id"
   add_index "users_students", ["speciality_id"], :name => "speciality_id"
+
+  add_foreign_key "declarations", ["subject_id"], "subjects", ["id"], :name => "declarations_ibfk_1"
+  add_foreign_key "declarations", ["user_id"], "users", ["id"], :name => "declarations_ibfk_2"
 
   add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_1"
   add_foreign_key "exams", ["user_id"], "users", ["id"], :name => "exams_ibfk_2"

@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :groups_user
   has_many :polls_questions
   has_many :exams
+  has_many :declarations
   validates_presence_of :firstname, :lastname, :login, :pass, :pass_confirmation, :message => 'nie może być pustym polem'
   validates_confirmation_of :pass, :message => 'nie zostało poprawnie potwierdzone'
   validates_uniqueness_of :login, :message => 'już istnieje'

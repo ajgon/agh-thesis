@@ -1,7 +1,10 @@
 class StudentsController < ApplicationController
   
   def index
-    
+    if @logged_user
+    else
+      render :template => 'signin/signin'
+    end
   end
   
   def own_webpage  

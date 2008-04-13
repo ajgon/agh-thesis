@@ -256,3 +256,15 @@
       name: head
     year:
       name: for_year
+17_declarations:
+  decs_wpo:
+    uid:
+      name: user_id
+      from: users
+    spec:
+      name: subject_id
+      from: subjects
+    ts:
+      name: term
+    sem:
+      action: remove

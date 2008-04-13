@@ -1,0 +1,56 @@
+<div class="content deanery">
+  <h3 class="news"><abbr>Info</abbr> Przedmioty Obieralne</h3>
+  <h4>Instrukcja obierania przedmiotów obieralnych w roku 2007</h4>
+  <ol>
+    <li>Proszę obejrzeć <a href="/_ext/obieralne/www_obier_2007.xls">wykaz 
+    przedmiotów obieralnych w formacie XLS</a>, zwracając uwagę na ograniczenia 
+    "Dla ..." oraz kolumnę "Katedra".</li>
+    <li>Opis przedmiotu można znaleźć w odpowiednim pliku zip dla danej Katedry 
+    wystawiającej: <a href="/_ext/obieralne/KEle-obier-2006.zip">KE</a>, 
+    <a href="/_ext/obieralne/KTel-obier-2006.zip">KT i KM</a>, 
+    <a href="/_ext/obieralne/KAut-obier-2006.zip">KA</a>, 
+    <a href="/_ext/obieralne/KEt-obier-2006.zip">KEt</a>. W niektórych opisach mogą znajdować się 
+    błędne informacje o semestrze lub specjalnościach. Proszę kierować się plikiem XLS.</li>
+    <li>Należy sprawdzić czy pożądane przedmioty są na poniższej liście.</li>
+    <li>W przypadku niepewności przynależności do modułu, specjalności (np. chcemy 
+    lub złożyliśmy odwołanie) wstrzymujemy się z wyborem do ostatecznej decyzji Dziekana.</li>
+    <li>Wybór przedmiotów wykonujemy po zalogowaniu się do serwisu EiT w dziale Dziekanat->deklaracje.</li>
+    <li>Do momentu zamknięcia deklaracji można zmieniać wybór, a wybrane przedmioty 
+    są pogrubione na tej stronie po zalogowaniu.</li>
+  </ol>
+  <p>Wszelkie uwagi techniczne proszę zgłaszać do 
+  <a href="<%= url_for :controller => 'profile', :action => 'juszkiew' %>">K. Juszkiewicza</a> lub na adres 
+  <a href="mailto:eiteam@eit.agh.edu.pl">EiTeam</a>.</p>
+  <p>Liczby oznaczają <strong>bieżący</strong> stan wyborów i mogą się zmieniać w każdą stronę. 
+  Dla przedmiotów wspólnych podana jest łączna liczba (ta sama dla obu modułów). 
+  Aby przedmiot ruszył musi być zapisane min. 12 studentów po zakończeniu zapisów. 
+  W przypadku wyboru nieuruchomionego przedmiotu przewiduje się, po zakończeniu zapisów, 
+  krótki czas na zmianę wyboru.</p>
+  <% [@subjects_electronics, @subjects_telecommunication].each_with_index do |subjects, index| %>
+  <% season = 0 %>
+  <h4>Przedmioty obieralne Moduł <% if index == 0 %>Elektronika<% else %>Telekomunikacja<% end %></h4>
+  <table style="margin: 15px 0px;">
+    <tbody>
+  <%   subjects.each do |subject| %>
+  <%     unless season == subject.season %>
+      <tr class="hr">
+        <td colspan="3">Semestr <%= subject.season %></td>
+      </tr>
+  <%     end %>
+  <% season = subject.season %>
+      <tr<% if @subjects_choosen.include? subject.id %> class="selected"<% end %>>
+        <td>
+          <%= subject.code %>
+        </td>
+        <td>
+          <%= subject.head %>
+        </td>
+        <td>
+          <%= subject.count %>
+        </td>
+      </tr>
+  <%   end %>
+    </tbody>
+  </table>
+  <% end %>
+</div>

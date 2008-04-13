@@ -1,0 +1,43 @@
+<div class="content deanery">
+  <h3 class="news"><abbr>Info</abbr> Deklaracje</h3>
+  <h4>Deklaracje wyboru modułu, specjalności i przedmiotów obieralnych </h4>
+  <p>Strona ta przeznaczona jest dla studentów kierunku EiT, którzy mogą dzięki 
+  niej złożyć drogą elektroniczną deklarację wyboru modułu, specjalności albo 
+  wybrać przedmioty obieralne na ich roku. Aby skorzystać z tej strony, musisz 
+  być zalogowany jako <strong>STUDENT</strong> wybranego roku (różne deklaracje 
+  będą dostępne dla studentów różnych lat). </p>
+  <p>Obecnie jesteś zalogowany jako:</p>
+  <dl class="data">
+    <%= dt_dd 'Imię', @logged_user.firstname %>
+    <%= dt_dd 'Nazwisko', @logged_user.lastname %>
+    <%= dt_dd 'Login', @logged_user.login %>
+    <%= dt_dd 'Typ konta', (@logged_user.is_student? ? '<strong>STUDENT</strong>' : '<strong>PRACOWNIK</strong>') %>
+  </dl>
+  <% if @logged_user.is_student? %>
+  <p>Wybierz deklarację, którą chcesz wypełnić. Obecnie masz dostępne następujące deklaracje: </p>
+  <dl class="data">
+    <%= dt_dd '##TODO##', '--- brak aktualnie dostępnych deklaracji ---' %>
+  </dl>
+  <p>Po zapoznaniu się z warunkami korzystania z elektronicznych deklaracji podaj 
+  nr indeksu (bez żadnych spacji, same cyfry) i naciśnij "Przejdź do deklaracji":</p>
+  <% form_for :users_student do |f| -%>
+  <dl class="data long">
+    <dt>Warunki</dt>
+    <dd>
+      Naciskając przycisk "Przejdź do deklaracji" potwierdzasz, że:<br />
+      <strong>1)</strong> korzystasz w tej chwili z <strong>własnego konta</strong> na serwisie EiT,<br />
+      <strong>2)</strong> nazywasz się <strong><%= @logged_user.firstname %>&nbsp;<%= @logged_user.lastname %></strong>, a swoją tożsamość potwierdzisz numerem Twojego indeksu,<br />
+      <strong>3)</strong> chcesz dobrowolnie wypełnić wybraną deklarację i znasz <strong>wszystkie konsekwencje</strong>, jakie się wiążą z takim wyborem,<br />
+      <strong>4)</strong> wszelkie podawane przez Ciebie dane będą <strong>zgodne z prawdą</strong>,<br />
+      <strong>5)</strong> zgadzasz się na pobranie i przetwarzanie wszystkich wprowadzonych danych.
+    </dd>
+    <%= dt_dd '<label for="users_student_sindex">Nr indeksu</label>', f.text_field(:sindex) %>
+  </dl>
+  <div class="submit">
+    <%= submit_tag 'Przejdź do deklaracji' %>
+  </div>
+  <% end %>
+  <% else %>
+    <p>##TODO## - PRACOWNIK!</p>
+  <% end %>
+</div>

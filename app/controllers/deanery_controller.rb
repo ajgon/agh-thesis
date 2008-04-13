@@ -36,4 +36,26 @@ class DeaneryController < ApplicationController
   def calendar
     @events = Event.find(:all, :order => 'ending')
   end
+  
+  def eligible
+    @subjects_electronics = Subject.find(:all, :select => 'subjects.id, subjects.code, subjects.head, subjects.season, COUNT(*) AS count', :joins => 'LEFT OUTER JOIN `subjects_types` ON `subjects_types`.id = `subjects`.subjects_type_id LEFT OUTER JOIN `declarations` ON declarations.subject_id = subjects.id', :conditions => "mandatory = false AND subjects_type_id <> 10 AND (code LIKE 'E%' OR code LIKE 'ET%')", :order => 'season, count DESC, code', :group => 'subject_id')
+    @subjects_telecommunication = Subject.find(:all, :select => 'subjects.id, subjects.code, subjects.head, subjects.season, COUNT(*) AS count', :joins => 'LEFT OUTER JOIN `subjects_types` ON `subjects_types`.id = `subjects`.subjects_type_id LEFT OUTER JOIN `declarations` ON declarations.subject_id = subjects.id', :conditions => "mandatory = false AND subjects_type_id <> 10 AND (code LIKE 'T%' OR code LIKE 'ET%')", :order => 'season, count DESC, code', :group => 'subject_id')
+    @subjects_choosen = []
+    if @logged_user
+      Declaration.find(:all, :conditions => ['user_id = ?', @logged_user.id]).each {|declaration| @subjects_choosen.push declaration.subject_id}
+    end
+  end
+  
+  def declarations
+    if @logged_user
+      if request.post?
+        if UsersStudent.find_by_sindex(params[:users_student][:sindex])
+          raise '##TODO## - deklaracje'
+        end
+      end
+    else
+      render :template => 'signin/signin'
+    end
+  end
+  
 end

@@ -518,6 +518,10 @@ table tr.hr td {
     font-weight: bold;
 }
 
+table tr.selected td {
+    font-weight: bold;
+}
+
 table td {
     background: #f6dba9;
     padding: 5px 2px;
