@@ -157,6 +157,44 @@ div.fieldWithErrors textarea {
     left: 140px;
 }
 
+#top h2.about {
+    background: url(/images/sections/about.jpg) repeat-y;
+}
+
+#top h2.deanery,
+#top h2.subject {
+    background: url(/images/sections/deanery.jpg) repeat-y;
+}
+
+#top h2.files,
+#top h2.materials {
+    background: url(/images/sections/materials.jpg) repeat-y;
+}
+
+#top h2.index,
+#top h2.news {
+    background: url(/images/sections/news.jpg) repeat-y;
+}
+
+#top h2.lecturers {
+    background: url(/images/sections/lecturers.jpg) repeat-y;
+}
+
+#top h2.postgraduate {
+    background: url(/images/sections/postgraduate.jpg) repeat-y;
+}
+
+#top h2.profile,
+#top h2.settings,
+#top h2.signin,
+#top h2.register {
+    background: url(/images/sections/settings.jpg) repeat-y;
+}
+
+#top h2.students {
+    background: url(/images/sections/students.jpg) repeat-y;
+}
+
 /* =menu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #menu {

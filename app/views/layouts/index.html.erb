@@ -19,7 +19,7 @@
   <div id="wrapper">
     <div id="top">
       <h1><%= link_to 'Strona kierunku <strong>Elektronika <span>&amp;</span> Telekomunikacja</strong>', :controller => 'index', :action => 'index' %></h1>
-      <h2><span><%= @controllers_map[params[:controller]].gsub(' ', '&nbsp;') %></span></h2>
+      <h2 class="<%= params[:controller] %>"><span><%= @controllers_map[params[:controller]].gsub(' ', '&nbsp;') %></span></h2>
     </div>
       <div id="menu">
 <%= render :partial => '_partials/menu'%>

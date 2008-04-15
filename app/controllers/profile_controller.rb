@@ -1,5 +1,6 @@
 class ProfileController < ApplicationController
   def method_missing login
+    # ##TODO## - problem z loginami z kropka, typu igor.rzegocki
     if @logged_user
       @profile = User.find(:first, :conditions => ['login = ?', login])
       @news = News.find(:all, :conditions => ['user_id = ?', @profile.id], :limit => 5, :order => 'date DESC')
