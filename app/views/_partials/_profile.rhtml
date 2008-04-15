@@ -1,7 +1,7 @@
 <div class="content<%= content_type (defined?(content).nil? ? '' : content) %>">
   <h3 class="users"><abbr>Users</abbr> Informacje o użytkowniku</h3>
 <% unless @profile.nil? or !(@profile.users_lecturer.nil? ^ @profile.users_student.nil?) -%>
-  <h5><%= @profile.firstname %> <%= @profile.lastname %></h5>
+  <h5><%= @profile.users_lecturer.title if @profile.is_lecturer? %> <%= @profile.firstname %> <%= @profile.lastname %></h5>
   <dl class="data profile">
 <%   unless @profile.users_lecturer.nil? %>
     <%= dt_dd 'Katedra', @profile.users_lecturer.cathedral.name %>

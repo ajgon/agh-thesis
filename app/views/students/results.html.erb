@@ -1,0 +1,23 @@
+<div class="content">
+  <h3 class="news"><abbr>Info</abbr> Wyniki wyszukiwania</h3>
+  <div style="overflow: auto; width: 602px; border: solid 1px #f2ce88;">
+    <table>
+      <thead>
+        <tr>
+  <% @fields.each do |name| %>
+          <th><%= @fields_hash[name] %></th>
+  <% end %>
+        </tr>
+      </thead>
+      <tbody>
+  <% @results.each do |result| %>
+        <tr>
+  <%   @fields.each do |name| %>
+          <td><%= (['cell', 'gadu_gadu', 'icq', 'sgroup'].include?(name)) ? (result.users_student.send(name)) : ((name == 'email' and !result.send(name).nil? and !result.send(name).empty?) ? (encode_string(result.send(name), mail_to(result.send(name), nil, :encode => 'hex'))) : ((name == 'login') ? (link_to result.send(name), :controller => 'profile', :action => result.send(name)) : (result.send(name)))) %></td>
+  <%   end %>
+        </tr>
+  <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

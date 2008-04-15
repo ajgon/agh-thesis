@@ -1,6 +1,9 @@
 <div class="column-left">
-<% unless @profile.users_student.nil? -%>
+<% if @profile.is_student? -%>
 <%= render :partial => '_partials/profile' %>
+<%   unless @news.empty? -%>
+<%= render :partial => '_partials/news', :locals => { :content => 'left' } %>
+<%   end %>
 <% else -%>
 <%= render :partial => '_partials/profile', :locals => { :content => 'left' } %>
 <%= render :partial => '_partials/subjects', :locals => { :content => 'left' } %>

@@ -1,4 +1,52 @@
 <div class="content">
   <h3 class="news"><abbr>Info</abbr> Wyszukiwarka</h3>
-
+  <p>Aby wyszukać studentów w bazie WWW EiT, musisz najpierw sprecyzować, według
+  jakich kryteriów mają być oni wybierani. Aby tego dokonać, uzupełnij poniższy 
+  formularz. Pola puste będą oznaczały, że dana dana nie ma być brana pod uwagę 
+  podczas wyszukiwania:</p>
+  <% form_for :criteria, :url => {:action => 'results'} do |f| %>
+  <dl class="data" style="margin-bottom: 15px;">
+    <%= dt_dd 'Imię', f.text_field('firstname') %>
+    <%= dt_dd 'Nazwisko', f.text_field('lastname') %>
+    <%= dt_dd 'Login', f.text_field('login') %>
+    <%= dt_dd 'Rok', f.text_field('year') %>
+    <%= dt_dd 'Grupa', f.text_field('sgroup') %>
+    <%= dt_dd 'Moduł', f.select('speciality_id', @specialities) %>
+  </dl>
+  <p>Następnym krokiem jest zdecydowanie, które kolumny mają wchodzić w skład 
+  listy będącej wynikiem Twojego zapytania. Aby dokonać wyboru poszczególnych pól, 
+  zaznacz je w poniższym formularzu:</p>
+  <dl class="checkboxes" style="margin-top: 15px;">
+    <%= dt_dd check_box(:results, :firstname), 'Imię' %>
+    <%= dt_dd check_box(:results, :lastname), 'Nazwisko' %>
+  </dl>
+  <dl class="checkboxes">
+    <%= dt_dd check_box(:results, :sgroup), 'Grupa dziekanatowa (KOD)' %>
+    <%= dt_dd check_box(:results, :login), 'Login na WWW EiT' %>
+  </dl>
+  <dl class="checkboxes">
+    <%= dt_dd check_box(:results, :email), 'Adres E-mail' %>
+    <%= dt_dd check_box(:results, :cell), 'Nr telefonu' %>
+  </dl>
+  <dl class="checkboxes">
+    <%= dt_dd check_box(:results, :www_page), 'Adres strony WWW' %>
+    <%= dt_dd check_box(:results, :www_description), 'Opis strony WWW' %>
+  </dl>
+  <dl class="checkboxes"<% unless @logged_user.is_lecturer? %> style="margin-bottom: 15px;"<% end %>>
+    <%= dt_dd check_box(:results, :gadu_gadu), 'Numer Gadu Gadu' %>
+    <%= dt_dd check_box(:results, :icq), 'Numer ICQ' %>
+  </dl>
+  <% if @logged_user.is_lecturer? %>
+  <dl class="checkboxes checkboxes-long" style="margin-bottom: 15px;">
+    <%= dt_dd check_box(:results, :sindex), 'Numer indeksu (dostępny tylko dla zalogowanych Prowadzących)' %>
+  </dl>
+  <% end %>
+  <div class="center">
+    <p style="text-align: left;">Zdecyduj, wg którego pola ma odbywać się sortowanie generowanej listy:</p>
+    <%= f.select(:sort, @sort) %>
+  </div>
+  <div class="submit" style="margin-top: 15px;">
+    <%= submit_tag 'Szukaj' %>
+  </div>
+  <% end %>
 </div>

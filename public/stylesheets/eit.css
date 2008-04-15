@@ -474,7 +474,12 @@ dl.long dd textarea {
     width: 380px;
 }
 
-
+dl.data dd input[type="text"],
+dl.data dd input[type="password"],
+dl.data dd select,
+dl.data dd textarea {
+    width: 245px;
+}
 
 dl.list {
     width: 582px;
@@ -494,6 +499,38 @@ dl.list dt,
 dl.list dd {
     height: auto;
     line-height: normal;
+}
+
+dl.checkboxes {
+    padding: 0px;
+    overflow: hidden;
+}
+
+dl.checkboxes dt {
+    padding: 3px;
+    background: #f1c36b;
+    width: auto;
+    float: left;
+    height: 20px;
+}
+
+dl.checkboxes dd {
+    padding: 0px 0px 0px 20px;
+    font-weight: bold;
+    float: left;
+    width: 259px;
+    height: 26px;
+    line-height: 26px;
+}
+
+dl.checkboxes-long dd {
+    float: none;
+    width: auto;
+}
+
+dl.checkboxes dt input {
+    margin: 0px;
+    padding: 0px;
 }
 
 table {
