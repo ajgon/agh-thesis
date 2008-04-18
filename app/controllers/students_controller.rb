@@ -3,6 +3,7 @@ class StudentsController < ApplicationController
   def index
     if @logged_user
       @specialities = Speciality.find(:all).collect {|i| [i.head, IdEncoder.encode(i.id)]}
+      @specialities[0][0] = '---'
       @sort = [
         ['Nazwisko', 'lastname'],
         ['Imię', 'firstname'],

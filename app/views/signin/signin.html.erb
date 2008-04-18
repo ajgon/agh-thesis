@@ -5,13 +5,15 @@
   </div>
   <div class="signin">
     <% form_for :user, :url => {:controller => 'signin'} do |f| %>
-      <label for="user_login">Użytkownik:</label>
-      <%= f.text_field :login %>
-      <label for="user_password">Hasło:</label>
-      <%= f.password_field :password %>
-      <%= submit_tag 'Zaloguj' %>
-      <label class="cbox" for="remember_me"><%= check_box_tag :remember_me %>
-      Pamiętaj</label>
+      <fieldset>
+        <label for="user_login2">Użytkownik:</label>
+        <%= f.text_field(:login).gsub('id="user_login"', 'id="user_login2"') %>
+        <label for="user_password2">Hasło:</label>
+        <%= f.password_field(:password).gsub('id="user_password"', 'id="user_password2"') %>
+        <%= submit_tag 'Zaloguj' %>
+        <label class="cbox" for="remember_me2"><%= check_box_tag(:remember_me).gsub('id="remember_me"', 'id="remember_me2"') %>
+        Pamiętaj</label>
+      </fieldset>
     <% end %>
   </div>
   <p>Jako zalogowany użytkownik będziesz miał dostęp do dodatkowych funkcji 

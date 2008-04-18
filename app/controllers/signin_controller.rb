@@ -24,6 +24,7 @@ class SigninController < ApplicationController
 
   def signout
     session[:user_id] = nil
+    cookies[:rm] = nil
     redirect_to :controller => 'index'
   end
   

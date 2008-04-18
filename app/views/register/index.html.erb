@@ -12,10 +12,10 @@
     <dl class="data long">
       <%= dt_dd '<label for="user_firstname">Imię</label>', f.text_field(:firstname) %>
       <%= dt_dd '<label for="user_lastname">Nazwisko</label>', f.text_field(:lastname) %>
-      <%= dt_dd '<label for="user_sindex">Nr indeksu</label>', text_field(:users_student, :sindex) %>
+      <%= dt_dd '<label for="users_student_sindex">Nr indeksu</label>', text_field(:users_student, :sindex) %>
     </dl>
     <dl class="data long">
-      <%= dt_dd '<label for="user_login">Proponowany Login</label>', f.text_field(:login) %>
+      <%= dt_dd '<label for="user_login2">Proponowany Login</label>', f.text_field(:login).gsub('id="user_login"', 'id="user_login2"') %>
       <%= dt_dd '<label for="user_pass">Hasło</label>', f.password_field(:pass) %>
       <%= dt_dd '<label for="user_pass_confirmation">Hasło (jeszcze raz)</label>', f.password_field(:pass_confirmation) %>
     </dl>

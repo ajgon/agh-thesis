@@ -4,12 +4,12 @@
   (zgodnie z Twoją odpowiedzią) na poniższe pytanie:</p>
     
 <% form_for :user, :url => {:action => 'answer'} do |f| -%>
-    <input type="hidden" name="user_id" value="<%= IdEncoder.encode(@user.id) %>" />
     <dl class="data long">
       <%= dt_dd 'Pytanie', @user.question %>
       <%= dt_dd '<label for="user_answer">Odpowiedź</label>', f.text_field(:answer) %>
     </dl>
     <div class="submit">
+      <input type="hidden" name="user_id" value="<%= IdEncoder.encode(@user.id) %>" />
       <%= submit_tag 'Odpowiadam' %>
     </div>
 <% end %>

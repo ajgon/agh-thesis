@@ -10,7 +10,7 @@
           </a>
         </strong>
         <% unless UploadedFile.is_public? file.id or (@logged_user and UploadedFile.can_user_get_file?(@logged_user.id, file.id)) -%>
-        <abbr title="Materiał Niepubliczny" class="private"></abbr>
+        <abbr title="Materiał Niepubliczny" class="private">.</abbr>
 <% end %>
       </h4>
       <em><a href="<%= url_for :controller => 'subject', :action => file.subject.acronym %>"><%= file.subject.head %></a> / <a href="<%= url_for :controller => 'profile', :action => file.user.login %>"><%= file.user.firstname %> <%= file.user.lastname%></a></em>

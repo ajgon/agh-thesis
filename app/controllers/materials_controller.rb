@@ -3,10 +3,10 @@ class MaterialsController < ApplicationController
   def initialize
     super
     @files_top = UploadedFile.find(:all, :include => [:subject, :user], :limit => 10, :order => 'downloads DESC')
-    @form_subjects = [['', '']] + UploadedFile.find(:all, :include => :subject, :group => 'subject_id', :order => 'subjects.head').collect { |i| [ i.subject.head, IdEncoder.encode(i.subject.id) ] }
-    @form_profiles = [['', '']] + UploadedFile.find(:all, :include => :user, :group => 'user_id', :order => 'users.lastname').collect { |i| [ i.user.lastname + ' ' + i.user.firstname, IdEncoder.encode(i.user.id) ] }
+    @form_subjects = [['---', '']] + UploadedFile.find(:all, :include => :subject, :group => 'subject_id', :order => 'subjects.head').collect { |i| [ i.subject.head, IdEncoder.encode(i.subject.id) ] }
+    @form_profiles = [['---', '']] + UploadedFile.find(:all, :include => :user, :group => 'user_id', :order => 'users.lastname').collect { |i| [ i.user.lastname + ' ' + i.user.firstname, IdEncoder.encode(i.user.id) ] }
     @form_semesters = [
-      ['', ''],
+      ['---', ''],
       ['I. Rok', '101'],
       ['   1. Semestr', '1'],
       ['   2. Semestr', '2'],

@@ -130,6 +130,7 @@ div.fieldWithErrors textarea {
     text-align: right;
     position: relative;
     padding-right: 1em;
+    z-index: 1;
 }
 
 #top h1 strong span {
@@ -663,10 +664,12 @@ h3.files abbr {
 
 abbr.private {
     background-image: url(/images/abbr/private.gif);
+    background-repeat: no-repeat;
     padding-left: 15px;
     text-decoration: none;
     border: none;
     font-size: 14px;
+    color: #f6dba9;
 }
 
 ul.files {
@@ -801,21 +804,25 @@ div.deanery p.notop {
 }
 
 /* about */
-div.eiteam p img {
+div.eiteam div.person {
+    overflow: hidden;
+    margin: 15px 0px;
+}
+div.eiteam div.person img {
     float: left;
     margin: 0px 20px;
 }
 
-div.eiteam p.right img {
+div.eiteam div.person-right img {
     float: right;
 }
 
-div.eiteam p h4 {
+div.eiteam div.person  h4 {
     margin-top: 25px;
 }
 
-div.eiteam p.right h4,
-div.eiteam p.right {
+div.eiteam div.person-right h4,
+div.eiteam div.person-right {
     text-align: right;
 }
 
@@ -835,7 +842,7 @@ p.letter {
 
 /* signin */
 div.signin {
-    width: 202px;
+    width: 204px;
     float: left;
     margin: 15px 10px 0px 0px;
     overflow: hidden;
