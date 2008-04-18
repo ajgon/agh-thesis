@@ -1,5 +1,6 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
+require 'digest/sha1'
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
@@ -50,17 +51,29 @@ class ApplicationController < ActionController::Base
   
   def check_logged_user
     @logged_user = nil
+    if cookies[:rm] and user_id = decode_hash(cookies[:rm])
+      session[:user_id] = user_id
+    end
     if session[:user_id]
       @logged_user = User.find(session[:user_id])
-      unless request.remote_ip.to_s.empty?
-        @logged_user.last_ip = request.remote_ip.to_s
-        @logged_user.pass = @logged_user.pass_confirmation = '3aed121ab9caaf2e277f716312aa62e67d1d3ba0'
-        @logged_user.save
-      end
+    end
+    if @logged_user and !request.remote_ip.to_s.empty?
+      @logged_user.last_ip = request.remote_ip.to_s
+      @logged_user.pass = @logged_user.pass_confirmation = '3aed121ab9caaf2e277f716312aa62e67d1d3ba0'
+      @logged_user.save
     end
   end
   
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => '1c0e64042b15000db3d4c42544713869'
+  
+  protected
+  def encode_hash id
+    IdEncoder.encode(id).to_i(32).to_s(36).reverse
+  end
+
+  def decode_hash hash
+    IdEncoder.decode(hash.reverse.to_i(36).to_s(32))
+  end
 end

@@ -30,6 +30,7 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
+  map.connect "/profile/:login_name", :controller => "profile", :action => "view", :requirements => {:login_name => /.*/ }
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id/:page'
   map.connect ':controller/:action/:id.:format'

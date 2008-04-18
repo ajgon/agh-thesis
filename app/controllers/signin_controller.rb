@@ -7,7 +7,7 @@ class SigninController < ApplicationController
       if user
         session[:user_id] = user.id
         if params[:remember_me]
-          // ##TODO##
+          cookies[:rm] = {:value => encode_hash(user.id), :expires => 14.days.from_now}
         end
         if request.env['HTTP_REFERER']
           redirect_to request.env['HTTP_REFERER']
