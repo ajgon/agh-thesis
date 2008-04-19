@@ -86,4 +86,19 @@ class StudentsController < ApplicationController
       @webpages.push page unless page.empty? or User.find_by_login(page[0]).nil?
     end
   end
+  
+  def polls
+    if params[:id].empty? or (question_id = IdEncoder.decode(params[:id])) == false
+      @polls_limit = 20
+      @polls_closed = PollsQuestion.find(:all, :include => :user, :conditions => 'end_time IS NOT NULL', :order => 'polls_questions.id DESC', :limit => @polls_limit)
+      @polls_open = PollsQuestion.find(:all, :include => :user, :conditions => 'end_time IS NULL', :order => 'polls_questions.id DESC', :limit => @polls_limit)
+    else
+      @poll = PollsQuestion.find(question_id, :include => [:polls_answers, :user], :order => 'polls_answers.quantity DESC')
+      @polls_answers_amount = 0
+      @poll.polls_answers.each do |polls_answer|
+        @polls_answers_amount += polls_answer.quantity
+      end
+      render :template => 'students/poll'
+    end
+  end
 end

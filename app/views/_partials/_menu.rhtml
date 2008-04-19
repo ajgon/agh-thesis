@@ -75,6 +75,7 @@
   <li class="submenu"<%= show_list_item_if_controllers 'students' %>>
     <ul>
       <li><a href="<%= url_for :controller => 'students'%>">Wyszukiwarka</a></li>
+      <li><a href="<%= url_for :controller => 'students', :action => 'polls' %>">Ankiety</a></li>
       <li><a href="<%= url_for :controller => 'students', :action => 'own_webpage' %>">Własna Strona</a></li>
       <li><a href="<%= url_for :controller => 'students', :action => 'webpages' %>">Strony WWW</a></li>
     </ul>
@@ -98,7 +99,7 @@
       <li><a href="<%= url_for :controller => 'about', :action => 'faq' %>">FAQ</a></li>
     </ul>
   </li>
-  <li><a class="menuitem" href="<% if @logged_user %><%= url_for :controller => 'settings', :action => 'profile' %><% else %><%= url_for :controller => 'register' %><% end %>">Twoje Konto</a></li>
+  <li><a class="menuitem" href="<%= url_for :controller => 'settings', :action => 'profile' %>">Twoje Konto</a></li>
   <li><a class="menu-item">Panel Sterowania</a></li>
   <li class="submenu">
     <ul>

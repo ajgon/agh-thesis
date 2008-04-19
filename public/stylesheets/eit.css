@@ -710,14 +710,14 @@ ul.poll {
     padding-left: 10px;
 }
 
-ul.poll li div.bar {
+div.bar {
     width: 100%;
     height: 7px;
     background: #f6ecdc;
     margin-top: 3px;
 }
 
-ul.poll li div.bar div.filling {
+div.bar div.filling {
     background: #e5a713;
     height: 7px;
 }

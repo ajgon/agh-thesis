@@ -1,0 +1,50 @@
+<div class="content deanery">
+  <h3 class="news"><abbr>Info</abbr> Ankiety otwarte</h3>
+  <p>Ankiety otwarte to takie, na które można jeszcze głosować. Aby wyświetlić 
+  informacje o działającej ankiecie, wybierz ją z tabeli poniżej (tabela może 
+  zawierać ankiety do max. <%= @polls_limit %> wstecz):</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Nazwa ankiety (pytanie)</th>
+        <th>Autor</th>
+        <th>Otwarta</th>
+      </tr>
+    </thead>
+    <tbody>
+<% @polls_open.each do |poll| %>
+  <tr>
+    <td><%= link_to poll.question, :controller => 'students', :action => 'polls', :id => IdEncoder.encode(poll.id) %></td>
+    <td><%= link_to poll.user.login, :controller => 'profile', :action => poll.user.login %></td>
+    <td><%= poll.start_time.to_s(:date) %></td>
+  </tr>
+<% end %>
+    </tbody>
+  </table>
+</div>
+<div class="content deanery">
+  <h3 class="news"><abbr>Info</abbr> Ankiety zamknięte</h3>
+  <p>Ankiety zamknięte to takie, na które nie można już oddawać głosów. Ciągle 
+  jednak można wyświetlić o nich informacje. Aby to zrobić, wybierz ankietę z 
+  tabeli poniżej (tabela może zawierać ankiety do max. <%= @polls_limit %> wstecz):</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Nazwa ankiety (pytanie)</th>
+        <th>Autor</th>
+        <th>Otwarta</th>
+        <th>Zamknięta</th>
+      </tr>
+    </thead>
+    <tbody>
+<% @polls_closed.each do |poll| %>
+  <tr>
+    <td><%= link_to poll.question, :controller => 'students', :action => 'polls', :id => IdEncoder.encode(poll.id) %></td>
+    <td><%= link_to poll.user.login, :controller => 'profile', :action => poll.user.login %></td>
+    <td><%= poll.start_time.to_s(:date) %></td>
+    <td><%= poll.end_time.to_s(:date) %></td>
+  </tr>
+<% end %>
+    </tbody>
+  </table>
+</div>

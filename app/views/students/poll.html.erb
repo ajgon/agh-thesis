@@ -1,0 +1,50 @@
+<div class="content deanery">
+  <h3 class="news"><abbr>Info</abbr> Szczegóły ankiety</h3>
+  <h5><%= @poll.question %></h5>
+  <table style="margin-top: 15px;">
+    <thead>
+      <tr>
+        <th>Odpowiedź</th>
+        <th>Głosy</th>
+        <th>Procentowo</th>
+        <th>Graficznie</th>
+      </tr>
+    </thead>
+    <tbody>
+<% @poll.polls_answers.each do |answer| %>
+      <tr>
+        <td><%= answer.answer %></td>
+        <td><%= answer.quantity %></td>
+        <td><%= answer.quantity * 100 / @polls_answers_amount %>%</td>
+        <td>
+          <div class="bar">
+            <div class="filling" style="width: <%= answer.quantity * 100 / @polls_answers_amount %>%;"></div>
+          </div>
+        </td>
+      </tr>
+<% end %>
+    </tbody>
+  </table>
+  <table style="margin-top: 15px;">
+    <thead>
+      <tr>
+        <th>Głosów</th>
+        <th>Stan</th>
+        <th>Anonimowa</th>
+        <th>Autor</th>
+        <th>Otwarta</th>
+        <th>Zamknięta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @polls_answers_amount %></td>
+        <td><%= @poll.end_time.nil? ? 'OTWARTA' : 'ZAMKNIĘTA' %></td>
+        <td><%= @poll.anonymous ? 'TAK' : 'NIE' %></td>
+        <td><%= link_to @poll.user.login, :controller => 'profile', :action => @poll.user.login %></td>
+        <td><%= @poll.start_time.to_s(:date) %></td>
+        <td><%= @poll.end_time.nil? ? '---' : @poll.end_time.to_s(:date) %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
