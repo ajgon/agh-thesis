@@ -88,7 +88,7 @@ class StudentsController < ApplicationController
   end
   
   def polls
-    if params[:id].empty? or (question_id = IdEncoder.decode(params[:id])) == false
+    if params[:id].nil? or (question_id = IdEncoder.decode(params[:id])) == false
       @polls_limit = 20
       @polls_closed = PollsQuestion.find(:all, :include => :user, :conditions => 'end_time IS NOT NULL', :order => 'polls_questions.id DESC', :limit => @polls_limit)
       @polls_open = PollsQuestion.find(:all, :include => :user, :conditions => 'end_time IS NULL', :order => 'polls_questions.id DESC', :limit => @polls_limit)

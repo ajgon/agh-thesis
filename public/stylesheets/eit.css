@@ -608,6 +608,16 @@ table td {
     text-align: center;
 }
 
+div.call2action {
+    overflow: hidden;
+    text-transform: lowercase;
+}
+
+div.call2action div {
+    float: right;
+    text-transform: lowercase;
+}
+
 /* news */
 
 h3.news abbr {

@@ -2,11 +2,11 @@ ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
+  #   map.connect 'products/:id', :controller => 'redirect', :new_url => '/catalog/view'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
+  #   map.purchase 'products/:id/purchase', :controller => 'redirect', :new_url => '/catalog/purchase'
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
@@ -24,7 +24,7 @@ ActionController::Routing::Routes.draw do |map|
   #     admin.resources :products
   #   end
 
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
+  # You can have the root of your site routed with map.root -- just remember to delete public/.html.
   map.root :controller => 'index'
 
   # See how all your routes lay out with "rake routes"
@@ -36,46 +36,46 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id.:format'
   
   # Old links mapper
-  map.connect "/akt", :controller => 'index', :action => 'index'
-  map.connect "/akt/twoje", :controller => 'index', :action => 'index'
-  map.connect "/akt/wszystkie", :controller => 'news', :action => 'index'
-  map.connect "/akt/search", :controller => 'news', :action => 'search'
-  map.connect "/akt/egz", :controller => 'news', :action => 'exams'
-  map.connect "/dzi", :controller => 'deanery', :action => 'index'
-  map.connect "/dzi/plany", :controller => 'deanery', :action => 'skeds'
-  map.connect "/dzi/prakt", :controller => 'deanery', :action => 'experience'
-  map.connect "/dzi/przedmioty", :controller => 'deanery', :action => 'subjects'
-  map.connect "/dzi/obieralne", :controller => 'deanery', :action => 'eligible'
-  map.connect "/dzi/english", :controller => 'deanery', :action => 'english'
-  map.connect "/dzi/mpe", :controller => 'deanery', :action => 'iep'
-  map.connect "/dzi/deklaracje", :controller => 'deanery', :action => 'declarations'
-  map.connect "/dzi/kalendarz", :controller => 'deanery', :action => 'calendar'
-  map.connect "/mat", :controller => 'materials', :action => 'index'
-  map.connect "/mat///101//date/1", :controller => 'materials', :action => 'search', :id => ',,101,,'
-  map.connect "/mat///102//date/1", :controller => 'materials', :action => 'search', :id => ',,102,,'
-  map.connect "/mat///103//date/1", :controller => 'materials', :action => 'search', :id => ',,103,,'
-  map.connect "/mat///104//date/1", :controller => 'materials', :action => 'search', :id => ',,104,,'
-  map.connect "/mat///105//date/1", :controller => 'materials', :action => 'search', :id => ',,105,,'
-  map.connect "/oce", :controller => 'materials', :action => 'grades'
-  map.connect "/pro", :controller => 'lecturers', :action => 'index'
-  map.connect "/pro/elektronika", :controller => 'lecturers', :action => 'electronics'
-  map.connect "/pro/telekomunikacja", :controller => 'lecturers', :action => 'telecommunication'
-  map.connect "/gen", :controller => 'students', :action => 'index'
-  map.connect "/stu", :controller => 'students', :action => 'webpages'
-  map.connect "/sty/www", :controller => 'students', :action => 'own_webpage'
-  map.connect "/pi", :controller => 'students', :action => 'polls'
-  map.connect "/pod", :controller => 'postgraduate', :action => 'index'
-  map.connect "/pod/nsiut_regulamin", :controller => 'postgraduate', :action => 'regulations'
-  map.connect "/pod/nsiut_harmonogram", :controller => 'postgraduate', :action => 'schedule'
-  map.connect "/pod/nsiut_program", :controller => 'postgraduate', :action => 'program'
-  map.connect "/pod/nsiut_plan", :controller => 'postgraduate', :action => 'plan'
-  map.connect "/ost/info", :controller => 'about', :action => 'index'
-  map.connect "/ost/eiteam", :controller => 'about', :action => 'eiteam'
-  map.connect "/ost/faq", :controller => 'about', :action => 'faq'
-  map.connect "/map", :controller => 'about', :action => 'map'
-  map.connect "/kon", :controller => 'settings', :action => 'profile'
-  map.connect "/dl/:query", :controller => 'materials', :action => 'index', :requirements => {:query => /.*/}
-  map.connect "/mat/:query", :controller => 'materials', :action => 'index', :requirements => {:query => /.*/}
-  map.connect "/for/:query", :controller => 'index', :action => 'index', :requirements => {:query => /.*/}
-  map.connect "/hyd/:query", :controller => 'index', :action => 'index', :requirements => {:query => /.*/}
+  map.connect "/akt", :controller => 'redirect', :new_url => '/'
+  map.connect "/akt/twoje", :controller => 'redirect', :new_url => '/'
+  map.connect "/akt/wszystkie", :controller => 'redirect', :new_url => '/news'
+  map.connect "/akt/search", :controller => 'redirect', :new_url => '/news/search'
+  map.connect "/akt/egz", :controller => 'redirect', :new_url => '/news/exams'
+  map.connect "/dzi", :controller => 'redirect', :new_url => '/deanery'
+  map.connect "/dzi/plany", :controller => 'redirect', :new_url => '/deanery/skeds'
+  map.connect "/dzi/prakt", :controller => 'redirect', :new_url => '/deanery/experience'
+  map.connect "/dzi/przedmioty", :controller => 'redirect', :new_url => '/deanery/subjects'
+  map.connect "/dzi/obieralne", :controller => 'redirect', :new_url => '/deanery/eligible'
+  map.connect "/dzi/english", :controller => 'redirect', :new_url => '/deanery/english'
+  map.connect "/dzi/mpe", :controller => 'redirect', :new_url => '/deanery/iep'
+  map.connect "/dzi/deklaracje", :controller => 'redirect', :new_url => '/deanery/declarations'
+  map.connect "/dzi/kalendarz", :controller => 'redirect', :new_url => '/deanery/calendar'
+  map.connect "/mat", :controller => 'redirect', :new_url => '/materials'
+  map.connect "/mat///101//date/1", :controller => 'redirect', :new_url => '/materials/search', :id => ',,101,,'
+  map.connect "/mat///102//date/1", :controller => 'redirect', :new_url => '/materials/search', :id => ',,102,,'
+  map.connect "/mat///103//date/1", :controller => 'redirect', :new_url => '/materials/search', :id => ',,103,,'
+  map.connect "/mat///104//date/1", :controller => 'redirect', :new_url => '/materials/search', :id => ',,104,,'
+  map.connect "/mat///105//date/1", :controller => 'redirect', :new_url => '/materials/search', :id => ',,105,,'
+  map.connect "/oce", :controller => 'redirect', :new_url => '/materials/grades'
+  map.connect "/pro", :controller => 'redirect', :new_url => '/lecturers'
+  map.connect "/pro/elektronika", :controller => 'redirect', :new_url => '/lecturers/electronics'
+  map.connect "/pro/telekomunikacja", :controller => 'redirect', :new_url => '/lecturers/telecommunication'
+  map.connect "/gen", :controller => 'redirect', :new_url => '/students'
+  map.connect "/stu", :controller => 'redirect', :new_url => '/students/webpages'
+  map.connect "/sty/www", :controller => 'redirect', :new_url => '/students/own_webpage'
+  map.connect "/pi", :controller => 'redirect', :new_url => '/students/polls'
+  map.connect "/pod", :controller => 'redirect', :new_url => '/postgraduate'
+  map.connect "/pod/nsiut_regulamin", :controller => 'redirect', :new_url => '/postgraduate/regulations'
+  map.connect "/pod/nsiut_harmonogram", :controller => 'redirect', :new_url => '/postgraduate/schedule'
+  map.connect "/pod/nsiut_program", :controller => 'redirect', :new_url => '/postgraduate/program'
+  map.connect "/pod/nsiut_plan", :controller => 'redirect', :new_url => '/postgraduate/plan'
+  map.connect "/ost/info", :controller => 'redirect', :new_url => '/about'
+  map.connect "/ost/eiteam", :controller => 'redirect', :new_url => '/about/eiteam'
+  map.connect "/ost/faq", :controller => 'redirect', :new_url => '/about/faq'
+  map.connect "/map", :controller => 'redirect', :new_url => '/about/map'
+  map.connect "/kon", :controller => 'redirect', :new_url => '/settings/profile'
+  map.connect "/dl/:query", :controller => 'redirect', :new_url => '/materials', :requirements => {:query => /.*/}
+  map.connect "/mat/:query", :controller => 'redirect', :new_url => '/materials', :requirements => {:query => /.*/}
+  map.connect "/for/:query", :controller => 'redirect', :new_url => '/', :requirements => {:query => /.*/}
+  map.connect "/hyd/:query", :controller => 'redirect', :new_url => '/', :requirements => {:query => /.*/}
 end

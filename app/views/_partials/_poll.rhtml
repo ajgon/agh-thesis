@@ -12,4 +12,10 @@
   </li>
 <% end %>
   </ul>
+  <div class="call2action">
+    <div>
+      <a href="<%= url_for :controller => 'students', :action => 'polls', :id => IdEncoder.encode(@poll.id) %>">wyniki</a>
+    </div>
+    <a href="<%= url_for :controller => 'students', :action => 'polls' %>">ankiety</a>
+  </div>
 </div>
