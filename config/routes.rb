@@ -36,6 +36,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id.:format'
   
   # Old links mapper
+  map.connect "/rss/:query", :controller => 'rss', :action => 'index', :requirements => {:query => /.*/}
   map.connect "/akt", :controller => 'redirect', :new_url => '/'
   map.connect "/akt/twoje", :controller => 'redirect', :new_url => '/'
   map.connect "/akt/wszystkie", :controller => 'redirect', :new_url => '/news'
@@ -78,4 +79,5 @@ ActionController::Routing::Routes.draw do |map|
   map.connect "/mat/:query", :controller => 'redirect', :new_url => '/materials', :requirements => {:query => /.*/}
   map.connect "/for/:query", :controller => 'redirect', :new_url => '/', :requirements => {:query => /.*/}
   map.connect "/hyd/:query", :controller => 'redirect', :new_url => '/', :requirements => {:query => /.*/}
+  map.connect "/akt/:query", :controller => 'redirect', :new_url => '/news', :requirements => {:query => /.*/}
 end

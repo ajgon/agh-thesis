@@ -29,7 +29,7 @@
   <% [@subjects_electronics, @subjects_telecommunication].each_with_index do |subjects, index| %>
   <% season = 0 %>
   <h4>Przedmioty obieralne Moduł <% if index == 0 %>Elektronika<% else %>Telekomunikacja<% end %></h4>
-  <table style="margin: 15px 0px;">
+  <table>
     <tbody>
   <%   subjects.each do |subject| %>
   <%     unless season == subject.season %>

@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20) do
   create_table "news", :force => true do |t|
     t.integer  "news_type_id"
     t.integer  "user_id",                                   :null => false
+    t.integer  "subject_id"
     t.string   "head",                                      :null => false
     t.text     "body",                                      :null => false
     t.string   "ip",           :limit => 15
@@ -94,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20) do
 
   add_index "news", ["news_type_id"], :name => "news_type_id"
   add_index "news", ["user_id"], :name => "user_id"
+  add_index "news", ["subject_id"], :name => "subject_id"
 
   create_table "news_types", :force => true do |t|
     t.string "name", :limit => 20, :null => false
@@ -214,6 +216,7 @@ ActiveRecord::Schema.define(:version => 20) do
 
   add_foreign_key "news", ["news_type_id"], "news_types", ["id"], :name => "news_ibfk_1"
   add_foreign_key "news", ["user_id"], "users", ["id"], :name => "news_ibfk_2"
+  add_foreign_key "news", ["subject_id"], "subjects", ["id"], :name => "news_ibfk_3"
 
   add_foreign_key "polls_answers", ["polls_question_id"], "polls_questions", ["id"], :name => "polls_answers_ibfk_1"
 

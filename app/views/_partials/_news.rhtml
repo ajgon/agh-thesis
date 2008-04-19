@@ -5,7 +5,7 @@
 <%   news.each do |news| -%>
     <li>
       <h4><strong><%= short_date(news.date) -%></strong><em> - <%= news.years %> rok / <%= link_to news.user.login, {:controller => 'profile', :action => news.user.login} %></em></h4>
-      <p><%= news.head %> <%= link_to 'więcej', :controller => 'news', :action => 'read', :id => IdEncoder.encode(news.id) %></p>
+      <p><%= (news.subject.nil? or news.subject.acronym.nil?) ? '' : "<em><a href=\"#{url_for(:controller => 'subject', :action => news.subject.acronym)}\">#{news.subject.acronym}</a>:</em> " %><%= news.head %> <%= link_to 'więcej', :controller => 'news', :action => 'read', :id => IdEncoder.encode(news.id) %></p>
     </li>
 <%   end -%>
   </ul>

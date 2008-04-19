@@ -3,6 +3,7 @@ class CreateNews < ActiveRecord::Migration
     create_table :news, :options => 'character set utf8 collate utf8_polish_ci engine InnoDB' do |t|
       t.references :news_type
       t.references :user, :null => false
+      t.references :subject
       t.string :head, :null => false
       t.text :body, :null => false
       t.string :ip, :limit => 15

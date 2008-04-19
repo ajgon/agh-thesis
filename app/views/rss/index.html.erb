@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+  <channel>
+    <title>EiT News</title>
+    <link>http://eit.agh.edu.pl/news</link>
+    <description>Aktualnosci ze strony kierunku Elektronika i Telekomunikacja EAIiE AGH</description>
+    <language>pl-PL</language>
+    <copyright>Wszystkie prawa zastrzezone (c) <%= Time.now.year %> KT AGH</copyright>
+    <managingEditor>eiteam@eit.agh.edu.pl</managingEditor>
+    <webMaster>ajgon@o2.pl</webMaster>
+    <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+    <ttl>15</ttl>
+<% @news.each do |news| -%>
+    <item>
+      <title><%= news.head %></title>
+      <link>http://eit.agh.edu.pl<%= url_for :controller => 'news', :action => 'read', :id => IdEncoder.encode(news.id) %></link>
+      <guid>http://eit.agh.edu.pl<%= url_for :controller => 'news', :action => 'read', :id => IdEncoder.encode(news.id) %></guid>
+      <description><%= news.body %></description>
+      <author><%= news.user.firstname %> <%= news.user.lastname %></author>
+      <pubDate><%= news.date.rfc822 %></pubDate>
+    </item>
+<% end -%>
+  </channel>
+</rss>

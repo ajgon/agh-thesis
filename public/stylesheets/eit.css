@@ -22,17 +22,22 @@ em {
 
 a, a:visited {
     outline: none !important;
-    text-decoration: none;
+    text-decoration: underline;
     color: #000000;
 }
 
 em a, em a:visited {
     color: #87785d;
     font-weight: normal;
+    text-decoration: none;
 }
 
 a:hover, em a:hover {
     color: #cc0000;
+}
+
+#menu a {
+    text-decoration: none;
 }
 
 fieldset, img { 
@@ -346,6 +351,42 @@ div.pager ul.pages li.active a {
 
 /* =content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.margin-bottom {
+    margin-bottom: 15px;
+}
+
+.margin-top {
+    margin-top: 15px;
+}
+
+
+span.block {
+    display: block;
+}
+
+p.infobar {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+h5.forbidden {
+    color: #cc0000; 
+    font-weight: bold; 
+    text-decoration: underline; 
+    margin-bottom: 10px;
+}
+
+div.big-table {
+    overflow: auto; 
+    width: 602px; 
+    border: solid 1px #f2ce88;
+}
+
+p.left {
+    text-align: left;
+}
+
+li.center,
 div.center {
     text-align: center;
 }
@@ -582,6 +623,7 @@ table {
     border-collapse: separate;
     border-spacing: 1px;
     width: 100%;
+    margin-top: 15px;
 }
 
 table.sked {
@@ -737,6 +779,11 @@ div.bar div.filling {
 }
 
 /* deanery */
+
+#paniBeatka {
+    float: right;
+    margin-right: 20px;
+}
 
 div.deanery p,
 div.deanery ul li {

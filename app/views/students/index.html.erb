@@ -5,7 +5,7 @@
   formularz. Pola puste będą oznaczały, że dana dana nie ma być brana pod uwagę 
   podczas wyszukiwania:</p>
   <% form_for :criteria, :url => {:action => 'results'} do |f| %>
-  <dl class="data" style="margin-bottom: 15px;">
+  <dl class="data margin-bottom">
     <%= dt_dd 'Imię', f.text_field('firstname') %>
     <%= dt_dd 'Nazwisko', f.text_field('lastname') %>
     <%= dt_dd 'Login', f.text_field('login') %>
@@ -16,7 +16,7 @@
   <p>Następnym krokiem jest zdecydowanie, które kolumny mają wchodzić w skład 
   listy będącej wynikiem Twojego zapytania. Aby dokonać wyboru poszczególnych pól, 
   zaznacz je w poniższym formularzu:</p>
-  <dl class="checkboxes" style="margin-top: 15px;">
+  <dl class="checkboxes margin-top">
     <%= dt_dd check_box(:results, :firstname), 'Imię' %>
     <%= dt_dd check_box(:results, :lastname), 'Nazwisko' %>
   </dl>
@@ -32,20 +32,20 @@
     <%= dt_dd check_box(:results, :www_page), 'Adres strony WWW' %>
     <%= dt_dd check_box(:results, :www_description), 'Opis strony WWW' %>
   </dl>
-  <dl class="checkboxes"<% unless @logged_user.is_lecturer? %> style="margin-bottom: 15px;"<% end %>>
+  <dl class="checkboxes<% unless @logged_user.is_lecturer? %> margin-bottom<% end %>">
     <%= dt_dd check_box(:results, :gadu_gadu), 'Numer Gadu Gadu' %>
     <%= dt_dd check_box(:results, :icq), 'Numer ICQ' %>
   </dl>
   <% if @logged_user.is_lecturer? %>
-  <dl class="checkboxes checkboxes-long" style="margin-bottom: 15px;">
+  <dl class="checkboxes checkboxes-long margin-bottom">
     <%= dt_dd check_box(:results, :sindex), 'Numer indeksu (dostępny tylko dla zalogowanych Prowadzących)' %>
   </dl>
   <% end %>
   <div class="center">
-    <p style="text-align: left;">Zdecyduj, wg którego pola ma odbywać się sortowanie generowanej listy:</p>
+    <p class="left">Zdecyduj, wg którego pola ma odbywać się sortowanie generowanej listy:</p>
     <%= f.select(:sort, @sort) %>
   </div>
-  <div class="submit" style="margin-top: 15px;">
+  <div class="submit margin-top">
     <%= submit_tag 'Szukaj' %>
   </div>
   <% end %>

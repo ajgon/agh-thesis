@@ -1,6 +1,6 @@
 class IndexController < ApplicationController
   def index
-    @news = News.find(:all, :include => :user, :order => 'news.id desc', :limit => 7)
+    @news = News.find(:all, :include => [:user, :subject], :order => 'news.id desc', :limit => 7)
     @files = UploadedFile.find(:all, :include => [:user, :subject], :order => 'uploaded_files.id desc', :limit => 7)
     @poll = PollsQuestion.find(:first, :include => :polls_answers, :order => 'polls_questions.id DESC')
     @polls_answers_amount = 0

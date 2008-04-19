@@ -117,7 +117,8 @@
     mreads:
       name: times_readed
     spec:
-      action: remove
+      name: subject_id
+      from: subjects
     thread:
       action: remove
     type:

@@ -2,7 +2,7 @@ class NewsController < ApplicationController
   
   def index
     unless request.post?
-      @news = News.find(:all, :include => :user, :order => 'news.id desc')
+      @news = News.find(:all, :include => [:user, :subject], :order => 'news.id desc')
       @pager = Pager.new({:controller => params[:controller], :action => params[:action], :id => params[:id]}, @news)
     else
       c = params[:criteria]
