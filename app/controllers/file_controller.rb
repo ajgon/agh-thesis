@@ -5,7 +5,7 @@ class FileController < ApplicationController
       if UploadedFile.is_public? file_id or (@logged_user and UploadedFile.can_user_get_file?(@logged_user.id, file_id))
         send_file file
       else
-        render :template => 'file/access_denied'
+        render :template => 'index/forbidden'
       end
     else
       render :template => 'file/not_found'

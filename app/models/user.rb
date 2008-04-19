@@ -55,6 +55,34 @@ class User < ActiveRecord::Base
     end
   end
   
+  def configures_polls?
+    self.privileges & 1 > 0
+  end
+  
+  def configures_calendar?
+    self.privileges & 2 > 0
+  end
+  
+  def configures_materials?
+    self.privileges & 4 > 0
+  end
+  
+  def configures_groups?
+    self.privileges & 8 > 0
+  end
+  
+  def configures_news?
+    self.privileges & 16 > 0
+  end
+  
+  def configures_declarations?
+    self.privileges & 32 > 0
+  end
+  
+  def configures_grades?
+    self.privileges & 64 > 0
+  end
+  
   private
   def set_created_and_updated
     unless self.created_on

@@ -29,6 +29,7 @@
       name: created_on
     timeact:
       name: updated_at
+# TODO - przeniesienie uprawnien
     priv:
       name: privileges
     s_hydview:

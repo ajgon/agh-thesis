@@ -100,18 +100,17 @@
     </ul>
   </li>
   <li><a class="menuitem" href="<%= url_for :controller => 'settings', :action => 'profile' %>">Twoje Konto</a></li>
-  <li><a class="menu-item">Panel Sterowania</a></li>
-  <li class="submenu">
+  <li><a class="menu-item" href="<%= url_for :controller => 'settings' %>">Panel Sterowania</a></li>
+  <li class="submenu"<%= show_list_item_if_controllers 'settings' %>>
     <ul>
-      <li>Aktualności</li>
-      <li>Materiały</li>
-      <li>Oceny</li>
-      <li>Grupy Studentów</li>
-      <li>Linki</li>
-      <li>Dyskusje</li>
-      <li>Ankiety</li>
-      <li>Deklaracje</li>
-      <li>Kalendarz</li>
+      <li><a href="<%= url_for :controller => 'settings' %>">Uprawnienia</a></li>
+      <li><a href="<%= url_for :controller => 'settings', :action => 'news' %>">Aktualności</a></li>
+      <li><a href="<%= url_for :controller => 'settings', :action => 'materials' %>">Materiały</a></li>
+      <li><a href="<%= url_for :controller => 'settings', :action => 'grades' %>">Oceny</a></li>
+      <li><a href="<%= url_for :controller => 'settings', :action => 'groups' %>">Grupy Studentów</a></li>
+      <li><a href="<%= url_for :controller => 'settings', :action => 'polls' %>">Ankiety</a></li>
+      <li><a href="<%= url_for :controller => 'settings', :action => 'declarations' %>">Deklaracje</a></li>
+      <li><a href="<%= url_for :controller => 'settings', :action => 'calendar' %>">Kalendarz</a></li>
     </ul>
   </li>
 </ul>
