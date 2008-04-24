@@ -4,6 +4,12 @@
   <ul>
 <%   news.each do |news| -%>
     <li>
+<%     if params[:controller] == 'settings' and news.user_id == @logged_user.id %>
+      <ul class="owner-options">
+        <li class="edit"><a title="Edytuj Aktualność" href="<%= url_for :controller => 'settings', :action => 'news', :id => 'edit', :page => IdEncoder.encode(news.id) %>">Edytuj</a></li>
+        <li class="delete"><a title="Usuń Aktualność" href="<%= url_for :controller => 'settings', :action => 'news', :id => 'delete', :page => IdEncoder.encode(news.id) %>">Usuń</a></li>
+      </ul>
+<%     end %>
       <h4><strong><%= short_date(news.date) -%></strong><em> - <%= news.years %> rok / <%= link_to news.user.login, {:controller => 'profile', :action => news.user.login} %></em></h4>
       <p><%= (news.subject.nil? or news.subject.acronym.nil?) ? '' : "<em><a href=\"#{url_for(:controller => 'subject', :action => news.subject.acronym)}\">#{news.subject.acronym}</a>:</em> " %><%= news.head %> <%= link_to 'więcej', :controller => 'news', :action => 'read', :id => IdEncoder.encode(news.id) %></p>
     </li>
@@ -18,10 +24,12 @@
 <% if @pager -%>
 <%= render :partial => '_partials/pager' %>
 <% end %>
+<% if !defined?(call2action) %>
   <div class="call2action">
     <div>
       <a href="<%= url_for :controller => 'news' %>">więcej</a>
     </div>
     <a href="##TODO##">dodaj aktualność</a>
   </div>
+<% end %>
 </div>

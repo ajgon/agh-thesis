@@ -395,6 +395,34 @@ div.right {
     text-align: right;
 }
 
+ul.owner-options {
+    padding: 0px 10px 0px 6px;
+    overflow: hidden;
+    float: left;
+}
+
+ul.owner-options li {
+    float: left;
+    width: 16px;
+    height: 13px;
+    margin: 0px 0px 0px 4px;
+}
+
+ul.owner-options li a {
+    display: block;
+    width: 16px;
+    height: 13px;
+    text-indent: -1000em;
+}
+
+ul.owner-options li.edit a {
+    background: url(/images/icons/edit.gif) left top no-repeat;
+}
+
+ul.owner-options li.delete a {
+    background: url(/images/icons/delete.gif) left top no-repeat;
+}
+
 #content {
     background: #f6e7c8;
     overflow: hidden;
@@ -443,6 +471,7 @@ div.content h4.head {
 
 div.content ul li {
     margin-bottom: 7px;
+    overflow: hidden;
 }
 
 div.content h3 abbr {

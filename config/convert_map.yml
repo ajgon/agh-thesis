@@ -29,9 +29,9 @@
       name: created_on
     timeact:
       name: updated_at
-# TODO - przeniesienie uprawnien
     priv:
       name: privileges
+      function: ((((((((@ & 64) >> 3) | (64 & @)) | (@ & 183)) & 128) >> 2) | ((((((@ & 64) >> 3) | (64 & @)) | (@ & 183)) & 128) >> 6)) | (((((@ & 64) >> 3) | (64 & @)) | (@ & 183)) & 93))
     s_hydview:
       action: remove
     www:

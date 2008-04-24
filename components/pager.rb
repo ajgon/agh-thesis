@@ -33,11 +33,11 @@ class Pager
   end
   
   def last_page
-    (((actual_page - 1 ) * 10 + 10) - 1) > results_count ? results_count : (((actual_page - 1 ) * 10 + 10) - 1)
+    (((actual_page - 1 ) * @results_per_page + @results_per_page)) > results_count ? results_count : (((actual_page - 1 ) * @results_per_page + @results_per_page))
   end
   
   def results
-    @results[((actual_page - 1) * 10)..last_page]
+    @results[((actual_page - 1) * @results_per_page)..(last_page - 1)]
   end
   
   def all_results
@@ -49,7 +49,7 @@ class Pager
   end
   
   def results_range separator = ' - '
-    [((actual_page - 1) * 10) + 1, last_page].join separator
+    [((actual_page - 1) * @results_per_page) + 1, last_page].join separator
   end
   
   def actual_page

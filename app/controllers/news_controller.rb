@@ -21,6 +21,8 @@ class NewsController < ApplicationController
     news_id = IdEncoder.decode(params[:id])
     if news_id and News.exists?(news_id)
       @news = News.find(news_id)
+      @news.times_readed += 1
+      @news.save
       @last_news = News.find(:all, :include => :user, :order => 'news.id desc', :limit => 5)
     else
       render :template => 'news/not_found'
@@ -70,6 +72,7 @@ class NewsController < ApplicationController
         end
         @news = News.find(:all, :conditions => conditions, :order => 'date DESC')
       end
+      raise 'x'
       @pager = Pager.new({:controller => params[:controller], :action => params[:action], :id => params[:id], :page => params[:page]}, @news, :page)
       @criteria = HashWithMethods.new(params[:criteria])
     end
