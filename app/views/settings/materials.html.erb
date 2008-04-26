@@ -1,0 +1,128 @@
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Dodawanie materiałów</h3>
+  <% unless @edited_material %>
+  <p>Za pomocą poniższego formularza możesz dodać plik z nowym materiałem na 
+  stronę EiT. Aby tego dokonać, uzupełnij poniższe pola, wybierając plik lokalny 
+  (na Twoim komputerze). Nazwa pliku nie musi być unikalna (nazwy mogą się powtarzać). 
+  Pamiętaj, że poprawne opisanie pliku zwiększa jego szanse na bycie odnalezionym 
+  przez studentów, do których jest kierowany. </p>
+  <div class="center"><h4>Maksymalny rozmiar pliku to 5 MB.</h4></div>
+  <% else %>
+  <p>Aby edytować opis wybranego przez Ciebie pliku, użyj poniższego formularza</p>
+  <dl class="data long">
+    <%= dt_dd 'Plik', @uploaded_file.filename %>
+    <%= dt_dd 'Rozmiar', add_units(File.size?(RAILS_ROOT + '/files/' + @uploaded_file.filename)) %>
+    <%= dt_dd 'Dodał(a)', link_to((login = User.find(@uploaded_file.uploader_id).login), :controller => 'profile', :action => login) %>
+    <%= dt_dd 'Data', @uploaded_file.date.to_s(:created_at).gsub(/^([0-9]+. )([^ ]+)/) { $1 + en_to_pl($2).downcase } %>
+    <%= dt_dd 'Ilość pobrań', @uploaded_file.downloads %>
+  </dl>
+  <% end %>
+  
+  <% form_for :uploaded_file, :url => {:controller => 'settings', :action => 'materials', :id => nil, :page => nil}, :html => {:multipart => true} do |f| %>
+  <dl class="data long">
+    <%= dt_dd 'Plik', f.file_field(:file) unless @edited_material %>
+    <%= dt_dd 'Opis', f.text_field(:head) %>
+    <dt>Przedmiot</dt>
+    <dd>
+      <select id="uploaded_file_subject_id" name="uploaded_file[subject_id]">
+        <optgroup label="TWOJE PRZEDMIOTY">
+          <%= options_for_select @your_subjects, (@uploaded_file.nil? ? nil : [@uploaded_file.subject_id]) %>
+        </optgroup>
+        <optgroup label="WSZYSTKIE PRZEDMIOTY">
+          <%= options_for_select @subjects, (@uploaded_file.nil? ? nil : [@uploaded_file.subject_id]) %>
+        </optgroup>
+      </select>
+    </dd>
+    <%= dt_dd 'Prowadzący', f.select(:user_id, @lecturers, (@edited_material ? {} : {:selected => IdEncoder.encode(@logged_user.id)})) %>
+    <%= dt_dd 'Komentarz', f.text_area(:body) %>
+    <% if @edited_material %>
+    <input type="hidden" name="groups_type[edited]" id="groups_type_edited" value="<%= IdEncoder.encode(@uploaded_file_encoded_id) %>" />
+    <% end %>
+  </dl>
+  <div class="center"><p>Zdecyduj, kto będzie miał dostęp do tego materiału</p></div>
+  <dl class="data long">
+    <%= dt_dd radio_button(:groups_type, :gtype, 0) + 'Bez ograniczeń', 'Każdy będzie mógł pobrać ten plik' %>
+    <%= dt_dd radio_button(:groups_type, :gtype, 1) + 'Zalogowani', 'Aby pobrać plik, trzeba być zalogowanym użytkownikiem serwisu.' %>
+    <%= dt_dd radio_button(:groups_type, :gtype, 2) + 'Wybrana grupa', select(:groups_uploaded_file_2, :group_id, @groups) %>
+      <dt><%= radio_button(:groups_type, :gtype, 3) %>Wybrany rok</dt>
+      <dd>
+        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(5)) %>&nbsp;I&nbsp;rok
+        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(6)) %>&nbsp;II&nbsp;rok
+        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(7)) %>&nbsp;III&nbsp;rok
+        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(8)) %>&nbsp;IV&nbsp;rok
+        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(9)) %>&nbsp;V&nbsp;rok
+      </dd>
+  </dl>
+  <div class="submit">
+    <%= submit_tag (@edited_material ? 'Zapisz zmiany' : 'Dodaj materiał') %>
+  </div>
+  <% end %>
+</div>
+<% unless @edited_material %>
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Twoje materiały</h3>
+  <p>Za pomocą poniższej tabeli możesz administrować materiałami, które umieściłeś w bazie WWW EiT</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Opis</th>
+        <th>Plik</th>
+        <th>Rozmiar</th>
+        <th>Data</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+<%   @my_materials.each do |my_material| %>
+      <tr>
+        <td><%= link_to my_material.head, :controller => 'file', :action => 'download', :id => IdEncoder.encode(my_material.id) %></td>
+        <td><%= link_to my_material.filename, :controller => 'file', :action => 'download', :id => IdEncoder.encode(my_material.id) %></td>
+        <td><%= add_units(File.size?(RAILS_ROOT + '/files/' + my_material.filename)) %></td>
+        <td><%= my_material.date.to_s(:date) %></td>
+        <td>
+          <ul class="owner-options">
+            <li class="edit"><a title="Edytuj Materiał" href="<%= url_for :controller => 'settings', :action => 'materials', :id => 'edit', :page => IdEncoder.encode(my_material.id) %>">Edytuj</a></li>
+            <li class="delete"><a title="Usuń Materiał" href="<%= url_for :controller => 'settings', :action => 'materials', :id => 'delete', :page => IdEncoder.encode(my_material.id) %>">Usuń</a></li>
+          </ul>
+        </td>
+      </tr>
+<%   end %>
+    </tbody>
+  </table>
+  <p>Za pomocą tej tabeli możesz administrować materiałami, które do serwisu dodały 
+  inne osoby (np studenci), ale ustawiły Ciebie jako osobę prowadzącą</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Opis</th>
+        <th>Plik</th>
+        <th>Rozmiar</th>
+        <th>Data</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+<%   @other_materials.each do |other_material| %>
+      <tr>
+        <td><%= link_to other_material.head, :controller => 'file', :action => 'download', :id => IdEncoder.encode(other_material.id) %></td>
+        <td><%= link_to other_material.filename, :controller => 'file', :action => 'download', :id => IdEncoder.encode(other_material.id) %></td>
+        <td><%= add_units(File.size?(RAILS_ROOT + '/files/' + other_material.filename)) %></td>
+        <td><%= other_material.date.to_s(:date) %></td>
+        <td>
+          <ul class="owner-options">
+            <li class="edit"><a title="Edytuj Materiał" href="<%= url_for :controller => 'settings', :action => 'materials', :id => 'edit', :page => IdEncoder.encode(other_material.id) %>">Edytuj</a></li>
+            <li class="delete"><a title="Usuń Materiał" href="<%= url_for :controller => 'settings', :action => 'materials', :id => 'delete', :page => IdEncoder.encode(other_material.id) %>">Usuń</a></li>
+          </ul>
+        </td>
+      </tr>
+<%   end %>
+    </tbody>
+  </table>
+  <p><strong>*</strong> - pomimo, że baza danych strony WWW EiT jest regularnie 
+  backupowana, to pliki materiałów <strong>NIE SĄ</strong>, dlatego usunięcie 
+  pliku kasuje go <strong>BEZPOWROTNIE</strong></p>
+  <p><strong>**</strong> - jest to data ostatniej edycji pliku (jeżeli od 
+  umieszczenia go na stronie nie był on przez Ciebie edytowany, jest to data 
+  umieszczenia)</p>
+</div>
+<% end %>

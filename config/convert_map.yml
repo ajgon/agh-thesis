@@ -179,7 +179,8 @@
     rlogin:
       action: remove
     rid:
-      action: remove
+      from: users
+      name: uploader_id
     sectype:
       name: kind
       function: CASE FLOOR(@ / 10) WHEN 1 THEN 'material' WHEN 2 THEN 'grade' ELSE '' END

@@ -1,25 +1,25 @@
 <div class="content">
   <h3 class="settings"><abbr>Settings</abbr> Dodawanie aktualności</h3>
-
+<% # raise @news.errors.inspect %>
 <%= error_messages_for 'news', :header_message => nil, :message => 'Przy próbie dodawania newsa, wystąpiły następujące błędy:' if @news.respond_to? 'errors' %>
 
 <% form_for :news, :url => {:controller => 'settings', :action => 'news', :id => nil, :page => nil} do |f| -%>
     <dl class="data long">
       <%= dt_dd '<label for="news_head">Nagłówek</label>', f.text_field(:head) %>
       <%= dt_dd '<label for="news_body">Treść</label>', f.text_area(:body) %>
-      <dt><%= f.radio_button(:type, 'year') %>Rok</dt>
+      <dt><%= radio_button(:news_params, :ntype, 'year') %>Rok</dt>
       <dd>
-        <%= f.check_box :year_1 %>&nbsp;1
-        <%= f.check_box :year_2 %>&nbsp;2
-        <%= f.check_box :year_3 %>&nbsp;3
-        <%= f.check_box :year_4 %>&nbsp;4
-        <%= f.check_box :year_5 %>&nbsp;5
+        <%= check_box :news_params, :year_1 %>&nbsp;1
+        <%= check_box :news_params, :year_2 %>&nbsp;2
+        <%= check_box :news_params, :year_3 %>&nbsp;3
+        <%= check_box :news_params, :year_4 %>&nbsp;4
+        <%= check_box :news_params, :year_5 %>&nbsp;5
       </dd>
-      <%= dt_dd f.radio_button(:type, 'subject_id') + '<label for="news_subject_id">Przedmiot</label>', f.select(:subject_id, @subjects) %>
+      <%= dt_dd radio_button(:news_params, :ntype, 'subject_id') + '<label for="news_subject_id">Przedmiot</label>', f.select(:subject_id, @subjects) %>
 <%   if @edited_news %>
-      <%= dt_dd 'Liczba wyświetleń', @edited_news.times_readed %>
-      <%= dt_dd 'Data dodania', @edited_news.date.to_s(:created_at).gsub(/^([0-9]+. )([^ ]+)/) { $1 + en_to_pl($2).downcase } %>
-      <input type="hidden" name="news[edited]" id="news_edited" value="<%= IdEncoder.encode(@edited_news.id) %>" />
+      <%= dt_dd 'Liczba wyświetleń', @news.times_readed %>
+      <%= dt_dd 'Data dodania', @news.date.to_s(:created_at).gsub(/^([0-9]+. )([^ ]+)/) { $1 + en_to_pl($2).downcase } %>
+      <input type="hidden" name="news_params[edited]" id="news_params_edited" value="<%= @news_encoded_id %>" />
     </dl>
 <%   else %>
     </dl>

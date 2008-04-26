@@ -140,18 +140,20 @@ ActiveRecord::Schema.define(:version => 20) do
   end
 
   create_table "uploaded_files", :force => true do |t|
-    t.integer  "subject_id",                              :null => false
-    t.integer  "user_id",                                 :null => false
-    t.string   "filename",                                :null => false
-    t.string   "head",                                    :null => false
+    t.integer  "subject_id",                               :null => false
+    t.integer  "user_id",                                  :null => false
+    t.integer  "uploader_id",                              :null => false
+    t.string   "filename",                                 :null => false
+    t.string   "head",                                     :null => false
     t.text     "body"
-    t.datetime "date",                                    :null => false
-    t.string   "kind",       :limit => 15
-    t.integer  "downloads",                :default => 0, :null => false
+    t.datetime "date",                                     :null => false
+    t.string   "kind",        :limit => 15
+    t.integer  "downloads",                 :default => 0, :null => false
   end
 
   add_index "uploaded_files", ["subject_id"], :name => "subject_id"
   add_index "uploaded_files", ["user_id"], :name => "user_id"
+  add_index "uploaded_files", ["uploader_id"], :name => "uploader_id"
 
   create_table "users", :force => true do |t|
     t.string   "login",           :limit => 50,                                                          :null => false
@@ -226,6 +228,7 @@ ActiveRecord::Schema.define(:version => 20) do
 
   add_foreign_key "uploaded_files", ["subject_id"], "subjects", ["id"], :name => "uploaded_files_ibfk_1"
   add_foreign_key "uploaded_files", ["user_id"], "users", ["id"], :name => "uploaded_files_ibfk_2"
+  add_foreign_key "uploaded_files", ["uploader_id"], "users", ["id"], :name => "uploaded_files_ibfk_3"
 
   add_foreign_key "users_lecturers", ["cathedral_id"], "cathedrals", ["id"], :name => "users_lecturers_ibfk_1"
   add_foreign_key "users_lecturers", ["user_id"], "users", ["id"], :name => "users_lecturers_ibfk_2"

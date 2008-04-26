@@ -401,11 +401,20 @@ ul.owner-options {
     float: left;
 }
 
+div.content td ul.owner-options {
+    padding: 0px;
+}
+
 ul.owner-options li {
     float: left;
     width: 16px;
     height: 13px;
     margin: 0px 0px 0px 4px;
+}
+
+div.content td ul.owner-options li {
+    margin: 0px;
+    float: none;
 }
 
 ul.owner-options li a {
@@ -567,6 +576,7 @@ dl.data dd {
 
 dl.long {
     width: 582px;
+    margin: 15px 0px;
 }
 
 dl.long dt {
@@ -652,7 +662,7 @@ table {
     border-collapse: separate;
     border-spacing: 1px;
     width: 100%;
-    margin-top: 15px;
+    margin: 15px 0px;
 }
 
 table.sked {

@@ -4,6 +4,7 @@ class HashWithMethods
   end
   
   def method_missing key
-    @hash[key]
+    return @hash[key] unless @hash[key].nil?
+    @hash[key.to_s]
   end
 end

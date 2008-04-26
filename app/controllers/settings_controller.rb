@@ -14,9 +14,96 @@ class SettingsController < ApplicationController
   end
 
   def materials
+    @edited_material = false
+    if request.post? 
+      if !params[:uploaded_file][:file].nil? and params[:uploaded_file][:file].respond_to?('original_filename')
+        params[:uploaded_file][:filename] = params[:uploaded_file][:file].original_filename
+        file_path = File.join(RAILS_ROOT, 'files', params[:uploaded_file][:filename])
+        params[:uploaded_file][:filename] = rand(1679615).to_s(36) + '_' + params[:uploaded_file][:filename] if File.exists?(file_path)
+        file_path = File.join(RAILS_ROOT, 'files', params[:uploaded_file][:filename])
+        file = params[:uploaded_file][:file]
+        params[:uploaded_file].delete :file
+      end
+      @uploaded_file = UploadedFile.new(params[:uploaded_file])
+      @uploaded_file.user_id = IdEncoder.decode(params[:uploaded_file][:user_id])
+      @uploaded_file.uploader_id = @logged_user.id
+      @uploaded_file.subject_id = IdEncoder.decode(params[:uploaded_file][:subject_id])
+      @uploaded_file.date = Time.now unless params[:groups_type][:edited]
+      if(params[:groups_type][:edited].nil? and @uploaded_file.save)
+        File.open(file_path, "wb") { |f| f.write(file.read) }
+        groups_type = params[:groups_type][:gtype].to_i
+        case groups_type
+        when 1
+          GroupsUploadedFile.new({:group_id => 1, :uploaded_file_id => @uploaded_file.id}).save!
+        when 2
+          GroupsUploadedFile.new({:group_id => IdEncoder.decode(params[:groups_uploaded_file_2][:group_id]), :uploaded_file_id => @uploaded_file.id}).save!
+        when 3
+          GroupsUploadedFile.new({:group_id => IdEncoder.decode(params[:groups_uploaded_file_3][:group_id]), :uploaded_file_id => @uploaded_file.id}).save!
+        end
+      end
+      unless(params[:groups_type][:edited].nil?)
+        groups_type = params[:groups_type][:gtype].to_i
+        edited_file_id = IdEncoder.decode(params[:groups_type][:edited])
+        groups_uploaded_files_id = GroupsUploadedFile.find(:first, :conditions => ['uploaded_file_id = ?', edited_file_id])
+        uploaded_file = UploadedFile.find(edited_file_id)
+        @uploaded_file.filename = uploaded_file.filename
+        @uploaded_file.kind = uploaded_file.kind
+        @uploaded_file.date = uploaded_file.date
+        case groups_type
+        when 1
+          GroupsUploadedFile.update(groups_uploaded_files_id, {:group_id => 1})
+        when 2
+          GroupsUploadedFile.update(groups_uploaded_files_id, {:group_id => IdEncoder.decode(params[:groups_uploaded_file_2][:group_id])})
+        when 3
+          GroupsUploadedFile.update(groups_uploaded_files_id, {:group_id => IdEncoder.decode(params[:groups_uploaded_file_3][:group_id])})
+        end
+        UploadedFile.update(edited_file_id, @uploaded_file.attributes)
+        redirect_to :controller => 'settings', :action => 'materials', :id => nil, :page => nil
+      end
+    end
+    if params[:id] == 'delete' and IdEncoder.decode(params[:page])
+      file = UploadedFile.find(IdEncoder.decode(params[:page]))
+      if file.user_id == @logged_user.id or file.uploader_id == @logged_user.id
+        file_path = File.join(RAILS_ROOT, 'files', file.filename)
+        File.delete(file_path) if File.exists?(file_path)
+        GroupsUploadedFile.delete( GroupsUploadedFile.find(:all, :conditions => ['uploaded_file_id = ?', file.id]).collect { |i| i.id } )
+        UploadedFile.delete(file.id)
+      end
+      redirect_to :controller => 'settings', :action => 'materials', :id => nil, :page => nil
+    end
+    if params[:id] == 'edit' and IdEncoder.decode(params[:page])
+      @uploaded_file_encoded_id = IdEncoder.decode(params[:page])
+      @edited_material = true
+      @uploaded_file = UploadedFile.find(@uploaded_file_encoded_id).attributes
+      @uploaded_file['subject_id'] = IdEncoder.encode(@uploaded_file['subject_id'])
+      @uploaded_file['user_id'] = IdEncoder.encode(@uploaded_file['user_id'])
+      @uploaded_file = HashWithMethods.new(@uploaded_file)
+      group_priv = GroupsUploadedFile.find(:first, :conditions => ['uploaded_file_id = ?', @uploaded_file_encoded_id])
+      if group_priv.nil?
+        @groups_type = HashWithMethods.new({:gtype => '0'})
+      else
+        @groups_type = HashWithMethods.new({:gtype => 1}) if group_priv.group_id == 1
+        if group_priv.group_id > 19
+          @groups_type = HashWithMethods.new({:gtype => '2'}) 
+          @groups_uploaded_file_2 = HashWithMethods.new(:group_id => IdEncoder.encode(group_priv.group_id))
+        end
+        if (5..9).include? group_priv.group_id
+          @groups_type = HashWithMethods.new({:gtype => '3'}) 
+          @groups_uploaded_file_3 = HashWithMethods.new(:group_id => IdEncoder.encode(group_priv.group_id))
+        end
+      end
+    end
+    @your_subjects = UploadedFile.find(:all, :include => [:subject, :user], :group => 'subject_id', :conditions => ['user_id = ?', @logged_user.id], :order => 'subjects.head').collect {|i| [i.subject.head, IdEncoder.encode(i.subject.id)] }
+    @subjects = Subject.find(:all, :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
+    @lecturers = UsersLecturer.find(:all, :include => [:user, :cathedral], :order => 'users.lastname, users.firstname').collect {|i| [i.user.lastname + ' ' + i.user.firstname, IdEncoder.encode(i.user_id)]}
+    @groups = Group.find(:all, :conditions => 'id > 19', :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
+    @my_materials = UploadedFile.find(:all, :conditions => ['uploader_id = ?', @logged_user.id], :order => 'id DESC')
+    @other_materials = UploadedFile.find(:all, :conditions => ['user_id = ? and uploader_id <> ?', @logged_user.id, @logged_user.id], :order => 'id DESC')
   end  
   
   def news
+    @news = nil
+    @edited_news = false
     if request.post?
       news = {
         :head => params[:news][:head],
@@ -25,8 +112,8 @@ class SettingsController < ApplicationController
         :user_id => @logged_user.id
       }
       news[:ip] = request.remote_ip.to_s unless request.remote_ip.to_s.empty?
-      if params[:news][:type] == 'year'
-        for_year =  (params[:news][:year_1].to_i * 1 | params[:news][:year_2].to_i * 2 | params[:news][:year_3].to_i * 4 | params[:news][:year_4].to_i * 8 | params[:news][:year_5].to_i * 16)
+      if params[:news_params][:ntype] == 'year'
+        for_year =  (params[:news_params][:year_1].to_i * 1 | params[:news_params][:year_2].to_i * 2 | params[:news_params][:year_3].to_i * 4 | params[:news_params][:year_4].to_i * 8 | params[:news_params][:year_5].to_i * 16)
         for_year = (for_year < 1 or for_year > 31 ? 31 : for_year)
         news[:for_year] = for_year
         news[:subject_id] = nil
@@ -34,16 +121,17 @@ class SettingsController < ApplicationController
         params[:news][:subject_id] = IdEncoder.decode(params[:news][:subject_id])
         if params[:news][:subject_id] and params[:news][:subject_id].to_i != 0
           news[:subject_id] = params[:news][:subject_id].to_i
-          news[:for_year] = Subject.find(news[:subject_id]).year
+          news[:for_year] = 1 << (Subject.find(news[:subject_id]).year - 1)
         else
           news[:for_year] = 31
         end
       end
-      edited_news_id = IdEncoder.decode(params[:news][:edited])
+      edited_news_id = IdEncoder.decode(params[:news_params][:edited])
       unless edited_news_id
-        News.new(news).save!
+        @news = News.new(news)
+        @news.save
       else
-        News.update(edited_news_id, news)
+        News.update(edited_news_id, news) if News.find(edited_news_id).user_id == @logged_user.id
       end
     end
     if params[:id] == 'delete'
@@ -60,21 +148,22 @@ class SettingsController < ApplicationController
         redirect_to :controller => 'settings', :action => 'news', :id => '1', :page => nil
       end
     end
-    @news = nil
     if params[:id] == 'edit'
-      @edited_news = News.find(IdEncoder.decode(params[:page]))
-      form_edited_news = {
-        :head => @edited_news.head,
-        :body => @edited_news.body,
-        :year_1 => @edited_news.for_year & 1,
-        :year_2 => (@edited_news.for_year & 2) / 2,
-        :year_3 => (@edited_news.for_year & 4) / 4,
-        :year_4 => (@edited_news.for_year & 8) / 8,
-        :year_5 => (@edited_news.for_year & 16) / 16,
-        :subject_id => IdEncoder.encode(@edited_news.subject_id)
+      dbnews = News.find(IdEncoder.decode(params[:page])).attributes
+      news_params = {
+        :year_1 => dbnews['for_year'] & 1,
+        :year_2 => (dbnews['for_year'] & 2) / 2,
+        :year_3 => (dbnews['for_year'] & 4) / 4,
+        :year_4 => (dbnews['for_year'] & 8) / 8,
+        :year_5 => (dbnews['for_year'] & 16) / 16,
       }
-      form_edited_news[:type] = 'subject_id' if form_edited_news[:subject_id]
-      @news = HashWithMethods.new(form_edited_news)
+      news_params[:ntype] = 'year'
+      news_params[:ntype] = 'subject_id' if dbnews['subject_id']
+      dbnews['subject_id'] = IdEncoder.encode(dbnews['subject_id'])
+      @news = HashWithMethods.new(dbnews)
+      @news_params = HashWithMethods.new(news_params)
+      @news_encoded_id = IdEncoder.encode(dbnews['id'])
+      @edited_news = true
     end
     @subjects = [['---', '']] + Subject.find(:all, :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
     @logged_user_news = News.find(:all, :conditions => ['user_id = ?', @logged_user.id], :order => 'date DESC')
