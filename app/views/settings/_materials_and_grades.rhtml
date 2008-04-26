@@ -58,7 +58,17 @@
   <dl class="data long">
     <%= dt_dd radio_button(:groups_type, :gtype, 0) + 'Bez ograniczeń', 'Każdy będzie mógł pobrać ten plik' %>
     <%= dt_dd radio_button(:groups_type, :gtype, 1) + 'Zalogowani', 'Aby pobrać plik, trzeba być zalogowanym użytkownikiem serwisu.' %>
-    <%= dt_dd radio_button(:groups_type, :gtype, 2) + 'Wybrana grupa', select(:groups_uploaded_file_2, :group_id, @groups) %>
+    <dt><%= radio_button(:groups_type, :gtype, 2) %>Wybrana grupa</dt>
+    <dd>
+      <select id="groups_uploaded_file_2_group_id" name="groups_uploaded_file_2[group_id]">
+        <optgroup label="TWOJE GRUPY">
+          <%= options_for_select @your_groups, (@groups_uploaded_file_2.nil? ? nil : [@groups_uploaded_file_2.group_id]) %>
+        </optgroup>
+        <optgroup label="PREDEFINIOWANE GRUPY">
+          <%= options_for_select @other_groups, (@groups_uploaded_file_2.nil? ? nil : [@groups_uploaded_file_2.group_id]) %>
+        </optgroup>
+      </select>
+    </dd>
       <dt><%= radio_button(:groups_type, :gtype, 3) %>Wybrany rok</dt>
       <dd>
         <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(5)) %>&nbsp;I&nbsp;rok

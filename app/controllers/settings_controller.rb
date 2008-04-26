@@ -114,7 +114,8 @@ class SettingsController < ApplicationController
     @your_subjects = UploadedFile.find(:all, :include => [:subject, :user], :group => 'subject_id', :conditions => ['user_id = ?', @logged_user.id], :order => 'subjects.head').collect {|i| [i.subject.head, IdEncoder.encode(i.subject.id)] }
     @subjects = Subject.find(:all, :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
     @lecturers = UsersLecturer.find(:all, :include => [:user, :cathedral], :order => 'users.lastname, users.firstname').collect {|i| [i.user.lastname + ' ' + i.user.firstname, IdEncoder.encode(i.user_id)]}
-    @groups = Group.find(:all, :conditions => 'id > 19', :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
+    @your_groups = Group.find(:all, :conditions => ['id > 19 AND user_id = ?', @logged_user.id], :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
+    @other_groups = Group.find(:all, :conditions => 'id > 19 AND user_id IS NULL', :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
     if params[:action] == 'materials'
       @my_materials = UploadedFile.find(:all, :conditions => ['uploader_id = ? and kind = ?', @logged_user.id, 'material'], :order => 'id DESC')
     else

@@ -53,9 +53,12 @@ ActiveRecord::Schema.define(:version => 20) do
   add_index "exams_names", ["id"], :name => "index_exams_names_on_id", :unique => true
 
   create_table "groups", :force => true do |t|
-    t.string "head", :null => false
-    t.text   "body"
+    t.integer "user_id"
+    t.string  "head",    :null => false
+    t.text    "body"
   end
+
+  add_index "groups", ["user_id"], :name => "user_id"
 
   create_table "groups_news", :force => true do |t|
     t.integer "group_id", :null => false
@@ -206,6 +209,8 @@ ActiveRecord::Schema.define(:version => 20) do
   add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_1"
   add_foreign_key "exams", ["user_id"], "users", ["id"], :name => "exams_ibfk_2"
   add_foreign_key "exams", ["exams_name_id"], "exams_names", ["id"], :name => "exams_ibfk_3"
+
+  add_foreign_key "groups", ["user_id"], "users", ["id"], :name => "groups_ibfk_1"
 
   add_foreign_key "groups_news", ["group_id"], "groups", ["id"], :name => "groups_news_ibfk_1"
   add_foreign_key "groups_news", ["news_id"], "news", ["id"], :name => "groups_news_ibfk_2"

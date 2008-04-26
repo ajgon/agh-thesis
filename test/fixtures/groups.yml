@@ -2,75 +2,94 @@ logged:
   id: 1
   head: 'Zalogowani'
   body: ''
+  user_id: null
 admins:
   id: 2
   head: 'Administratorzy'
   body: ''
+  user_id: null
 speciality1:
   id: 3
   head: 'Elektronika'
   body: ''
+  user_id: null
 speciality2:
   id: 4
   head: 'Telekomunikacja'
   body: ''
+  user_id: null
 year1:
   id: 5
   head: 'I rok'
   body: ''
+  user_id: null
 year2:
   id: 6
   head: 'II rok'
   body: ''
+  user_id: null
 year3:
   id: 7
   head: 'III rok'
   body: ''
+  user_id: null
 year4:
   id: 8
   head: 'IV rok'
   body: ''
+  user_id: null
 year5:
   id: 9
   head: 'V rok'
   body: ''
+  user_id: null
 group1:
   id: 10
   head: 'Grupa Dziekanatowa nr 1'
   body: ''
+  user_id: null
 group2:
   id: 11
   head: 'Grupa Dziekanatowa nr 2'
   body: ''
+  user_id: null
 group3:
   id: 12
   head: 'Grupa Dziekanatowa nr 3'
   body: ''
+  user_id: null
 group4:
   id: 13
   head: 'Grupa Dziekanatowa nr 4'
   body: ''
+  user_id: null
 group5:
   id: 14
   head: 'Grupa Dziekanatowa nr 5'
   body: ''
+  user_id: null
 group6:
   id: 15
   head: 'Grupa Dziekanatowa nr 6'
   body: ''
+  user_id: null
 group7:
   id: 16
   head: 'Grupa Dziekanatowa nr 7'
   body: ''
+  user_id: null
 group8:
   id: 17
   head: 'Grupa Dziekanatowa nr 8'
   body: ''
+  user_id: null
 group9:
   id: 18
   head: 'Grupa Dziekanatowa nr 9'
   body: ''
+  user_id: null
 group10:
   id: 19
   head: 'Grupa Dziekanatowa nr 10'
   body: ''
+  user_id: null

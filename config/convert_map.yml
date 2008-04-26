@@ -130,7 +130,8 @@
     name:
       name: head
     aid:
-      action: remove
+      name: user_id
+      from: users
     alogin:
       action: remove
     king:
