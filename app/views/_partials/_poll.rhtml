@@ -1,20 +1,28 @@
 <% content = (defined?(content).nil? ? '' : content) -%>
 <div class="content<%= content_type content %> polls">
   <h3 class="polls"><abbr>Polls</abbr>Ankieta</h3>
-  <h4><%= @poll.question %></h4>
+  <h4><%= poll.question %></h4>
   <ul class="poll">
-<% @poll.polls_answers.each do |polls_answer| %>
+<%   if !(@logged_user or poll.anonymous) or (@logged_user and @logged_user.voted and !poll.anonymous) %>
+<%     poll.polls_answers.each do |polls_answer| %>
   <li>
     <%= polls_answer.answer %> 
     <div class="bar">
       <div class="filling" style="width: <%= polls_answer.quantity * 100 / @polls_answers_amount %>%;"></div>
     </div>
   </li>
-<% end %>
+<%     end %>
+<%   else %>
+<%     poll.polls_answers.each do |polls_answer| %>
+  <li>
+    <a href="<%= url_for :controller => 'students', :action => 'polls', :id => IdEncoder.encode(poll.id), :page => IdEncoder.encode(polls_answer.id) %> " title="Oddaj głos na tę opcję"><%= polls_answer.answer%></a>
+  </li>
+<%     end %>
+<%   end %>
   </ul>
   <div class="call2action">
     <div>
-      <a href="<%= url_for :controller => 'students', :action => 'polls', :id => IdEncoder.encode(@poll.id) %>">wyniki</a>
+      <a href="<%= url_for :controller => 'students', :action => 'polls', :id => IdEncoder.encode(poll.id) %>">wyniki</a>
     </div>
     <a href="<%= url_for :controller => 'students', :action => 'polls' %>">ankiety</a>
   </div>

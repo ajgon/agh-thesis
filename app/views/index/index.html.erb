@@ -4,6 +4,18 @@
 </div>
 <div class="column-right">
 <%= render :partial => '_partials/google', :locals => { :content => 'right' } %>
-<%= render :partial => '_partials/poll', :locals => { :content => 'right' } %>
+<% if @poll or @anonymous_poll %>
+<%   if @poll %>
+<%= render :partial => '_partials/poll', :locals => { :content => 'right', :poll => @poll } %>
+<%   end %>
+<%   if @anonymous_poll %>
+<%= render :partial => '_partials/poll', :locals => { :content => 'right', :poll => @anonymous_poll } %>
+<%   end %>
+<% else %>
+<div class="content content-right polls">
+  <h3 class="polls"><abbr>Polls</abbr>Ankieta</h3>
+  <div class="center">--- brak ankiet ---</div>
+</div>
+<% end %>
 <%= render :partial => '_partials/grades', :locals => { :content => 'right' } %>
 </div>

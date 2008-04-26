@@ -1,6 +1,5 @@
 <div class="content">
   <h3 class="settings"><abbr>Settings</abbr> Dodawanie aktualności</h3>
-<% # raise @news.errors.inspect %>
 <%= error_messages_for 'news', :header_message => nil, :message => 'Przy próbie dodawania newsa, wystąpiły następujące błędy:' if @news.respond_to? 'errors' %>
 
 <% form_for :news, :url => {:controller => 'settings', :action => 'news', :id => nil, :page => nil} do |f| -%>

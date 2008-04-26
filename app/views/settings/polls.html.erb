@@ -1,0 +1,81 @@
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Administracja ankietami</h3>
+  <p>Za pomocą poniższej tabelki możesz zamykać i usuwać dostępne ankiety. Pamiętaj, 
+    że usunięcie ankiety kasuje <strong>bezpowrotnie</strong> z bazy danych wszystkie 
+    jej statystyki i generalnie powinno być stosowane tylko w sytuacjach wyjątkowych 
+    (np. błąd w zakładaniu ankiety).</p>
+  <div class="center">
+    <strong>C</strong> - zamknięcie ankiety<br />
+    <strong>X</strong> - skasowanie ankiety<br />
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Nazwa ankiety (pytanie)</th>
+        <th>Autor</th>
+        <th>Data otwarcia</th>
+        <th>Data zamknięcia</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+<% @polls.each do |poll| %>
+      <tr>
+        <td><%= link_to poll.question, :controller => 'students', :action => 'polls', :id => IdEncoder.encode(poll.id) %></td>
+        <td><%= link_to poll.user.login, :controller => 'profile', :action => poll.user.login %></td>
+        <td><%= poll.start_time.to_s(:date) %></td>
+        <td><%= poll.end_time.to_s(:date) unless poll.end_time.nil? %></td>
+        <td><%= link_to('<strong>C</strong>', :controller => 'settings', :action => 'polls', :id => 'close', :page => IdEncoder.encode(poll.id)) if poll.end_time.nil? or poll.end_time > Time.now%></td>
+        <td><%= link_to '<strong>X</strong>', :controller => 'settings', :action => 'polls', :id => 'delete', :page => IdEncoder.encode(poll.id) %></td>
+      </tr>
+<% end %>
+    </tbody>
+  </table>
+</div>
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Tworzenie ankiety</h3>
+  <% form_for :polls_question do |f| %>
+  <dl class="data long">
+    <%= dt_dd 'Pytanie', f.text_field(:question, :maxlength => 200) %>
+    <%= dt_dd 'Odpowiedź 1', text_field(:polls_answer, :answer_1, :maxlength => 200) %>
+    <%= dt_dd 'Odpowiedź 2', text_field(:polls_answer, :answer_2, :maxlength => 200) %>
+    <%= dt_dd 'Odpowiedź 3', text_field(:polls_answer, :answer_3, :maxlength => 200) %>
+    <%= dt_dd 'Odpowiedź 4', text_field(:polls_answer, :answer_4, :maxlength => 200) %>
+    <%= dt_dd 'Odpowiedź 5', text_field(:polls_answer, :answer_5, :maxlength => 200) %>
+    <%= dt_dd 'Odpowiedź 6', text_field(:polls_answer, :answer_6, :maxlength => 200) %>
+    <dt>Data zamknięcia</dt>
+    <dd class="date">
+      yyyy <%= text_field(:polls_closedate, :year) %>
+      - mm <%= text_field(:polls_closedate, :month) %>
+      - dd <%= text_field(:polls_closedate, :day) %>
+    </dd>
+    <%= dt_dd 'Sonda anonimowa', f.check_box(:anonymous) %>
+  </dl>
+  <div class="submit">
+    <%= submit_tag 'Zapisz sondę' %>
+  </div>
+  <% end %>
+  <p>
+    <strong>Pamiętaj, że:</strong><br />
+    <strong>1)</strong> - maksymalna ilość znaków użytych w pytaniu i każdej 
+    odpowiedzi to 200, jednak zbyt długie pytania/odpowiedzi zmniejszają czytelność 
+    ankiety,<br />
+    <strong>2)</strong> - możesz wpisać maksymalnie 6 odpowiedzi na swoje pytanie, 
+    jeżeli chcesz, aby było ich mniej, po prostu zostaw puste pola pozostałych odpowiedzi,<br />
+    <strong>3)</strong> - możesz z góry ustalić czas zamknięcia sondy, wtedy będziesz 
+    mógł ją zamknąć w dowolnym czasie PRZED upływem tej ustalonej granicy. Jeżeli 
+    nie jesteś pewien okresu czasu, w jakim sonda ma być otwarta, nie ustawiaj 
+    po prostu czasu zamknięcia,<br />
+    <strong>4)</strong> - datę zamknięcia wpisz w formacie rok-miesiąc-dzień (yyyy-mm-dd),<br />
+    <strong>5)</strong> - sonda anonimowa to taka, na którą może oddać głos każdy, 
+    także nieposiadający konta na WWW EiT, możliwe jest również wielokrotne oddawanie 
+    głosów przed jedną osobę (ponieważ osoby nie są identyfikowane)<br />
+  </p>
+  <p>
+    <strong>UWAGA:</strong><br />
+    Jednocześnie na WWW EiT mogą być otwarte jedynie po jednej ankiecie anonimowej 
+    i nieanonimowej. Próba stworzenia nowej sondy (nie)anonimowej przy otwartej 
+    poprzedniej sondzie tego samego typu powoduje automatyczne zamknięcie tej poprzedniej. 
+  </p>
+</div>

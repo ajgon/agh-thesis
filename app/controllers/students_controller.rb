@@ -90,15 +90,27 @@ class StudentsController < ApplicationController
   def polls
     if params[:id].nil? or (question_id = IdEncoder.decode(params[:id])) == false
       @polls_limit = 20
-      @polls_closed = PollsQuestion.find(:all, :include => :user, :conditions => 'end_time IS NOT NULL', :order => 'polls_questions.id DESC', :limit => @polls_limit)
-      @polls_open = PollsQuestion.find(:all, :include => :user, :conditions => 'end_time IS NULL', :order => 'polls_questions.id DESC', :limit => @polls_limit)
+      @polls_closed = PollsQuestion.find(:all, :include => :user, :conditions => 'end_time IS NOT NULL AND end_time < NOW()', :order => 'polls_questions.id DESC', :limit => @polls_limit)
+      @polls_open = PollsQuestion.find(:all, :include => :user, :conditions => 'end_time IS NULL OR end_time > NOW()', :order => 'polls_questions.id DESC', :limit => @polls_limit)
     else
-      @poll = PollsQuestion.find(question_id, :include => [:polls_answers, :user], :order => 'polls_answers.quantity DESC')
-      @polls_answers_amount = 0
-      @poll.polls_answers.each do |polls_answer|
-        @polls_answers_amount += polls_answer.quantity
+      if params[:page].nil? or (answer_id = IdEncoder.decode(params[:page])) == false
+        @poll = PollsQuestion.find(question_id, :include => [:polls_answers, :user], :order => 'polls_answers.quantity DESC')
+        @polls_answers_amount = 0
+        @poll.polls_answers.each do |polls_answer|
+          @polls_answers_amount += polls_answer.quantity
+        end
+        @polls_answers_amount = 1 if @polls_answers_amount == 0
+        render :template => 'students/poll'
+      else
+        polls_answer = PollsAnswer.find(answer_id)
+        polls_answer.quantity += 1
+        polls_answer.save
+        unless PollsQuestion.find(question_id).anonymous
+          @logged_user.voted = true 
+          @logged_user.save
+        end
+        redirect_to :controller => 'index', :action => 'index'
       end
-      render :template => 'students/poll'
     end
   end
 end

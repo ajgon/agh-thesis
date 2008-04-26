@@ -96,7 +96,6 @@ class SettingsController < ApplicationController
       @uploaded_file['user_id'] = IdEncoder.encode(@uploaded_file['user_id'])
       @uploaded_file = HashWithMethods.new(@uploaded_file)
       group_priv = GroupsUploadedFile.find(:first, :conditions => ['uploaded_file_id = ?', @uploaded_file_id])
-#      raise @uploaded_file_id.to_s
       if group_priv.nil?
         @groups_type = HashWithMethods.new({:gtype => '0'})
       else
@@ -198,6 +197,37 @@ class SettingsController < ApplicationController
   end
   
   def polls
+    if request.post?
+      params[:polls_question][:user_id] = @logged_user.id
+      params[:polls_question][:start_time] = Time.now
+      if params[:polls_closedate][:year].to_i >= Time.now.year and (1..12).include?(params[:polls_closedate][:month].to_i) and (1..31).include?(params[:polls_closedate][:day].to_i)
+        params[:polls_question][:end_time] = Time.mktime(params[:polls_closedate][:year].to_i, params[:polls_closedate][:month].to_i, params[:polls_closedate][:day].to_i)
+      end
+      if (polls_question = PollsQuestion.new(params[:polls_question])).save
+        polls_answers = params[:polls_answer].sort.collect { |i| i[1] unless i[1].empty? }
+        polls_answers.compact.each do |polls_answer|
+          PollsAnswer.new({:polls_question_id => polls_question.id, :answer => polls_answer}).save
+          User.update_all('voted = 0')
+        end
+      end
+      if polls_question.anonymous
+        PollsQuestion.update_all('end_time = NOW()', '(end_time IS NULL OR end_time > NOW()) AND anonymous = true AND id <> ' + polls_question.id.to_s )
+      else
+        PollsQuestion.update_all('end_time = NOW()', '(end_time IS NULL OR end_time > NOW()) AND anonymous = false AND id <> ' + polls_question.id.to_s )
+      end
+    end
+    if params[:id] == 'close' and (poll_id = IdEncoder.decode(params[:page]))
+      poll = PollsQuestion.find(poll_id)
+      poll.end_time = Time.now
+      poll.save
+      redirect_to :controller => 'settings', :action => 'polls', :id => nil, :page => nil
+    end
+    if params[:id] == 'delete' and (poll_id = IdEncoder.decode(params[:page]))
+      PollsAnswer.delete( PollsAnswer.find(:all, :conditions => ['polls_question_id = ?', poll_id]).collect { |i| i.id } )
+      PollsQuestion.delete(poll_id)
+      redirect_to :controller => 'settings', :action => 'polls', :id => nil, :page => nil
+    end
+    @polls = PollsQuestion.find(:all, :include => :user, :order => 'polls_questions.id DESC')
   end
   
   def groups

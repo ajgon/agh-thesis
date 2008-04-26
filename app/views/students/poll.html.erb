@@ -39,7 +39,7 @@
     <tbody>
       <tr>
         <td><%= @polls_answers_amount %></td>
-        <td><%= @poll.end_time.nil? ? 'OTWARTA' : 'ZAMKNIĘTA' %></td>
+        <td><%= (@poll.end_time.nil? or @poll.end_time > Time.now) ? 'OTWARTA' : 'ZAMKNIĘTA' %></td>
         <td><%= @poll.anonymous ? 'TAK' : 'NIE' %></td>
         <td><%= link_to @poll.user.login, :controller => 'profile', :action => @poll.user.login %></td>
         <td><%= @poll.start_time.to_s(:date) %></td>

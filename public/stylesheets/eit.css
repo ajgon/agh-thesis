@@ -574,6 +574,10 @@ dl.data dd {
     min-height: 13px;
 }
 
+#content dl.data dd.date input {
+    width: 52px;
+}
+
 dl.long {
     width: 582px;
     margin: 15px 0px;

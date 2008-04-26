@@ -79,7 +79,7 @@
       </dd>
   </dl>
   <div class="submit">
-    <%= submit_tag (@edited_material ? 'Zapisz zmiany' : 'Dodaj materiał') %>
+    <%= submit_tag(@edited_material ? 'Zapisz zmiany' : 'Dodaj ' + (params[:action] == 'grades' ? 'ocenę' : 'materiał')) %>
   </div>
   <% end %>
 </div>
