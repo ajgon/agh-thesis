@@ -29,6 +29,7 @@ class SettingsController < ApplicationController
       @uploaded_file.uploader_id = @logged_user.id
       @uploaded_file.subject_id = IdEncoder.decode(params[:uploaded_file][:subject_id])
       @uploaded_file.date = Time.now unless params[:groups_type][:edited]
+      @uploaded_file.kind = (params[:action] == 'grades' ? 'grade' : 'material' )
       if(params[:groups_type][:edited].nil? and @uploaded_file.save)
         File.open(file_path, "wb") { |f| f.write(file.read) }
         groups_type = params[:groups_type][:gtype].to_i
@@ -40,25 +41,41 @@ class SettingsController < ApplicationController
         when 3
           GroupsUploadedFile.new({:group_id => IdEncoder.decode(params[:groups_uploaded_file_3][:group_id]), :uploaded_file_id => @uploaded_file.id}).save!
         end
+        @uploaded_file = nil
       end
       unless(params[:groups_type][:edited].nil?)
         groups_type = params[:groups_type][:gtype].to_i
         edited_file_id = IdEncoder.decode(params[:groups_type][:edited])
         groups_uploaded_files_id = GroupsUploadedFile.find(:first, :conditions => ['uploaded_file_id = ?', edited_file_id])
+        groups_uploaded_files_id = (groups_uploaded_files_id.nil? ? nil : groups_uploaded_files_id.id)
         uploaded_file = UploadedFile.find(edited_file_id)
         @uploaded_file.filename = uploaded_file.filename
         @uploaded_file.kind = uploaded_file.kind
         @uploaded_file.date = uploaded_file.date
         case groups_type
+        when 0
+          GroupsUploadedFile.delete(groups_uploaded_files_id) unless groups_uploaded_files_id.nil?
         when 1
-          GroupsUploadedFile.update(groups_uploaded_files_id, {:group_id => 1})
+          if groups_uploaded_files_id.nil?
+            GroupsUploadedFile.new({:group_id => 1, :uploaded_file_id => edited_file_id}).save!
+          else
+            GroupsUploadedFile.update(groups_uploaded_files_id, {:group_id => 1})
+          end
         when 2
-          GroupsUploadedFile.update(groups_uploaded_files_id, {:group_id => IdEncoder.decode(params[:groups_uploaded_file_2][:group_id])})
+          if groups_uploaded_files_id.nil?
+            GroupsUploadedFile.new({:group_id => IdEncoder.decode(params[:groups_uploaded_file_2][:group_id]), :uploaded_file_id => edited_file_id}).save!
+          else
+            GroupsUploadedFile.update(groups_uploaded_files_id, {:group_id => IdEncoder.decode(params[:groups_uploaded_file_2][:group_id])})
+          end
         when 3
-          GroupsUploadedFile.update(groups_uploaded_files_id, {:group_id => IdEncoder.decode(params[:groups_uploaded_file_3][:group_id])})
+          if groups_uploaded_files_id.nil?
+            GroupsUploadedFile.new({:group_id => IdEncoder.decode(params[:groups_uploaded_file_3][:group_id]), :uploaded_file_id => edited_file_id}).save!
+          else
+            GroupsUploadedFile.update(groups_uploaded_files_id, {:group_id => IdEncoder.decode(params[:groups_uploaded_file_3][:group_id])})
+          end
         end
         UploadedFile.update(edited_file_id, @uploaded_file.attributes)
-        redirect_to :controller => 'settings', :action => 'materials', :id => nil, :page => nil
+        redirect_to :controller => 'settings', :action => params[:action], :id => nil, :page => nil
       end
     end
     if params[:id] == 'delete' and IdEncoder.decode(params[:page])
@@ -69,16 +86,17 @@ class SettingsController < ApplicationController
         GroupsUploadedFile.delete( GroupsUploadedFile.find(:all, :conditions => ['uploaded_file_id = ?', file.id]).collect { |i| i.id } )
         UploadedFile.delete(file.id)
       end
-      redirect_to :controller => 'settings', :action => 'materials', :id => nil, :page => nil
+      redirect_to :controller => 'settings', :action => params[:action], :id => nil, :page => nil
     end
     if params[:id] == 'edit' and IdEncoder.decode(params[:page])
-      @uploaded_file_encoded_id = IdEncoder.decode(params[:page])
+      @uploaded_file_id = IdEncoder.decode(params[:page])
       @edited_material = true
-      @uploaded_file = UploadedFile.find(@uploaded_file_encoded_id).attributes
+      @uploaded_file = UploadedFile.find(@uploaded_file_id).attributes
       @uploaded_file['subject_id'] = IdEncoder.encode(@uploaded_file['subject_id'])
       @uploaded_file['user_id'] = IdEncoder.encode(@uploaded_file['user_id'])
       @uploaded_file = HashWithMethods.new(@uploaded_file)
-      group_priv = GroupsUploadedFile.find(:first, :conditions => ['uploaded_file_id = ?', @uploaded_file_encoded_id])
+      group_priv = GroupsUploadedFile.find(:first, :conditions => ['uploaded_file_id = ?', @uploaded_file_id])
+#      raise @uploaded_file_id.to_s
       if group_priv.nil?
         @groups_type = HashWithMethods.new({:gtype => '0'})
       else
@@ -97,7 +115,11 @@ class SettingsController < ApplicationController
     @subjects = Subject.find(:all, :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
     @lecturers = UsersLecturer.find(:all, :include => [:user, :cathedral], :order => 'users.lastname, users.firstname').collect {|i| [i.user.lastname + ' ' + i.user.firstname, IdEncoder.encode(i.user_id)]}
     @groups = Group.find(:all, :conditions => 'id > 19', :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
-    @my_materials = UploadedFile.find(:all, :conditions => ['uploader_id = ?', @logged_user.id], :order => 'id DESC')
+    if params[:action] == 'materials'
+      @my_materials = UploadedFile.find(:all, :conditions => ['uploader_id = ? and kind = ?', @logged_user.id, 'material'], :order => 'id DESC')
+    else
+      @my_materials = UploadedFile.find(:all, :conditions => ['uploader_id = ? and kind = ?', @logged_user.id, 'grade'], :order => 'id DESC')
+    end
     @other_materials = UploadedFile.find(:all, :conditions => ['user_id = ? and uploader_id <> ?', @logged_user.id, @logged_user.id], :order => 'id DESC')
   end  
   
@@ -171,6 +193,7 @@ class SettingsController < ApplicationController
   end
   
   def grades
+    materials
   end
   
   def polls
