@@ -1,0 +1,37 @@
+  <table>
+    <thead>
+      <tr>
+        <th>Termin</th>
+        <th>Zdarzenie</th>
+        <th>Rok</th>
+        <th>Początek</th>
+        <%= '<th></th>' if params[:controller] == 'settings' %>
+      </tr>
+    </thead>
+    <tbody>
+<% @events.each do |event| %>
+    <tr>
+      <td><%= event.ending.to_s(:date) %></td>
+      <td>
+<% unless event.url.nil? or event.url.empty? %>
+        <a href="<%= event.url %>">
+<% end %>
+          <%= event.head %>
+<% unless event.url.nil? or event.url.empty? %>
+        </a>
+<% end %>
+      </td>
+      <td><%= event.years %></td>
+      <td><%= event.beginning.nil? ? '' : event.beginning.to_s(:date) %></td>
+<% if params[:controller] == 'settings' %>
+      <td>
+        <ul class="owner-options">
+          <li class="edit"><a title="Edytuj Wydarzenie" href="<%= url_for :controller => 'settings', :action => 'calendar', :id => 'edit', :page => IdEncoder.encode(event.id) %>">Edytuj</a></li>
+          <li class="delete"><a title="Usuń Wydarzenie" href="<%= url_for :controller => 'settings', :action => 'calendar', :id => 'delete', :page => IdEncoder.encode(event.id) %>">Usuń</a></li>
+        </ul>
+      </td>
+<% end %>
+    </tr>
+<% end %>
+    </tbody>
+  </table>

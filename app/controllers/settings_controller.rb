@@ -237,6 +237,41 @@ class SettingsController < ApplicationController
   end
   
   def calendar
+    @edited_calendar = false
+    if request.post?
+      if params[:event_enddate][:year].to_i >= Time.now.year and (1..12).include?(params[:event_enddate][:month].to_i) and (1..31).include?(params[:event_enddate][:day].to_i)
+        params[:event][:ending] = Time.mktime(params[:event_enddate][:year].to_i, params[:event_enddate][:month].to_i, params[:event_enddate][:day].to_i)
+      else
+        params[:event][:ending] = Time.now
+      end
+      if (1..12).include?(params[:event_startdate][:month].to_i) and (1..31).include?(params[:event_startdate][:day].to_i)
+        params[:event][:beginning] = Time.mktime(params[:event_startdate][:year].to_i, params[:event_startdate][:month].to_i, params[:event_startdate][:day].to_i)
+      end
+      params[:event][:for_year] = (params[:event_year][:year_1].to_i) + (params[:event_year][:year_2].to_i << 1) + (params[:event_year][:year_3].to_i << 2) + (params[:event_year][:year_4].to_i << 3) + (params[:event_year][:year_5].to_i << 4)
+      unless(params[:event_params] and (edited_event_id = IdEncoder.decode(params[:event_params][:edited])))
+        Event.new(params[:event]).save
+      else
+        Event.update(edited_event_id, params[:event])
+      end
+    end
+    if params[:id] == 'delete' and (event_id = IdEncoder.decode(params[:page]))
+      Event.delete(event_id)
+    end
+    if params[:id] == 'edit' and (event_id = IdEncoder.decode(params[:page]))
+      @edited_calendar = true
+      @event = Event.find(event_id)
+      @event_encoded_id = IdEncoder.encode(event_id)
+      @event_startdate = HashWithMethods.new({:year => @event.beginning.year, :month => @event.beginning.month, :day => @event.beginning.day})
+      @event_enddate = HashWithMethods.new({:year => @event.ending.year, :month => @event.ending.month, :day => @event.ending.day})
+      @event_year = HashWithMethods.new({
+        :year_1 => @event['for_year'] & 1,
+        :year_2 => (@event['for_year'] & 2) / 2,
+        :year_3 => (@event['for_year'] & 4) / 4,
+        :year_4 => (@event['for_year'] & 8) / 8,
+        :year_5 => (@event['for_year'] & 16) / 16,
+      })
+    end
+    @events = Event.find(:all, :order => 'ending')
   end
   
   def profile

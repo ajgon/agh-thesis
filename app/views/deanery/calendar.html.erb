@@ -1,32 +1,5 @@
 <div class="content deanery">
   <h3 class="news"><abbr>Info</abbr> Kalendarz Studenta</h3>
   <p>Wersja testowa terminarza studenta. Uwagi na adres <%= encode_string('eiteam@eit.agh.edu.pl', mail_to('eiteam@eit.agh.edu.pl', nil, :encode => 'hex')) %></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Termin</th>
-        <th>Zdarzenie</th>
-        <th>Rok</th>
-        <th>Początek</th>
-      </tr>
-    </thead>
-    <tbody>
-<% @events.each do |event| %>
-    <tr>
-      <td><%= event.ending.to_s(:date) %></td>
-      <td>
-<% unless event.url.nil? or event.url.empty? %>
-        <a href="<%= event.url %>">
-<% end %>
-          <%= event.head %>
-<% unless event.url.nil? or event.url.empty? %>
-        </a>
-<% end %>
-      </td>
-      <td><%= event.years %></td>
-      <td><%= event.beginning.nil? ? '' : event.beginning.to_s(:date) %></td>
-    </tr>
-<% end %>
-    </tbody>
-  </table>
+<%= render :partial => '_partials/events' %>
 </div>

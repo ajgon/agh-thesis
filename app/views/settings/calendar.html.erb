@@ -1,0 +1,41 @@
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Kalendarz studenta</h3>
+  <%= render :partial => '_partials/events' %>
+</div>
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Dodawanie wydarzenia</h3>
+  <% form_for :event, :url => {:controller => 'settings', :action => 'calendar', :id => nil, :page => nil} do |f| %>
+  <dl class="data long">
+    <dt>Termin</dt>
+    <dd class="date">
+      yyyy <%= text_field(:event_enddate, :year) %>
+      - mm <%= text_field(:event_enddate, :month) %>
+      - dd <%= text_field(:event_enddate, :day) %>
+    </dd>
+    <dt>Początek</dt>
+    <dd class="date">
+      yyyy <%= text_field(:event_startdate, :year) %>
+      - mm <%= text_field(:event_startdate, :month) %>
+      - dd <%= text_field(:event_startdate, :day) %>
+    </dd>
+    <%= dt_dd 'Nazwa', f.text_field(:head) %>
+    <%= dt_dd 'Url', f.text_field(:url) %>
+    <dt>Dotyczy</dt>
+    <dd>
+      <%= check_box(:event_year, :year_1) %>I&nbsp;rok
+      <%= check_box(:event_year, :year_2) %>II&nbsp;rok
+      <%= check_box(:event_year, :year_3) %>III&nbsp;rok
+      <%= check_box(:event_year, :year_4) %>IV&nbsp;rok
+      <%= check_box(:event_year, :year_5) %>V&nbsp;rok
+    </dd>
+  </dl>
+  <input type="hidden" name="event_params[edited]" id="event_params_edited" value="<%= @event_encoded_id %>" />
+  <div class="submit">
+  <% unless @edited_calendar %>
+    <%= submit_tag 'Dodaj wydarzenie' %>
+  <% else %>
+    <%= submit_tag 'Zapisz zmiany' %>
+  <% end %>
+  </div>
+  <% end %>
+</div>
