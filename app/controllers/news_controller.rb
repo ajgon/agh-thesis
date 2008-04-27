@@ -14,7 +14,69 @@ class NewsController < ApplicationController
   end
   
   def exams
-    @exams = Exam.find(:all, :order => 'exams_name_id, subject_id, date', :include => [:exams_name, :user, :subject])
+    @exam = HashWithMethods.new({:term => '0'})
+    if params[:id] == 'add' or params[:id] == 'edit' or params[:id] == 'delete'
+      if @logged_user
+        if @logged_user.respond_to?('configures_news?') and @logged_user.send('configures_news?')
+          @edited_exam_id = nil
+          if params[:id] == 'add' or (params[:id] == 'edit' and @edited_exam_id = IdEncoder.decode(params[:page]))
+            @subjects = Subject.find(:all, :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
+            @lecturers = [['', '']] + UsersLecturer.find(:all, :include => [:user, :cathedral], :order => 'users.lastname, users.firstname').collect {|i| [i.user.lastname + ' ' + i.user.firstname, i.user.lastname + ' ' + i.user.firstname]}
+            @exams_names = ExamsName.find(:all, :order => 'id').collect {|i| [i.head, i.id]}
+            if request.post?
+              begin
+                params[:exam][:date] = Time.mktime(params[:exams_date][:year].to_i, params[:exams_date][:month].to_i, params[:exams_date][:day].to_i, params[:exams_date][:hour].to_i, params[:exams_date][:minute].to_i)
+              rescue
+                params[:exam][:date] = nil
+              end
+              params[:exam][:subject_id] = IdEncoder.decode(params[:exam][:subject_id])
+              params[:exam][:user_id] = @logged_user.id
+              params[:exam][:examiner] = params[:examiner][:select] if params[:exam][:examiner].empty?
+              unless params[:exam_params] and params[:exam_params][:edited] and edited_exam_id = IdEncoder.decode(params[:exam_params][:edited])
+                if (@exam = Exam.new(params[:exam])).save
+                  flash[:notice] = 'Egzamin został dopisany'
+                  redirect_to :controller => 'news', :action => 'exams', :id => nil
+                else
+                  @exams_date = HashWithMethods.new(params[:exams_date])
+                  render :template => 'news/add_exam'
+                end
+              else
+                if (@exam = Exam.new(params[:exam])).valid?
+                  Exam.update(edited_exam_id, params[:exam])
+                  flash[:notice] = 'Dane dotyczące egzaminu zostały zmienione'
+                  redirect_to :controller => 'news', :action => 'exams', :id => nil
+                else
+                  @exams_date = HashWithMethods.new(params[:exams_date])
+                  render :template => 'news/add_exam'
+                end
+              end
+            else
+              if @edited_exam_id
+                @exam = Exam.find(@edited_exam_id)
+                @exams_date = HashWithMethods.new({
+                    :year => @exam.date.year,
+                    :month => @exam.date.month,
+                    :day => @exam.date.day,
+                    :hour => @exam.date.hour,
+                    :minute => @exam.date.min
+                })
+              end
+              render :template => 'news/add_exam'
+            end
+          else
+            if deleted_exam_id = IdEncoder.decode(params[:page])
+              Exam.delete(deleted_exam_id)
+              flash[:notice] = 'Termin egzaminu został usunięty'
+            end
+          end
+        else
+          render :template => 'index/forbidden'
+        end
+      else
+        render :template => 'signin/signin'
+      end
+    end
+    @exams = Exam.find(:all, :order => 'exams_name_id, subject_id, date', :include => [:exams_name, :user, :subject]) unless params[:id] == 'add' or params[:id] == 'edit'
   end
   
   def read

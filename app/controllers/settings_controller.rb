@@ -15,6 +15,9 @@ class SettingsController < ApplicationController
 
   def materials
     @edited_material = false
+    @max_file_size = 1 * 1024 * 1024
+    @max_file_size = 5 * 1024 * 1024 if params[:action] == 'materials'
+    @max_file_size = 2 * 1024 * 1024 if params[:action] == 'grades'
     if request.post? 
       if !params[:uploaded_file][:file].nil? and params[:uploaded_file][:file].respond_to?('original_filename')
         params[:uploaded_file][:filename] = params[:uploaded_file][:file].original_filename
@@ -22,16 +25,22 @@ class SettingsController < ApplicationController
         params[:uploaded_file][:filename] = rand(1679615).to_s(36) + '_' + params[:uploaded_file][:filename] if File.exists?(file_path)
         file_path = File.join(RAILS_ROOT, 'files', params[:uploaded_file][:filename])
         file = params[:uploaded_file][:file]
-        params[:uploaded_file].delete :file
+        file_read = file.read
+        if file_read.length > @max_file_size
+          flash[:notice] = 'Plik jest za duży'
+        end
+      else
+        flash[:notice] = 'Nie wybrano pliku, lub plik jest uszkodzony'
       end
+      params[:uploaded_file].delete :file
       @uploaded_file = UploadedFile.new(params[:uploaded_file])
       @uploaded_file.user_id = IdEncoder.decode(params[:uploaded_file][:user_id])
       @uploaded_file.uploader_id = @logged_user.id
       @uploaded_file.subject_id = IdEncoder.decode(params[:uploaded_file][:subject_id])
-      @uploaded_file.date = Time.now unless params[:groups_type][:edited]
+      @uploaded_file.date = Time.now unless params[:groups_type] and params[:groups_type][:edited]
       @uploaded_file.kind = (params[:action] == 'grades' ? 'grade' : 'material' )
-      if(params[:groups_type][:edited].nil? and @uploaded_file.save)
-        File.open(file_path, "wb") { |f| f.write(file.read) }
+      if((params[:groups_type].nil? or params[:groups_type][:edited].nil?) and @uploaded_file.filename and file_read.length <= @max_file_size and @uploaded_file.save)
+        File.open(file_path, "wb") { |f| f.write(file_read) }
         groups_type = params[:groups_type][:gtype].to_i
         case groups_type
         when 1
@@ -44,7 +53,7 @@ class SettingsController < ApplicationController
         @uploaded_file = nil
         flash[:notice] = 'Plik został umieszczony na serwerze'
       end
-      unless(params[:groups_type][:edited].nil?)
+      unless(params[:groups_type].nil? or params[:groups_type][:edited].nil?)
         groups_type = params[:groups_type][:gtype].to_i
         edited_file_id = IdEncoder.decode(params[:groups_type][:edited])
         groups_uploaded_files_id = GroupsUploadedFile.find(:first, :conditions => ['uploaded_file_id = ?', edited_file_id])
@@ -113,6 +122,7 @@ class SettingsController < ApplicationController
         end
       end
     end
+    @groups_type = HashWithMethods.new({:gtype => '0'}) unless @groups_type
     @your_subjects = UploadedFile.find(:all, :include => [:subject, :user], :group => 'subject_id', :conditions => ['user_id = ?', @logged_user.id], :order => 'subjects.head').collect {|i| [i.subject.head, IdEncoder.encode(i.subject.id)] }
     @subjects = Subject.find(:all, :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
     @lecturers = UsersLecturer.find(:all, :include => [:user, :cathedral], :order => 'users.lastname, users.firstname').collect {|i| [i.user.lastname + ' ' + i.user.firstname, IdEncoder.encode(i.user_id)]}

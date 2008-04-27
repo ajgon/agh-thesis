@@ -1,13 +1,12 @@
 <div class="content">
   <h3 class="settings"><abbr>Settings</abbr> Dodawanie <% if params[:action == 'materials'] %>materiałów<% else %>ocen<% end %></h3>
   <% unless @edited_material %>
-  <% if params[:action == 'materials'] %>
+  <% if params[:action] == 'materials' %>
   <p>Za pomocą poniższego formularza możesz dodać plik z nowym materiałem na 
   stronę EiT. Aby tego dokonać, uzupełnij poniższe pola, wybierając plik lokalny 
   (na Twoim komputerze). Nazwa pliku nie musi być unikalna (nazwy mogą się powtarzać). 
   Pamiętaj, że poprawne opisanie pliku zwiększa jego szanse na bycie odnalezionym 
   przez studentów, do których jest kierowany. </p>
-  <div class="center"><h4>Maksymalny rozmiar pliku to 5 MB.</h4></div>
   <% else %>
   <p>Za pomocą poniższego formularza możesz dodać plik z nową oceną na stronę EiT. 
   Aby tego dokonać, uzupełnij poniższe pola, wybierając plik lokalny (na Twoim komputerze). 
@@ -15,8 +14,8 @@
   wybrać grupę studentów, którzy będą mieli dostęp do właśnie dodawanej oceny. W tym 
   celu, wybierz odpowiednią grupę z listy poniżej (lista zawiera wszystkie Twoje 
   grupy, jeśli takie zdefiniowałeś, oraz niepuste grupy dziekanatowe).</p>
-  <div class="center"><h4>Maksymalny rozmiar pliku to 1.5 MB.</h4></div>
   <% end %>
+  <div class="center"><h4>Maksymalny rozmiar pliku to <%= add_units(@max_file_size) %>.</h4></div>
   <% else %>
   <p>Aby edytować opis wybranego przez Ciebie pliku, użyj poniższego formularza</p>
   <dl class="data long">

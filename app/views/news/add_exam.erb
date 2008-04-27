@@ -1,0 +1,40 @@
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Dodaj egzamin</h3>
+<% form_for :exam, :url => {:controller => 'news', :action => 'exams', :id => params[:id], :page => params[:page]} do |f| %>
+  <%= error_messages_for 'exam', :header_message => nil, :message => 'Przy próbie dopisania egzaminu, wystąpiły następujące błędy:' if @exam.respond_to? 'errors' %>
+  <dl class="data long">
+    <%= dt_dd '<label for="exam_subject_id">Przedmiot</label>', f.select(:subject_id, @subjects) %>
+    <dt><label for="exam_examiner">Prowadzący</label></dt>
+    <dd>
+      <%= select(:examiner, :select, @lecturers) %>
+      <%= f.text_field(:examiner) %>
+    </dd>
+    <%= dt_dd '<label for="exams_exams_name_id">Specjalność</label>', f.select(:exams_name_id, @exams_names) %>
+    <dt>Data egzaminu</dt>
+    <dd class="date">
+      <label for="exams_date_year">yyyy</label> <%= text_field(:exams_date, :year) %>
+      - <label for="exams_date_month">mm</label> <%= text_field(:exams_date, :month) %>
+      - <label for="exams_date_day">dd</label> <%= text_field(:exams_date, :day) %>
+    </dd>
+    <dt>Godzina egzaminu</dt>
+    <dd class="date">
+      <label for="exams_date_year">hh</label> <%= text_field(:exams_date, :hour) %>
+      - <label for="exams_date_minute">mm</label> <%= text_field(:exams_date, :minute) %>
+    </dd>
+    <%= dt_dd '<label for="exams_place">Miejsce</label>', f.text_field(:place) %>
+    <dt>Termin</dt>
+    <dd>
+      <%= f.radio_button(:term, 0) %><label for="exam_term_0">0</label>
+      <%= f.radio_button(:term, 1) %><label for="exam_term_1">1</label>
+      <%= f.radio_button(:term, 2) %><label for="exam_term_2">2</label>
+      <%= f.radio_button(:term, 3) %><label for="exam_term_3">3</label>
+    </dd>
+  </dl>
+  <div class="submit">
+<% if @edited_exam_id %>
+    <input type="hidden" name="exam_params[edited]" id="exam_params_edited" value="<%= IdEncoder.encode(@edited_exam_id) %>" />
+<% end %>
+    <%= submit_tag(@edited_exam_id ? 'Edytuj Egzamin' : 'Dodaj Egzamin') %>
+  </div>
+<% end %>
+</div>

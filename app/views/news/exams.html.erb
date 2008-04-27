@@ -1,5 +1,10 @@
 <div class="content">
   <h3 class="news"><abbr>Exams</abbr> Terminy Egzaminów</h3>
+  <div class="call2action">
+    <div>
+      <a href="<%= url_for :controller => 'news', :action => 'exams', :id => 'add' %>">dodaj egzamin</a>
+    </div>
+  </div>
   <table>
     <thead>
       <tr>
@@ -28,7 +33,14 @@
         <td><%= exam.examiner %></td>
         <td><%= exam.place %></td>
         <td><%= link_to exam.user.login, {:controller => 'profile', :action => exam.user.login} %></td>
-        <td></td>
+        <td>
+<% if @logged_user and @logged_user.respond_to?('configures_news?') and @logged_user.send('configures_news?') %>          
+          <ul class="owner-options">
+            <li class="edit"><a title="Edytuj Egzamin" href="<%= url_for :controller => 'news', :action => 'exams', :id => 'edit', :page => IdEncoder.encode(exam.id) %>">Edytuj</a></li>
+            <li class="delete"><a title="Usuń Egzamin" href="<%= url_for :controller => 'news', :action => 'exams', :id => 'delete', :page => IdEncoder.encode(exam.id) %>">Usuń</a></li>
+          </ul>
+<% end %>
+        </td>
       </tr>
 <% end %>
     </tbody>
