@@ -1,0 +1,20 @@
+    <table>
+      <thead>
+        <tr>
+          <th>Dodaj / Usuń</th>
+          <th>Nazwisko&nbsp;i&nbsp;imię</th>
+          <th>Nr&nbsp;indeksu</th>
+          <th>login&nbsp;EiT</th>
+        </tr>
+      </thead>
+      <tbody>
+<%     group_members.each do |group_member| %>
+        <tr>
+          <td><%= f.check_box(IdEncoder.encode(group_member.id)) %></td>
+          <td><%= group_member.lastname + '&nbsp;' + group_member.firstname %></td>
+          <td><%= group_member.users_student.sindex %></td>
+          <td><%= link_to group_member.login, :controller => 'profile', :action => group_member.login %></td>
+        </tr>
+<%     end %>
+      </tbody>
+    </table>

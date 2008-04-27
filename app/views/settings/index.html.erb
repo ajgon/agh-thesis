@@ -1,40 +1,44 @@
 <div class="content settings">
   <h3 class="settings"><abbr>Settings</abbr> Dodawanie informacji</h3>
-  <div class="option materials">
-    <h5<%= @logged_user.configures_materials? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'materials' %>">Materiały</a></h5>
-    <p>Pozwala dodawać nowe materiały dla studentów, a także usuwać i indeksować 
-    (zmieniać kategorie) aktualnie dostępnych na stronie.</p>
-  </div>
-  <div class="option news">
-    <h5<%= @logged_user.configures_news? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'news' %>">Aktualności</a></h5>
-    <p>Tutaj możesz dodawać nowe aktualności, które będą dostępne dla wszystkich, 
-    albo dla wybranych przez Ciebie roczników. </p>
-  </div>
-  <div class="option grades">
-    <h5<%= @logged_user.configures_grades? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'grades' %>">Oceny</a></h5>
-    <p>Administrowanie ocenami: dodawanie, edycja, usuwanie. </p>
+  <div class="overflow">
+    <div class="option materials">
+      <h5<%= @logged_user.configures_materials? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'materials' %>">Materiały</a></h5>
+      <p>Pozwala dodawać nowe materiały dla studentów, a także usuwać i indeksować 
+      (zmieniać kategorie) aktualnie dostępnych na stronie.</p>
+    </div>
+    <div class="option news">
+      <h5<%= @logged_user.configures_news? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'news' %>">Aktualności</a></h5>
+      <p>Tutaj możesz dodawać nowe aktualności, które będą dostępne dla wszystkich, 
+      albo dla wybranych przez Ciebie roczników. </p>
+    </div>
+    <div class="option grades">
+      <h5<%= @logged_user.configures_grades? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'grades' %>">Oceny</a></h5>
+      <p>Administrowanie ocenami: dodawanie, edycja, usuwanie. </p>
+    </div>
   </div>
 </div>
 <div class="content settings">
   <h3 class="settings"><abbr>Settings</abbr> Administracja stroną</h3>
-  <div class="option polls">
-    <h5<%= @logged_user.configures_polls? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'polls' %>">Ankiety</a></h5>
-    <p>Administracja sond na stronie: dodawanie nowych, zamykanie aktualnych. 
-    Archiwum sond dostępne poza panelem. </p>
-  </div>
-  <div class="option groups">
-    <h5<%= @logged_user.configures_groups? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'groups' %>">Grupy studentów</a></h5>
-    <p>Administrowanie grupami studentów, które umożliwiają dodanie ocen dla 
-    zdefiniowanej grupy studentów (np. grup laboratoryjnych): dodawanie, usuwanie. 
-    Możliwośc korzystania z predefiniowanych grup dziekanatowych. </p>
-  </div>
-  <div class="option declarations">
-    <h5<%= @logged_user.configures_declarations? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'declarations' %>">Deklaracje</a></h5>
-    <p>Weryfikacja i pobieranie danych wprowadzonych przez studentów do systemu 
-    elektronicznych deklaracji. </p>
-  </div>
-  <div class="option calendar">
-    <h5<%= @logged_user.configures_calendar? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'calendar' %>">Kalendarz</a></h5>
-    <p>Modyfikacje kalendarza studenckiego - terminów</p>
+  <div class="overflow">
+    <div class="option polls">
+      <h5<%= @logged_user.configures_polls? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'polls' %>">Ankiety</a></h5>
+      <p>Administracja sond na stronie: dodawanie nowych, zamykanie aktualnych. 
+      Archiwum sond dostępne poza panelem. </p>
+    </div>
+    <div class="option groups">
+      <h5<%= @logged_user.configures_groups? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'groups' %>">Grupy studentów</a></h5>
+      <p>Administrowanie grupami studentów, które umożliwiają dodanie ocen dla 
+      zdefiniowanej grupy studentów (np. grup laboratoryjnych): dodawanie, usuwanie. 
+      Możliwośc korzystania z predefiniowanych grup dziekanatowych. </p>
+    </div>
+    <div class="option declarations">
+      <h5<%= @logged_user.configures_declarations? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'declarations' %>">Deklaracje</a></h5>
+      <p>Weryfikacja i pobieranie danych wprowadzonych przez studentów do systemu 
+      elektronicznych deklaracji. </p>
+    </div>
+    <div class="option calendar">
+      <h5<%= @logged_user.configures_calendar? ? ' class="allowed"' : '' %>><a href="<%= url_for :action => 'calendar' %>">Kalendarz</a></h5>
+      <p>Modyfikacje kalendarza studenckiego - terminów</p>
+    </div>
   </div>
 </div>

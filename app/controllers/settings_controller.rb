@@ -231,6 +231,62 @@ class SettingsController < ApplicationController
   end
   
   def groups
+    if (group_id = IdEncoder.decode(params[:id]))
+      @group = Group.find(group_id)
+      @group_members = User.find(:all, :include => [:groups_user, :users_student], :conditions => ['group_id = ?', group_id], :order => 'lastname')
+      render :template => 'settings/group'
+    else
+      @groups = Group.find(:all, :conditions => ['user_id = ?', @logged_user.id], :order => 'head')
+      @default_groups = Group.find(:all, :conditions => 'user_id IS NULL and id > 19', :order => 'head')
+    end
+    if request.post? and params[:id] != 'edit'
+      params[:group][:user_id] = @logged_user.id
+      unless edited_group_id = IdEncoder.decode(params[:group_params][:edited])
+        Group.new(params[:group]).save
+      else
+        edited_group = Group.find(edited_group_id)
+        params[:group][:user_id] = edited_group.user_id
+        Group.update(edited_group_id, params[:group]) if edited_group.user_id == @logged_user.id
+        redirect_to :controller => 'settings', :action => 'groups', :id => 'edit', :page => IdEncoder.encode(edited_group_id)
+      end
+    end
+    if params[:id] == 'edit' and (group_id = IdEncoder.decode(params[:page]))
+      @group = Group.find(group_id)
+      @new_members = @search_members = HashWithMethods.new(Hash[*(GroupsUser.find(:all, :conditions => ['group_id = ?', group_id]).collect { |i| [IdEncoder.encode(i.user_id), '1'] }).flatten])
+      if request.post? and params[:groups] and (group_with_members_id = IdEncoder.decode(params[:groups][:default]))
+        @groups = HashWithMethods.new(params[:groups])
+        @default_group_members = User.find(:all, :include => [:groups_user, :users_student], :conditions => ['group_id = ?', group_with_members_id], :order => 'lastname')
+      end
+      if request.post? and params[:groups_search]
+        params[:groups_search].delete_if { |key, value| value.empty? }
+        conditions = params[:groups_search].sort.collect {|i| "#{i[0]} LIKE '%#{i[1]}%'"}.join(' AND ') + ' AND users_students.user_id = users.id'
+        @search_group_members = User.find(:all, :include => :users_student, :conditions => conditions, :order => 'lastname')
+      end
+      if request.post? and (params[:new_members] or params[:search_members])
+        params_members = nil
+        params_members = params[:new_members] if params[:new_members]
+        params_members = params[:search_members] if params[:search_members]
+        params_members.delete_if { |key, value| value.to_i == 0 }
+        params_members.keys.each do |member_encoded_id|
+          member_id = IdEncoder.decode(member_encoded_id)
+          GroupsUser.new({:group_id => @group.id, :user_id => member_id}).save if @group.user_id == @logged_user.id and !GroupsUser.find(:first, :conditions => ['group_id = ? AND user_id = ?', @group.id, member_id])
+        end
+      end
+      if request.post? and params[:old_members]
+        params[:old_members].delete_if { |key, value| value.to_i == 0 }
+        params[:old_members].keys.each do |member_encoded_id|
+          member_id = IdEncoder.decode(member_encoded_id)
+          GroupsUser.delete(GroupsUser.find(:first, :conditions => ['group_id = ? AND user_id = ?', @group.id, member_id]).id) if @group.user_id == @logged_user.id
+        end
+      end
+      @group_members = User.find(:all, :include => [:groups_user, :users_student], :conditions => ['group_id = ?', @group.id], :order => 'lastname')
+      render :template => 'settings/group_edit'
+    end
+    if params[:id] == 'delete' and (group_id = IdEncoder.decode(params[:page]))
+      delete_group = Group.find(group_id)
+      Group.delete(group_id) if delete_group.user_id == @logged_user.id
+      redirect_to :controller => 'settings', :action => 'groups', :id => nil, :page => nil
+    end
   end
   
   def declarations

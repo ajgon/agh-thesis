@@ -1,0 +1,32 @@
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Grupa - <%= @group.head %></h3>
+<% unless @group_members.empty? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Login</th>
+        <th>Nazwisko</th>
+        <th>Imię</th>
+        <th>Nr indeksu</th>
+      </tr>
+    </thead>
+    <tbody>
+<%   @group_members.each do |group_member| %>
+      <tr>
+        <td><%= link_to group_member.login, :controller => 'profile', :action => group_member.login %></td>
+        <td><%= group_member.lastname %></td>
+        <td><%= group_member.firstname %></td>
+        <td><%= group_member.users_student.sindex %></td>
+      </tr>
+<%   end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="center">--- pusta grupa ---</div>
+<% end %>
+<% if @group.user_id == @logged_user.id %>
+  <div class="submit">
+    <a href="<%= url_for :controller => 'settings', :action => 'groups', :id => 'edit', :page => IdEncoder.encode(@group.id) %>">Edytuj grupę</a>
+  </div>
+<% end %>
+</div>

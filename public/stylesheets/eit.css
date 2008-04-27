@@ -395,6 +395,10 @@ div.right {
     text-align: right;
 }
 
+div.overflow {
+    overflow: hidden;
+}
+
 ul.owner-options {
     padding: 0px 10px 0px 6px;
     overflow: hidden;
@@ -414,7 +418,6 @@ ul.owner-options li {
 
 div.content td ul.owner-options li {
     margin: 0px;
-    float: none;
 }
 
 ul.owner-options li a {
@@ -505,8 +508,23 @@ div.submit {
     text-align: center;
 }
 
-div.submit input[type='submit'] {
+div.submit input[type='submit'],
+div.submit a {
     width: 75%;
+    background: #f6e7c8;
+    border: solid 1px #444444;
+    font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
+    font-size: 11px;
+    height: 16px;
+    line-height: 16px;
+    text-decoration: none;
+    display: block;
+    margin: 0px auto;
+    cursor: default;
+}
+
+div.submit a:hover {
+    color: #000000;
 }
 
 dl dt,
@@ -1008,10 +1026,6 @@ div.map ul li.www-login {
 /* settings */
 h3.settings abbr {
     background-image: url(/images/abbr/settings.gif);
-}
-
-div.settings {
-    overflow: hidden;
 }
 
 div.settings h5 {

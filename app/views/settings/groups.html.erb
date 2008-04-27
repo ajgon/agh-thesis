@@ -1,0 +1,68 @@
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Tworzenie nowej grupy</h3>
+  <p>W celu utworzenia grupy i przypisania do niej studentów podaj nazwę nowej 
+  grupy w poniższym formularzu. Po naciśnięciu przycisku "Utwórz grupę" pojawi 
+  się panel, za pomocą którego bedziesz mógł dodać studentów do nowo zdefiniowanej 
+  grupy. </p>
+  <% form_for :group do |f| %>
+    <dl class="data long">
+      <%= dt_dd 'Nazwa', f.text_field(:head) %>
+      <%= dt_dd 'Opis', f.text_area(:body) %>
+    </dl>
+    <div class="submit">
+      <%= submit_tag 'Utwórz grupę' %>
+    </div>
+  <% end %>
+</div>
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Twoje grupy</h3>
+  <p>Poniższa tabela przedstawia grupy studentów stworzone przez Ciebie. 
+  Możesz je dowolnie modyfikowac lub usuwać. </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Nazwa grupy</th>
+        <th>Liczebność</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+<% @groups.each do |group| %>
+      <tr>
+        <td><%= link_to group.head, :controller => 'settings', :action => 'groups', :id => IdEncoder.encode(group.id) %></td>
+        <td><%= group.members %></td>
+        <td>
+          <ul class="owner-options">
+            <li class="edit"><a title="Edytuj Grupę" href="<%= url_for :controller => 'settings', :action => 'groups', :id => 'edit', :page => IdEncoder.encode(group.id) %>">Edytuj</a></li>
+            <li class="delete"><a title="Usuń Grupę" href="<%= url_for :controller => 'settings', :action => 'groups', :id => 'delete', :page => IdEncoder.encode(group.id) %>">Usuń</a></li>
+          </ul>
+        </td>
+      </tr>
+<% end %>
+    </tbody>
+  </table>
+</div>
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Grupy predefiniowane</h3>
+  <p>Poniższa tabela przedstawia wykorzystywane predefiniowane grupy studentów. 
+  Nie można ich edytować, ale można obejrzeć, kto do nich należy, bądź wygenerować 
+  listę studentów z danej grupy.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Nazwa grupy</th>
+        <th>Lista</th>
+        <th>Liczebność</th>
+      </tr>
+    </thead>
+    <tbody>
+<%   @default_groups.each do |group| %>
+      <tr>
+        <td><%= group.head %></td>
+        <td><%= link_to '<strong>[L]</strong>', :controller => 'settings', :action => 'groups', :id => IdEncoder.encode(group.id) %></td>
+        <td><%= group.members %></td>
+      </tr>
+<%   end %>
+    </tbody>
+  </table>
+</div>
