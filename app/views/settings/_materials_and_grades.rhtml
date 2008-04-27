@@ -30,9 +30,9 @@
   
   <% form_for :uploaded_file, :url => {:controller => 'settings', :action => params[:action], :id => nil, :page => nil}, :html => {:multipart => true} do |f| %>
   <dl class="data long">
-    <%= dt_dd 'Plik', f.file_field(:file) unless @edited_material %>
-    <%= dt_dd 'Opis', f.text_field(:head) %>
-    <dt>Przedmiot</dt>
+    <%= dt_dd '<label for="uploaded_file_file">Plik</label>', f.file_field(:file) unless @edited_material %>
+    <%= dt_dd '<label for="uploaded_file_head">Opis</label>', f.text_field(:head) %>
+    <dt><label for="uploaded_file_subject_id">Przedmiot</label></dt>
     <dd>
       <select id="uploaded_file_subject_id" name="uploaded_file[subject_id]">
         <optgroup label="TWOJE PRZEDMIOTY">
@@ -44,21 +44,15 @@
       </select>
     </dd>
     <% if params[:action] == 'materials' %>
-    <%= dt_dd 'Prowadzący', f.select(:user_id, @lecturers, (@edited_material ? {} : {:selected => IdEncoder.encode(@logged_user.id)})) %>
+    <%= dt_dd '<label for="uploaded_file_user_id">Prowadzący</label>', f.select(:user_id, @lecturers, (@edited_material ? {} : {:selected => IdEncoder.encode(@logged_user.id)})) %>
     <% end %>
-    <%= dt_dd 'Komentarz', f.text_area(:body) %>
-    <% if @edited_material %>
-    <input type="hidden" name="groups_type[edited]" id="groups_type_edited" value="<%= IdEncoder.encode(@uploaded_file_id) %>" />
-    <% end %>
+    <%= dt_dd '<label for="uploaded_file_body">Komentarz</label>', f.text_area(:body) %>
   </dl>
-  <% if params[:action] == 'grades' %>
-    <input type="hidden" name="uploaded_file[user_id]" id="uploaded_file_user_id" value="<%= IdEncoder.encode(@logged_user.id) %>" />
-  <% end %>
   <div class="center"><p>Zdecyduj, kto będzie miał dostęp do tego materiału</p></div>
   <dl class="data long">
-    <%= dt_dd radio_button(:groups_type, :gtype, 0) + 'Bez ograniczeń', 'Każdy będzie mógł pobrać ten plik' %>
-    <%= dt_dd radio_button(:groups_type, :gtype, 1) + 'Zalogowani', 'Aby pobrać plik, trzeba być zalogowanym użytkownikiem serwisu.' %>
-    <dt><%= radio_button(:groups_type, :gtype, 2) %>Wybrana grupa</dt>
+    <%= dt_dd radio_button(:groups_type, :gtype, 0) + '<label for="groups_type_gtype_0">Bez ograniczeń</label>', 'Każdy będzie mógł pobrać ten plik' %>
+    <%= dt_dd radio_button(:groups_type, :gtype, 1) + '<label for="groups_type_gtype_1">Zalogowani</label>', 'Aby pobrać plik, trzeba być zalogowanym użytkownikiem serwisu.' %>
+    <dt><%= radio_button(:groups_type, :gtype, 2) %><label for="groups_type_gtype_2">Wybrana grupa</label></dt>
     <dd>
       <select id="groups_uploaded_file_2_group_id" name="groups_uploaded_file_2[group_id]">
         <optgroup label="TWOJE GRUPY">
@@ -69,16 +63,22 @@
         </optgroup>
       </select>
     </dd>
-      <dt><%= radio_button(:groups_type, :gtype, 3) %>Wybrany rok</dt>
+    <dt><%= radio_button(:groups_type, :gtype, 3) %><label for="groups_type_gtype_3">Wybrany rok</label></dt>
       <dd>
-        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(5)) %>&nbsp;I&nbsp;rok
-        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(6)) %>&nbsp;II&nbsp;rok
-        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(7)) %>&nbsp;III&nbsp;rok
-        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(8)) %>&nbsp;IV&nbsp;rok
-        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(9)) %>&nbsp;V&nbsp;rok
+        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(5)) %><label for="groups_uploaded_file_3_group_id_<%= IdEncoder.encode(5) %>">&nbsp;I&nbsp;rok</label>
+        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(6)) %><label for="groups_uploaded_file_3_group_id_<%= IdEncoder.encode(6) %>">&nbsp;II&nbsp;rok</label>
+        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(7)) %><label for="groups_uploaded_file_3_group_id_<%= IdEncoder.encode(7) %>">&nbsp;III&nbsp;rok</label>
+        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(8)) %><label for="groups_uploaded_file_3_group_id_<%= IdEncoder.encode(8) %>">&nbsp;IV&nbsp;rok</label>
+        <%= radio_button(:groups_uploaded_file_3, :group_id, IdEncoder.encode(9)) %><label for="groups_uploaded_file_3_group_id_<%= IdEncoder.encode(9) %>">&nbsp;V&nbsp;rok</label>
       </dd>
   </dl>
   <div class="submit">
+    <% if @edited_material %>
+    <input type="hidden" name="groups_type[edited]" id="groups_type_edited" value="<%= IdEncoder.encode(@uploaded_file_id) %>" />
+    <% end %>
+    <% if params[:action] == 'grades' %>
+      <input type="hidden" name="uploaded_file[user_id]" id="uploaded_file_user_id" value="<%= IdEncoder.encode(@logged_user.id) %>" />
+    <% end %>
     <%= submit_tag(@edited_material ? 'Zapisz zmiany' : 'Dodaj ' + (params[:action] == 'grades' ? 'ocenę' : 'materiał')) %>
   </div>
   <% end %>

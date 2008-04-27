@@ -70,6 +70,12 @@ textarea {
     height: 100%;
 }
 
+div.notice {
+    color: #cc0000;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 div.errorExplanation {
     border: #f1c36b solid 1px;
     background: #f7f2ea;

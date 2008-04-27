@@ -2,15 +2,15 @@
   <h3 class="files"><abbr>Files</abbr>Formularz Wyszukiwania</h3>
 <% form_for :criteria, :url => {:action => 'index'} do |f| %>
   <dl>
-    <%= dt_dd 'Przedmiot', f.select('subject', @form_subjects ) %>
-    <%= dt_dd 'Prowadzący', f.select('profile', @form_profiles) %>
-    <%= dt_dd 'Rok / sem.', f.select('semester', @form_semesters) %>
-    <%= dt_dd 'Słowa', f.text_field('query') %>
+    <%= dt_dd '<label for="criteria_subject">Przedmiot</label>', f.select('subject', @form_subjects ) %>
+    <%= dt_dd '<label for="criteria_profile">Prowadzący</label>', f.select('profile', @form_profiles) %>
+    <%= dt_dd '<label for="criteria_semester">Rok / sem.</label>', f.select('semester', @form_semesters) %>
+    <%= dt_dd '<label for="criteria_query">Słowa</label>', f.text_field('query') %>
     <dt>Sortowanie</dt>
     <dd>
-      <%= f.radio_button('sort', 'date') %> data
-      <%= f.radio_button('sort', 'downloads') %> liczba pobrań
-      <%= f.radio_button('sort', 'head') %> nazwa
+      <%= f.radio_button('sort', 'date') %> <label for="criteria_sort_date">data</label>
+      <%= f.radio_button('sort', 'downloads') %> <label for="criteria_sort_downloads">liczba pobrań</label>
+      <%= f.radio_button('sort', 'head') %> <label for="criteria_sort_head">nazwa</label>
     </dd>
   </dl>
   <div class="submit">

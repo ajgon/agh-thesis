@@ -32,6 +32,9 @@
         Witamy! Dziś jest <%= Time.now.strftime('%A, %d %B %Y').gsub(/([A-Za-z]+)/) { en_to_pl($1) }%> rok.
         Imieniny: <%= NameDay.get(Time.now.day, Time.now.month).join(', ') %>
       </p>
+<% if flash[:notice] -%>
+      <div class="errorExplanation notice"><%= flash[:notice] %></div>
+<% end -%>
 <%= yield :layout %>
     </div>
     <div id="footer">

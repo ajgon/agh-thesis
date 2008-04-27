@@ -45,7 +45,7 @@ class StudentsController < ApplicationController
           @results =  User.find(:all, :joins => :users_student, :conditions => conditions, :order => params[:criteria][:sort])
           @fields = (params[:results].delete_if {|key, value| value.to_i == 0}).keys
           @fields = ['login', 'firstname', 'lastname'] if @fields.empty?
-          @fields = ['login', 'firstname', 'lastname', 'email', 'sgroup', 'gadu_gadu', 'cell', 'icq', 'www_page', 'www_description'] & @fields
+          @fields = ['login', 'firstname', 'lastname', 'email', 'sgroup', 'gadu_gadu', 'cell', 'icq', 'www_page', 'www_description', 'sindex'] & @fields
           @fields_hash = {
             'login' => 'Login',
             'firstname' => 'Imię',
@@ -56,7 +56,8 @@ class StudentsController < ApplicationController
             'cell' => 'Nr Telefonu',
             'icq' => 'ICQ',
             'www_page' => 'Adres WWW',
-            'www_description' => 'Opis WWW'
+            'www_description' => 'Opis WWW',
+            'sindex' => 'Numer indeksu'
           }
         else
           redirect_to :controller => 'students', :action => 'index'

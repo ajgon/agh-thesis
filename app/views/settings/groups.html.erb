@@ -6,8 +6,8 @@
   grupy. </p>
   <% form_for :group do |f| %>
     <dl class="data long">
-      <%= dt_dd 'Nazwa', f.text_field(:head) %>
-      <%= dt_dd 'Opis', f.text_area(:body) %>
+      <%= dt_dd '<label for="group_head">Nazwa</label>', f.text_field(:head) %>
+      <%= dt_dd '<label for="group_body">Opis</label>', f.text_area(:body) %>
     </dl>
     <div class="submit">
       <%= submit_tag 'Utwórz grupę' %>

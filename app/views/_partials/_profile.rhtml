@@ -10,7 +10,7 @@
     <%= dt_dd 'Telefon wewn.', @profile.users_lecturer.phone %>
     <%= dt_dd 'Login na WWW', @profile.login%>
     <%= dt_dd 'Ost. logowanie', @profile.updated_at.to_s(:updated_at) %>
-    <%= dt_dd 'Adres e-mail', encode_string(@profile.email, mail_to(@profile.email, nil, :encode => 'hex')) %>
+    <%= dt_dd 'Adres e-mail', (@profile.email.empty? ? '' : encode_string(@profile.email, mail_to(@profile.email, nil, :encode => 'hex'))) %>
     <%= dt_dd 'Strona WWW', (@profile.www_page.nil? ? '' : link_to(@profile.www_page, @profile.www_page)) %>
 <%   else -%>
     <%= dt_dd 'Rok studiów', @profile.users_student.year %>
@@ -19,7 +19,7 @@
     <%= dt_dd 'Moduł', @profile.users_student.speciality.head %>
 <%     end %>
     <%= dt_dd 'Login na WWW', @profile.login %>
-    <%= dt_dd 'Adres e-mail', encode_string(@profile.email, mail_to(@profile.email, nil, :encode => 'hex')) %>
+    <%= dt_dd 'Adres e-mail', (@profile.email.empty? ? '' : encode_string(@profile.email, mail_to(@profile.email, nil, :encode => 'hex'))) %>
     <%= dt_dd 'Strona WWW', (@profile.www_page.nil? ? '' : link_to(@profile.www_page, @profile.www_page)) %>
     <%= dt_dd 'Numer GSM', @profile.users_student.cell %>
     <%= dt_dd 'Numer GG', @profile.users_student.gadu_gadu %>

@@ -65,3 +65,4 @@ Time::DATE_FORMATS[:time] = '%H:%M'
 Time::DATE_FORMATS[:date] = '%Y-%m-%d'
 Time::DATE_FORMATS[:exam] = '%d %m %H:%M'
 HOMEPAGES_DIRECTORY='/home'
+PREDEFINED_GROUPS_COUNT = 19

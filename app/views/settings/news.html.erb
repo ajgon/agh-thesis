@@ -18,12 +18,12 @@
 <%   if @edited_news %>
       <%= dt_dd 'Liczba wyświetleń', @news.times_readed %>
       <%= dt_dd 'Data dodania', @news.date.to_s(:created_at).gsub(/^([0-9]+. )([^ ]+)/) { $1 + en_to_pl($2).downcase } %>
-      <input type="hidden" name="news_params[edited]" id="news_params_edited" value="<%= @news_encoded_id %>" />
     </dl>
 <%   else %>
     </dl>
 <%   end %>
     <div class="submit">
+      <input type="hidden" name="news_params[edited]" id="news_params_edited" value="<%= @news_encoded_id %>" />
       <%= submit_tag 'Zapisz' %>
     </div>
 <% end %>

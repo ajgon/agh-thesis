@@ -42,6 +42,7 @@ class SettingsController < ApplicationController
           GroupsUploadedFile.new({:group_id => IdEncoder.decode(params[:groups_uploaded_file_3][:group_id]), :uploaded_file_id => @uploaded_file.id}).save!
         end
         @uploaded_file = nil
+        flash[:notice] = 'Plik został umieszczony na serwerze'
       end
       unless(params[:groups_type][:edited].nil?)
         groups_type = params[:groups_type][:gtype].to_i
@@ -75,6 +76,7 @@ class SettingsController < ApplicationController
           end
         end
         UploadedFile.update(edited_file_id, @uploaded_file.attributes)
+        flash[:notice] = 'Dane dotyczące pliku zostały wyedytowane'
         redirect_to :controller => 'settings', :action => params[:action], :id => nil, :page => nil
       end
     end
@@ -85,6 +87,7 @@ class SettingsController < ApplicationController
         File.delete(file_path) if File.exists?(file_path)
         GroupsUploadedFile.delete( GroupsUploadedFile.find(:all, :conditions => ['uploaded_file_id = ?', file.id]).collect { |i| i.id } )
         UploadedFile.delete(file.id)
+        flash[:notice] = 'Plik został usunięty z serwera'
       end
       redirect_to :controller => 'settings', :action => params[:action], :id => nil, :page => nil
     end
@@ -100,7 +103,7 @@ class SettingsController < ApplicationController
         @groups_type = HashWithMethods.new({:gtype => '0'})
       else
         @groups_type = HashWithMethods.new({:gtype => 1}) if group_priv.group_id == 1
-        if group_priv.group_id > 19
+        if group_priv.group_id > PREDEFINED_GROUPS_COUNT
           @groups_type = HashWithMethods.new({:gtype => '2'}) 
           @groups_uploaded_file_2 = HashWithMethods.new(:group_id => IdEncoder.encode(group_priv.group_id))
         end
@@ -113,8 +116,8 @@ class SettingsController < ApplicationController
     @your_subjects = UploadedFile.find(:all, :include => [:subject, :user], :group => 'subject_id', :conditions => ['user_id = ?', @logged_user.id], :order => 'subjects.head').collect {|i| [i.subject.head, IdEncoder.encode(i.subject.id)] }
     @subjects = Subject.find(:all, :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
     @lecturers = UsersLecturer.find(:all, :include => [:user, :cathedral], :order => 'users.lastname, users.firstname').collect {|i| [i.user.lastname + ' ' + i.user.firstname, IdEncoder.encode(i.user_id)]}
-    @your_groups = Group.find(:all, :conditions => ['id > 19 AND user_id = ?', @logged_user.id], :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
-    @other_groups = Group.find(:all, :conditions => 'id > 19 AND user_id IS NULL', :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
+    @your_groups = Group.find(:all, :conditions => ['id > ? AND user_id = ?', PREDEFINED_GROUPS_COUNT, @logged_user.id], :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
+    @other_groups = Group.find(:all, :conditions => ['id > ? AND user_id IS NULL', PREDEFINED_GROUPS_COUNT], :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
     if params[:action] == 'materials'
       @my_materials = UploadedFile.find(:all, :conditions => ['uploader_id = ? and kind = ?', @logged_user.id, 'material'], :order => 'id DESC')
     else
@@ -151,9 +154,12 @@ class SettingsController < ApplicationController
       edited_news_id = IdEncoder.decode(params[:news_params][:edited])
       unless edited_news_id
         @news = News.new(news)
-        @news.save
+        flash[:notice] = 'Aktualność została dodana' if @news.save
       else
-        News.update(edited_news_id, news) if News.find(edited_news_id).user_id == @logged_user.id
+        if News.find(edited_news_id).user_id == @logged_user.id
+          News.update(edited_news_id, news)
+          flash[:notice] = 'Aktualność została zmieniona'
+        end
       end
     end
     if params[:id] == 'delete'
@@ -161,6 +167,7 @@ class SettingsController < ApplicationController
         deleted_news = News.find(IdEncoder.decode(params[:page]))
         if @logged_user.id == deleted_news.user_id
           News.delete(deleted_news.id)
+          flash[:notice] = 'Aktualność została usunięta'
           redirect_to :controller => 'settings', :action => 'news', :id => '1', :page => nil
         else
           params.delete :id
@@ -209,6 +216,7 @@ class SettingsController < ApplicationController
           PollsAnswer.new({:polls_question_id => polls_question.id, :answer => polls_answer}).save
           User.update_all('voted = 0')
         end
+        flash[:notice] = 'Ankieta została utworzona'
       end
       if polls_question.anonymous
         PollsQuestion.update_all('end_time = NOW()', '(end_time IS NULL OR end_time > NOW()) AND anonymous = true AND id <> ' + polls_question.id.to_s )
@@ -220,35 +228,38 @@ class SettingsController < ApplicationController
       poll = PollsQuestion.find(poll_id)
       poll.end_time = Time.now
       poll.save
+      flash[:notice] = 'Ankieta została zamknięta'
       redirect_to :controller => 'settings', :action => 'polls', :id => nil, :page => nil
     end
     if params[:id] == 'delete' and (poll_id = IdEncoder.decode(params[:page]))
       PollsAnswer.delete( PollsAnswer.find(:all, :conditions => ['polls_question_id = ?', poll_id]).collect { |i| i.id } )
       PollsQuestion.delete(poll_id)
+      flash[:notice] = 'Ankieta została usunięta'
       redirect_to :controller => 'settings', :action => 'polls', :id => nil, :page => nil
     end
     @polls = PollsQuestion.find(:all, :include => :user, :order => 'polls_questions.id DESC')
   end
   
   def groups
+    if request.post? and params[:id] != 'edit'
+      params[:group][:user_id] = @logged_user.id
+      unless params[:group_params] and edited_group_id = IdEncoder.decode(params[:group_params][:edited])
+        flash[:notice] = 'Grupa została utworzona' if Group.new(params[:group]).save
+      else
+        edited_group = Group.find(edited_group_id)
+        params[:group][:user_id] = edited_group.user_id
+        Group.update(edited_group_id, params[:group]) if edited_group.user_id == @logged_user.id
+        flash[:notice] = 'Dane dotyczące grupy zostały zmienione'
+        redirect_to :controller => 'settings', :action => 'groups', :id => 'edit', :page => IdEncoder.encode(edited_group_id)
+      end
+    end
     if (group_id = IdEncoder.decode(params[:id]))
       @group = Group.find(group_id)
       @group_members = User.find(:all, :include => [:groups_user, :users_student], :conditions => ['group_id = ?', group_id], :order => 'lastname')
       render :template => 'settings/group'
     else
       @groups = Group.find(:all, :conditions => ['user_id = ?', @logged_user.id], :order => 'head')
-      @default_groups = Group.find(:all, :conditions => 'user_id IS NULL and id > 19', :order => 'head')
-    end
-    if request.post? and params[:id] != 'edit'
-      params[:group][:user_id] = @logged_user.id
-      unless edited_group_id = IdEncoder.decode(params[:group_params][:edited])
-        Group.new(params[:group]).save
-      else
-        edited_group = Group.find(edited_group_id)
-        params[:group][:user_id] = edited_group.user_id
-        Group.update(edited_group_id, params[:group]) if edited_group.user_id == @logged_user.id
-        redirect_to :controller => 'settings', :action => 'groups', :id => 'edit', :page => IdEncoder.encode(edited_group_id)
-      end
+      @default_groups = Group.find(:all, :conditions => ['user_id IS NULL and id > ?', PREDEFINED_GROUPS_COUNT], :order => 'head')
     end
     if params[:id] == 'edit' and (group_id = IdEncoder.decode(params[:page]))
       @group = Group.find(group_id)
@@ -271,6 +282,7 @@ class SettingsController < ApplicationController
           member_id = IdEncoder.decode(member_encoded_id)
           GroupsUser.new({:group_id => @group.id, :user_id => member_id}).save if @group.user_id == @logged_user.id and !GroupsUser.find(:first, :conditions => ['group_id = ? AND user_id = ?', @group.id, member_id])
         end
+        flash[:notice] = 'Użytkownicy zostali dopisani do grupy'
       end
       if request.post? and params[:old_members]
         params[:old_members].delete_if { |key, value| value.to_i == 0 }
@@ -278,6 +290,7 @@ class SettingsController < ApplicationController
           member_id = IdEncoder.decode(member_encoded_id)
           GroupsUser.delete(GroupsUser.find(:first, :conditions => ['group_id = ? AND user_id = ?', @group.id, member_id]).id) if @group.user_id == @logged_user.id
         end
+        flash[:notice] = 'Użytkownicy zostali usunięci z grupy'
       end
       @group_members = User.find(:all, :include => [:groups_user, :users_student], :conditions => ['group_id = ?', @group.id], :order => 'lastname')
       render :template => 'settings/group_edit'
@@ -285,6 +298,7 @@ class SettingsController < ApplicationController
     if params[:id] == 'delete' and (group_id = IdEncoder.decode(params[:page]))
       delete_group = Group.find(group_id)
       Group.delete(group_id) if delete_group.user_id == @logged_user.id
+      flash[:notice] = 'Grupa została usunięta'
       redirect_to :controller => 'settings', :action => 'groups', :id => nil, :page => nil
     end
   end
@@ -305,13 +319,15 @@ class SettingsController < ApplicationController
       end
       params[:event][:for_year] = (params[:event_year][:year_1].to_i) + (params[:event_year][:year_2].to_i << 1) + (params[:event_year][:year_3].to_i << 2) + (params[:event_year][:year_4].to_i << 3) + (params[:event_year][:year_5].to_i << 4)
       unless(params[:event_params] and (edited_event_id = IdEncoder.decode(params[:event_params][:edited])))
-        Event.new(params[:event]).save
+        flash[:notice] = 'Termin został dopisany' if Event.new(params[:event]).save
       else
         Event.update(edited_event_id, params[:event])
+        flash[:notice] = 'Dane terminu zostały zmienione'
       end
     end
     if params[:id] == 'delete' and (event_id = IdEncoder.decode(params[:page]))
       Event.delete(event_id)
+      flash[:notice] = 'Termin został usunięty'
     end
     if params[:id] == 'edit' and (event_id = IdEncoder.decode(params[:page]))
       @edited_calendar = true
@@ -356,6 +372,7 @@ class SettingsController < ApplicationController
         users_lecturer = UsersLecturer.find(:first, :conditions => ['user_id = ?', session[:user_id]])
         @users_lecturer = UsersLecturer.update(users_lecturer.id, params[:users_lecturer])
       end
+      flash[:notice] = 'Dane zostały zmienione'
     end
   end
 end

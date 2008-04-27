@@ -28,89 +28,89 @@
       </ul>
 <% end -%>
   </li>
-  <li><a class="menu-item" href="<%= url_for :controller => 'news' %>">Aktualności</a></li>
+  <li><a class="menu-item" href="<%= url_for :controller => 'news', :action => nil %>">Aktualności</a></li>
   <li class="submenu"<%= show_list_item_if_controllers ['index', 'news'] %>>
     <ul>
-      <li><a href="<%= url_for :controller => 'news' %>">Wszystkie</a></li>
-      <li><a href="<%= url_for :controller => 'news', :action => 'search' %>">Wyszukiwarka</a></li>
-      <li><a href="<%= url_for :controller => 'news', :action => 'exams' %>">Egzaminy</a></li>
+      <li><a href="<%= url_for :controller => 'news', :action => nil %>">Wszystkie</a></li>
+      <li><a href="<%= url_for :controller => 'news', :action => 'search', :id => nil %>">Wyszukiwarka</a></li>
+      <li><a href="<%= url_for :controller => 'news', :action => 'exams', :id => nil %>">Egzaminy</a></li>
     </ul>
   </li>
-  <li><a class="menu-item" href="<%= url_for :controller => 'deanery' %>">Dziekanat</a></li>
+  <li><a class="menu-item" href="<%= url_for :controller => 'deanery', :action => nil %>">Dziekanat</a></li>
   <li class="submenu"<%= show_list_item_if_controllers 'deanery' %>>
     <ul>
-      <li><a href="<%= url_for :controller => 'deanery' %>">Informacje</a></li>
-      <li><a href="<%= url_for :controller => 'deanery', :action => 'skeds' %>">Plany Zajęć</a></li>
-      <li><a href="<%= url_for :controller => 'deanery', :action => 'experience' %>">Praktyki</a></li>
-      <li><a href="<%= url_for :controller => 'deanery', :action => 'subjects' %>">Przedmioty</a></li>
-      <li><a href="<%= url_for :controller => 'deanery', :action => 'eligible' %>">Przedmioty Obieralne</a></li>
-      <li><a href="<%= url_for :controller => 'deanery', :action => 'english' %>">English</a></li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => nil %>">Informacje</a></li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'skeds', :id => nil %>">Plany Zajęć</a></li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'experience', :id => nil %>">Praktyki</a></li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'subjects', :id => nil %>">Przedmioty</a></li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'eligible', :id => nil %>">Przedmioty Obieralne</a></li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'english', :id => nil %>">English</a></li>
       <li><a href="<%= create_search_link_for({'subject' => 126})%>">Pliki</a></li>
-      <li><a href="<%= url_for :controller => 'deanery', :action => 'iep' %>">Międzynarodowy Program Edukacyjny</a></li>
-      <li><a href="<%= url_for :controller => 'deanery', :action => 'declarations' %>">Deklaracje</a></li>
-      <li><a href="<%= url_for :controller => 'deanery', :action => 'calendar' %>">Kalendarz</a></li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'iep', :id => nil %>">Międzynarodowy Program Edukacyjny</a></li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'declarations', :id => nil %>">Deklaracje</a></li>
+      <li><a href="<%= url_for :controller => 'deanery', :action => 'calendar', :id => nil %>">Kalendarz</a></li>
     </ul>
   </li>
-  <li><a class="menu-item" href="<%= url_for :controller => 'materials' %>">Materiały</a></li>
+  <li><a class="menu-item" href="<%= url_for :controller => 'materials', :action => nil %>">Materiały</a></li>
   <li class="submenu"<%= show_list_item_if_controllers 'materials' %>>
     <ul>
-      <li><a href="<%= url_for :controller => 'materials' %>">Wyszukiwarka</a></li>
+      <li><a href="<%= url_for :controller => 'materials', :action => nil %>">Wyszukiwarka</a></li>
       <li><a href="<%= create_search_link_for({'semester' => 101}) %>">I&nbsp;rok</a></li>
       <li><a href="<%= create_search_link_for({'semester' => 102}) %>">II&nbsp;rok</a></li>
       <li><a href="<%= create_search_link_for({'semester' => 103}) %>">III&nbsp;rok</a></li>
       <li><a href="<%= create_search_link_for({'semester' => 104}) %>">IV&nbsp;rok</a></li>
       <li><a href="<%= create_search_link_for({'semester' => 105}) %>">V&nbsp;rok</a></li>
-      <li><a href="<%= url_for :controller => 'materials', :action => 'grades' %>">Oceny</a></li>
+      <li><a href="<%= url_for :controller => 'materials', :action => 'grades', :id => nil %>">Oceny</a></li>
     </ul>
   </li>
-  <li><a class="menu-item" href="<%= url_for :controller => 'lecturers' %>">Prowadzący</a></li>
+  <li><a class="menu-item" href="<%= url_for :controller => 'lecturers', :action => nil %>">Prowadzący</a></li>
   <li class="submenu"<%= show_list_item_if_controllers 'lecturers' %>>
     <ul>
-      <li><a href="<%= url_for :controller => 'lecturers' %>">Wszyscy</a></li>
-      <li><a href="<%= url_for :controller => 'lecturers', :action => 'electronics' %>">Elektronika</a></li>
-      <li><a href="<%= url_for :controller => 'lecturers', :action => 'telecommunication' %>">Telekomunikacja</a></li>
+      <li><a href="<%= url_for :controller => 'lecturers', :action => nil %>">Wszyscy</a></li>
+      <li><a href="<%= url_for :controller => 'lecturers', :action => 'electronics', :id => nil %>">Elektronika</a></li>
+      <li><a href="<%= url_for :controller => 'lecturers', :action => 'telecommunication', :id => nil %>">Telekomunikacja</a></li>
     </ul>
   </li>
-  <li><a href="<%= url_for :controller => 'students'%>" class="menu-item">Studenci</a></li>
+  <li><a href="<%= url_for :controller => 'students', :action => nil %>" class="menu-item">Studenci</a></li>
   <li class="submenu"<%= show_list_item_if_controllers 'students' %>>
     <ul>
-      <li><a href="<%= url_for :controller => 'students'%>">Wyszukiwarka</a></li>
-      <li><a href="<%= url_for :controller => 'students', :action => 'polls' %>">Ankiety</a></li>
-      <li><a href="<%= url_for :controller => 'students', :action => 'own_webpage' %>">Własna Strona</a></li>
-      <li><a href="<%= url_for :controller => 'students', :action => 'webpages' %>">Strony WWW</a></li>
+      <li><a href="<%= url_for :controller => 'students', :action => nil %>">Wyszukiwarka</a></li>
+      <li><a href="<%= url_for :controller => 'students', :action => 'polls', :id => nil %>">Ankiety</a></li>
+      <li><a href="<%= url_for :controller => 'students', :action => 'own_webpage', :id => nil %>">Własna Strona</a></li>
+      <li><a href="<%= url_for :controller => 'students', :action => 'webpages', :id => nil %>">Strony WWW</a></li>
     </ul>
   </li>
-  <li><a class="menu-item" href="<%= url_for :controller => 'postgraduate' %>">Podyplomowe</a></li>
+  <li><a class="menu-item" href="<%= url_for :controller => 'postgraduate', :action => nil %>">Podyplomowe</a></li>
   <li class="submenu"<%= show_list_item_if_controllers 'postgraduate' %>>
     <ul>
-      <li><a href="<%= url_for :controller => 'postgraduate' %>">Ulotka</a></li>
-      <li><a href="<%= url_for :controller => 'postgraduate', :action => 'regulations' %>">Regulamin</a></li>
-      <li><a href="<%= url_for :controller => 'postgraduate', :action => 'schedule' %>">Harmonogram</a></li>
-      <li><a href="<%= url_for :controller => 'postgraduate', :action => 'program' %>">Program</a></li>
-      <li><a href="<%= url_for :controller => 'postgraduate', :action => 'sked' %>">Plan</a></li>
+      <li><a href="<%= url_for :controller => 'postgraduate', :action => nil %>">Ulotka</a></li>
+      <li><a href="<%= url_for :controller => 'postgraduate', :action => 'regulations', :id => nil %>">Regulamin</a></li>
+      <li><a href="<%= url_for :controller => 'postgraduate', :action => 'schedule', :id => nil %>">Harmonogram</a></li>
+      <li><a href="<%= url_for :controller => 'postgraduate', :action => 'program', :id => nil %>">Program</a></li>
+      <li><a href="<%= url_for :controller => 'postgraduate', :action => 'sked', :id => nil %>">Plan</a></li>
     </ul>
   </li>
-  <li><a class="menu-item" href="<%= url_for :controller => 'about' %>">O Stronie</a></li>
+  <li><a class="menu-item" href="<%= url_for :controller => 'about', :action => nil %>">O Stronie</a></li>
   <li class="submenu"<%= show_list_item_if_controllers 'about' %>>
     <ul>
-      <li><a href="<%= url_for :controller => 'about' %>">Informacje</a></li>
-      <li><a href="<%= url_for :controller => 'about', :action => 'eiteam' %>">EiTeam</a></li>
-      <li><a href="<%= url_for :controller => 'about', :action => 'map' %>">Mapa Serwisu</a></li>
-      <li><a href="<%= url_for :controller => 'about', :action => 'faq' %>">FAQ</a></li>
+      <li><a href="<%= url_for :controller => 'about', :action => nil %>">Informacje</a></li>
+      <li><a href="<%= url_for :controller => 'about', :action => 'eiteam', :id => nil %>">EiTeam</a></li>
+      <li><a href="<%= url_for :controller => 'about', :action => 'map', :id => nil %>">Mapa Serwisu</a></li>
+      <li><a href="<%= url_for :controller => 'about', :action => 'faq', :id => nil %>">FAQ</a></li>
     </ul>
   </li>
-  <li><a class="menuitem" href="<%= url_for :controller => 'settings', :action => 'profile' %>">Twoje Konto</a></li>
-  <li><a class="menu-item" href="<%= url_for :controller => 'settings' %>">Panel Sterowania</a></li>
+  <li><a class="menuitem" href="<%= url_for :controller => 'settings', :action => 'profile', :id => nil %>">Twoje Konto</a></li>
+  <li><a class="menu-item" href="<%= url_for :controller => 'settings', :action => nil %>">Panel Sterowania</a></li>
   <li class="submenu"<%= show_list_item_if_controllers 'settings' %>>
     <ul>
-      <li><a href="<%= url_for :controller => 'settings' %>">Uprawnienia</a></li>
+      <li><a href="<%= url_for :controller => 'settings', :action => nil %>">Uprawnienia</a></li>
       <li><a href="<%= url_for :controller => 'settings', :action => 'news', :id => nil %>">Aktualności</a></li>
       <li><a href="<%= url_for :controller => 'settings', :action => 'materials', :id => nil %>">Materiały</a></li>
-      <li><a href="<%= url_for :controller => 'settings', :action => 'grades' %>">Oceny</a></li>
-      <li><a href="<%= url_for :controller => 'settings', :action => 'groups' %>">Grupy Studentów</a></li>
-      <li><a href="<%= url_for :controller => 'settings', :action => 'polls' %>">Ankiety</a></li>
-      <li><a href="<%= url_for :controller => 'settings', :action => 'declarations' %>">Deklaracje</a></li>
-      <li><a href="<%= url_for :controller => 'settings', :action => 'calendar' %>">Kalendarz</a></li>
+      <li><a href="<%= url_for :controller => 'settings', :action => 'grades', :id => nil %>">Oceny</a></li>
+      <li><a href="<%= url_for :controller => 'settings', :action => 'groups', :id => nil %>">Grupy Studentów</a></li>
+      <li><a href="<%= url_for :controller => 'settings', :action => 'polls', :id => nil %>">Ankiety</a></li>
+      <li><a href="<%= url_for :controller => 'settings', :action => 'declarations', :id => nil %>">Deklaracje</a></li>
+      <li><a href="<%= url_for :controller => 'settings', :action => 'calendar', :id => nil %>">Kalendarz</a></li>
     </ul>
   </li>
 </ul>

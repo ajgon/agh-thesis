@@ -6,39 +6,39 @@
   podczas wyszukiwania:</p>
   <% form_for :criteria, :url => {:action => 'results'} do |f| %>
   <dl class="data margin-bottom">
-    <%= dt_dd 'Imię', f.text_field('firstname') %>
-    <%= dt_dd 'Nazwisko', f.text_field('lastname') %>
-    <%= dt_dd 'Login', f.text_field('login') %>
-    <%= dt_dd 'Rok', f.text_field('year') %>
-    <%= dt_dd 'Grupa', f.text_field('sgroup') %>
-    <%= dt_dd 'Moduł', f.select('speciality_id', @specialities) %>
+    <%= dt_dd '<label for="criteria_firstname">Imię</label>', f.text_field('firstname') %>
+    <%= dt_dd '<label for="criteria_lastname">Nazwisko</label>', f.text_field('lastname') %>
+    <%= dt_dd '<label for="criteria_login">Login</label>', f.text_field('login') %>
+    <%= dt_dd '<label for="criteria_year">Rok</label>', f.text_field('year') %>
+    <%= dt_dd '<label for="criteria_sgroup">Grupa</label>', f.text_field('sgroup') %>
+    <%= dt_dd '<label for="criteria_speciality_id">Moduł</label>', f.select('speciality_id', @specialities) %>
   </dl>
   <p>Następnym krokiem jest zdecydowanie, które kolumny mają wchodzić w skład 
   listy będącej wynikiem Twojego zapytania. Aby dokonać wyboru poszczególnych pól, 
   zaznacz je w poniższym formularzu:</p>
   <dl class="checkboxes margin-top">
-    <%= dt_dd check_box(:results, :firstname), 'Imię' %>
-    <%= dt_dd check_box(:results, :lastname), 'Nazwisko' %>
+    <%= dt_dd check_box(:results, :firstname), '<label for="results_firstname">Imię</label>' %>
+    <%= dt_dd check_box(:results, :lastname), '<label for="results_lastname">Nazwisko</label>' %>
   </dl>
   <dl class="checkboxes">
-    <%= dt_dd check_box(:results, :sgroup), 'Grupa dziekanatowa (KOD)' %>
-    <%= dt_dd check_box(:results, :login), 'Login na WWW EiT' %>
+    <%= dt_dd check_box(:results, :sgroup), '<label for="results_sgroup">Grupa dziekanatowa (KOD)</label>' %>
+    <%= dt_dd check_box(:results, :login), '<label for="results_login">Login na WWW EiT</label>' %>
   </dl>
   <dl class="checkboxes">
-    <%= dt_dd check_box(:results, :email), 'Adres E-mail' %>
-    <%= dt_dd check_box(:results, :cell), 'Nr telefonu' %>
+    <%= dt_dd check_box(:results, :email), '<label for="results_email">Adres E-mail</label>' %>
+    <%= dt_dd check_box(:results, :cell), '<label for="results_cell">Nr telefonu</label>' %>
   </dl>
   <dl class="checkboxes">
-    <%= dt_dd check_box(:results, :www_page), 'Adres strony WWW' %>
-    <%= dt_dd check_box(:results, :www_description), 'Opis strony WWW' %>
+    <%= dt_dd check_box(:results, :www_page), '<label for="results_www_page">Adres strony WWW</label>' %>
+    <%= dt_dd check_box(:results, :www_description), '<label for="results_www_description">Opis strony WWW</label>' %>
   </dl>
   <dl class="checkboxes<% unless @logged_user.is_lecturer? %> margin-bottom<% end %>">
-    <%= dt_dd check_box(:results, :gadu_gadu), 'Numer Gadu Gadu' %>
-    <%= dt_dd check_box(:results, :icq), 'Numer ICQ' %>
+    <%= dt_dd check_box(:results, :gadu_gadu), '<label for="results_gadu_gadu">Numer Gadu Gadu</label>' %>
+    <%= dt_dd check_box(:results, :icq), '<label for="results_icq">Numer ICQ</label>' %>
   </dl>
   <% if @logged_user.is_lecturer? %>
   <dl class="checkboxes checkboxes-long margin-bottom">
-    <%= dt_dd check_box(:results, :sindex), 'Numer indeksu (dostępny tylko dla zalogowanych Prowadzących)' %>
+    <%= dt_dd check_box(:results, :sindex), '<label for="results_sindex">Numer indeksu (dostępny tylko dla zalogowanych Prowadzących)</label>' %>
   </dl>
   <% end %>
   <div class="center">

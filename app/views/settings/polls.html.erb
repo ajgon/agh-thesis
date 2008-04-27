@@ -37,20 +37,20 @@
   <h3 class="settings"><abbr>Settings</abbr> Tworzenie ankiety</h3>
   <% form_for :polls_question do |f| %>
   <dl class="data long">
-    <%= dt_dd 'Pytanie', f.text_field(:question, :maxlength => 200) %>
-    <%= dt_dd 'Odpowiedź 1', text_field(:polls_answer, :answer_1, :maxlength => 200) %>
-    <%= dt_dd 'Odpowiedź 2', text_field(:polls_answer, :answer_2, :maxlength => 200) %>
-    <%= dt_dd 'Odpowiedź 3', text_field(:polls_answer, :answer_3, :maxlength => 200) %>
-    <%= dt_dd 'Odpowiedź 4', text_field(:polls_answer, :answer_4, :maxlength => 200) %>
-    <%= dt_dd 'Odpowiedź 5', text_field(:polls_answer, :answer_5, :maxlength => 200) %>
-    <%= dt_dd 'Odpowiedź 6', text_field(:polls_answer, :answer_6, :maxlength => 200) %>
+    <%= dt_dd '<label for="polls_question_question">Pytanie</label>', f.text_field(:question, :maxlength => 200) %>
+    <%= dt_dd '<label for="polls_answer_answer_1">Odpowiedź 1</label>', text_field(:polls_answer, :answer_1, :maxlength => 200) %>
+    <%= dt_dd '<label for="polls_answer_answer_2">Odpowiedź 2</label>', text_field(:polls_answer, :answer_2, :maxlength => 200) %>
+    <%= dt_dd '<label for="polls_answer_answer_3">Odpowiedź 3</label>', text_field(:polls_answer, :answer_3, :maxlength => 200) %>
+    <%= dt_dd '<label for="polls_answer_answer_4">Odpowiedź 4</label>', text_field(:polls_answer, :answer_4, :maxlength => 200) %>
+    <%= dt_dd '<label for="polls_answer_answer_5">Odpowiedź 5</label>', text_field(:polls_answer, :answer_5, :maxlength => 200) %>
+    <%= dt_dd '<label for="polls_answer_answer_6">Odpowiedź 6</label>', text_field(:polls_answer, :answer_6, :maxlength => 200) %>
     <dt>Data zamknięcia</dt>
     <dd class="date">
-      yyyy <%= text_field(:polls_closedate, :year) %>
-      - mm <%= text_field(:polls_closedate, :month) %>
-      - dd <%= text_field(:polls_closedate, :day) %>
+      <label for="polls_closedate_year">yyyy</label> <%= text_field(:polls_closedate, :year) %>
+      - <label for="polls_closedate_month">mm</label> <%= text_field(:polls_closedate, :month) %>
+      - <label for="polls_closedate_day">dd</label> <%= text_field(:polls_closedate, :day) %>
     </dd>
-    <%= dt_dd 'Sonda anonimowa', f.check_box(:anonymous) %>
+    <%= dt_dd '<label for="polls_question_anonymous">Sonda anonimowa</label>', f.check_box(:anonymous) %>
   </dl>
   <div class="submit">
     <%= submit_tag 'Zapisz sondę' %>

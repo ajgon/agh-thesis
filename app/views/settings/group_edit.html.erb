@@ -3,11 +3,11 @@
   <p>Możesz zmienić nazwę i opis, pod jakimi będzie dostępna Twoja grupa.</p>
   <% form_for :group, :url => {:controller => 'settings', :action => 'groups', :id => nil, :page => nil} do |f| %>
     <dl class="data long">
-      <%= dt_dd 'Nazwa', f.text_field(:head) %>
-      <%= dt_dd 'Opis', f.text_area(:body) %>
+      <%= dt_dd '<label for="group_head">Nazwa</label>', f.text_field(:head) %>
+      <%= dt_dd '<label for="group_body">Opis</label>', f.text_area(:body) %>
     </dl>
-    <input type="hidden" name="group_params[edited]" id="group_params_edited" value="<%= IdEncoder.encode(@group.id) %>" />
     <div class="submit">
+      <input type="hidden" name="group_params[edited]" id="group_params_edited" value="<%= IdEncoder.encode(@group.id) %>" />
       <%= submit_tag 'Zmień dane' %>
     </div>
   <% end %>
@@ -56,9 +56,9 @@
   <p>Możesz wyszukać studentów w celu dodania ich do grupy korzystajac z poniższego formularza</p>
 <% form_for :groups_search, :url => {:controller => 'settings', :action => 'groups', :id => 'edit', :page => IdEncoder.encode(@group.id)} do |f| %>
   <dl class="data long">
-    <%= dt_dd 'Nazwisko', f.text_field(:lastname) %>
-    <%= dt_dd 'Imię', f.text_field(:firstname) %>
-    <%= dt_dd 'Nr indeksu', f.text_field(:sindex) %>
+    <%= dt_dd '<label for="groups_search_lastname">Nazwisko</label>', f.text_field(:lastname) %>
+    <%= dt_dd '<label for="groups_search_firstname">Imię</label>', f.text_field(:firstname) %>
+    <%= dt_dd '<label for="groups_search_sindex">Nr indeksu</label>', f.text_field(:sindex) %>
   </dl>
   <div class="submit">
     <%= submit_tag 'Szukaj' %>

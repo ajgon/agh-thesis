@@ -75,6 +75,16 @@ ActionController::Routing::Routes.draw do |map|
   map.connect "/ost/faq", :controller => 'redirect', :new_url => '/about/faq'
   map.connect "/map", :controller => 'redirect', :new_url => '/about/map'
   map.connect "/kon", :controller => 'redirect', :new_url => '/settings/profile'
+  map.connect "/pan", :controller => 'redirect', :new_url => '/settings'
+  map.connect "/pan/aktualnosci", :controller => 'redirect', :new_url => '/settings/news'
+  map.connect "/pan/materialy", :controller => 'redirect', :new_url => '/settings/materials'
+  map.connect "/pan/oceny", :controller => 'redirect', :new_url => '/settings/grades'
+  map.connect "/pan/grupy", :controller => 'redirect', :new_url => '/settings/groups'
+  map.connect "/pan/katalog", :controller => 'redirect', :new_url => '/settings'
+  map.connect "/pan/hydepark", :controller => 'redirect', :new_url => '/settings'
+  map.connect "/pan/ankiety", :controller => 'redirect', :new_url => '/settings/polls'
+  map.connect "/pan/deklaracje", :controller => 'redirect', :new_url => '/settings/declarations'
+  map.connect "/pan/kalendarz", :controller => 'redirect', :new_url => '/settings/calendar'
   map.connect "/dl/:query", :controller => 'redirect', :new_url => '/materials', :requirements => {:query => /.*/}
   map.connect "/mat/:query", :controller => 'redirect', :new_url => '/materials', :requirements => {:query => /.*/}
   map.connect "/for/:query", :controller => 'redirect', :new_url => '/', :requirements => {:query => /.*/}
