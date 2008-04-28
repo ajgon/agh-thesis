@@ -105,19 +105,19 @@ ActiveRecord::Schema.define(:version => 20) do
   end
 
   create_table "polls_answers", :force => true do |t|
-    t.integer "polls_question_id",                :null => false
-    t.string  "answer",                           :null => false
-    t.integer "quantity",          :default => 0, :null => false
+    t.integer "polls_question_id",                               :null => false
+    t.string  "answer",            :limit => 200,                :null => false
+    t.integer "quantity",                         :default => 0, :null => false
   end
 
   add_index "polls_answers", ["polls_question_id"], :name => "polls_question_id"
 
   create_table "polls_questions", :force => true do |t|
-    t.integer  "user_id",                       :null => false
-    t.string   "question",                      :null => false
-    t.datetime "start_time",                    :null => false
+    t.integer  "user_id",                                      :null => false
+    t.string   "question",   :limit => 200,                    :null => false
+    t.datetime "start_time",                                   :null => false
     t.datetime "end_time"
-    t.boolean  "anonymous",  :default => false, :null => false
+    t.boolean  "anonymous",                 :default => false, :null => false
   end
 
   add_index "polls_questions", ["user_id"], :name => "user_id"

@@ -232,7 +232,7 @@ class Converter
   
   def convert_encodings new_row
     new_row.each_pair do |name, value| 
-      new_row[name] = Iconv.conv(@new_base_details['encoding'].capitalize, @old_base_details['encoding'].capitalize, value) if value.class.to_s == 'String'
+      new_row[name] = Iconv.conv(@new_base_details['encoding'].upcase.sub('UTF8', 'UTF-8'), @old_base_details['encoding'].upcase.sub('UTF8', 'UTF-8'), value) if value.class.to_s == 'String'
     end
     new_row
   end

@@ -139,6 +139,7 @@ class SettingsController < ApplicationController
   def news
     @news = nil
     @edited_news = false
+    @news_params = HashWithMethods.new({:ntype => 'year'})
     if request.post?
       news = {
         :head => params[:news][:head],
