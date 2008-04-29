@@ -6,12 +6,11 @@ class UsersStudent < ActiveRecord::Base
   
   def year
     return nil unless self.sgroup
-    extract_year_id(UsersStudent.find(:first, :order => 'sgroup DESC').sgroup) - extract_year_id(self.sgroup) + 1
+    if Time.now.month > 9
+      Time.now.year - ('20' + self.sgroup[-3..2]).to_i + 1
+    else
+      Time.now.year - ('20' + self.sgroup[-3..2]).to_i
+    end
   end
-  
-  private
-  def extract_year_id sgroup
-    sgroup.gsub(/[^0-9]/, '')[0..1].to_i
-  end
-  
+    
 end

@@ -1,4 +1,3 @@
 class Declaration < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :subject
+  has_many :declarations_subjects
 end

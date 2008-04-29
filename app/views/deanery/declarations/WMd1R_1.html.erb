@@ -1,0 +1,49 @@
+<div class="content deanery">
+  <h3 class="users"><abbr>User</abbr> Deklaracja wyboru modułu</h3>
+  <h4>Deklaracja wyboru modułu (Elektronika / Telekomunikacja) dla 1. roku studiów kierunku EiT </h4>
+  <div class="right">
+    Kraków, dn. <%= Time.now.to_s(:date) %>
+  </div>
+  <p>Imię i nazwisko: <strong><%= @logged_user.firstname.upcase %>&nbsp;<%= @logged_user.lastname.upcase %></strong></p>
+  <p>Nr indeksu: <strong><%= params[:users_student][:sindex] %></strong></p>
+  <p>Wybrany moduł: <strong><%= params[:declarations_subject][:module] == 'E' ? 'ELEKTRONIKA' : 'TELEKOMUNIKACJA' %></strong></p>
+  <p>Rok rozpoczęcia studiów na AGH: <strong><%= params[:declarations_subject][:year] %></strong></p>
+  <p>Wyliczona średnia ocen: <strong><%= @average %></strong></p>
+<% form_for :declarations_subject do |f| %>
+  <table>
+    <thead>
+      <tr>
+        <th>Przedmiot</th>
+        <th>ćw</th>
+        <th>lab&nbsp;/&nbsp;proj</th>
+        <th>egz</th>
+        <th>Ocena Końcowa</th>
+      </tr>
+    </thead>
+    <tbody>
+<% @declarations_subjects.each do |declarations_subject| %>
+      <tr>
+        <td><%= declarations_subject.subject.head %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= @merged_subjects[declarations_subject.subject_id.to_i]%></td>
+      </tr>
+<% end %>
+    </tbody>
+  </table>
+  <div class="submit">
+    <%= submit_tag 'Powrót do formularza', :name => 'back' %>
+  </div>
+  <div class="submit">
+    <input type="hidden" name="declarations_subject[module]" value="<%= params[:declarations_subject][:module] %>" />
+    <input type="hidden" name="declarations_subject[year]" value="<%= params[:declarations_subject][:year] %>" />
+<% @declarations_subjects.each do |declarations_subject| %>
+    <input type="hidden" name="declarations_grade[<%= IdEncoder.encode(declarations_subject.subject_id) %>]" value="<%= @merged_subjects[declarations_subject.subject_id.to_i] %>" />
+<% end %>
+    <input type="hidden" name="declaration[code]" id="declaration_code" value="WMd1R" />
+    <input type="hidden" name="users_student[sindex]" id="users_student_sindex" value="<%= params[:users_student][:sindex] %>" />
+    <%= submit_tag 'Wprowadź dane', :name => 'final_commit' %>
+  </div>
+<% end %>
+</div>

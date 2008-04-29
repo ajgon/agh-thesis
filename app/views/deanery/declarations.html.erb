@@ -13,14 +13,22 @@
     <%= dt_dd 'Login', @logged_user.login %>
     <%= dt_dd 'Typ konta', (@logged_user.is_student? ? '<strong>STUDENT</strong>' : '<strong>PRACOWNIK</strong>') %>
   </dl>
-  <% if @logged_user.is_student? %>
+<% if @logged_user.is_student? %>
+<%   form_for :users_student do |f| -%>
   <p>Wybierz deklarację, którą chcesz wypełnić. Obecnie masz dostępne następujące deklaracje: </p>
-  <dl class="data">
-    <%= dt_dd '##TODO##', '--- brak aktualnie dostępnych deklaracji ---' %>
+<%     fields_for :declaration do |d| %>
+  <dl class="data long">
+<%       unless @declarations %>
+    <%= dt_dd '', '--- brak aktualnie dostępnych deklaracji ---' %>
+<%       else %>
+<%         @declarations.each do |declaration| %>
+       <%= dt_dd d.radio_button(:code, declaration.code) + declaration.code, declaration.head %>
+<%         end %>
+<%       end %>
+<%     end %>
   </dl>
   <p>Po zapoznaniu się z warunkami korzystania z elektronicznych deklaracji podaj 
   nr indeksu (bez żadnych spacji, same cyfry) i naciśnij "Przejdź do deklaracji":</p>
-  <% form_for :users_student do |f| -%>
   <dl class="data long">
     <dt>Warunki</dt>
     <dd>
@@ -36,12 +44,12 @@
   <div class="submit">
     <%= submit_tag 'Przejdź do deklaracji' %>
   </div>
-  <% end %>
-  <% else %>
+<%   end %>
+<% else %>
     <p>Przepraszamy, ale w chwili obecnej <strong>jedynie studenci</strong> mogą 
     za pomocą naszego serwisu składać elektroniczne deklaracje. Jeżeli jesteś 
     zainteresowana/-y dostępem do danych gromadzonych przez system lub chcesz 
     skorzystać z naszego serwisu, aby dać studentom możliwość deklarowania 
     konkretnych wyborów, prosimy o kontakt. </p>
-  <% end %>
+<% end %>
 </div>

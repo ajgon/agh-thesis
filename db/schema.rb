@@ -9,20 +9,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20) do
+ActiveRecord::Schema.define(:version => 21) do
 
   create_table "cathedrals", :force => true do |t|
     t.string "name", :limit => 50, :null => false
   end
 
   create_table "declarations", :force => true do |t|
-    t.integer  "subject_id", :null => false
-    t.integer  "user_id",    :null => false
-    t.datetime "term",       :null => false
+    t.date    "available_from", :null => false
+    t.date    "available_to",   :null => false
+    t.string  "code",           :null => false
+    t.string  "head",           :null => false
+    t.integer "year",           :null => false
   end
 
-  add_index "declarations", ["subject_id"], :name => "subject_id"
-  add_index "declarations", ["user_id"], :name => "user_id"
+  create_table "declarations_subjects", :force => true do |t|
+    t.integer "declaration_id",              :null => false
+    t.integer "subject_id",                  :null => false
+    t.integer "user_id"
+    t.integer "price"
+    t.string  "name"
+    t.integer "grade"
+    t.integer "year"
+    t.string  "module",         :limit => 1
+    t.date    "date"
+  end
+
+  add_index "declarations_subjects", ["declaration_id"], :name => "declaration_id"
+  add_index "declarations_subjects", ["subject_id"], :name => "subject_id"
+  add_index "declarations_subjects", ["user_id"], :name => "user_id"
 
   create_table "events", :force => true do |t|
     t.date    "beginning"
@@ -159,7 +174,7 @@ ActiveRecord::Schema.define(:version => 20) do
   add_index "uploaded_files", ["uploader_id"], :name => "uploader_id"
 
   create_table "users", :force => true do |t|
-    t.string   "login",           :limit => 50,                                                          :null => false
+    t.string   "login",           :limit => 50
     t.string   "password",        :limit => 40,  :default => "da39a3ee5e6b4b0d3255bfef95601890afd80709", :null => false
     t.string   "email",           :limit => 50
     t.date     "created_on",                                                                             :null => false
@@ -203,8 +218,9 @@ ActiveRecord::Schema.define(:version => 20) do
   add_index "users_students", ["user_id"], :name => "user_id"
   add_index "users_students", ["speciality_id"], :name => "speciality_id"
 
-  add_foreign_key "declarations", ["subject_id"], "subjects", ["id"], :name => "declarations_ibfk_1"
-  add_foreign_key "declarations", ["user_id"], "users", ["id"], :name => "declarations_ibfk_2"
+  add_foreign_key "declarations_subjects", ["declaration_id"], "declarations", ["id"], :name => "declarations_subjects_ibfk_1"
+  add_foreign_key "declarations_subjects", ["subject_id"], "subjects", ["id"], :name => "declarations_subjects_ibfk_2"
+  add_foreign_key "declarations_subjects", ["user_id"], "users", ["id"], :name => "declarations_subjects_ibfk_3"
 
   add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_1"
   add_foreign_key "exams", ["user_id"], "users", ["id"], :name => "exams_ibfk_2"

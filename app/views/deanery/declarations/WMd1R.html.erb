@@ -1,0 +1,57 @@
+<div class="content deanery">
+  <h3 class="users"><abbr>User</abbr> Deklaracja wyboru modułu</h3>
+  <h4>Deklaracja wyboru modułu (Elektronika / Telekomunikacja) dla 1. roku studiów kierunku EiT </h4>
+  <p>Uwaga! Przed wypełnieniem deklaracji proszę zapoznać się z obowiązującym 
+  (od roku akademickiego 2006/2007) schematem kształcenia i listą specjalności. 
+  Liczba studentów kwalifikowanych do poszczególnych modułów jest ograniczona. 
+  W strosunku do osób, które nie złożą deklaracji, kwalifikacji dokona Dziekan 
+  drogą decyzji administracyjnej. Prosze pamiętać również, że raz złożonej 
+  deklaracji nie będzie można poprawiać. </p>
+  <div class="right">
+    Kraków, dn. <%= Time.now.to_s(:date) %>
+  </div>
+  <p>Imię i nazwisko: <strong><%= @logged_user.firstname.upcase %>&nbsp;<%= @logged_user.lastname.upcase %></strong></p>
+  <p>Ja, zgodnie z regulaminem korzystania z elektronicznych deklaracji w serwisie EiT, 
+  potwierdzając swoją tożsamość numerem indeksu, deklaruję wybór modułu:</p>
+<% form_for :declarations_subject do |f| %>
+  <div class="submit">
+    <%= f.select(:module, [['Elektronika', 'E'], ['Telekomunikacja', 'T']]) %>
+  </div>
+  <p>Rok rozpoczęcia studiów na AGH <%= f.text_field(:year) %></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Przedmiot</th>
+        <th>ćw</th>
+        <th>lab&nbsp;/&nbsp;proj</th>
+        <th>egz</th>
+        <th>Ocena Końcowa</th>
+      </tr>
+    </thead>
+    <tbody>
+<% @declarations_subjects.each do |declarations_subject| %>
+      <tr>
+        <td><%= declarations_subject.subject.head %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= select(:declarations_grade, IdEncoder.encode(declarations_subject.subject_id), [['6.0', '6.0'], ['5.0', '5.0'], ['4.5', '4.5'], ['4.0', '4.0'], ['3.5', '3.5'], ['3.0', '3.0'], ['0.0', '0.0']]) %></td>
+      </tr>
+<% end %>
+    </tbody>
+  </table>
+  <p> Uwaga:</p>
+    <ul class="files">
+      <li>średnia z ocen zostanie wyliczona automatycznie,</li>
+      <li>w tabeli należy wybrać ostatnią ocenę pozytywną z danego przedmiotu (np. w przypadku zdawania kilku terminów, poprawiania oceny itp.),</li>
+      <li>w przypadku braku zaliczenia/egzaminu należy wybierać ocenę "0.0",</li>
+      <li>wszystkie pola powyższego formularza i tabeli muszą być uzupełnione,</li>
+      <li>po naciśnięciu przycisku "Wprowadź dane" będziesz miał(a) jeszcze możliwość ich zweryfikowania.</li>
+    </ul>
+  <div class="submit">
+    <input type="hidden" name="declaration[code]" id="declaration_code" value="WMd1R" />
+    <input type="hidden" name="users_student[sindex]" id="users_student_sindex" value="<%= params[:users_student][:sindex] %>" />
+    <%= submit_tag 'Wprowadź dane' %>
+  </div>
+<% end %>
+</div>

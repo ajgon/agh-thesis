@@ -1,7 +1,21 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+one:
+  id: 1
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: WMd1R
+  head: Wybór modułu na 1. roku
+  year: 1
+two:
+  id: 2
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: WJd2Rz
+  head: Wybór języka przedmiotów na 3 semestrze 2. roku
+  year: 1
+three:
+  id: 3
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: WWd2Rz
+  head: Wybór wydruku materiałów na 3 semestrze 2. roku
+  year: 1

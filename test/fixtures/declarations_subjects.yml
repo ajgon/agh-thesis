@@ -1,0 +1,121 @@
+one:
+  id: 1
+  declaration_id: 2
+  subject_id: 16
+  user_id:
+  price:
+  name: Signal Theory I - prof. Z. Papir
+  grade:
+  year:
+  module:
+  date:
+two:
+  id: 2
+  declaration_id: 2
+  subject_id: 23
+  user_id:
+  price:
+  name: Introduction to Telecommunications - prof. A. Jajszczyk
+  grade:
+  year:
+  module:
+  date:
+three:
+  id: 3
+  declaration_id: 3
+  subject_id: 16
+  user_id:
+  price: 130
+  name:
+  grade:
+  year:
+  module:
+  date:
+four:
+  id: 4
+  declaration_id: 3
+  subject_id: 23
+  user_id:
+  price: 120
+  name:
+  grade:
+  year:
+  module:
+  date:
+five:
+  id: 5
+  declaration_id: 1
+  subject_id: 175
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+six:
+  id: 6
+  declaration_id: 1
+  subject_id: 176
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+seven:
+  id: 7
+  declaration_id: 1
+  subject_id: 25
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+eight:
+  id: 8
+  declaration_id: 1
+  subject_id: 172
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+nine:
+  id: 9
+  declaration_id: 1
+  subject_id: 4
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+ten:
+  id: 10
+  declaration_id: 1
+  subject_id: 177
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+eleven:
+  id: 11
+  declaration_id: 1
+  subject_id: 13
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
