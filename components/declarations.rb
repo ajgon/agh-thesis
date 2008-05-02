@@ -6,6 +6,7 @@ class Declarations
   
   def initialize(params, logged_user)
     @logged_user = logged_user
+    @declaration_code = params[:declaration][:code]
     @declarations_subjects = DeclarationsSubject.find(:all, :include => [:declaration, :subject], :conditions => ['declarations.code = ? AND user_id IS NULL', @declaration_code])
     @merged_subjects = nil
     @flash_notice = nil

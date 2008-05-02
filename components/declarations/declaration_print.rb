@@ -1,8 +1,7 @@
-class DeclarationWWd2Rz < Declarations
+class DeclarationPrint < Declarations
   attr_reader :print_table, :declarations_print
   
   def initialize(params, logged_user)
-    @declaration_code = 'WWd2Rz'
     super
     @print_table = [['nie', false], ['tak', true]]
     if params[:declarations_print]
@@ -30,6 +29,6 @@ class DeclarationWWd2Rz < Declarations
       end
       @declarations_print = HashWithMethods.new(@declarations_print)
     end
-    @template = 'deanery/declarations/' + params[:declaration][:code] if params[:declaration][:code]
+    @template = 'print'
   end
 end

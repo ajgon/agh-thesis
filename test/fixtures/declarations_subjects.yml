@@ -9,6 +9,8 @@ one:
   year:
   module:
   date:
+  language:
+  print:
 two:
   id: 2
   declaration_id: 2
@@ -20,6 +22,8 @@ two:
   year:
   module:
   date:
+  language:
+  print:
 three:
   id: 3
   declaration_id: 3
@@ -31,6 +35,8 @@ three:
   year:
   module:
   date:
+  language:
+  print:
 four:
   id: 4
   declaration_id: 3
@@ -42,6 +48,8 @@ four:
   year:
   module:
   date:
+  language:
+  print:
 five:
   id: 5
   declaration_id: 1
@@ -53,6 +61,8 @@ five:
   year:
   module:
   date:
+  language:
+  print:
 six:
   id: 6
   declaration_id: 1
@@ -64,6 +74,8 @@ six:
   year:
   module:
   date:
+  language:
+  print:
 seven:
   id: 7
   declaration_id: 1
@@ -75,6 +87,8 @@ seven:
   year:
   module:
   date:
+  language:
+  print:
 eight:
   id: 8
   declaration_id: 1
@@ -86,6 +100,8 @@ eight:
   year:
   module:
   date:
+  language:
+  print:
 nine:
   id: 9
   declaration_id: 1
@@ -97,6 +113,8 @@ nine:
   year:
   module:
   date:
+  language:
+  print:
 ten:
   id: 10
   declaration_id: 1
@@ -108,6 +126,8 @@ ten:
   year:
   module:
   date:
+  language:
+  print:
 eleven:
   id: 11
   declaration_id: 1
@@ -119,3 +139,330 @@ eleven:
   year:
   module:
   date:
+  language:
+  print:
+twelve:
+  id: 12
+  declaration_id: 5
+  subject_id: 72
+  user_id:
+  price:
+  name: Telecommunications Switching Systems - prof. A. Jajszczyk
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+thirteen:
+  id: 13
+  declaration_id: 5
+  subject_id: 73
+  user_id:
+  price:
+  name: Fibre Optic Communications - dr inż. A. Lasoń
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+fourteen:
+  id: 14
+  declaration_id: 5
+  subject_id: 75
+  user_id:
+  price:
+  name: Modulation and Detection - prof. Z. Papir
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+fifteen:
+  id: 15
+  declaration_id: 5
+  subject_id: 76
+  user_id:
+  price:
+  name: Digital Teletransmission Systems - dr inż. A. Lasoń
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+sixteen:
+  id: 16
+  declaration_id: 6
+  subject_id: 74
+  user_id:
+  price: 140
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+seventeen:
+  id: 17
+  declaration_id: 6
+  subject_id: 75
+  user_id:
+  price: 120
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+eighteen:
+  id: 18
+  declaration_id: 4
+  subject_id: 25
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+nineteen:
+  id: 19
+  declaration_id: 4
+  subject_id: 1
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+twenty:
+  id: 20
+  declaration_id: 4
+  subject_id: 3
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+twentyone:
+  id: 21
+  declaration_id: 4
+  subject_id: 6
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+twentytwo:
+  id: 22
+  declaration_id: 4
+  subject_id: 8
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+twentythree:
+  id: 23
+  declaration_id: 4
+  subject_id: 4
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+twentyfour:
+  id: 24
+  declaration_id: 4
+  subject_id: 2
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+twentyfive:
+  id: 25
+  declaration_id: 4
+  subject_id: 9
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+twentysix:
+  id: 26
+  declaration_id: 4
+  subject_id: 10
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+twentyseven:
+  id: 27
+  declaration_id: 4
+  subject_id: 11
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+twentyeight:
+  id: 28
+  declaration_id: 4
+  subject_id: 13
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+twentynine:
+  id: 29
+  declaration_id: 4
+  subject_id: 5
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+thirty:
+  id: 30
+  declaration_id: 4
+  subject_id: 12
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+thirtyone:
+  id: 31
+  declaration_id: 4
+  subject_id: 14
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+thirtytwo:
+  id: 32
+  declaration_id: 4
+  subject_id: 16
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+thirtythree:
+  id: 33
+  declaration_id: 4
+  subject_id: 19
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+thirtyfour:
+  id: 34
+  declaration_id: 4
+  subject_id: 20
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+thirtyfive:
+  id: 35
+  declaration_id: 4
+  subject_id: 23
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:
+thirtysix:
+  id: 36
+  declaration_id: 8
+  subject_id: 15
+  user_id:
+  price:
+  name: Electronic Circuit Simulation - prof. W. Machowski
+  grade:
+  year:
+  module:
+  date:
+  language:
+  print:

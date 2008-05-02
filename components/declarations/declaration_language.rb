@@ -1,8 +1,7 @@
-class DeclarationWJd2Rz < Declarations
+class DeclarationLanguage < Declarations
   attr_reader :languages_table, :declarations_language
   
   def initialize(params, logged_user)
-    @declaration_code = 'WJd2Rz'
     super
     @languages_table = [['---', ''], ['j. angielski', 'en'], ['j. polski', 'pl']]
     valid_languages = @languages_table[1..@languages_table.length].collect { |i| i[1] unless i[1].empty? }
@@ -35,7 +34,7 @@ class DeclarationWJd2Rz < Declarations
       end
       @declarations_language = HashWithMethods.new(@declarations_language)
     end
-    @template = 'deanery/declarations/' + params[:declaration][:code] if params[:declaration][:code]
+    @template = 'language'
   end
   
   def fill_selects subject, language

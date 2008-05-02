@@ -1,7 +1,6 @@
-class DeclarationWMd1R < Declarations
+class DeclarationModule < Declarations
   attr_reader :average, :declarations_subject, :declarations_grade
   def initialize(params, logged_user)
-    @declaration_code = 'WMd1R'
     super
     if params[:declarations_subject] and !params[:back] and !already_filled?
       merge_subjects(params[:declarations_grade]) {|grade| grade.to_f }
@@ -22,17 +21,17 @@ class DeclarationWMd1R < Declarations
             :print => nil
           }).save
         end
-        @template = 'deanery/declarations/WMd1R_done'
+        @template = 'module_done'
       else
-        @template = 'deanery/declarations/WMd1R_1'
+        @template = 'module_1'
       end
     else
       @declarations_subject = HashWithMethods.new(params[:declarations_subject]) if params[:declarations_subject]
       @declarations_grade = HashWithMethods.new(params[:declarations_grade]) if params[:declarations_grade]
       unless already_filled?
-        @template = 'deanery/declarations/' + params[:declaration][:code] if params[:declaration][:code]
+        @template = 'module'
       else
-        @template = 'deanery/declarations/' + params[:declaration][:code] + '_done' if params[:declaration][:code]
+        @template = 'module_done'
       end
     end    
   end

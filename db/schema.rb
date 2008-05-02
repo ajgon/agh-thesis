@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(:version => 21) do
     t.integer "year"
     t.string  "module",         :limit => 1
     t.date    "date"
+    t.string  "language",       :limit => 4
+    t.boolean "print"
   end
 
   add_index "declarations_subjects", ["declaration_id"], :name => "declaration_id"
