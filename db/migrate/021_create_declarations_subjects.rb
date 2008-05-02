@@ -12,6 +12,7 @@ class CreateDeclarationsSubjects < ActiveRecord::Migration
       t.integer :year
       t.string :module, :limit => 1
       t.date :date
+      t.string :language, :limit => 4
     end
     Fixtures.create_fixtures( 
       File.join(File.dirname(__FILE__), '..', '..', 'test', 'fixtures'),

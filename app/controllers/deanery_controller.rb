@@ -52,41 +52,19 @@ class DeaneryController < ApplicationController
         if UsersStudent.find_by_sindex(params[:users_student][:sindex]) and UsersStudent.find_by_sindex(params[:users_student][:sindex]).user_id == @logged_user.id
           case params[:declaration][:code]
           when 'WMd1R'
-            @declarations_subjects = DeclarationsSubject.find(:all, :include => [:declaration, :subject], :conditions => ['declarations.code = ? AND user_id IS NULL', 'WMd1R'])
-            already_filled = (DeclarationsSubject.count('*', :conditions => ['user_id = ? AND declaration_id = ?', @logged_user.id, Declaration.find_by_code('WMd1R')]) != 0)
-            if params[:declarations_subject] and !params[:back] and !already_filled
-              valid_subjects = Hash[*(DeclarationsSubject.find(:all, :include => [:declaration, :subject], :conditions => ['declarations.code = ? AND user_id IS NULL', 'WMd1R']).collect { |i| [i.subject_id, nil] }).flatten]
-              given_subjects = Hash[*(params[:declarations_grade].sort.collect { |i| [IdEncoder.decode(i[0]), i[1]]}).flatten]
-              @merged_subjects = Hash[*((valid_subjects.merge(given_subjects).delete_if {|key, value| !valid_subjects.include?(key)}).sort.collect {|i| [i[0], i[1].to_f]}).flatten]
-              @average = (@merged_subjects.values.sum / @merged_subjects.values.length).to_s[0..3]
-              params[:declarations_subject][:module] = 'E' unless ['E', 'T'].include?(params[:declarations_subject][:module])
-              params[:declarations_subject][:year] = Time.now.year - @logged_user.users_student.year - (Time.now.month > 9 ? 1 : 0) unless (1970..Time.now.year).include?(params[:declarations_subject][:year].to_i)
-              if params[:final_commit]
-                @merged_subjects.each_pair do |subject, grade|
-                  (declarations_subject = DeclarationsSubject.new({
-                    :declaration_id => Declaration.find_by_code('WMd1R'),
-                    :subject_id => subject.to_i,
-                    :user_id => @logged_user.id,
-                    :grade => grade,
-                    :year => params[:declarations_subject][:year],
-                    :module => params[:declarations_subject][:module],
-                    :date => Time.now
-                  })).save
-                end
-                render :template => 'deanery/declarations/WMd1R_done'
-              else
-                render :template => 'deanery/declarations/WMd1R_1'
-              end
-            else
-              @declarations_subject = HashWithMethods.new(params[:declarations_subject]) if params[:declarations_subject]
-              @declarations_grade = HashWithMethods.new(params[:declarations_grade]) if params[:declarations_grade]
-              unless already_filled
-                render :template => 'deanery/declarations/' + params[:declaration][:code] if params[:declaration][:code]
-              else
-                render :template => 'deanery/declarations/' + params[:declaration][:code] + '_done' if params[:declaration][:code]
-              end
-            end
+            declaration = DeclarationWMd1R.new(params, @logged_user)
+            @average = declaration.average
+            @declarations_subject = declaration.declarations_subject
+            @declarations_grade = declaration.declarations_grade
+          when 'WJd2Rz'
+            declaration = DeclarationWJd2Rz.new(params, @logged_user)
+            @languages_table = declaration.languages_table
+            @declarations_language = declaration.declarations_language
           end
+          @declarations_subjects = declaration.declarations_subjects
+          @merged_subjects = declaration.merged_subjects
+          flash[:notice] = declaration.flash_notice unless declaration.flash_notice.nil?
+          render :template => declaration.template
         end
       end
       @declarations = Declaration.find(:all, :conditions => ['year = ?', @logged_user.users_student.year]) if @logged_user.is_student?
