@@ -60,6 +60,10 @@ class DeaneryController < ApplicationController
             declaration = DeclarationWJd2Rz.new(params, @logged_user)
             @languages_table = declaration.languages_table
             @declarations_language = declaration.declarations_language
+          when 'WWd2Rz'
+            declaration = DeclarationWWd2Rz.new(params, @logged_user)
+            @print_table = declaration.print_table
+            @declarations_print = declaration.declarations_print
           end
           @declarations_subjects = declaration.declarations_subjects
           @merged_subjects = declaration.merged_subjects

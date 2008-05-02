@@ -1,0 +1,29 @@
+<div class="content deanery">
+  <h3 class="users"><abbr>User</abbr> Deklaracja wydruku i kupna materiałów na 2 roku</h3>
+  <h4>Deklaracja wyboru zakupu materiałów </h4>
+  <p>Podane ceny są PLN szacunkowe. Materiały są po polsku.</p>
+  <p>Deklaracje można zmieniać aż do terminu zakończenia.</p>
+<% form_for :declarations_print do |f| %>
+  <table>
+    <thead>
+      <tr>
+        <th>Przedmiot</th>
+        <th>Zakup</th>
+      </tr>
+    </thead>
+    <tbody>
+<%   @declarations_subjects.each do |declarations_subject| %>
+  <tr>
+    <td><%= declarations_subject.subject.head %> - <%= declarations_subject.price / 10.0 %>0</td>
+    <td><%= f.select(IdEncoder.encode(declarations_subject.subject_id), @print_table) %></td>
+  </tr>
+<%   end %>
+    </tbody>
+  </table>
+  <div class="submit">
+    <input type="hidden" name="declaration[code]" id="declaration_code" value="WWd2Rz" />
+    <input type="hidden" name="users_student[sindex]" id="users_student_sindex" value="<%= params[:users_student][:sindex] %>" />
+    <%= submit_tag 'Zapisz Wybory' %>
+  </div>
+<% end %>
+</div>

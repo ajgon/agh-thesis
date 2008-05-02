@@ -22,4 +22,13 @@ class Declarations
   def already_filled?
     (DeclarationsSubject.count('*', :conditions => ['user_id = ? AND declaration_id = ?', @logged_user.id, Declaration.find_by_code(@declaration_code)]) != 0)
   end
+  
+  def create_or_update subject, value
+    declarations_previous = DeclarationsSubject.find(:first, :conditions => ['declaration_id = ? AND user_id = ? AND subject_id = ?', @declaration_id, @logged_user.id, subject.to_i])
+    if declarations_previous
+      DeclarationsSubject.update(declarations_previous.id, value)
+    else
+      DeclarationsSubject.new(value).save
+    end
+  end
 end

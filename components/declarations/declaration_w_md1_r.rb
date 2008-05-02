@@ -18,7 +18,8 @@ class DeclarationWMd1R < Declarations
             :year => params[:declarations_subject][:year],
             :module => params[:declarations_subject][:module],
             :date => Time.now,
-            :language => nil
+            :language => nil,
+            :print => nil
           }).save
         end
         @template = 'deanery/declarations/WMd1R_done'

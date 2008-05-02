@@ -21,14 +21,10 @@ class DeclarationWJd2Rz < Declarations
             :year => nil,
             :module => nil,
             :date => Time.now,
-            :language => language
+            :language => language,
+            :print => nil
         }
-        declarations_language_previous = DeclarationsSubject.find(:first, :conditions => ['declaration_id = ? AND user_id = ? AND subject_id = ?', @declaration_id, @logged_user.id, subject.to_i])
-        if declarations_language_previous
-          DeclarationsSubject.update(declarations_language_previous.id, declarations_language)
-        else
-          DeclarationsSubject.new(declarations_language).save
-        end
+        create_or_update subject, declarations_language
       end
       @flash_notice = 'Deklaracja została zapisana'
     end
@@ -39,7 +35,6 @@ class DeclarationWJd2Rz < Declarations
       end
       @declarations_language = HashWithMethods.new(@declarations_language)
     end
-    @declarations_subjects = DeclarationsSubject.find(:all, :include => :subject, :conditions => ['declaration_id = ? AND user_id IS NULL', Declaration.find_by_code('WJd2Rz').id])
     @template = 'deanery/declarations/' + params[:declaration][:code] if params[:declaration][:code]
   end
   
