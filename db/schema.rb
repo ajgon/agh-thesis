@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(:version => 22) do
   add_index "declarations_experiences", ["speciality_id"], :name => "speciality_id"
 
   create_table "declarations_subjects", :force => true do |t|
-    t.integer "declaration_id",              :null => false
-    t.integer "subject_id",                  :null => false
+    t.integer "declaration_id",                :null => false
+    t.integer "subject_id"
     t.integer "user_id"
     t.integer "price"
     t.string  "name"
@@ -61,8 +61,10 @@ ActiveRecord::Schema.define(:version => 22) do
     t.integer "year"
     t.integer "speciality_id"
     t.date    "date"
-    t.string  "language",       :limit => 4
+    t.string  "language",         :limit => 4
     t.boolean "print"
+    t.string  "type",             :limit => 1
+    t.integer "study_speciality"
   end
 
   add_index "declarations_subjects", ["declaration_id"], :name => "declaration_id"

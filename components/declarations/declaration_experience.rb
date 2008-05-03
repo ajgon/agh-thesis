@@ -32,7 +32,7 @@ class DeclarationExperience < Declarations
       params[:declarations_experience][:beginning_additional] = Time.mktime(params[:declarations_experiences_dates][:beginning_additional_year].to_i, params[:declarations_experiences_dates][:beginning_additional_month].to_i, params[:declarations_experiences_dates][:beginning_additional_day].to_i)
       params[:declarations_experience][:ending_additional] = Time.mktime(params[:declarations_experiences_dates][:ending_additional_year].to_i, params[:declarations_experiences_dates][:ending_additional_month].to_i, params[:declarations_experiences_dates][:ending_additional_day].to_i)
       @declarations_experience = DeclarationsExperience.new(params[:declarations_experience])
-      if(declarations_experience.valid? and declaration_previous = DeclarationsExperience.find_by_sindex(params[:declarations_experience][:sindex]))
+      if(@declarations_experience.valid? and declaration_previous = DeclarationsExperience.find_by_sindex(params[:declarations_experience][:sindex]))
         @declarations_experience = DeclarationsExperience.update(declaration_previous.id, params[:declarations_experience])
         @flash_notice = 'Deklaracja została poprawiona'
       else

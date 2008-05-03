@@ -50,7 +50,6 @@ class DeaneryController < ApplicationController
     if @logged_user
       if request.post?
         if UsersStudent.find_by_sindex(params[:users_student][:sindex]) and UsersStudent.find_by_sindex(params[:users_student][:sindex]).user_id == @logged_user.id
-          # ##TODO## pousuwac duplikaty
           case params[:declaration][:code]
           when 'WMd1R', 'WMd2R'
             @declaration = DeclarationModule.new(params, @logged_user)
@@ -68,6 +67,9 @@ class DeaneryController < ApplicationController
             @declaration = DeclarationExperience.new(params, @logged_user)
             @declarations_experience = @declaration.declarations_experience
             @declarations_experiences_dates = @declaration.declarations_experiences_dates
+          when 'WSd3R'
+            @declaration = DeclarationSpeciality.new(params, @logged_user)
+            @declarations_speciality = @declaration.declarations_speciality
           end
           flash[:notice] = @declaration.flash_notice unless @declaration.flash_notice.nil?
           render :template => 'deanery/declarations/' + @declaration.template

@@ -50,20 +50,26 @@
       function: '1'
 02_cathedrals:
   cathedrals:
+    __BEFORE: ALTER TABLE users_k1 ADD band2 varchar(4);
+    __AFTER: UPDATE users_k1 SET band2 = band
 03_users_students:
   users_k1:
     __BEFORE: INSERT INTO @ (id) SELECT id FROM users WHERE id NOT IN (SELECT id FROM users_k1) AND id NOT IN (SELECT id from users_k2) AND login IS NOT NULL AND kind = 1
+    __AFTER: ALTER TABLE users_k1 DROP band2
     id:
       from: users
       name: user_id
     band:
       name: sgroup
+    band2:
+      name: speciality_id
+      function: IF((SELECT (SUBSTRING(NOW(),1,4) - CONCAT('20', SUBSTRING(@, 2,2))) > 2),IF((SELECT SUBSTRING(@, 4,1)) > 3,2,3),1)
     indeks:
       name: sindex
     gg:
       name: gadu_gadu
     module:
-      name: speciality_id
+      action: remove
     modified:
       action: remove
     nband:

@@ -1,0 +1,39 @@
+<div class="content deanery">
+  <h3 class="users"><abbr>User</abbr> Deklaracja wyboru specjalności</h3>
+  <h4><%= @declaration.declaration_name %></h4>
+  <p>Twoje dane osobowe</p>
+  <dl class="data">
+    <%= dt_dd 'Imię', @logged_user.firstname %>
+    <%= dt_dd 'Nazwisko', @logged_user.lastname %>
+    <%= dt_dd 'Nr indeksu', @logged_user.users_student.sindex %>
+    <%= dt_dd 'Moduł', @logged_user.users_student.speciality.head %>
+  </dl>
+<% form_for :declarations_speciality do |f| %>
+  <p>Wybieram tryb studiów</p>
+  <div class="submit">
+    <%= f.select(:study_type, @declaration.type) %>
+  </div>
+  <ul class="files">
+    <li><strong>Inżynierskie</strong> - zgłaszam chęć zakończenia nauki na 
+    poziomie studiów zawodowych tj. z dyplomem inżyniera</li>
+    <li><strong>Magisterskie</strong> - deklaruję chęć kontynuowania studiów 
+    celem uzyskania dyplomu magistra inżyniera</li>
+  </ul>
+  <p>Studia chcę kontynuować na specjalności</p>
+  <div class="submit">
+    <%= f.select(:study_speciality, @declaration.speciality) %>
+  </div>
+  <p><strong>Uwaga</strong></p>
+  <ul class="files">
+    <li>przed potwierdzeniem wpisu upewnij się, że Twoje dane osobowe (imię, nazwisko, indeks, moduł) są poprawne,</li>
+    <li>przed potwierdzeniem deklaracji proszę zapoznać się z ramowym programem studiów oraz warunkami otrzymania dyplomów inżynierskiego i magisterskiego,</li>
+    <li>specjalność może nie zostać uruchomiona przy zbyt małej liczbie chętnych (dotyczy Elektroniki),</li>
+    <li>po naciśnięciu przycisku "Aktualizuj dane" będziesz miał(a) możliwość ich późniejszej weryfikacji i poprawiania.</li>
+  </ul>
+  <div class="submit">
+    <input type="hidden" name="declaration[code]" id="declaration_code" value="<%= params[:declaration][:code] %>" />
+    <input type="hidden" name="users_student[sindex]" id="users_student_sindex" value="<%= params[:users_student][:sindex] %>" />
+    <%= submit_tag 'Aktualizuj Dane' %>
+  </div>
+<% end %>
+</div>
