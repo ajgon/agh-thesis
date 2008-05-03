@@ -5,7 +5,7 @@ class DeclarationModule < Declarations
     if params[:declarations_subject] and !params[:back] and !already_filled?
       merge_subjects(params[:declarations_grade]) {|grade| grade.to_f }
       @average = (@merged_subjects.values.sum / @merged_subjects.values.length).to_s[0..3]
-      params[:declarations_subject][:module] = 'E' unless ['E', 'T'].include?(params[:declarations_subject][:module])
+      params[:declarations_subject][:module] = 2 unless [2, 3].include?(params[:declarations_subject][:module])
       params[:declarations_subject][:year] = Time.now.year - @logged_user.users_student.year - (Time.now.month > 9 ? 1 : 0) unless (1970..Time.now.year).include?(params[:declarations_subject][:year].to_i)
       if params[:final_commit]
         @merged_subjects.each_pair do |subject, grade|
@@ -15,10 +15,8 @@ class DeclarationModule < Declarations
             :user_id => @logged_user.id,
             :grade => grade,
             :year => params[:declarations_subject][:year],
-            :module => params[:declarations_subject][:module],
+            :speciality_id => params[:declarations_subject][:module],
             :date => Time.now,
-            :language => nil,
-            :print => nil
           }).save
         end
         @template = 'module_done'

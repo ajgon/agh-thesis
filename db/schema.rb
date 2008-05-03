@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 21) do
     t.string  "code",           :null => false
     t.string  "head",           :null => false
     t.integer "year",           :null => false
+    t.integer "how_many"
   end
 
   create_table "declarations_subjects", :force => true do |t|
@@ -31,7 +32,7 @@ ActiveRecord::Schema.define(:version => 21) do
     t.string  "name"
     t.integer "grade"
     t.integer "year"
-    t.string  "module",         :limit => 1
+    t.integer "speciality_id"
     t.date    "date"
     t.string  "language",       :limit => 4
     t.boolean "print"
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(:version => 21) do
   add_index "declarations_subjects", ["declaration_id"], :name => "declaration_id"
   add_index "declarations_subjects", ["subject_id"], :name => "subject_id"
   add_index "declarations_subjects", ["user_id"], :name => "user_id"
+  add_index "declarations_subjects", ["speciality_id"], :name => "speciality_id"
 
   create_table "events", :force => true do |t|
     t.date    "beginning"
@@ -223,6 +225,7 @@ ActiveRecord::Schema.define(:version => 21) do
   add_foreign_key "declarations_subjects", ["declaration_id"], "declarations", ["id"], :name => "declarations_subjects_ibfk_1"
   add_foreign_key "declarations_subjects", ["subject_id"], "subjects", ["id"], :name => "declarations_subjects_ibfk_2"
   add_foreign_key "declarations_subjects", ["user_id"], "users", ["id"], :name => "declarations_subjects_ibfk_3"
+  add_foreign_key "declarations_subjects", ["speciality_id"], "specialities", ["id"], :name => "declarations_subjects_ibfk_4"
 
   add_foreign_key "exams", ["subject_id"], "subjects", ["id"], :name => "exams_ibfk_1"
   add_foreign_key "exams", ["user_id"], "users", ["id"], :name => "exams_ibfk_2"

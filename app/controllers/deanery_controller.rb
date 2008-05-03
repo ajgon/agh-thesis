@@ -52,41 +52,21 @@ class DeaneryController < ApplicationController
         if UsersStudent.find_by_sindex(params[:users_student][:sindex]) and UsersStudent.find_by_sindex(params[:users_student][:sindex]).user_id == @logged_user.id
           # ##TODO## pousuwac duplikaty
           case params[:declaration][:code]
-          when 'WMd1R'
-            declaration = DeclarationModule.new(params, @logged_user)
-            @average = declaration.average
-            @declarations_subject = declaration.declarations_subject
-            @declarations_grade = declaration.declarations_grade
-          when 'WMd2R'
-            declaration = DeclarationModule.new(params, @logged_user)
-            @average = declaration.average
-            @declarations_subject = declaration.declarations_subject
-            @declarations_grade = declaration.declarations_grade
-          when 'WJd2Rz'
-            declaration = DeclarationLanguage.new(params, @logged_user)
-            @languages_table = declaration.languages_table
-            @declarations_language = declaration.declarations_language
-          when 'WJd3Rz'
-            declaration = DeclarationLanguage.new(params, @logged_user)
-            @languages_table = declaration.languages_table
-            @declarations_language = declaration.declarations_language
-          when 'WWd2Rz'
-            declaration = DeclarationPrint.new(params, @logged_user)
-            @print_table = declaration.print_table
-            @declarations_print = declaration.declarations_print
-          when 'WJd2Rl'
-            declaration = DeclarationLanguage.new(params, @logged_user)
-            @languages_table = declaration.languages_table
-            @declarations_language = declaration.declarations_language
-          when 'WWd3Rz'
-            declaration = DeclarationPrint.new(params, @logged_user)
-            @print_table = declaration.print_table
-            @declarations_print = declaration.declarations_print
+          when 'WMd1R', 'WMd2R'
+            @declaration = DeclarationModule.new(params, @logged_user)
+            @declarations_grade = @declaration.declarations_grade
+          when 'WJd2Rz', 'WJd3Rz', 'WJd2Rl'
+            @declaration = DeclarationLanguage.new(params, @logged_user)
+            @declarations_language = @declaration.declarations_language
+          when 'WWd2Rz', 'WWd3Rz'
+            @declaration = DeclarationPrint.new(params, @logged_user)
+            @declarations_print = @declaration.declarations_print
+          when 'WOd3R0'
+            @declaration = DeclarationSubjects.new(params, @logged_user)
+            @declarations_subject = @declaration.declarations_subject
           end
-          @declarations_subjects = declaration.declarations_subjects
-          @merged_subjects = declaration.merged_subjects
-          flash[:notice] = declaration.flash_notice unless declaration.flash_notice.nil?
-          render :template => 'deanery/declarations/' + declaration.template
+          flash[:notice] = @declaration.flash_notice unless @declaration.flash_notice.nil?
+          render :template => 'deanery/declarations/' + @declaration.template
         end
       end
       @declarations = Declaration.find(:all, :conditions => ['year = ?', @logged_user.users_student.year]) if @logged_user.is_student?

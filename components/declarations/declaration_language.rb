@@ -16,12 +16,8 @@ class DeclarationLanguage < Declarations
             :declaration_id => @declaration_id,
             :subject_id => subject.to_i,
             :user_id => @logged_user.id,
-            :grade => nil,
-            :year => nil,
-            :module => nil,
             :date => Time.now,
             :language => language,
-            :print => nil
         }
         create_or_update subject, declarations_language
       end

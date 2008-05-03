@@ -11,11 +11,7 @@ class DeclarationPrint < Declarations
             :declaration_id => @declaration_id,
             :subject_id => subject.to_i,
             :user_id => @logged_user.id,
-            :grade => nil,
-            :year => nil,
-            :module => nil,
             :date => Time.now,
-            :language => nil,
             :print => print
         }
         create_or_update subject, declarations_print

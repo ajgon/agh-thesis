@@ -5,6 +5,7 @@ one:
   code: WMd1R
   head: Wybór modułu na 1. roku
   year: 1
+  how_many:
 two:
   id: 2
   available_from: 1970-01-01
@@ -12,6 +13,7 @@ two:
   code: WJd2Rz
   head: Wybór języka przedmiotów na 3 semestrze 2. roku
   year: 1
+  how_many:
 three:
   id: 3
   available_from: 1970-01-01
@@ -19,6 +21,7 @@ three:
   code: WWd2Rz
   head: Wybór wydruku materiałów na 3 semestrze 2. roku
   year: 1
+  how_many:
 four:
   id: 4
   available_from: 1970-01-01
@@ -26,6 +29,7 @@ four:
   code: WMd2R
   head: Wybór modułu na 2. roku (Elektronika / Telekomunikacja)
   year: 2
+  how_many:
 five:
   id: 5
   available_from: 1970-01-01
@@ -33,6 +37,7 @@ five:
   code: WJd3Rz
   head: Wybór języka przedmiotów na 5 semestrze 3. roku
   year: 2
+  how_many:
 six:
   id: 6
   available_from: 1970-01-01
@@ -40,6 +45,7 @@ six:
   code: WWd3Rz
   head: Wybór wydruku materiałów na 5 semestrze 3. roku
   year: 2
+  how_many:
 seven:
   id: 7
   available_from: 1970-01-01
@@ -47,6 +53,7 @@ seven:
   code: WOd3R0
   head: Wybór przedmiotów obieralnych na 3. roku 
   year: 2
+  how_many: 12
 eight:
   id: 8
   available_from: 1970-01-01
@@ -54,3 +61,4 @@ eight:
   code: WJd2Rl
   head: Wybór języka przedmiotów na 4 semestrze 2. roku
   year: 2
+  how_many:

@@ -1,6 +1,6 @@
 <div class="content deanery">
-  <h3 class="users"><abbr>User</abbr> Deklaracja wyboru języka na 2 roku</h3>
-  <h4>Deklaracja wyboru języka zajęć </h4>
+  <h3 class="users"><abbr>User</abbr> Deklaracja wyboru języka zajęc</h3>
+  <h4><%= @declaration.declarations_subjects.first.declaration.head %></h4>
   <p>Zajęcia dodatkowe (ćwiczenia, laboratoria, projekty, ...) odybwają się wszystkie 
   rodzaje w tym samym języku. Wybór zajęć dodatkowych w j. angielskim oznacza 
   automatycznie wybór wykładów w tym języku. Przy przedmiocie podano jedynie 
@@ -19,20 +19,20 @@
       </tr>
     </thead>
     <tbody>
-<%   @declarations_subjects.each do |declarations_subject| %>
+<%   @declaration.declarations_subjects.each do |declarations_subject| %>
   <tr>
     <td>
       <div><%= declarations_subject.subject.head %> - wykład</div>
       <div><%= declarations_subject.name %></div>
     </td>
-    <td><%= f.select(IdEncoder.encode(declarations_subject.subject_id) + '_a', @languages_table) %></td>
+    <td><%= f.select(IdEncoder.encode(declarations_subject.subject_id) + '_a', @declaration.languages_table) %></td>
   </tr>
   <tr>
     <td>
       <div><%= declarations_subject.subject.head %> - dodatkowe</div>
       <div><%= declarations_subject.name %></div>
     </td>
-    <td><%= f.select(IdEncoder.encode(declarations_subject.subject_id) + '_b', @languages_table) %></td>
+    <td><%= f.select(IdEncoder.encode(declarations_subject.subject_id) + '_b', @declaration.languages_table) %></td>
   </tr>
 <%   end %>
     </tbody>

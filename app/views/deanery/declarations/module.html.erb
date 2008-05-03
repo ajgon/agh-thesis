@@ -1,6 +1,6 @@
 <div class="content deanery">
   <h3 class="users"><abbr>User</abbr> Deklaracja wyboru modułu</h3>
-  <h4><%= @declarations_subjects.first.declaration.head %></h4>
+  <h4><%= @declaration.declarations_subjects.first.declaration.head %></h4>
   <p>Uwaga! Przed wypełnieniem deklaracji proszę zapoznać się z obowiązującym 
   (od roku akademickiego 2006/2007) schematem kształcenia i listą specjalności. 
   Liczba studentów kwalifikowanych do poszczególnych modułów jest ograniczona. 
@@ -15,7 +15,7 @@
   potwierdzając swoją tożsamość numerem indeksu, deklaruję wybór modułu:</p>
 <% form_for :declarations_subject do |f| %>
   <div class="submit">
-    <%= f.select(:module, [['Elektronika', 'E'], ['Telekomunikacja', 'T']]) %>
+    <%= f.select(:module, [['Elektronika', 2], ['Telekomunikacja', 3]]) %>
   </div>
   <p>Rok rozpoczęcia studiów na AGH <%= f.text_field(:year) %></p>
   <table>
@@ -29,7 +29,7 @@
       </tr>
     </thead>
     <tbody>
-<% @declarations_subjects.each do |declarations_subject| %>
+<% @declaration.declarations_subjects.each do |declarations_subject| %>
       <tr>
         <td><%= declarations_subject.subject.head %></td>
         <td></td>

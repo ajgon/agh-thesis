@@ -10,7 +10,7 @@ class CreateDeclarationsSubjects < ActiveRecord::Migration
       t.string :name
       t.integer :grade
       t.integer :year
-      t.string :module, :limit => 1
+      t.references :speciality
       t.date :date
       t.string :language, :limit => 4
       t.boolean :print

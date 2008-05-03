@@ -1,0 +1,35 @@
+<div class="content deanery">
+  <h3 class="users"><abbr>User</abbr> Deklaracja wyboru przedmiotu obieralnego</h3>
+  <h4><%= @declaration.declarations_subjects.first.declaration.head %></h4>
+  <p>Proszę sprawdzić czy w opisie przedmiotu nie ma dodatkowych ograniczeń 
+  (np. posiadana wiedza, ograniczenia dla specjalności, itp.) - system tego nie sprawdza.</p>
+  <p>Utrzymanie ptaszków w odpowiednich polach oznacza akceptację wyboru i nie trzeba jej potwierdzać 
+  u nikogo. Wybory można zmieniać aż do terminu zamkniącia.</p>
+  <p>System nie uwzględnia ewentualnych limitów. Po zakończeniu wyborów prowadzący decyduje 
+  jak rozwiązać problem nadmiaru.</p>
+  <p>Należy wybrać <%= @declaration.subjects_limit %> 
+  <%= @declaration.subjects_limit == 1 ? 'przedmiot' : 'przedmioty' %>.</p>
+<% form_for :declarations_subject do |f| %>
+  <table>
+    <thead>
+      <tr>
+        <th>Przedmiot</th>
+        <th>Wybrano</th>
+      </tr>
+    </thead>
+    <tbody>
+<%   @declaration.declarations_subjects.each do |declarations_subject| %>
+  <tr>
+    <td><%= declarations_subject.subject.head %> (sem. <%= declarations_subject.subject.season %>)</td>
+    <td><%= f.check_box(IdEncoder.encode(declarations_subject.subject_id)) %></td>
+  </tr>
+<%   end %>
+    </tbody>
+  </table>
+  <div class="submit">
+    <input type="hidden" name="declaration[code]" id="declaration_code" value="<%= params[:declaration][:code] %>" />
+    <input type="hidden" name="users_student[sindex]" id="users_student_sindex" value="<%= params[:users_student][:sindex] %>" />
+    <%= submit_tag 'Zapisz Wybory' %>
+  </div>
+<% end %>
+</div>

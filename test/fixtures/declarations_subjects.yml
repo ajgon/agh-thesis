@@ -7,7 +7,7 @@ one:
   name: Signal Theory I - prof. Z. Papir
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -20,7 +20,7 @@ two:
   name: Introduction to Telecommunications - prof. A. Jajszczyk
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -33,7 +33,7 @@ three:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -46,7 +46,7 @@ four:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -59,7 +59,7 @@ five:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -72,7 +72,7 @@ six:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -85,7 +85,7 @@ seven:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -98,7 +98,7 @@ eight:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -111,7 +111,7 @@ nine:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -124,7 +124,7 @@ ten:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -137,7 +137,7 @@ eleven:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -150,7 +150,7 @@ twelve:
   name: Telecommunications Switching Systems - prof. A. Jajszczyk
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -163,7 +163,7 @@ thirteen:
   name: Fibre Optic Communications - dr inż. A. Lasoń
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -176,7 +176,7 @@ fourteen:
   name: Modulation and Detection - prof. Z. Papir
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -189,7 +189,7 @@ fifteen:
   name: Digital Teletransmission Systems - dr inż. A. Lasoń
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -202,7 +202,7 @@ sixteen:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -215,7 +215,7 @@ seventeen:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -228,7 +228,7 @@ eighteen:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -241,7 +241,7 @@ nineteen:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -254,7 +254,7 @@ twenty:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -267,7 +267,7 @@ twentyone:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -280,7 +280,7 @@ twentytwo:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -293,7 +293,7 @@ twentythree:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -306,7 +306,7 @@ twentyfour:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -319,7 +319,7 @@ twentyfive:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -332,7 +332,7 @@ twentysix:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -345,7 +345,7 @@ twentyseven:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -358,7 +358,7 @@ twentyeight:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -371,7 +371,7 @@ twentynine:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -384,7 +384,7 @@ thirty:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -397,7 +397,7 @@ thirtyone:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -410,7 +410,7 @@ thirtytwo:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -423,7 +423,7 @@ thirtythree:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -436,7 +436,7 @@ thirtyfour:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -449,7 +449,7 @@ thirtyfive:
   name:
   grade:
   year:
-  module:
+  speciality_id:
   date:
   language:
   print:
@@ -462,7 +462,59 @@ thirtysix:
   name: Electronic Circuit Simulation - prof. W. Machowski
   grade:
   year:
-  module:
+  speciality_id:
+  date:
+  language:
+  print:
+thirtyseven:
+  id: 37
+  declaration_id: 7
+  subject_id: 129
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+thirtyeight:
+  id: 38
+  declaration_id: 7
+  subject_id: 128
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+thirtynine:
+  id: 39
+  declaration_id: 7
+  subject_id: 129
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+fourty:
+  id: 40
+  declaration_id: 7
+  subject_id: 128
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
   date:
   language:
   print:

@@ -8,6 +8,7 @@ class CreateDeclarations < ActiveRecord::Migration
       t.string :code, :null => false
       t.string :head, :null => false
       t.integer :year, :null => false
+      t.integer :how_many # How many subjects available => 10 * Electronics + 1 * Telecommunication
     end
     Fixtures.create_fixtures( 
       File.join(File.dirname(__FILE__), '..', '..', 'test', 'fixtures'),

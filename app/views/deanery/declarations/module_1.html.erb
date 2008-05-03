@@ -1,6 +1,6 @@
 <div class="content deanery">
   <h3 class="users"><abbr>User</abbr> Deklaracja wyboru modułu</h3>
-  <h4><%= @declarations_subjects.first.declaration.head %></h4>
+  <h4><%= @declaration.declarations_subjects.first.declaration.head %></h4>
   <div class="right">
     Kraków, dn. <%= Time.now.to_s(:date) %>
   </div>
@@ -8,7 +8,7 @@
   <p>Nr indeksu: <strong><%= params[:users_student][:sindex] %></strong></p>
   <p>Wybrany moduł: <strong><%= params[:declarations_subject][:module] == 'E' ? 'ELEKTRONIKA' : 'TELEKOMUNIKACJA' %></strong></p>
   <p>Rok rozpoczęcia studiów na AGH: <strong><%= params[:declarations_subject][:year] %></strong></p>
-  <p>Wyliczona średnia ocen: <strong><%= @average %></strong></p>
+  <p>Wyliczona średnia ocen: <strong><%= @declaration.average %></strong></p>
 <% form_for :declarations_subject do |f| %>
   <table>
     <thead>
@@ -21,13 +21,13 @@
       </tr>
     </thead>
     <tbody>
-<% @declarations_subjects.each do |declarations_subject| %>
+<% @declaration.declarations_subjects.each do |declarations_subject| %>
       <tr>
         <td><%= declarations_subject.subject.head %></td>
         <td></td>
         <td></td>
         <td></td>
-        <td><%= @merged_subjects[declarations_subject.subject_id.to_i]%></td>
+        <td><%= @declaration.merged_subjects[declarations_subject.subject_id.to_i]%></td>
       </tr>
 <% end %>
     </tbody>
@@ -38,8 +38,8 @@
   <div class="submit">
     <input type="hidden" name="declarations_subject[module]" value="<%= params[:declarations_subject][:module] %>" />
     <input type="hidden" name="declarations_subject[year]" value="<%= params[:declarations_subject][:year] %>" />
-<% @declarations_subjects.each do |declarations_subject| %>
-    <input type="hidden" name="declarations_grade[<%= IdEncoder.encode(declarations_subject.subject_id) %>]" value="<%= @merged_subjects[declarations_subject.subject_id.to_i] %>" />
+<% @declaration.declarations_subjects.each do |declarations_subject| %>
+    <input type="hidden" name="declarations_grade[<%= IdEncoder.encode(declarations_subject.subject_id) %>]" value="<%= @declaration.merged_subjects[declarations_subject.subject_id.to_i] %>" />
 <% end %>
     <input type="hidden" name="declaration[code]" id="declaration_code" value="<%= params[:declaration][:code] %>" />
     <input type="hidden" name="users_student[sindex]" id="users_student_sindex" value="<%= params[:users_student][:sindex] %>" />
