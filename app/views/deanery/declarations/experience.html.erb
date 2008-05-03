@@ -1,0 +1,71 @@
+<div class="content deanery">
+  <h3 class="users"><abbr>User</abbr> Deklaracja praktyki</h3>
+  <h4><%= @declaration.declaration_name %></h4>
+  <p>Twoje dane osobowe</p>
+  <dl class="data">
+    <%= dt_dd 'Imię', @logged_user.firstname %>
+    <%= dt_dd 'Nazwisko', @logged_user.lastname %>
+    <%= dt_dd 'Nr indeksu', @logged_user.users_student.sindex %>
+    <%= dt_dd 'Moduł', @logged_user.users_student.speciality.head %>
+  </dl>
+<%= error_messages_for 'declarations_experience', :header_message => nil, :message => 'Przy próbie dodania praktyki, wystąpiły następujące błędy:' if @declarations_experience.respond_to?('errors') %>
+<% form_for :declarations_experience do |f| %>
+  <p>Podaj swój adres stałego zameldowania</p>
+  <dl class="data">
+    <%= dt_dd '<label for="declarations_experiences_student_street">Ulica, numer</label>', f.text_field(:student_street) %>
+    <%= dt_dd '<label for="declarations_experiences_student_postal_code">Kod Pocztowy</label>', f.text_field(:student_postal_code) %>
+    <%= dt_dd '<label for="declarations_experiences_student_city">Miasto</label>', f.text_field(:student_city) %>
+  </dl>
+  <p>Podaj dane miejsca, w którym odbywać się będzie praktyka</p>
+  <dl class="data">
+    <%= dt_dd '<label for="declarations_experiences_place_name">Nazwa</label>', f.text_field(:place_name) %>
+    <%= dt_dd '<label for="declarations_experiences_place_street">Ulica, numer</label>', f.text_field(:place_street) %>
+    <%= dt_dd '<label for="declarations_experiences_place_postal_code">Kod Pocztowy</label>', f.text_field(:place_postal_code) %>
+    <%= dt_dd '<label for="declarations_experiences_place_city">Miasto</label>', f.text_field(:place_city) %>
+  </dl>
+  <p>Podaj termin, w którym odbywać się będzie praktyka. Praktyka trwa 4 tygodnie od 
+  poniedziałku i kończy się w piątek. Jeżeli Twoja praktyka jest podzielona na dwa 
+  okresy, wypełnij także pola z terminem dodatkowym. Przy wypełnianiu pól proszę 
+  korzystać z formatu <strong>rrrr-mm-dd</strong></p>
+<%   fields_for :declarations_experiences_dates do |g| %>
+  <dl class="data">
+    <%= dt_dd '<label for="declarations_experiences_dates_beginning">Początek</label>', g.select(:beginning, @declaration.beginning) %>
+    <dt>Początek(dod.)</dt>
+    <dd class="date">
+      <label for="declarations_experiences_dates_beginning_additional_year">yyyy</label> <%= g.text_field(:beginning_additional_year) %>
+      - <label for="declarations_experiences_dates_beginning_additional_month">mm</label> <%= g.text_field(:beginning_additional_month) %>
+      - <label for="declarations_experiences_dates_beginning_additional_day">dd</label> <%= g.text_field(:beginning_additional_day) %>
+    </dd>
+    <dt>Koniec(dod.)</dt>
+    <dd class="date">
+      <label for="declarations_experiences_dates_ending_additional_year">yyyy</label> <%= g.text_field(:ending_additional_year) %>
+      - <label for="declarations_experiences_dates_ending_additional_month">mm</label> <%= g.text_field(:ending_additional_month) %>
+      - <label for="declarations_experiences_dates_ending_additional_day">dd</label> <%= g.text_field(:ending_additional_day) %>
+    </dd>
+  </dl>
+<%   end %>
+  <p>Zaznacz poniższe pole, jeżeli na czas praktyki chcesz mieszkać w akademiku. 
+  Następnie podaj informację o ubezpieczeniu - możesz albo wybrać ubezpieczenie zakupione 
+  w samorządzie studenckim, albo podać własne dane ubezpieczenia</p>
+  <dl class="data">
+    <%= dt_dd '<label for="declarations_experiences_dormitory">Akademik</label>', f.check_box(:dormitory) %>
+    <%= dt_dd '<label for="declarations_experiences_policy_type">Rodzaj polisy</label>', f.radio_button(:policy_type, :student) + 'Studencka ' + f.radio_button(:policy_type, :own) + 'Własna' %>
+    <%= dt_dd '<label for="declarations_experiences_policy_name">Nazwa polisy</label>', f.text_field(:policy_name) %>
+    <%= dt_dd '<label for="declarations_experiences_policy_number">Numer polisy</label>', f.text_field(:policy_number) %>
+  </dl>
+  <p><strong>Uwaga</strong></p>
+  <ul class="files">
+    <li>przed potwierdzeniem wpisu upewnij się, że Twoje dane osobowe (imię, nazwisko, indeks, moduł) są poprawne,</li>
+    <li>pola "Nazwa polisy" i "Numer polisy" są aktywne tylko w przypadku wybrania opcji "własna",</li>
+    <li>dane polisy studenckiej (nazwa, numer) są zapisane w systemie i nie muszą być wprowadzane,</li>
+    <li>w przypadku odbywania praktyki w jednym ciągłym terminie, pola terminu dodatkowego należy pozostawić puste,</li>
+    <li>podanie Twojego adresu stałego zameldowania jest konieczne, aby deklaracja była ważna,</li>
+    <li>po naciśnięciu przycisku "Aktualizuj dane" będziesz miał(a) możliwość ich późniejszej weryfikacji i poprawiania, ale będziesz musiał(a) jeszcze raz zgłosić się z potwierdzeniami do prowadzącego.</li>
+  </ul>
+  <div class="submit">
+    <input type="hidden" name="declaration[code]" id="declaration_code" value="<%= params[:declaration][:code] %>" />
+    <input type="hidden" name="users_student[sindex]" id="users_student_sindex" value="<%= params[:users_student][:sindex] %>" />
+    <%= submit_tag 'Aktualizuj Dane' %>
+  </div>
+<% end %>
+</div>

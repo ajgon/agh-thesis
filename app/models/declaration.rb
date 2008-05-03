@@ -1,5 +1,6 @@
 class Declaration < ActiveRecord::Base
   has_many :declarations_subjects
+  has_many :declarations_experiences
   
   def how_many? speciality_id
     case speciality_id

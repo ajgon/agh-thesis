@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 21) do
+ActiveRecord::Schema.define(:version => 22) do
 
   create_table "cathedrals", :force => true do |t|
     t.string "name", :limit => 50, :null => false
@@ -23,6 +23,33 @@ ActiveRecord::Schema.define(:version => 21) do
     t.integer "year",           :null => false
     t.integer "how_many"
   end
+
+  create_table "declarations_experiences", :force => true do |t|
+    t.integer  "declaration_id",                                       :null => false
+    t.string   "firstname",                                            :null => false
+    t.string   "lastname",                                             :null => false
+    t.integer  "sindex",               :limit => 6,                    :null => false
+    t.integer  "speciality_id",                                        :null => false
+    t.string   "student_street",                                       :null => false
+    t.string   "student_postal_code",                                  :null => false
+    t.string   "student_city",                                         :null => false
+    t.string   "place_name",                                           :null => false
+    t.string   "place_street",                                         :null => false
+    t.string   "place_postal_code",                                    :null => false
+    t.string   "place_city",                                           :null => false
+    t.date     "beginning",                                            :null => false
+    t.date     "beginning_additional"
+    t.date     "ending_additional"
+    t.boolean  "dormitory",                         :default => false, :null => false
+    t.string   "policy_type"
+    t.string   "policy_name"
+    t.string   "policy_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "declarations_experiences", ["declaration_id"], :name => "declaration_id"
+  add_index "declarations_experiences", ["speciality_id"], :name => "speciality_id"
 
   create_table "declarations_subjects", :force => true do |t|
     t.integer "declaration_id",              :null => false
@@ -221,6 +248,9 @@ ActiveRecord::Schema.define(:version => 21) do
 
   add_index "users_students", ["user_id"], :name => "user_id"
   add_index "users_students", ["speciality_id"], :name => "speciality_id"
+
+  add_foreign_key "declarations_experiences", ["declaration_id"], "declarations", ["id"], :name => "declarations_experiences_ibfk_1"
+  add_foreign_key "declarations_experiences", ["speciality_id"], "specialities", ["id"], :name => "declarations_experiences_ibfk_2"
 
   add_foreign_key "declarations_subjects", ["declaration_id"], "declarations", ["id"], :name => "declarations_subjects_ibfk_1"
   add_foreign_key "declarations_subjects", ["subject_id"], "subjects", ["id"], :name => "declarations_subjects_ibfk_2"

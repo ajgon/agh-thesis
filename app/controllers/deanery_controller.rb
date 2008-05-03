@@ -64,6 +64,10 @@ class DeaneryController < ApplicationController
           when 'WOd3R0'
             @declaration = DeclarationSubjects.new(params, @logged_user)
             @declarations_subject = @declaration.declarations_subject
+          when 'DPd3R'
+            @declaration = DeclarationExperience.new(params, @logged_user)
+            @declarations_experience = @declaration.declarations_experience
+            @declarations_experiences_dates = @declaration.declarations_experiences_dates
           end
           flash[:notice] = @declaration.flash_notice unless @declaration.flash_notice.nil?
           render :template => 'deanery/declarations/' + @declaration.template

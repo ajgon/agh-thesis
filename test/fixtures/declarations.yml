@@ -62,3 +62,59 @@ eight:
   head: Wybór języka przedmiotów na 4 semestrze 2. roku
   year: 2
   how_many:
+nine:
+  id: 9
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: DPd3R
+  head: Deklaracja praktyki dla studentów 3. roku 
+  year: 3
+  how_many:
+ten:
+  id: 10
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: WSd3R
+  head: Wybór specjalności / trybu studiów dla studentów 3. roku 
+  year: 3
+  how_many:
+eleven:
+  id: 11
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: WJd4Rz
+  head: Wybór języka przedmiotów na 7 semestrze 4. roku
+  year: 3
+  how_many:
+twelve:
+  id: 12
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: WJd3Rl
+  head: Wybór języka przedmiotów na 6 semestrze 3. roku
+  year: 3
+  how_many:
+thirteen:
+  id: 13
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: WWd4Rz
+  head: ybór wydruku materiałów na 7 semestrze 4. roku
+  year: 3
+  how_many:
+fourteen:
+  id: 14
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: WWd3Rl
+  head: ybór wydruku materiałów na 6 semestrze 3. roku
+  year: 3
+  how_many:
+fifteen:
+  id: 15
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: WOd4R0
+  head: Wybór przedmiotów obieralnych na 4. roku 
+  year: 3
+  how_many: 22
