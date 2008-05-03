@@ -1,0 +1,8 @@
+<div class="content">
+  <h3 class="settings"><abbr>Settings</abbr> Deklaracje</h3>
+  <dl class="data long">
+<% @declarations.each do |declaration| %>
+    <%= dt_dd link_to(declaration.code, :controller => 'settings', :action => 'declarations', :id => declaration.code, :page => nil), declaration.head %>
+<% end %>
+  </dl>
+</div>

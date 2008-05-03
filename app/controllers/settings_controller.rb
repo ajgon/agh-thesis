@@ -315,6 +315,18 @@ class SettingsController < ApplicationController
   end
   
   def declarations
+    @declarations = Declaration.find(:all)
+    if params[:id]
+      case params[:id]
+      when 'WMd1R', 'WMd2R'
+      when 'WJd2Rz', 'WJd3Rz', 'WJd2Rl', 'WJd4Rz' , 'WJd3Rl', 'WJd5Rz'
+      when 'WWd2Rz', 'WWd3Rz', 'WWd4Rz', 'WWd3Rl', 'WWd5Rz', 'WWd4Rl'
+      when 'WOd3R0', 'WOd4R0', 'WOd5R0'
+      when 'DPd3R', 'DPd4R'
+      when 'WSd3R'
+      end
+      #render :template => 'deanery/declarations/' + @declaration.template
+    end
   end
   
   def calendar
