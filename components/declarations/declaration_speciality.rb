@@ -1,9 +1,8 @@
 class DeclarationSpeciality < Declarations
-  attr_reader :declaration_name, :type, :speciality, :declarations_speciality
+  attr_reader :type, :speciality, :declarations_speciality
   
   def initialize(params, logged_user)
     super
-    @declaration_name = Declaration.find(@declaration_id).head
     @type = [['Inżynierskie', 'I'], ['Magisterskie', 'M']]
     case @logged_user.users_student.speciality_id
     when 2

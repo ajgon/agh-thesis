@@ -22,7 +22,7 @@
     <%= dt_dd '', '--- brak aktualnie dostępnych deklaracji ---' %>
 <%       else %>
 <%         @declarations.each do |declaration| %>
-       <%= dt_dd d.radio_button(:code, declaration.code) + declaration.code, declaration.head %>
+       <%= dt_dd d.radio_button(:code, declaration.code) + '<label for="declaration_code_' + declaration.code.downcase + '">' + declaration.code + '</label>', declaration.head %>
 <%         end %>
 <%       end %>
 <%     end %>

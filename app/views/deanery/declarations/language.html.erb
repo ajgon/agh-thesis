@@ -1,6 +1,6 @@
 <div class="content deanery">
   <h3 class="users"><abbr>User</abbr> Deklaracja wyboru języka zajęc</h3>
-  <h4><%= @declaration.declarations_subjects.first.declaration.head %></h4>
+  <h4><%= @declaration.declaration_name %></h4>
   <p>Zajęcia dodatkowe (ćwiczenia, laboratoria, projekty, ...) odybwają się wszystkie 
   rodzaje w tym samym języku. Wybór zajęć dodatkowych w j. angielskim oznacza 
   automatycznie wybór wykładów w tym języku. Przy przedmiocie podano jedynie 
@@ -10,7 +10,8 @@
   modułu (wykład wygłaszany dla jednej całej grupy wykładowej, a nie np. dwóch 
   części roku) potrzebna jest zgoda 100% studentów na uruchomienie wersji 
   angielskiej.</p>
-<% form_for :declarations_language do |f| %>
+<% unless @declaration.declarations_subjects.empty? %>
+<%   form_for :declarations_language do |f| %>
   <table>
     <thead>
       <tr>
@@ -19,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-<%   @declaration.declarations_subjects.each do |declarations_subject| %>
+<%     @declaration.declarations_subjects.each do |declarations_subject| %>
   <tr>
     <td>
       <div><%= declarations_subject.subject.head %> - wykład</div>
@@ -34,7 +35,7 @@
     </td>
     <td><%= f.select(IdEncoder.encode(declarations_subject.subject_id) + '_b', @declaration.languages_table) %></td>
   </tr>
-<%   end %>
+<%     end %>
     </tbody>
   </table>
   <div class="submit">
@@ -42,5 +43,8 @@
     <input type="hidden" name="users_student[sindex]" id="users_student_sindex" value="<%= params[:users_student][:sindex] %>" />
     <%= submit_tag 'Zapisz Wybory' %>
   </div>
+<%   end %>
+<% else %>
+  <p>Brak przedmiotów do wyboru</p>
 <% end %>
 </div>

@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(:version => 22) do
     t.date    "date"
     t.string  "language",         :limit => 4
     t.boolean "print"
-    t.string  "type",             :limit => 1
+    t.string  "study_type",       :limit => 1
     t.integer "study_speciality"
   end
 

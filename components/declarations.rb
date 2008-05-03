@@ -3,15 +3,18 @@ class Declarations
   attr_reader :merged_subjects # Przedmioty i przypisany im parametr, po przejsciu przez parser sprawdzajacy poprawnos przeslanych danych
   attr_reader :flash_notice # Wiadomość do wyświetlenia
   attr_reader :template # Sciezka do template ktory ma byc wyrenderowany
+  attr_reader :declaration_name
   
   def initialize(params, logged_user)
     @logged_user = logged_user
     @declaration_code = params[:declaration][:code]
-    @declarations_subjects = DeclarationsSubject.find(:all, :include => [:declaration, :subject], :conditions => ['declarations.code = ? AND user_id IS NULL', @declaration_code])
+    @declarations_subjects = DeclarationsSubject.find(:all, :include => [:declaration, :subject], :conditions => ['declarations.code = ? AND user_id IS NULL AND (speciality_id IS NULL or speciality_id = ?)', @declaration_code, @logged_user.users_student.speciality_id])
     @merged_subjects = nil
     @flash_notice = nil
     @template = nil
-    @declaration_id = Declaration.find_by_code(@declaration_code).id
+    declaration = Declaration.find_by_code(@declaration_code)
+    @declaration_id = declaration.id
+    @declaration_name = declaration.head
   end
   
   def merge_subjects subjects_hash

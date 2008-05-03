@@ -1,9 +1,8 @@
 class DeclarationExperience < Declarations
-  attr_reader :declaration_name, :declarations_experience, :declarations_experiences_dates, :beginning
+  attr_reader :declarations_experience, :declarations_experiences_dates, :beginning
   
   def initialize(params, logged_user)
     super
-    @declaration_name = Declaration.find(@declaration_id).head
     day = 20
     while(Time.mktime(Time.now.year,06,day).strftime('%a') != 'Mon')
       day += 1
@@ -39,8 +38,8 @@ class DeclarationExperience < Declarations
         @flash_notice = 'Deklaracja została dodana' if @declarations_experience.save
       end
     end
-    if @declarations_experience.nil? and DeclarationsExperience.find_by_sindex(params[:users_student][:sindex])
-      @declarations_experience = DeclarationsExperience.find_by_sindex(params[:users_student][:sindex])
+    if @declarations_experience.nil? and DeclarationsExperience.find(:first, :conditions => ['sindex = ? AND declaration_id = ?', params[:users_student][:sindex], @declaration_id])
+      @declarations_experience = DeclarationsExperience.find(:first, :conditions => ['sindex = ? AND declaration_id = ?', params[:users_student][:sindex], @declaration_id])
       @declarations_experiences_dates = HashWithMethods.new({
           :beginning => @declarations_experience.beginning.strftime('%Y-%m-%d'),
           :beginning_additional_year => @declarations_experience.beginning_additional.year,

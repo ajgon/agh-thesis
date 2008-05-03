@@ -99,7 +99,7 @@ thirteen:
   available_from: 1970-01-01
   available_to: 2041-12-31
   code: WWd4Rz
-  head: ybór wydruku materiałów na 7 semestrze 4. roku
+  head: Wybór wydruku materiałów na 7 semestrze 4. roku
   year: 3
   how_many:
 fourteen:
@@ -107,7 +107,7 @@ fourteen:
   available_from: 1970-01-01
   available_to: 2041-12-31
   code: WWd3Rl
-  head: ybór wydruku materiałów na 6 semestrze 3. roku
+  head: Wybór wydruku materiałów na 6 semestrze 3. roku
   year: 3
   how_many:
 fifteen:
@@ -117,4 +117,44 @@ fifteen:
   code: WOd4R0
   head: Wybór przedmiotów obieralnych na 4. roku 
   year: 3
-  how_many: 22
+  how_many: 34
+sixteen:
+  id: 16
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: DPd4R
+  head: Deklaracja praktyki dla studentów 4. roku 
+  year: 4
+  how_many: 
+seventeen:
+  id: 17
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: WJd5Rz
+  head: Wybór języka przedmiotów na 9 semestrze 5. roku
+  year: 4
+  how_many: 
+eighteen:
+  id: 18
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: WWd5Rz
+  head: Wybór wydruku materiałów na 9 semestrze 5. roku
+  year: 4
+  how_many: 
+nineteen:
+  id: 19
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: WWd4Rl
+  head: Wybór wydruku materiałów na 8 semestrze 4. roku
+  year: 4
+  how_many: 
+twenty:
+  id: 20
+  available_from: 1970-01-01
+  available_to: 2041-12-31
+  code: WOd5R0
+  head: Wybór przedmiotów obieralnych na 5. roku 
+  year: 4
+  how_many: 23

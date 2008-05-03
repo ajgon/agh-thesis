@@ -11,7 +11,7 @@ one:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 two:
   id: 2
@@ -26,7 +26,7 @@ two:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 three:
   id: 3
@@ -41,7 +41,7 @@ three:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 four:
   id: 4
@@ -56,7 +56,7 @@ four:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 five:
   id: 5
@@ -71,7 +71,7 @@ five:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 six:
   id: 6
@@ -86,7 +86,7 @@ six:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 seven:
   id: 7
@@ -101,7 +101,7 @@ seven:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 eight:
   id: 8
@@ -116,7 +116,7 @@ eight:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 nine:
   id: 9
@@ -131,7 +131,7 @@ nine:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 ten:
   id: 10
@@ -146,7 +146,7 @@ ten:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 eleven:
   id: 11
@@ -161,7 +161,7 @@ eleven:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 twelve:
   id: 12
@@ -176,7 +176,7 @@ twelve:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 thirteen:
   id: 13
@@ -191,7 +191,7 @@ thirteen:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 fourteen:
   id: 14
@@ -206,7 +206,7 @@ fourteen:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 fifteen:
   id: 15
@@ -221,7 +221,7 @@ fifteen:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 sixteen:
   id: 16
@@ -236,7 +236,7 @@ sixteen:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 seventeen:
   id: 17
@@ -251,7 +251,7 @@ seventeen:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 eighteen:
   id: 18
@@ -266,7 +266,7 @@ eighteen:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 nineteen:
   id: 19
@@ -281,7 +281,7 @@ nineteen:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 twenty:
   id: 20
@@ -296,7 +296,7 @@ twenty:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 twentyone:
   id: 21
@@ -311,7 +311,7 @@ twentyone:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 twentytwo:
   id: 22
@@ -326,7 +326,7 @@ twentytwo:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 twentythree:
   id: 23
@@ -341,7 +341,7 @@ twentythree:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 twentyfour:
   id: 24
@@ -356,7 +356,7 @@ twentyfour:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 twentyfive:
   id: 25
@@ -371,7 +371,7 @@ twentyfive:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 twentysix:
   id: 26
@@ -386,7 +386,7 @@ twentysix:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 twentyseven:
   id: 27
@@ -401,7 +401,7 @@ twentyseven:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 twentyeight:
   id: 28
@@ -416,7 +416,7 @@ twentyeight:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 twentynine:
   id: 29
@@ -431,7 +431,7 @@ twentynine:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 thirty:
   id: 30
@@ -446,7 +446,7 @@ thirty:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 thirtyone:
   id: 31
@@ -461,7 +461,7 @@ thirtyone:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 thirtytwo:
   id: 32
@@ -476,7 +476,7 @@ thirtytwo:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 thirtythree:
   id: 33
@@ -491,7 +491,7 @@ thirtythree:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 thirtyfour:
   id: 34
@@ -506,7 +506,7 @@ thirtyfour:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 thirtyfive:
   id: 35
@@ -521,7 +521,7 @@ thirtyfive:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 thirtysix:
   id: 36
@@ -536,7 +536,7 @@ thirtysix:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 thirtyseven:
   id: 37
@@ -551,7 +551,7 @@ thirtyseven:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 thirtyeight:
   id: 38
@@ -566,7 +566,7 @@ thirtyeight:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 thirtynine:
   id: 39
@@ -581,7 +581,7 @@ thirtynine:
   date:
   language:
   print:
-  type:
+  study_type:
   study_speciality:
 fourty:
   id: 40
@@ -596,5 +596,620 @@ fourty:
   date:
   language:
   print:
-  type:
+  study_type:
+  study_speciality:
+fourtyone:
+  id: 41
+  declaration_id: 11
+  subject_id: 84
+  user_id:
+  price:
+  name: Computer Communications Networks - prof. A. Pach
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fourtytwo:
+  id: 42
+  declaration_id: 11
+  subject_id: 85
+  user_id:
+  price:
+  name: Integrated and Broadband Networks - dr inż. K. Wajda
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fourtythree:
+  id: 43
+  declaration_id: 12
+  subject_id: 81
+  user_id:
+  price:
+  name: Data Bases - dr S. Stoch
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fourtyfour:
+  id: 44
+  declaration_id: 12
+  subject_id: 170
+  user_id:
+  price:
+  name: Inforamtion Theory and Coding - prof. A. Pach
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fourtyfive:
+  id: 45
+  declaration_id: 13
+  subject_id: 84
+  user_id:
+  price: 280
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fourtysix:
+  id: 46
+  declaration_id: 13
+  subject_id: 85
+  user_id:
+  price: 120
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fourtyseven:
+  id: 47
+  declaration_id: 14
+  subject_id: 81
+  user_id:
+  price: 100
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fourtyeight:
+  id: 48
+  declaration_id: 14
+  subject_id: 170
+  user_id:
+  price: 150
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fortynine:
+  id: 49
+  declaration_id: 15
+  subject_id: 130
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fifty:
+  id: 50
+  declaration_id: 15
+  subject_id: 46
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fiftyone:
+  id: 51
+  declaration_id: 15
+  subject_id: 43
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fiftytwo:
+  id: 52
+  declaration_id: 15
+  subject_id: 45
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fiftythree:
+  id: 53
+  declaration_id: 15
+  subject_id: 154
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fiftyfour:
+  id: 54
+  declaration_id: 15
+  subject_id: 155
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fiftyfive:
+  id: 55
+  declaration_id: 15
+  subject_id: 146
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fiftysix:
+  id: 56
+  declaration_id: 15
+  subject_id: 132
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fiftyseven:
+  id: 57
+  declaration_id: 15
+  subject_id: 151
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fiftyeight:
+  id: 58
+  declaration_id: 15
+  subject_id: 92
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+fiftynine:
+  id: 59
+  declaration_id: 15
+  subject_id: 130
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+sixty:
+  id: 60
+  declaration_id: 15
+  subject_id: 87
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+sixtyone:
+  id: 61
+  declaration_id: 15
+  subject_id: 91
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+sixtytwo:
+  id: 62
+  declaration_id: 15
+  subject_id: 134
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+sixtythree:
+  id: 63
+  declaration_id: 15
+  subject_id: 135
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+sixtyfour:
+  id: 64
+  declaration_id: 15
+  subject_id: 133
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+sixtyfive:
+  id: 65
+  declaration_id: 15
+  subject_id: 131
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+sixtysix:
+  id: 66
+  declaration_id: 15
+  subject_id: 132
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+sixtyseven:
+  id: 67
+  declaration_id: 17
+  subject_id: 100
+  user_id:
+  price:
+  name: Multimedia Systems - dr in¿. Z. Hulicki
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+sixtyeight:
+  id: 68
+  declaration_id: 17
+  subject_id: 101
+  user_id:
+  price:
+  name: Telecommunications Network Planning - dr inż. K. Wajda
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+sixtynine:
+  id: 69
+  declaration_id: 18
+  subject_id: 101
+  user_id:
+  price: 140
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+seventy:
+  id: 70
+  declaration_id: 19
+  subject_id: 95
+  user_id:
+  price: 70
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+seventyone:
+  id: 71
+  declaration_id: 19
+  subject_id: 96
+  user_id:
+  price: 150
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+seventytwo:
+  id: 72
+  declaration_id: 19
+  subject_id: 97
+  user_id:
+  price: 100
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+seventythree:
+  id: 73
+  declaration_id: 20
+  subject_id: 138
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+seventyfour:
+  id: 74
+  declaration_id: 20
+  subject_id: 142
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+seventyfive:
+  id: 75
+  declaration_id: 20
+  subject_id: 147
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+seventysix:
+  id: 76
+  declaration_id: 20
+  subject_id: 115
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+seventyseven:
+  id: 77
+  declaration_id: 20
+  subject_id: 125
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+seventyeight:
+  id: 78
+  declaration_id: 20
+  subject_id: 120
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+seventynine:
+  id: 79
+  declaration_id: 20
+  subject_id: 116
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+eighty:
+  id: 80
+  declaration_id: 20
+  subject_id: 123
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+eightyone:
+  id: 81
+  declaration_id: 20
+  subject_id: 171
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
   study_speciality:

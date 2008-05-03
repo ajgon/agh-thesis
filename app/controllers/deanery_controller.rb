@@ -54,16 +54,16 @@ class DeaneryController < ApplicationController
           when 'WMd1R', 'WMd2R'
             @declaration = DeclarationModule.new(params, @logged_user)
             @declarations_grade = @declaration.declarations_grade
-          when 'WJd2Rz', 'WJd3Rz', 'WJd2Rl'
+          when 'WJd2Rz', 'WJd3Rz', 'WJd2Rl', 'WJd4Rz' , 'WJd3Rl', 'WJd5Rz'
             @declaration = DeclarationLanguage.new(params, @logged_user)
             @declarations_language = @declaration.declarations_language
-          when 'WWd2Rz', 'WWd3Rz'
+          when 'WWd2Rz', 'WWd3Rz', 'WWd4Rz', 'WWd3Rl', 'WWd5Rz', 'WWd4Rl'
             @declaration = DeclarationPrint.new(params, @logged_user)
             @declarations_print = @declaration.declarations_print
-          when 'WOd3R0'
+          when 'WOd3R0', 'WOd4R0', 'WOd5R0'
             @declaration = DeclarationSubjects.new(params, @logged_user)
             @declarations_subject = @declaration.declarations_subject
-          when 'DPd3R'
+          when 'DPd3R', 'DPd4R'
             @declaration = DeclarationExperience.new(params, @logged_user)
             @declarations_experience = @declaration.declarations_experience
             @declarations_experiences_dates = @declaration.declarations_experiences_dates
