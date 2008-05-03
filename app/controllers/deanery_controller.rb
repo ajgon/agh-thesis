@@ -38,11 +38,11 @@ class DeaneryController < ApplicationController
   end
   
   def eligible
-    @subjects_electronics = Subject.find(:all, :select => 'subjects.id, subjects.code, subjects.head, subjects.season, COUNT(*) AS count', :joins => 'LEFT OUTER JOIN `subjects_types` ON `subjects_types`.id = `subjects`.subjects_type_id LEFT OUTER JOIN `declarations` ON declarations.subject_id = subjects.id', :conditions => "mandatory = false AND subjects_type_id <> 10 AND (code LIKE 'E%' OR code LIKE 'ET%')", :order => 'season, count DESC, code', :group => 'subject_id')
-    @subjects_telecommunication = Subject.find(:all, :select => 'subjects.id, subjects.code, subjects.head, subjects.season, COUNT(*) AS count', :joins => 'LEFT OUTER JOIN `subjects_types` ON `subjects_types`.id = `subjects`.subjects_type_id LEFT OUTER JOIN `declarations` ON declarations.subject_id = subjects.id', :conditions => "mandatory = false AND subjects_type_id <> 10 AND (code LIKE 'T%' OR code LIKE 'ET%')", :order => 'season, count DESC, code', :group => 'subject_id')
+    @subjects_electronics = Subject.find(:all, :select => 'subjects.id, subjects.code, subjects.head, subjects.season, COUNT(*) AS count', :joins => 'LEFT OUTER JOIN `subjects_types` ON `subjects_types`.id = `subjects`.subjects_type_id LEFT OUTER JOIN `declarations_subjects` ON declarations_subjects.subject_id = subjects.id', :conditions => "mandatory = false AND subjects_type_id <> 10 AND (code LIKE 'E%' OR code LIKE 'ET%') AND declarations_subjects.user_id IS NULL and declarations_subjects.price IS NULL and declarations_subjects.name IS NULL", :order => 'season, count DESC, code', :group => 'subject_id')
+    @subjects_telecommunication = Subject.find(:all, :select => 'subjects.id, subjects.code, subjects.head, subjects.season, COUNT(*) AS count', :joins => 'LEFT OUTER JOIN `subjects_types` ON `subjects_types`.id = `subjects`.subjects_type_id LEFT OUTER JOIN `declarations_subjects` ON declarations_subjects.subject_id = subjects.id', :conditions => "mandatory = false AND subjects_type_id <> 10 AND (code LIKE 'T%' OR code LIKE 'ET%') AND declarations_subjects.user_id IS NULL and declarations_subjects.price IS NULL and declarations_subjects.name IS NULL", :order => 'season, count DESC, code', :group => 'subject_id')
     @subjects_choosen = []
     if @logged_user
-      Declaration.find(:all, :conditions => ['user_id = ?', @logged_user.id]).each {|declaration| @subjects_choosen.push declaration.subject_id}
+#      Declaration.find(:all, :conditions => ['user_id = ?', @logged_user.id]).each {|declaration| @subjects_choosen.push declaration.subject_id}
     end
   end
   

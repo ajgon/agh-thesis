@@ -8,6 +8,7 @@ class DeclarationSubjects < Declarations
       params[:declarations_subject].delete_if {|key, value| value.to_i != 1}
       if params[:declarations_subject].length == @subjects_limit
         merge_subjects params[:declarations_subject]
+        @merged_subjects.delete_if {|key, value| value.nil? }
         @merged_subjects.keys.each do |subject|
           declarations_subject = {
               :declaration_id => @declaration_id,

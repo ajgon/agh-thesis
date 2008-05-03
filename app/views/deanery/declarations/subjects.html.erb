@@ -20,7 +20,7 @@
     <tbody>
 <%   @declaration.declarations_subjects.each do |declarations_subject| %>
   <tr>
-    <td><%= declarations_subject.subject.head %> (sem. <%= declarations_subject.subject.season %>)</td>
+    <td><%= declarations_subject.subject.head %> (sem. <%= declarations_subject.subject.season %>) [<%= declarations_subject.subject.count_for_declaration(declarations_subject.declaration_id) %>]</td>
     <td><%= f.check_box(IdEncoder.encode(declarations_subject.subject_id)) %></td>
   </tr>
 <%   end %>
