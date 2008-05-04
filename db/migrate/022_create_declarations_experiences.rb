@@ -20,6 +20,7 @@ class CreateDeclarationsExperiences < ActiveRecord::Migration
       t.string :policy_type
       t.string :policy_name
       t.string :policy_number
+      t.integer :confirmations
       t.timestamps
     end
   end

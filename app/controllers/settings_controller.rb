@@ -319,13 +319,20 @@ class SettingsController < ApplicationController
     if params[:id]
       case params[:id]
       when 'WMd1R', 'WMd2R'
+        @declaration = DeclarationModule.new(params, @logged_user, true)
       when 'WJd2Rz', 'WJd3Rz', 'WJd2Rl', 'WJd4Rz' , 'WJd3Rl', 'WJd5Rz'
+        @declaration = DeclarationLanguage.new(params, @logged_user, true)
       when 'WWd2Rz', 'WWd3Rz', 'WWd4Rz', 'WWd3Rl', 'WWd5Rz', 'WWd4Rl'
+        @declaration = DeclarationPrint.new(params, @logged_user, true)
       when 'WOd3R0', 'WOd4R0', 'WOd5R0'
+        @declaration = DeclarationSubjects.new(params, @logged_user, true)
       when 'DPd3R', 'DPd4R'
+        @declaration = DeclarationExperience.new(params, @logged_user, true)
+        @confirmations = @declaration.confirmations
       when 'WSd3R'
+        @declaration = DeclarationSpeciality.new(params, @logged_user, true)
       end
-      #render :template => 'deanery/declarations/' + @declaration.template
+      render :template => 'settings/declarations/' + @declaration.template
     end
   end
   

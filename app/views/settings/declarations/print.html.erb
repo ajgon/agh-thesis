@@ -1,0 +1,21 @@
+<div class="content deanery">
+  <h3 class="settings"><abbr>Settings</abbr> Deklaracje wyboru wydruku materiałów</h3>
+  <h4><%= @declaration.declaration_name %></h4>
+  <p>Zestawienie liczbowe deklaracji zakupu</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Przedmiot</th>
+        <th>Ilość chętnych</th>
+      </tr>
+    </thead>
+    <tbody>
+<% @declaration.subjects.each_pair do |subject_id, prints| %>
+      <tr>
+        <td><%= Subject.find(subject_id).head %></td>
+        <td><%= prints.to_i %></td>
+      </tr>
+<% end %>
+    </tbody>
+  </table>
+</div>

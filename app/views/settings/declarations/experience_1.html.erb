@@ -1,0 +1,51 @@
+<div class="content deanery">
+  <h3 class="users"><abbr>User</abbr> Deklaracja praktyki zawodowej</h3>
+  <h4><%= @declaration.declaration_name %></h4>
+  <p>Dane osobowe</p>
+  <dl class="data">
+    <%= dt_dd 'Imię', @declaration.experiences.firstname %>
+    <%= dt_dd 'Nazwisko', @declaration.experiences.lastname %>
+    <%= dt_dd 'Nr indeksu', @declaration.experiences.sindex %>
+    <%= dt_dd 'Moduł', @declaration.experiences.speciality.head %>
+  </dl>
+  <p>Adres stałego zameldowania</p>
+  <dl class="data">
+    <%= dt_dd 'Ulica, numer', @declaration.experiences.student_street %>
+    <%= dt_dd 'Kod Pocztowy', @declaration.experiences.student_postal_code %>
+    <%= dt_dd 'Miasto', @declaration.experiences.student_city %>
+  </dl>
+  <p>Dane miejsca, w którym odbywać się będzie praktyka</p>
+  <dl class="data">
+    <%= dt_dd 'Nazwa', @declaration.experiences.place_name %>
+    <%= dt_dd 'Ulica, numer', @declaration.experiences.place_street %>
+    <%= dt_dd 'Kod Pocztowy', @declaration.experiences.place_postal_code %>
+    <%= dt_dd 'Miasto', @declaration.experiences.place_city %>
+  </dl>
+  <p>Termin w którym będzie się odbywać praktyka</p>
+  <dl class="data">
+    <%= dt_dd 'Początek', @declaration.experiences.beginning.to_s %>
+    <%= dt_dd 'Koniec', (@declaration.experiences.beginning + 4.weeks).to_s %>
+    <%= dt_dd 'Początek(dod.)', @declaration.experiences.beginning_additional.to_s %>
+    <%= dt_dd 'Koniec(dod.)', @declaration.experiences.ending_additional.to_s %>
+  </dl>
+  <p>Dodatkowe informacje o praktyce</p>
+  <dl class="data">
+    <%= dt_dd 'Akademik', (@declaration.experiences.dormitory ? 'tak' : 'nie') %>
+    <%= dt_dd 'Rodzaj polisy', (@declaration.experiences.policy_type == 'own' ? 'Własna' : 'Studencka') %>
+    <%= dt_dd 'Nazwa polisy', @declaration.experiences.policy_name %>
+    <%= dt_dd 'Numer polisy', @declaration.experiences.policy_number %>
+  </dl>
+<% form_for :confirmations do |f| %>
+  <p>Twoje publiczne potwierdzenia tej deklaracji</p>
+  <dl class="data long">
+    <%= dt_dd f.check_box(:one), '<label for="confirmations_one">Dostarczone zaświadczenie z miejsca praktyki</label>' %>
+    <%= dt_dd f.check_box(:two), '<label for="confirmations_two">Dostarczona informacja o ubezpieczeniu</label>' %>
+  </dl>
+  <p>Twoje prywatne potwierdzenia tej deklaracji</p>
+  <dl class="data long">
+    <%= dt_dd f.check_box(:three), '<label for="confirmations_three">Dostarczone potwierdzenie odbycia praktyki i sprawozdanie</label>' %>
+    <%= dt_dd f.check_box(:four), '<label for="confirmations_four">Praktyka bezpłatna</label>' %>
+    <%= dt_dd f.check_box(:five), '<label for="confirmations_five">Wpis do indeksu</label>' %>
+  </dl>
+<% end %>
+</div>

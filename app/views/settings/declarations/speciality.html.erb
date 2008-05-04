@@ -1,0 +1,23 @@
+<div class="content deanery">
+  <h3 class="settings"><abbr>Settings</abbr> Deklaracje specjalności</h3>
+  <h4><%= @declaration.declaration_name %></h4>
+  <p>Statystyki dotychczasowo dokonanych wyborów</p>
+<% @declaration.specialities.each_with_index do |speciality, index| %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= index == 0 ? 'Typ studiów' : 'Specjalność' %></th>
+        <th>Ilość chętnych</th>
+      </tr>
+    </thead>
+    <tbody>
+<%   speciality.each_pair do |name, count| %>
+      <tr>
+        <td><%= name %></td>
+        <td><%= count %></td>
+      </tr>
+<%   end %>
+    </tbody>
+  </table>
+<% end %>
+</div>

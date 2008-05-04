@@ -8,7 +8,7 @@ class CreateDeclarationsSubjects < ActiveRecord::Migration
       t.references :user
       t.integer :price
       t.string :name
-      t.integer :grade
+      t.decimal :grade, :precision => 2, :scale => 1
       t.integer :year
       t.references :speciality
       t.date :date

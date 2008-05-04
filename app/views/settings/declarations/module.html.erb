@@ -1,0 +1,25 @@
+<div class="content deanery">
+  <h3 class="settings"><abbr>Settings</abbr> Deklaracje wyboru modułu</h3>
+  <h4><%= @declaration.declaration_name %></h4>
+  <p>Poniższa tabela prezentuje wszystkie deklaracje wyboru modułu (<%= params[:id] %>), 
+  które zostały zarejestrowane przez system w tym roku. Aby zobaczyć szczegóły danej 
+  deklaracji, wybierz jej kod</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Kod deklaracji</th>
+        <th>Imię i nazwisko</th>
+        <th>Data wpłynięcia</th>
+      </tr>
+    </thead>
+    <tbody>
+<% @declaration.students.each do |student| %>
+  <tr>
+    <td><%= link_to student.code, :controller => 'settings', :action => 'declarations', :id => params[:id], :page => student.code %></td>
+    <td><%= student.name %></td>
+    <td><%= student.date %></td>
+  </tr>
+<% end %>
+    </tbody>
+  </table>
+</div>

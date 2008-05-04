@@ -1,0 +1,23 @@
+<div class="content deanery">
+  <h3 class="settings"><abbr>Settings</abbr> Deklaracje wyboru przedmiotów obieralnych</h3>
+  <h4><%= @declaration.declaration_name %></h4>
+  <p>Zestawiene liczbowe deklaracji. Kody: ETyy - przedmiot dla obu modułów, 
+  Tyy - tylko moduł T, Eyy - tylko moduł E (yy = litera A lub B lub liczba)</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Przedmiot</th>
+        <th>Ilość chętnych</th>
+      </tr>
+    </thead>
+    <tbody>
+<% @declaration.subjects.each_pair do |subject_id, students| %>
+      <% subject = Subject.find(subject_id) %>
+      <tr>
+        <td><%= subject.code %>: <%= subject.head %> (sem. <%= subject.season %>)</td>
+        <td><%= students.to_i %></td>
+      </tr>
+<% end %>
+    </tbody>
+  </table>
+</div>

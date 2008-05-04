@@ -1,0 +1,34 @@
+<div class="content deanery">
+  <h3 class="users"><abbr>User</abbr> Deklaracja wyboru modułu</h3>
+  <h4><%= @declaration.declaration_name %></h4>
+  <div class="right">
+    Kraków, dn. <%= @declaration.fields.time %>
+  </div>
+  <p>Imię i nazwisko: <strong><%= @declaration.fields.name %></strong></p>
+  <p>Nr indeksu: <strong><%= @declaration.fields.sindex %></strong></p>
+  <p>Wybrany moduł: <strong><%= @declaration.fields.module.upcase %></strong></p>
+  <p>Rok rozpoczęcia studiów na AGH: <strong><%= @declaration.fields.year %></strong></p>
+  <p>Wyliczona średnia ocen: <strong><%= @declaration.fields.grade %></strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Przedmiot</th>
+        <th>ćw</th>
+        <th>lab&nbsp;/&nbsp;proj</th>
+        <th>egz</th>
+        <th>Ocena Końcowa</th>
+      </tr>
+    </thead>
+    <tbody>
+<% @declaration.declarations_subject.each do |declarations_subject| %>
+      <tr>
+        <td><%= declarations_subject.subject.head %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= declarations_subject.grade.to_f.to_s %></td>
+      </tr>
+<% end %>
+    </tbody>
+  </table>
+</div>

@@ -5,10 +5,14 @@ class Declarations
   attr_reader :template # Sciezka do template ktory ma byc wyrenderowany
   attr_reader :declaration_name
   
-  def initialize(params, logged_user)
+  def initialize(params, logged_user, settings = false)
     @logged_user = logged_user
-    @declaration_code = params[:declaration][:code]
-    @declarations_subjects = DeclarationsSubject.find(:all, :include => [:declaration, :subject], :conditions => ['declarations.code = ? AND user_id IS NULL AND (speciality_id IS NULL or speciality_id = ?)', @declaration_code, @logged_user.users_student.speciality_id])
+    unless settings
+      @declaration_code = params[:declaration][:code]
+      @declarations_subjects = DeclarationsSubject.find(:all, :include => [:declaration, :subject], :conditions => ['declarations.code = ? AND user_id IS NULL AND (speciality_id IS NULL or speciality_id = ?)', @declaration_code, @logged_user.users_student.speciality_id])
+    else
+      @declaration_code = params[:id]
+    end
     @merged_subjects = nil
     @flash_notice = nil
     @template = nil

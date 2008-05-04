@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 22) do
     t.string   "policy_type"
     t.string   "policy_name"
     t.string   "policy_number"
+    t.integer  "confirmations"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,12 +53,12 @@ ActiveRecord::Schema.define(:version => 22) do
   add_index "declarations_experiences", ["speciality_id"], :name => "speciality_id"
 
   create_table "declarations_subjects", :force => true do |t|
-    t.integer "declaration_id",                :null => false
+    t.integer "declaration_id",                                              :null => false
     t.integer "subject_id"
     t.integer "user_id"
     t.integer "price"
     t.string  "name"
-    t.integer "grade"
+    t.decimal "grade",                         :precision => 2, :scale => 1
     t.integer "year"
     t.integer "speciality_id"
     t.date    "date"

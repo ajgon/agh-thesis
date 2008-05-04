@@ -1,0 +1,31 @@
+<div class="content deanery">
+  <h3 class="settings"><abbr>Settings</abbr> Deklaracje wyboru języka</h3>
+  <h4><%= @declaration.declaration_name %></h4>
+  <p>Zestawienie liczbowe deklaracji</p>
+<% @declaration.subjects.each_pair do |subject_id, languages| %>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="3"><%= Subject.find(subject_id).head %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td>Wykład</td>
+        <td>Dodatkowe</td>
+      </tr>
+      <tr>
+        <td>Język angielski</td>
+        <td><%= languages['enen'].to_i + languages['enpl'].to_i %></td>
+        <td><%= languages['enen'].to_i + languages['plen'].to_i %></td>
+      </tr>
+      <tr>
+        <td>Język polski</td>
+        <td><%= languages['plen'].to_i + languages['plpl'].to_i %></td>
+        <td><%= languages['enpl'].to_i + languages['plpl'].to_i %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+</div>
