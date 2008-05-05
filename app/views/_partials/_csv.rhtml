@@ -1,2 +1,3 @@
+<% page = defined?(page) ? page : nil %>
 <a href="<%= url_for :controller => 'csv', :action => action, :id => 'b' + id, :page => page %>">Pobierz&nbsp;dane&nbsp;w&nbsp;formacie&nbsp;Excel&nbsp;2000</a>
 <a href="<%= url_for :controller => 'csv', :action => action, :id => 'a' + id, :page => page %>">Pobierz&nbsp;dane&nbsp;w&nbsp;formacie&nbsp;Excel&nbsp;2003</a>

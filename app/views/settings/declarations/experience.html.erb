@@ -32,4 +32,8 @@
   <div class="center">
 <%= render :partial => '_partials/csv', :locals => {:action => 'experience', :id => IdEncoder.encode(@declaration.declaration_id)} %>
   </div>
+  <div class="submit">
+    <a style="margin-bottom: 10px;" href="<%= url_for :controller => 'rtf', :action => 'experience', :id => IdEncoder.encode(2) %>">Pobierz komplet umów dla kierunku Elektronika</a>
+    <a href="<%= url_for :controller => 'rtf', :action => 'experience', :id => IdEncoder.encode(3) %>">Pobierz komplet umów dla kierunku Telekomunikacja</a>
+ </div>
 </div>

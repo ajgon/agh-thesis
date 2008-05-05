@@ -1,0 +1,2 @@
+module RtfHelper
+end
