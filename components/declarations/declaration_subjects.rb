@@ -9,7 +9,7 @@ class DeclarationSubjects < Declarations
     end
   end
   
-  def execute
+  def execute params
     @declarations_subjects = DeclarationsSubject.find(:all, :include => [:declaration, :subject], :conditions => ['declaration_id = ? AND speciality_id = ? AND user_id IS NULL', @declaration_id, @logged_user.users_student.speciality_id])
     @subjects_limit = Declaration.find_by_code(@declaration_code).how_many?(@logged_user.users_student.speciality_id)
     if params[:declarations_subject]

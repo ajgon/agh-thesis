@@ -20,7 +20,7 @@
         <td><%= link_to IdEncoder.encode(experience.id), :controller => 'settings', :action => 'declarations', :id => params[:id], :page => IdEncoder.encode(experience.id) %></td>
         <td><%= experience.firstname %>&nbsp;<%= experience.lastname %></td>
         <td>
-          <%= experience.beginning.to_s %>&nbsp;-&nbsp;<%= (experience.beginning + 4.weeks).to_s %>
+          <%= experience.beginning.to_s %>&nbsp;-&nbsp;<%= (experience.beginning + 4.weeks - (experience.beginning_additional ? ((experience.ending_additional ? experience.ending_additional : Time.now) - experience.beginning_additional) : 0)).to_s %>
           <%= '(' + experience.beginning_additional.to_s + '&nbsp;-&nbsp;' + experience.ending_additional.to_s + ')' if experience.beginning_additional %>
         </td>
         <td><%= experience.place_name %></td>
@@ -28,4 +28,8 @@
 <% end %>
     </tbody>
   </table>
+  <p>Pobierz listę osób wg. terminów zamieszkania w akademiku</p>
+  <div class="center">
+<%= render :partial => '_partials/csv', :locals => {:action => 'experience', :id => IdEncoder.encode(@declaration.declaration_id)} %>
+  </div>
 </div>

@@ -32,6 +32,7 @@ class DeclarationSpeciality < Declarations
         :declaration_id => @declaration_id,
         :user_id => @logged_user.id,
         :date => Time.now,
+        :speciality_id => @logged_user.users_student.speciality_id,
         :study_type => params[:declarations_speciality][:study_type],
         :study_speciality => params[:declarations_speciality][:study_speciality]
       })

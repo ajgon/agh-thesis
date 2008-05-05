@@ -20,4 +20,12 @@
     </tbody>
   </table>
 <% end %>
+  <p>Pobierz listę specjalności dla kierunku Elektronika</p>
+  <div class="center">
+    <%= render :partial => '_partials/csv', :locals => {:action => 'speciality', :id => IdEncoder.encode(@declaration.declaration_id), :page => IdEncoder.encode(2)} %>
+  </div>
+  <p>Pobierz listę specjalności dla kierunku Telekomunikacja</p>
+  <div class="center">
+    <%= render :partial => '_partials/csv', :locals => {:action => 'speciality', :id => IdEncoder.encode(@declaration.declaration_id), :page => IdEncoder.encode(3)} %>
+  </div>
 </div>

@@ -20,6 +20,11 @@
     <td><%= student.date %></td>
   </tr>
 <% end %>
+      <tr>
+        <td colspan="3">
+<%= render :partial => '_partials/csv', :locals => {:action => 'module', :id => IdEncoder.encode(@declaration.declaration_id)} %>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

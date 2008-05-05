@@ -4,6 +4,7 @@ class DeclarationLanguage < Declarations
   def initialize(params, logged_user, settings = false)
     super
     unless settings
+      execute params
     else
       setup params
     end

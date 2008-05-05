@@ -4,6 +4,7 @@ class Declarations
   attr_reader :flash_notice # Wiadomość do wyświetlenia
   attr_reader :template # Sciezka do template ktory ma byc wyrenderowany
   attr_reader :declaration_name
+  attr_reader :declaration_id
   
   def initialize(params, logged_user, settings = false)
     @logged_user = logged_user

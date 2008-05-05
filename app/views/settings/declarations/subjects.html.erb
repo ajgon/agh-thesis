@@ -8,6 +8,7 @@
       <tr>
         <th>Przedmiot</th>
         <th>Ilość chętnych</th>
+        <th>Download</th>
       </tr>
     </thead>
     <tbody>
@@ -16,6 +17,9 @@
       <tr>
         <td><%= subject.code %>: <%= subject.head %> (sem. <%= subject.season %>)</td>
         <td><%= students.to_i %></td>
+        <td>
+<%= render :partial => '_partials/csv', :locals => {:action => 'subjects', :id => IdEncoder.encode(@declaration.declaration_id), :page => IdEncoder.encode(subject_id)} %>
+        </td>
       </tr>
 <% end %>
     </tbody>

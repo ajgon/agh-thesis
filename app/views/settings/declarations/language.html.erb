@@ -25,6 +25,11 @@
         <td><%= languages['plen'].to_i + languages['plpl'].to_i %></td>
         <td><%= languages['enpl'].to_i + languages['plpl'].to_i %></td>
       </tr>
+      <tr>
+        <td colspan="3">
+<%= render :partial => '_partials/csv', :locals => {:action => 'language', :id => IdEncoder.encode(@declaration.declaration_id), :page => IdEncoder.encode(subject_id)} %>
+        </td>
+      </tr>
     </tbody>
   </table>
 <% end %>

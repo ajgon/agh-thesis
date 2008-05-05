@@ -7,6 +7,7 @@
       <tr>
         <th>Przedmiot</th>
         <th>Ilość chętnych</th>
+        <th>Download</th>
       </tr>
     </thead>
     <tbody>
@@ -14,6 +15,9 @@
       <tr>
         <td><%= Subject.find(subject_id).head %></td>
         <td><%= prints.to_i %></td>
+        <td>
+<%= render :partial => '_partials/csv', :locals => {:action => 'print', :id => IdEncoder.encode(@declaration.declaration_id), :page => IdEncoder.encode(subject_id)} %>
+        </td>
       </tr>
 <% end %>
     </tbody>
