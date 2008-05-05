@@ -4,17 +4,21 @@ class RegisterController < ApplicationController
       redirect_to :controller => 'index'
     end
     if request.post?
-      params[:users_student][:sindex] = params[:users_student][:sindex].to_i
-      @user = User.new(params[:user])
-      if @user.save
-        @users_student = UsersStudent.new({:user_id => user.id, :sindex => params[:users_student][:sindex]})
-        unless @users_student.save
-          User.delete(user.id)
+      if (user = User.find(:first, :include => :users_student, :conditions => ['firstname = ? AND lastname = ? AND sindex = ?', params[:user][:firstname], params[:user][:lastname], params[:users_student][:sindex].to_i])) and user.login.nil?
+        params[:users_student][:sindex] = params[:users_student][:sindex].to_i
+        @user = User.new(params[:user])
+        if @user.valid?
+          User.update(user.id, params[:user])
+          session[:user_id] = user.id
+          redirect_to :controller => 'index', :action => 'index'
+        else
+          @user.password = nil
+          @user.login = nil
         end
       else
-        @user.password = nil
-        @user.login = nil
+        render :template => 'index/forbidden'
       end
+    else
     end
   end
 end
