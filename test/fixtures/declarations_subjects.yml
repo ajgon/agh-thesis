@@ -541,7 +541,7 @@ thirtysix:
 thirtyseven:
   id: 37
   declaration_id: 7
-  subject_id: 129
+  subject_id: 150
   user_id:
   price:
   name:
@@ -556,7 +556,7 @@ thirtyseven:
 thirtyeight:
   id: 38
   declaration_id: 7
-  subject_id: 128
+  subject_id: 41
   user_id:
   price:
   name:
@@ -1208,6 +1208,21 @@ eightyone:
   grade:
   year:
   speciality_id: 3
+  date:
+  language:
+  print:
+  study_type:
+  study_speciality:
+eightytwo:
+  id: 82
+  declaration_id: 7
+  subject_id: 40
+  user_id:
+  price:
+  name:
+  grade:
+  year:
+  speciality_id: 2
   date:
   language:
   print:
