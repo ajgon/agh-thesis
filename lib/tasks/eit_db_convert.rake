@@ -104,7 +104,6 @@ class Converter
         @id_map[@NewModel.table_name]['id_map'][old_id] = new_id
       rescue Exception => e
         conversion_log.puts e.inspect
-        puts e.inspect
       end
     end
     unless after_query.nil?
