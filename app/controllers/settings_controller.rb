@@ -206,6 +206,7 @@ class SettingsController < ApplicationController
       @edited_news = true
     end
     @subjects = [['---', '']] + Subject.find(:all, :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
+    @your_subjects = [['---', '']] + UploadedFile.find(:all, :include => [:subject, :user], :group => 'subject_id', :conditions => ['user_id = ?', @logged_user.id], :order => 'subjects.head').collect {|i| [i.subject.head, IdEncoder.encode(i.subject.id)] }
     @logged_user_news = News.find(:all, :conditions => ['user_id = ?', @logged_user.id], :order => 'date DESC')
     @pager = Pager.new({:controller => params[:controller], :action => params[:action], :id => params[:id]}, @logged_user_news, :id, nil, 5)
   end

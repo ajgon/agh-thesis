@@ -1,0 +1,15 @@
+<dt><%= dt if defined?(dt) %><label for="<%= model %>_subject_id">Przedmiot</label></dt>
+<dd>
+  <select id="<%= model %>_subject_id" name="<%= model %>[subject_id]">
+<% unless your_subjects.nil? %>
+    <optgroup label="TWOJE PRZEDMIOTY">
+      <%= options_for_select your_subjects, (selected.nil? ? nil : [selected.subject_id]) %>
+    </optgroup>
+    <optgroup label="WSZYSTKIE PRZEDMIOTY">
+<% end %>
+      <%= options_for_select subjects, (selected.nil? ? nil : [selected.subject_id]) %>
+<% unless your_subjects.nil? %>
+    </optgroup>
+<% end %>
+  </select>
+</dd>

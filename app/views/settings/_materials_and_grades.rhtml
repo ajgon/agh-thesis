@@ -31,17 +31,7 @@
   <dl class="data long">
     <%= dt_dd '<label for="uploaded_file_file">Plik</label>', f.file_field(:file) unless @edited_material %>
     <%= dt_dd '<label for="uploaded_file_head">Opis</label>', f.text_field(:head) %>
-    <dt><label for="uploaded_file_subject_id">Przedmiot</label></dt>
-    <dd>
-      <select id="uploaded_file_subject_id" name="uploaded_file[subject_id]">
-        <optgroup label="TWOJE PRZEDMIOTY">
-          <%= options_for_select @your_subjects, (@uploaded_file.nil? ? nil : [@uploaded_file.subject_id]) %>
-        </optgroup>
-        <optgroup label="WSZYSTKIE PRZEDMIOTY">
-          <%= options_for_select @subjects, (@uploaded_file.nil? ? nil : [@uploaded_file.subject_id]) %>
-        </optgroup>
-      </select>
-    </dd>
+    <%= render :partial => '_partials/your_subjects', :locals => {:selected => @uploaded_file, :model => 'uploaded_file', :your_subjects => @your_subjects, :subjects => @subjects} %>
     <% if params[:action] == 'materials' %>
     <%= dt_dd '<label for="uploaded_file_user_id">Prowadzący</label>', f.select(:user_id, @lecturers, (@edited_material ? {} : {:selected => IdEncoder.encode(@logged_user.id)})) %>
     <% end %>

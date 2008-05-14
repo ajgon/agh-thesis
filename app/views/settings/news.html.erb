@@ -14,7 +14,7 @@
         <%= check_box :news_params, :year_4 %>&nbsp;4
         <%= check_box :news_params, :year_5 %>&nbsp;5
       </dd>
-      <%= dt_dd radio_button(:news_params, :ntype, 'subject_id') + '<label for="news_subject_id">Przedmiot</label>', f.select(:subject_id, @subjects) %>
+      <%= render :partial => '_partials/your_subjects', :locals => {:dt => radio_button(:news_params, :ntype, 'subject_id'), :selected => @news, :subjects => @subjects, :your_subjects => @your_subjects, :model => 'news'} %>
 <%   if @edited_news %>
       <%= dt_dd 'Liczba wyświetleń', @news.times_readed %>
       <%= dt_dd 'Data dodania', @news.date.to_s(:created_at).gsub(/^([0-9]+. )([^ ]+)/) { $1 + en_to_pl($2).downcase } %>

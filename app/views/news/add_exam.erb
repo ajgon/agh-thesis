@@ -3,7 +3,7 @@
 <% form_for :exam, :url => {:controller => 'news', :action => 'exams', :id => params[:id], :page => params[:page]} do |f| %>
   <%= error_messages_for 'exam', :header_message => nil, :message => 'Przy próbie dopisania egzaminu, wystąpiły następujące błędy:' if @exam.respond_to? 'errors' %>
   <dl class="data long">
-    <%= dt_dd '<label for="exam_subject_id">Przedmiot</label>', f.select(:subject_id, @subjects) %>
+    <%= render :partial => '_partials/your_subjects', :locals => {:selected => @exam, :subjects => @subjects, :your_subjects => @your_subjects, :model => 'exam'} %>
     <dt><label for="exam_examiner">Prowadzący</label></dt>
     <dd>
       <%= select(:examiner, :select, @lecturers) %>

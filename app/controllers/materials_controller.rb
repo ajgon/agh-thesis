@@ -1,9 +1,15 @@
 class MaterialsController < ApplicationController
 
-  def initialize
-    super
+  before_filter :fill_materials_search
+  
+  def fill_materials_search
     @files_top = UploadedFile.find(:all, :include => [:subject, :user], :limit => 10, :order => 'downloads DESC')
     @form_subjects = [['---', '']] + UploadedFile.find(:all, :include => :subject, :group => 'subject_id', :order => 'subjects.head').collect { |i| [ i.subject.head, IdEncoder.encode(i.subject.id) ] }
+    if @logged_user and @logged_user.id and @logged_user.is_lecturer?
+      @form_your_subjects = [['---', '']] + UploadedFile.find(:all, :include => [:subject, :user], :group => 'subject_id', :conditions => ['user_id = ?', @logged_user.id], :order => 'subjects.head').collect {|i| [i.subject.head, IdEncoder.encode(i.subject.id)] }
+    else
+      @form_your_subjects = nil
+    end
     @form_profiles = [['---', '']] + UploadedFile.find(:all, :include => :user, :group => 'user_id', :order => 'users.lastname').collect { |i| [ i.user.lastname + ' ' + i.user.firstname, IdEncoder.encode(i.user.id) ] }
     @form_semesters = [
       ['---', ''],
@@ -24,6 +30,7 @@ class MaterialsController < ApplicationController
       ['   10. Semestr', '10'],
     ]
   end
+  
   def index
     if params[:criteria].nil?
       @files = UploadedFile.find(:all, :include => [:user, :subject], :order => 'uploaded_files.id desc', :limit => 10)
@@ -32,14 +39,14 @@ class MaterialsController < ApplicationController
       c.each_pair do |key, value|
         c[key] = value.gsub(',', ' ')
       end
-      redirect_to :action => 'search', :id => "#{c['subject']},#{c['profile']},#{c['semester']},#{c['query']},#{c['sort']}"
+      redirect_to :action => 'search', :id => "#{c['subject_id']},#{c['profile']},#{c['semester']},#{c['query']},#{c['sort']}"
     end
   end
   
   def search
     r = params[:id].nil? ? [] : params[:id].split(',')
     rules = {
-      'subject' => IdEncoder.decode(r[0]), 
+      'subject_id' => IdEncoder.decode(r[0]), 
       'profile' => IdEncoder.decode(r[1]), 
       'semester' => ([1, 2, 3, 4, 5, 6, 7, 8 ,9, 10, 101, 102, 103, 104, 105].include?(r[2].to_i) ? r[2].to_i : nil), 
       'query' => r[3], 
@@ -48,7 +55,7 @@ class MaterialsController < ApplicationController
     semester = rules['semester']
     semester = ((rules['semester'] - 100) * 2).to_s + ', ' + (((rules['semester'] - 100) * 2) - 1).to_s if (rules['semester'] - 100) > 0 if rules['semester']
     conditions = '1 = 1'
-    conditions += ' AND subject_id = ' + rules['subject'].to_s if rules['subject']
+    conditions += ' AND subject_id = ' + rules['subject_id'].to_s if rules['subject_id']
     conditions += ' AND user_id = ' + rules['profile'].to_s if rules['profile']
     conditions += ' AND subjects.season IN(' + semester.to_s + ')' if semester
     if rules['query']
@@ -60,10 +67,10 @@ class MaterialsController < ApplicationController
     end
     
     @files = UploadedFile.find(:all, :include => [:subject, :user], :conditions => conditions, :order => (rules['sort'] + (rules['sort'] == 'head' ? '' : ' DESC')))
-    @profiles = UploadedFile.find(:all, :include => [:user, :subject], :conditions => ['subjects.id = ?', rules['subject']], :group => 'users.id')
+    @profiles = UploadedFile.find(:all, :include => [:user, :subject], :conditions => ['subjects.id = ?', rules['subject_id']], :group => 'users.id')
     @subjects = UploadedFile.find(:all, :include => [:user, :subject], :conditions => ['users.id = ?', rules['profile']], :group => 'subjects.id')
     params[:criteria] = rules
-    params[:criteria][:subject] = IdEncoder.encode(params[:criteria][:subject]) if params[:criteria][:subject]
+    params[:criteria][:subject_id] = IdEncoder.encode(params[:criteria][:subject_id]) if params[:criteria][:subject_id]
     params[:criteria][:profile] = IdEncoder.encode(params[:criteria][:profile]) if params[:criteria][:profile]
     params[:criteria][:semester] = params[:criteria][:semester].to_s
     pager_params = {:controller => params[:controller], :action => params[:action], :id => params[:id], :page => params[:page]}

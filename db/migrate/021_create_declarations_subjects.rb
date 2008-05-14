@@ -2,7 +2,7 @@ require 'active_record/fixtures'
 
 class CreateDeclarationsSubjects < ActiveRecord::Migration
   def self.up
-    create_table :declarations_subjects do |t|
+    create_table :declarations_subjects, :options => 'character set utf8 collate utf8_polish_ci engine InnoDB' do |t|
       t.references :declaration, :null => false
       t.references :subject
       t.references :user

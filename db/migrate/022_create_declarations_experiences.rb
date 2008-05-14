@@ -1,6 +1,6 @@
 class CreateDeclarationsExperiences < ActiveRecord::Migration
   def self.up
-    create_table :declarations_experiences do |t|
+    create_table :declarations_experiences, :options => 'character set utf8 collate utf8_polish_ci engine InnoDB' do |t|
       t.references :declaration, :null => false
       t.string :firstname, :null => false
       t.string :lastname, :null => false

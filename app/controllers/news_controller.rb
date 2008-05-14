@@ -21,6 +21,7 @@ class NewsController < ApplicationController
           @edited_exam_id = nil
           if params[:id] == 'add' or (params[:id] == 'edit' and @edited_exam_id = IdEncoder.decode(params[:page]))
             @subjects = Subject.find(:all, :order => 'head').collect {|i| [i.head, IdEncoder.encode(i.id)]}
+            @your_subjects = UploadedFile.find(:all, :include => [:subject, :user], :group => 'subject_id', :conditions => ['user_id = ?', @logged_user.id], :order => 'subjects.head').collect {|i| [i.subject.head, IdEncoder.encode(i.subject.id)] }
             @lecturers = [['', '']] + UsersLecturer.find(:all, :include => [:user, :cathedral], :order => 'users.lastname, users.firstname').collect {|i| [i.user.lastname + ' ' + i.user.firstname, i.user.lastname + ' ' + i.user.firstname]}
             @exams_names = ExamsName.find(:all, :order => 'id').collect {|i| [i.head, i.id]}
             if request.post?
