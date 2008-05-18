@@ -1,0 +1,19 @@
+\frametitle {Jak To Działa?}
+  \begin{itemize}
+    \item Jak to działa? Bardzo prosto!
+  \end{itemize}
+  \begin{block}{Przykładowa Tabelka}
+    \scriptsize
+    \begin{verbatim}
+ +---------------+-------------+------+-----+---------+----------------+
+ | Field         | Type        | Null | Key | Default | Extra          |
+ +---------------+-------------+------+-----+---------+----------------+
+ | id            | int(11)     | NO   | PRI | NULL    | auto_increment |
+ | login         | varchar(20) | NO   |     | NULL    |                |
+ | password      | varchar(40) | NO   |     | NULL    |                |
+ +---------------+-------------+------+-----+---------+----------------+
+    \end{verbatim}
+    \normalsize
+  \end{block}
+  \pause
+  Pytanie bonusowe: Dlaczego `password` jest varchar(40)?
