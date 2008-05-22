@@ -4,14 +4,28 @@
 \usepackage[T1]{fontenc}
 \usepackage{url}
 \usepackage{graphicx}
+\usepackage[a4paper,tmargin=4.5cm,rmargin=2.5cm,bmargin=2.5cm,lmargin=3.5cm,pdftex]{geometry}
+\usepackage{setspace}
+\usepackage{latexsym}
+\usepackage{lscape}
 % Dane o pracy
 \author{Igor~Rzegocki}
 \title{Migracja serwisu WWW z techniki PHP na Ruby~on~Rails}
 \date{2008}
 \pagestyle{headings}
+\onehalfspacing
 
 \begin{document}
 \maketitle
+
+% Dedykacja
+\thispagestyle{empty}
+\begin{flushright}
+\vspace*{13cm}
+\emph{Pracę swą dedykuję Grzegorzowi, którego nagła i niespodziewana śmierć pozostawiła ogromną pustkę w sercach jego przyjaciół}
+\end{flushright}
+
+
 \tableofcontents
 
 \chapter{Wstęp}
@@ -216,21 +230,20 @@ Przełomem w DHTML było udostępnienie obiektu XMLHttpRequest (XHR). XHR umożl
 \section{Przeglądarki Internetowe}
 \label{sec:przegladarki}
 
-,,Przeglądarka internetowa – program komputerowy, który służy do pobierania i wyświetlania dokumentów HTML/XHTML/XML z serwerów internetowych, a także plików multimedialnych''\footnote{Źródło \url{http://pl.wikipedia.org/wiki/Przeglądarka\_internetowa}}.
+Przeglądarka internetowa jest to aplikacja, mająca na celu pobieranie i wyświetlanie treści tzw. stron internetowych. Strony internetowe to dokumenty w jednym z języków SGML (najczęściej HTML, XHTML lub XML), zawierające tekst, grafikę i pliki multimedialne.
 
 Na rynku istnieje wiele przeglądarek, jednak tak naprawdę nie jest istotna ich nazwa a silnik jaki wykorzystują do wyświetlania stron. Cztery najważniejsze silniki to: Trident (Internet Explorer), Gecko (np. Firefox, Netscape, Flock, SeaMonkey, Camino etc.), KHTML/WebKit (np. Konqueror, Safari), oraz Presto (Opera). Jeżeli chodzi o udział przeglądarek w rynku przedstawia się jak na rysunku \ref{fig:przegladarki}
-\begin{figure}
-\begin{center}
+\begin{figure}[h]
+\centering
   \includegraphics{browsers.png}
   \caption{
-  Wykres 1. Udział procentowy w rynku przeglądarek internetowych.\newline
+  Udział procentowy w rynku przeglądarek internetowych.\newline
   \emph{Źródło: http://marketshare.hitslink.com/report.aspx?qprid=0}
   \label{fig:przegladarki}
   }
-  \end{center}
 \end{figure}
 
-Niestety silniki nie są ze sobą ze sobą kompatybilne, każdy trochę inaczej interpretuje HTML, CSS, JavaScript, nie wszystkie mają wbudowane najnowsze technologie w tym samym stopniu. Największe trudności sprawia programistom przeglądarka Internet Explorer w wersji 6, która zajmuje największą część rynku i zarazem jest najbardziej przestarzałą (2001 r.).  Ta wersja jest niezgodna ze standardami zatwierdzonymi przez W3C i posiada wiele błędów. Niestety przeglądarka IE 6 wygrała pierwszą ,,wojnę przeglądarek''\footnote{Zobacz \url{http://en.wikipedia.org/wiki/Browser\_wars}} i niemalże zmonopolizowała rynek. Następna wersja Internet Explorera (wersja 7) pojawiła się dopiero pod koniec 2006 roku. Zanim wersja 6 zniknie z rynku minie jeszcze kilka lat, w czasie których rozwój aplikacji po stronie klienta będzie ograniczony możliwościami tej przeglądarki.
+Niestety silniki nie są ze sobą ze sobą kompatybilne, każdy trochę inaczej interpretuje HTML, CSS, JavaScript, nie wszystkie mają wbudowane najnowsze technologie w tym samym stopniu. Największe trudności sprawia programistom przeglądarka Internet Explorer w wersji 6, która zajmuje największą część rynku i zarazem jest najbardziej przestarzałą (2001 r.).  Ta wersja jest niezgodna ze standardami zatwierdzonymi przez W3C i posiada wiele błędów. Niestety przeglądarka IE 6 wygrała pierwszą ,,wojnę przeglądarek''\footnote{Zobacz \url{http://en.wikipedia.org/wiki/Browser_wars}} i niemalże zmonopolizowała rynek. Następna wersja Internet Explorera (wersja 7) pojawiła się dopiero pod koniec 2006 roku. Zanim wersja 6 zniknie z rynku minie jeszcze kilka lat, w czasie których rozwój aplikacji po stronie klienta będzie ograniczony możliwościami tej przeglądarki.
 
 \chapter[Rozwiązania koncepcyjne]{Koncepcje spotykane w aplikacjach internetowych}
 \label{cha:koncepcje}
@@ -352,7 +365,7 @@ HTTP jest jednolitym interfejsem dostępu do zasobów, który zawiera URI, metod
 Najważniejszymi metodami HTTP są POST, GET, PUT i DELETE (patrz rozdz.~\ref{sec:http}, str.~\pageref{sec:http}). Są one często porównywane do CREATE, READ, UPDATE i DELETE (CRUD, patrz rozdz.~\ref{sec:crud}, str.~\pageref{sec:crud}), które to pojęcia mają zastosowanie w bazach danych.
 
 \begin{table}[h]
-  \begin{center}
+  \centering
     \begin{tabular}{|l|l|}\hline
     HTTP   & CRUD \\\hline
     POST   & Create, Update, Delete \\
@@ -361,7 +374,6 @@ Najważniejszymi metodami HTTP są POST, GET, PUT i DELETE (patrz rozdz.~\ref{se
     DELETE & Delete \\\hline
     \end{tabular}
   \caption{Porównanie zapytań HTTP z koncepcją CRUD\label{rest:crud}}
-  \end{center}
 \end{table}
 
 HTTP spełnia jedno z założen REST -- jest bezstanowy. Każda wiadomość zawiera wszystkie informacje niezbędne do identyfikacji zapytania. W efekcie czego, ani klient ani serwer nie muszą pamiętać żadnych stanów informacyjnych pomiędzy wiadomościami. Każdy stan w którym jest serwer, może być zamodelowany jako zasób.
@@ -412,7 +424,7 @@ CRUD (Create, read, update and delete -- utwórz, odczytaj, popraw i skasuj) są
 \label{sub:crud-db}
 Akronim CRUD jest często odnoszony do relacyjnych baz danych, ponieważ te cztery operacje determinują zupełność takiej bazy danych. Każda litera akronimu, może zostać przedstawiona jako odpowiednia funkcja SQL:
 \begin{table}[h]
-  \begin{center}
+  \centering
     \begin{tabular}{|l|l|} \hline
     Operacja         & SQL \\\hline
     Create           & INSERT \\
@@ -421,7 +433,6 @@ Akronim CRUD jest często odnoszony do relacyjnych baz danych, ponieważ te czte
     Delete (Destroy) & DELETE \\\hline
     \end{tabular}
     \caption{Mapa akronimu CRUD na zapytania SQL\label{crud:sql}}
-  \end{center}
 \end{table}
 Pomimo iż CRUD głównie odnosi się do relacyjnych baz danych, często jest też stosowany w odniesieniu do obiektorych baz danych, XMLowych baz danych, plików tekstowych, nośników informacji etc.
 
@@ -474,5 +485,724 @@ Dobrym przykładem jest tutaj ORM (zob. rozdz.~\ref{sec:orm}, str.~\pageref{sec:
 \subsection{Zastosowanie w aplikacjach internetowych}
 \label{coc:web}
 Convention over Configuration, jest koncepcją stosunkowo młodą w światku internetowym, ale z miejsca zdobyła sobie rzesze zwolenników. Wynika to przedewszystkim z tego, że upraszcza wiele aspektów i sprawia, że z każdym nowym projektem deweloperzy nie muszą wciąż skupiać się na tych samych problemach. Poza tym, przy większych aplikacjach nad którymi pracują dziesiątki programistów, konwencje sprawiają, że każdy pisze w ten sam sposób i nie ma problemów w rodzaju -- ,,Co ta metoda robi?''. Dodatkowo złamanie konwencji wiąże się ze sporą nadprodukcją kodu, co niejako ,,samo z siebie'' wymusza w programistach dyscyplinę.
+
+\chapter{Aplikacja}
+\label{cha:app}
+Serwis WWW zadany w temacie pracy był od początku z góry ustalony. Jest to strona Katedry Elektroniki i Telekomunikacji\footnote{Zobacz. http://www.eit.agh.edu.pl/}. Motywem przewodnim takiego wyboru była przestarzałość serwisu i niespójność kodu. Przez kilka lat od momentu stworzenia, aplikację rozwijało wiele różnych osób, skutkiem czego kod zatracił swoją początkową ,,myśl przewodnią'' oraz znacznie stracił na czytelności. Dlaczego więc nie zdecydowane się na przepisanie serwisu od nowa, również w PHP? Głównym powodem była ,,samoopisywalność'' kodu stworzonego w Ruby~on~Rails. Dzięki filozofii DRY (zob. rozdz.~\ref{sec:dry}, str.~\pageref{sec:dry}) oraz Convention over Configuration (zob. rozdz.~\ref{sec:coc}, str.~\pageref{sec:coc}) każdy kawałek kodu ma ściśle określone miejsce w aplikacji. Dodatkowo sama struktura plików projektu Railsowego jest klarowna i przejrzysta. Zawsze w tym samym miejscu przechowywane są modele, widoki, biblioteki, kontrolery itd. Dzięki temu, kiedy autor niniejszej pracy przekaże serwis w ręce nowego programisty, już na starcie będzie on doskonale wiedział, gdzie czego szukać. Dodatkowo czytelność kodu Ruby i łatwość tworzenia DSL (zob. rozdz.~\ref{sec:dsl}, str.~\pageref{sec:dsl}) sprawia, że taki kod od razu przekazuje ,,co autor miał na myśli''. I stąd właśnie bierze się jego samoopisywalność.
+
+\section{Opis funkcjonalny aplikacji}
+\label{sec:funkcjonalny}
+Głównym założeniem serwisu Katedry Elektroniki i Telekomunikacji (zwanego dalej EiT) jest stworzenie portalu zawierającego wszelkie niezbędne studentowi informacje. Na funkcjonalności te składają się przedewszystkim:
+\begin{itemize}
+  \item System aktualności i najświeższych informacji dla studentów,
+  \item Wszelkie informacje pochodzące z dziekanatu, m.in. informacje o:
+  \begin{itemize}
+    \item planach zajęć,
+    \item praktykach,
+    \item przedmiotach obieralnych,
+    \item zajęciach w języku angielskim,
+    \item międzynarodowym programie edukacyjnym,
+    \item wydarzeniach obowiązkowych w kalendarzu studenta (ferie, sesje etc.).
+  \end{itemize}
+  \item System zarządzania materiałami i ocenami,
+  \item Informacje o prowadzących,
+  \item Wszelkie dane dotyczące studiów podyplomowych.
+\end{itemize}
+Dodatkowo należało jeszcze zatroszczyć się o całą warstwę administracyjną. Grupa ludzi opiekujących się stroną (zwanych dalej Administratorami) powinna mieć specjalne uprawnienia, do dodawania informacji, usuwania niepotrzebnych treści, zarządzania studentami (z poziomu systemu) itd. Dodatkowo, wszyscy prowadzący powinni mieć możliwość dodawania aktualności i materiałów. 
+
+Wymienione powyżej funkcjonalności autor tej pracy wspólnie z prowadzącym uznał za najważniejsze i umieścił je w serwisie. Stara strona EiT miała jeszcze dodatkowo forum i katalog linków. Autor wspólnie z opiekunem, uznali je jednak za zbyteczne. W obu przypadkach głównym powodem było znikome zainteresowanie studentów. Katalog linków nie sprawdził się, ponieważ tak naprawdę wszystkie informacje były dostępne z poziomu serwisu i nie były potrzebne żadne referencje do innych witryn. Forum z kolei (zwane Hydeparkiem) przestało pełnić swoją pierwotną funkcję. W dzisiejszych czasach istnieją setki serwisów pozwalające założyć darmowe forum jednym kliknięciem myszki. I właśnie na takie biuletyny przenieśli się studencji, tworząc fora swoich roków bądź grup dziekanatowych. Nie bez znaczenia jest też fakt, że do Hydeparku dostęp mieli prowadzący co z miejsca ucinało niektóre rodzaje konwersacji.
+
+Kolejną niesłychanie istotną cechą serwisu jest jego bezpieczeństwo. W przypadku serwisu EiT sprawa jest o tyle poważna, że jest to aplikacja przeznaczona dla ludzi technicznych, którzy doskonale orientują w świecie nowoczesnych technologii. Najmniejsze niedopatrzenie może się zakończyć kompromitacją serwisu. Autor niniejszej pracy od wielu lat zajmuje się tematyką szeroko pojętego bezpieczeństwa. I to zarówno od strony aplikacyjnej (pisanie bezpiecznego kodu) jak i serwerowej (zabezpieczanie maszyn przed intruzami). W związku z tym, od początku każdy element witryny był szczegółowo rozważany pod tym kątem. Nie bez znaczenia jest też fakt, że Ruby~on~Rails przychodzi z wieloma rozwiązaniami ochronnymi w standardzie. Dla przykładu jeśli nastąpi jakiś błąd w działającej aplikacji, to w odróżnieniu od PHP nie pojawi się komunikat dokładnie informujący, która linijka w którym skrypcie go wywołała. Zamiast tego, wyświetli się informacja dla użytkownika, że ,,coś poszło nie tak'' a sam błąd zostanie zapisany do logów administratora. Dzięki temu, potencjalny atakujący nie otrzymuje żadnej informacji o serwisie, poza tym, że działając tak i tak można uszkodzić aplikację -- co jakąś wartościową informacją samo w sobie nie jest.
+
+Należy też pamiętać o interfejsie użytkownika. Sama szata graficzna pozostała niezmieniona, natomiast musiał zmienić się jej kod. Wynika to z zupełnie nowej filozofii tworzenia widoków. Poza tym, stary kod HTML nie był w ogóle semantyczny, co znacznie utrudniało pracę robotom wyszukiwarek i skutkowało niższymi pozycjami w rankingach. Cały HTML został przepisany na nowo (już jako XHTML) i stworzone zostały nowe arkusze stylów. Zmieniła się też organizacja menu -- kliknięcie w menu nie odświeża strony tylko od razu rozwija listę podmenu. Zmniejsza to znacznie ilość zapytań (wcześniej student musiał otworzyć nową stronę, tylko po to, żeby zobaczyć rozwinięte menu i przejść do kolejnej strony) oraz skraca czas interakcji użytkownika ze stroną. A wszystko to, dzięki odrobinie JavaScriptu.
+
+Ostatnią sprawą jest wydajność. Jak już nadmienione zostało wcześniej -- Ruby nie jest zbyt szybkim językiem. Dlatego wszelkie działania mające na celu optymalizację kodu są wysoce wymagane. Bardzo istotne jest zwracanie uwagi na takie detale, jak wyciąganie deklaracji zmiennych poza pętle, optymalizacje warunków (ważna jest tu znajomość praw deMorgana), przypisywanie obiektów do zmiennych etc. Zastosowany też został dużo wydajniejszy serwer WWW aniżeli dostarczany w standarcie WebRick --- Mongrel\footnote{Zobacz \url{http://mongrel.rubyforge.org/}}
+
+\section{Przygotowanie środowiska pracy}
+\label{sec:srodowisko}
+Po przygotowaniu założeń należało wybrać środowisko pracy.
+
+\subsection{Ruby i pochodne}
+\label{sub:ruby-etc}
+Ruby jest językiem międzyplatformowym, co oznacza, że jego interpreter jest dostępny pod każdym liczącym się systemem operacyjnym. Niestety implementacja pod systemem Windows pozostawia wiele do życzenia. Bierze się to stąd, że Ruby został pierwotnie stworzony na systemach UNIXopodobnych a następnie przeportowany na platformę Windows. Przy takiej skali skomplikowania języka, brak optymalizacji pod konkretny system daje się odczuć. Różnice w czasach wykonania aplikacji potrafiły przekroczyć 100\%! Autor niniejszej pracy, korzysta z Linuksa a konkretniej z dystrybucji \emph{Slackware Linux}, natomiast do pracy z Ruby poleca jakąkolwiek dystrybucje UNIXopodobną (włączając to MAC~OS~X).
+
+Slackware~12.0 ma interpreter Ruby w standardzie (przy maksymalnej instalacji). W razie jego braku, należy pobrać odpowiednią paczkę -- Ruby~1.8.6\footnote{Do pobrania m.in. na \url{http://linuxpackages.telecoms.bg/Slackware-11.0/ken/ruby-1.8.6-i486-1kjz.tgz}}. Do tego będą jeszcze protrzebne RubyGems~0.9.2\footnote{Do pobrania m.in. na \url{http://linuxpackages.telecoms.bg/Slackware-11.0/ken/rubygems-0.9.2-noarch-1kjz.tgz}}. Ponieważ Slackware nie obsługuje zależności, w razie problemów należy doinstalować brakujące biblioteki.
+
+Po instalacji użytkownik otrzymuje w pełni funkcjonujący interpreter języka Ruby, w którym jednak brakuje jeszcze kilku bibliotek tego języka. Do ich instalacji należy posłużyć się narzędziem RubyGems.
+
+Gem to spakowana aplikacja lub biblioteka języka Ruby. Zarządzanie gemami odbywa się za pośrednictwem polecenia \emph{gem}. Daje ono możliwość instalacji, usuwania i zadawania pytań o pakiety. Narzędzie jest podobne do APT (ang. Advanced Packaging Tool, zaawansowane narzędzie paczkujące), systemu zarządzania pakietami używanym przez system Debian GNU/Linux.
+
+Repozytorium gemów jest otwarte dla każdego, to znaczy że każdy może pobierać a także publikować swoje gemy.
+
+W niniejszej pracy wykorzystano dwa gemy:
+\begin{itemize}
+  \item Ruby~on~Rails,
+  \item Mongrel.
+\end{itemize}
+
+Aby zainstalować wymagane gemy, z poziomu powłoki należy wykonać polecenia:
+\begin{figure}[h]
+\begin{verbatim}# gem install rails --include-dependencies
+# gem install mongrel --include-dependencies\end{verbatim}
+\caption{Lista poleceń niezbędnych do zainstalowania wymaganych gemów\label{fig:gems}}
+\end{figure}
+Polecenia te, zainstalują pakiety wraz wszystkimi zależnościami. Po ich wykonaniu, zadane aplikacje są gotowe do użycia.
+
+\subsection{Dodatkowe pakiety}
+\label{sub:dodatkowe}
+Poza Ruby~on~Rails aplikacja EiT korzysta jeszcze z dwóch zewnętrznych aplikacji -- MySQL\footnote{Zobacz \url{http://www.mysql.com/}} oraz pakietu iconv\footnote{Zobacz \url{http://www.gnu.org/software/libiconv/}}. Pierwsza z nich, to relacyjna baza danych, druga -- pakiet konwertujący różne strony kodowe.
+
+MySQL powinno być standardowo w Slackware. Jeśli go nie ma, należy ściągnąć odpowiednią paczkę\footnote{MySQL można pobrać z \url{ftp://ftp.slackware.com/pub/slackware/slackware-12.1/slackware/ap/mysql-5.0.51b-i486-1.tgz}}. Iconv stanowi część pakietu GLIBC (ang. GNU C Library, biblioteka GNU C)\footnote{Zobacz \url{http://www.gnu.org/software/libc/}} i jego status w systemie paczek jest \emph{required}, co oznacza, że na pewno jest zainstalowany. W razie jakichkolwiek problemów, należy ściągnąć najświeższą paczkę\footnote{GLIBC można pobrać z \url{ftp://ftp.slackware.com/pub/slackware/slackware-12.1/slackware/l/glibc-i18n-2.7-noarch-10.tgz}}.
+
+Aby baza danych mogła działać poprawnie należy zainicjalizować katalog przechowywujący dane i stworzyć tabele systemowe niezbędne do funkcjonowania bazy. Dodatkowo, dobrze jest ustawić sobie, aby daemon bazy danych uruchamiał się przy każdym starcie systemu. Wszystko to osiągniemy, wykonując poniższe polecenia.
+\begin{figure}[h]
+\begin{verbatim}# chmod +x /etc/rc.d/rc.mysqld
+# su - mysql
+$ mysql_install_db\end{verbatim}
+\caption{Lista poleceń niezbędnych do zainicjalizowania MySQL\label{fig:mysql}}
+\end{figure}
+
+Iconv nie wymaga żadnych dodatkowych przygotowań.
+
+\subsection{Aplikacje wspomagające tworzenie projektu}
+\label{sub:ide}
+Po przygotowaniu wszystkiego co niezbędne od strony serwera, trzeba jeszcze przygotować narzędzia wspomagające pisanie kodu -- tj. środowisko programistyczne (ang. IDE, Integrated Development Environment), aplikacje wspomagające pracę z bazą danych oraz przeglądarkę wraz z zestawem dodatków wspomagających pracę z gotowym kodem.
+
+\subsubsection{Środowisko programistyczne}
+\label{subsub:ide}
+Najlepszym edytorem wspomagającym tworzenie aplikacji Ruby~on~Rails jest TextMate\footnote{Zobacz \url{http://macromates.com/}}, niestety jest on dostępny tylko dla systemów Mac~O~ X. Na szczęście istnieje zintegrowane środowisko programistyczne NetBeans\footnote{Zobacz \url{http://www.netbeans.org/}}. Jest ono napisane w języku Java i istnieją jego wersje dla systemów Linux, Windows, Mac~OS i Solaris. Ta praca powstała przy użyciu NetBeans 6.0beta1, niemniej obecnie jest już dostępna wersja 6.1\footnote{Do pobrania z \url{http://download.netbeans.org/netbeans/6.1/final/bundles/netbeans-6.1-ruby-linux.sh}}.
+
+Do poprawnego działania NetBeans potrzebny jest jeszcze JDK (ang. Java Development Kit, Zestaw narzędzi deweloperskich dla języka Java)\footnote{Do pobrania z \url{http://java.sun.com/javase/downloads/?intcmp=1281}}. Należy pamiętać, że dla Slackware należy pobrać wersję binarną z instalatorem, a nie paczkę RPM (ang. RPM Package Manager, zarządca pakietów RPM). Po jej ściągnięciu, należy ją uruchomić i odpowiedzieć na kilka pytań (m.in. o ścieżkę), aby na naszej maszynie zagościła najświeższa wersja JDK. Analogicznie instaluje się pakiet NetBeans.
+
+Jako dodatkowy bonus, autor zaleca zainstalowanie wtyczki do NetBeans -- \emph{Extra Ruby Color Themes} (Zakładka \emph{Tools}$\to$\emph{Plugins}), a następnie włączenie schematu kolorów \emph{Ruby Dark Pastels} (Zakładka \emph{Options}$\to$\emph{Fonts~\&~Colors}). Jest to schemat kolorów wzięty z TextMate, dużo czytelniejszy i mniej męczący wzrok.
+
+\subsubsection{Aplikacje wspomagające pracę z bazą danych}
+\label{subsub:querybrowser}
+Aby nie musieć wykonywać wszystkich niezbędnych działań na bazie z domyślnego klienta tekstowego, zalecane jest zainstalowanie graficznych narzędzi ułatwiających obsługę bazy. Te narzędzia to:
+\begin{itemize}
+  \item MySQL Query Browser\footnote{Zobacz \url{http://www.mysql.com/products/tools/query-browser/}} - pakiet MySQL-Query-Browser\footnote{Do pobrania z \url{http://linuxpackages.telecoms.bg/Slackware-10.1/X11/MySQL-Query-Browser/mysql-query-browser-1.1.12-i486-1JL.tgz}},
+  \item MySQL Administrator\footnote{Zobacz \url{http://www.mysql.com/products/tools/administrator/}} - pakiet mysql-administrator\footnote{Do pobrania z \url{http://linuxpackages.telecoms.bg/Slackware-10.2/X11/mysql-administrator/mysql-administrator-1.1.6-i586-1gds.tgz}},
+  \item DBDesigner\footnote{Zobacz \url{http://www.fabforce.net/dbdesigner4/}} - do pobrania z \url{http://downloads.mysql.com/DBDesigner4/DBDesigner4.0.5.4.tar.gz}
+\end{itemize}
+MySQL Query Browser ułatwia wykonywanie zapytań i przeglądanie danych, natomiast MySQL Administrator odpowiada za zarządzanie użytkownikami. DBDesigner jest narzędziem do projektowania bazy danych.
+
+\subsubsection{Przeglądarki internetowa i dodatki}
+\label{subsub:browser}
+Z powodu niedoskonałości silników renderujących przeglądarek (zob. rozdz.~\ref{sec:przegladarki}, str.~\ref{sec:przegladarki}), podczas pisania pracy, autor musiał korzystać aż z czterech przeglądarek internetowych, aby przetestować stronę pod czterema najpopularniejszymi silnikami renderującymi:
+\begin{itemize}
+  \item \emph{Trident} -- Microsoft Internet Explorer 6.0 (pod Linuksem dostępny, dzięki pakietowi \emph{ies4linux}\footnote{Zobacz \url{http://www.tatanka.com.br/}})
+  \item \emph{Gecko} -- Mozilla Firefox 2.0.0.14\footnote{Zobacz \url{http://www.getfirefox.com/}}
+  \item \emph{Presto} -- Opera 9.50\footnote{Zobacz \url{http://www.opera.com}}
+  \item \emph{WebKit} -- Konqueror 3.5.8\footnote{Zobacz \url{http://www.konqueror.org}}
+\end{itemize}
+
+W czasie projektowania i rozwijania aplikacji, autor korzystał z przeglądarki Mozilla~Firefox, która na chwilę obecną posiada najlepszy silnik renderujący. Dodatkowo można do niej zainstalować kilka, ułatwiających życie dodatków:
+\begin{itemize}
+  \item \emph{Web Developer}\footnote{Zobacz \url{http://chrispederick.com/work/webdeveloper/}} -- pasek narzędzi, który posiada wiele opcji i udogodnień (np. zarządzanie ciasteczkami, zaznaczanie wybranych elementów dokumentu, podgląd bieżącego źródła, walidację HTML/CSS etc.).
+  \item \emph{FireBug}\footnote{Zobacz \url{http://www.getfirebug.com/}} -- narzędzie pozwalające na przeglądanie drzewa dokumentu HTML, podglądu i edycji jego poszczególnych elementów, przeglądanie i dynamiczną edycję arkuszy styli CSS, przeglądanie skryptów JavaScript oraz możliwości wykonywania instrukcji tego języka i obserwacji ich rezultatów, debugowanie skryptów, przeglądanie elementów DOM, a także obserwowanie wywołań XMLHttpRequest (zob. rozdz.~\ref{sec:javascript}, str.~\pageref{sec:javascript}).
+  \item \emph{ColorZilla}\footnote{Zobacz \url{http://www.iosart.com/firefox/colorzilla/}} -- rozszerzenie bardzo użyteczne podczas projektowania wyglądu strony i tworzenia arkuszy CSS. Udostępnia ono ,,pipetę'' (ang. color picker), która pozwala pobrać kolor dowolnego piksela w obrębie przeglądarki. Dzięki temu, nie trzeba za każdym razem zaglądać do styli, podczas tworzenia nowego arkusza CSS na bazie starego layoutu.
+  \item \emph{HTML Validator}\footnote{Zobacz \url{http://users.skynet.be/mgueury/mozilla/}} -- dodatek, który rozszerza nam podgląd źródła dokumentu o numerację linii i walidator dokumentu HTML (na bazie silnika TIDY\footnote{Zobacz \url{http://tidy.sourceforge.net/}}). Dzięki temu, od razu widać, gdzie popełniono błąd w strukturze dokumentu (niedomknięty tag, brak cudzysłowa przy wartości, etc.).
+  \item \emph{LiveHTTPHeaders}\footnote{Zobacz \url{http://livehttpheaders.mozdev.org/}} -- narzędzie służące do podglądu nagłówków HTTP wysyłanych i odbieranych podczas każdego zapytania. Świetnie się sprawdza, w przypadku błędnych przekierowań, kiedy tak naprawdę nie wiemy, w którym momencie doszło do zapętlenia skryptu.
+\end{itemize}
+
+\section{Projekt bazy danych}
+\label{sec:db-projekt}
+W pierwszej kolejności należy zaprojektować bazę danych tak aby spełniała wymogi projektu funkcjonalnego.
+
+Zasada działania relacyjnej baz danych (jaką jest MySQL wykorzystywany w aplikacji , jak i technika odwzorowywania w niej rzeczywistych danych jest szerokim zagadnieniem. Czytelników zainteresowanych tym tematem autor odsyła do znakomitego tutorialu1 udostępnionego przez firmę Microsof\footnote{Zobacz \url{http://office.microsoft.com/pl-pl/access/CH062526791045.aspx}}
+
+Projektując bazę programista powinien trzymać się konwencji nazewnictwa tabel oraz pól tabeli przyjętej przez Ruby~on~Rails. Zgodnie z konwencją nazwy tabel powinny być liczbą mnogą nazwy modelu, który przechowuje informacje o danej tabeli. Klucz podstawowy tabeli powinien nosić nazwę id, klucze obce powinny być nazwane zgodnie ze schematem \{nazwa obiektu w liczbie pojedynczej\}\_id. Schemat bazy danych, przedstawia rysunek \ref{fig:database}.
+
+\newpage
+\thispagestyle{empty}
+\addtolength{\textwidth}{4cm}
+\addtolength{\hoffset}{-2.5cm}
+\addtolength{\textheight}{5cm}
+\addtolength{\voffset}{-3.5cm}
+\begin{landscape}
+\begin{figure}
+\centering
+  \includegraphics{database.png}
+  \caption{
+  Schemat bazy danych EiT.
+  \label{fig:database}
+  }
+\end{figure}
+\end{landscape}
+\newpage
+
+\addtolength{\textwidth}{-4cm}
+\addtolength{\hoffset}{2.5cm}
+\addtolength{\textheight}{-5cm}
+\addtolength{\voffset}{3.5cm}
+\subsection{Opis tabel}
+\label{sub:tabele}
+
+\subsubsection{Tabela \emph{users}}
+\label{subsub:users}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id              & int(11)      & \\
+  login           & varchar(50)  & login użytkownika \\
+  password        & varchar(40)  & hasło użytkownika \\
+  email           & varchar(50)  & email użytkownika \\
+  created\_on      & date         & data utworzenia konta \\
+  updated\_at      & datetime     & data ostatniego zalogowania\\
+  firstname       & varchar(50)  & imię \\
+  lastname        & varchar(50)  & nazwisko \\
+  privileges      & int(11)      & przywileje w systemie \\
+  question        & text         & pytanie ratunkowe \\
+  answer          & text         & odpowiedź na pytanie ratunkowe \\
+  www\_page        & varchar(200) & adres strony WWW użytkownika\\
+  www\_description & text         & opis strony WWW \\
+  voted           & tinyint(1)   & czy użytkownik zagłosował już w ankiecie? \\
+  signature       & text         & sygnaturka użytkownika \\
+  last\_ip         & varchar(15)  & ostatnie IP z którego logował się użytkownik \\
+  activated       & tinyint(1)   & czy konto jest aktywne? \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{users}\label{tab:users}}
+\end{table}
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}\hline
+    X & O & D & A & G & M & K & P \\\hline
+  \end{tabular}
+  \begin{itemize}
+    \item $X_{128}$ -- nieużywany
+    \item $O_{64}$ -- dodawanie i edycja ocen
+    \item $D_{32}$ -- odczyt deklaracji studenckich
+    \item $A_{16}$ -- dodawanie i edycja aktualności
+    \item $G_8$ -- konfiguracja grup studentów
+    \item $M_4$ -- dodawanie i edycja materiałów
+    \item $K_2$ -- konfiguracja wydarzeń w kalendarzu studenckim
+    \item $P_1$ -- administracja ankietami
+  \end{itemize}
+  \caption{Struktura pola \emph{privileges} w tabelce \emph{users}\label{fig:privileges}}
+\end{figure}
+
+\begin{itemize}
+  \item Tabelka ta zawiera zbiorcze informacje o użytkownikach mogących dostać się do systemu (zarówno studentach, jak i prowadzących).
+  \item Pole \emph{login} może być puste. Wraz z początkiem każdego roku akademickiego, dziekanat dostarcza listę nowych studentów. Osoby te są dopisywane do bazy danych. Później, jeśli któraś z nich zapragnie założyć konto, podaje login i hasło, które z miejsca stają się aktywne i włączają użytkownika do systemu. Takie rozwiązanie zapobiega założeniu konta, przez osobę niepowołaną.
+  \item Hasło użytkownika jest zahashowane algorytmem SHA-1\footnote{Standard dostępny pod \url{http://csrc.nist.gov/publications/fips/fips180-2/fips180-2withchangenotice.pdf}}. Zabezpiecza to hasła użytkowników przed odczytem w przypadku skompromitowania bazy danych.
+  \item Struktura pola \emph{privileges} to maska, w której każdy bit określa inne uprawnienia, jak opisuje to rysunek \ref{fig:privileges}. 1 -- oznacza przyzwolenia, 0 -- brak dostępu
+  \item Pola \emph{question} i \emph{answer} nie są obowiązkowe, zabezpieczają jednak użytkownika przed utratą hasła. Po podaniu odpowiedzi na pytanie, użytkownik jest z powrotem logowany do systemu, gdzie może zmienić swoje hasło.
+  \item Pole \emph{signature} nie jest nigdzie używane -- zachowano je w celu uzyskania wstecznej zgodności i na poczet przyszłych zastosowań.
+\end{itemize}
+
+\subsubsection{Tabela \emph{cathedrals}}
+\label{subsub:cathedrals}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id              & int(11)      & \\
+  name & varchar(50) & Nazwa katedry \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{cathedrals}\label{tab:cathedrals}}
+\end{table}
+
+\begin{itemize}
+  \item Tabelka ta zawiera wszystkie katedry obsługiwane przez system.
+\end{itemize}
+
+\subsubsection{Tabela \emph{specialities}}
+\label{subsub:specialities}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id              & int(11)      & \\
+  head & varchar(50) & Nazwa specjalności \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{specialities}\label{tab:specialities}}
+\end{table}
+
+\begin{itemize}
+  \item Tabelka ta zawiera wszystkie kierunki obsługiwane przez system. Pierwszy wiersz ($id = 1$) jest pusty i zarezerwowany dla studentów, którzy jeszcze nie dokonali wyboru.
+\end{itemize}
+
+~\newline
+
+\subsubsection{Tabela \emph{users\_students}}
+\label{subsub:users_students}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id             & int(11)     & \\
+  user\_id       & int(11)     & \\
+  speciality\_id & int(11)     & \\
+  sgroup         & varchar(7)  & Grupa dziekanatowa\\
+  sindex         & int(6)      & Numer indeksu \\
+  gadu\_gadu     & int(15)     & Numer Gadu-Gadu \\
+  icq            & int(15)     & Numer ICQ \\
+  cell           & varchar(15) & Telefon kontaktowy \\\hline
+
+  \end{tabular}
+  \caption{Tabela \emph{users\_students}\label{tab:users_students}}
+\end{table}
+
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{|c|c|c|c|}\hline
+  K & R & R & S\\\hline
+  \end{tabular}
+  \begin{itemize}
+    \item \emph{K} -- kod kierunku (\emph{E} dla Elektroniki, \emph{K} dla Telekomunikacji)
+    \item \emph{RR} -- dwie ostatnie cyfry roku rozpoczęcia studiów przez daną grupę
+    \item \emph{S} -- kod specjalności
+  \end{itemize}
+  \caption{Struktura pola grupy\label{fig:group}}
+\end{figure}
+\begin{equation}
+  rok = \left\{ \begin{array}{ll}
+  obecny\_rok - 2000 - RR & gdy~miesiac \le 9\\
+  obecny\_rok - 2000 - RR + 1 & gdy~miesiac > 9
+  \end{array} \right.
+  \label{equ:year}
+\end{equation}
+\begin{itemize}
+  \item Tabelka zawiera informacje o studentach. Prowadzący nie mają w niej rekordów.
+  \item \emph{sgroup} i \emph{sindex} mają ,,s'' na początku w związku z obostrzeniami MySQL (\emph{index} i \emph{group} są słowami zastrzeżonymi).
+  \item Na podstawie grupy dziekanatowej, obliczany jest rok studiów wg. wzoru \ref{equ:year}
+\end{itemize}
+
+\newpage
+\subsubsection{Tabela \emph{users\_lecturers}}
+\label{subsub:users_lecturers}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id            & int(11)     & \\
+  cathedral\_id & int(11)     & \\
+  user\_id      & int(11)     & \\
+  place         & varchar(30) & Pokój \\
+  title         & varchar(50) & Tytuł naukowy \\
+  consultations & varchar(50) & Terminy konsultacji \\
+  phone         & varchar(15) & Telefon kontaktowy \\
+  photo         & varchar(50) & Zdjęcie \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{users\_lecturers}\label{tab:users_lecturers}}
+\end{table}
+\begin{itemize}
+  \item Tabelka zawiera informacje o prowadzących. Studenci nie są do niej dopisywani.
+  \item Pole \emph{photo} zawiera tylko nazwę pliku ze zdjęciem. Model w aplikacji sam ustala ścieżkę.
+\end{itemize}
+
+\subsubsection{Tabela \emph{subjects\_types}}
+\label{subsub:subjects_types}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id        & int(11)     & \\
+  head      & varchar(50) & Nazwa rodzaju \\
+  mandatory & tinyint(1)  & Czy obowiązkowy? \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{subjects\_types}\label{tab:subjects_types}}
+\end{table}
+\begin{itemize}
+  \item Tabelka zawiera kategorie (rodzaje) przedmiotów. Istotne przy grupowaniu po kategoriach.
+\end{itemize}
+
+\newpage
+\subsubsection{Tabela \emph{subjects}}
+\label{subsub:subjects}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id                 & int(11)      & \\
+  subjects\_type\_id & int(11)      & \\
+  acronym            & varchar(10)  & Skrót nazwy przedmiotu\\
+  head               & varchar(255) & Nazwa przedmiotu \\
+  body               & text         & Opis przedmiotu \\
+  code               & varchar(6)   & Kod dziekanatowy \\
+  season             & int(4)       & Semestr \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{subjects}\label{tab:subjects}}
+\end{table}
+\begin{itemize}
+  \item Tabelka zawiera informacje o wykładanych przedmiotach. Przedmiot liczy się jako całość (nie ma podziału na wykłady, laboratoria etc.)
+  \item Pole \emph{season} oznacz semestr na którym dany przedmiot jest prowadzony. Jeśli wynosi 0, oznacza to przedmiot specjalny (np. Dziekanat).
+\end{itemize}
+
+\subsubsection{Tabela \emph{news\_types}}
+\label{subsub:news_types}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id              & int(11)      & \\
+  name & varchar(20) & Rodzaj aktualności \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{news\_types}\label{tab:news_types}}
+\end{table}
+
+\begin{itemize}
+  \item Tabelka ta zawiera kategorie aktualności.
+\end{itemize}
+
+\newpage
+\subsubsection{Tabela \emph{news}}
+\label{subsub:news}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id             & int(11)      & \\
+  news\_type\_id & int(11)      & \\
+  user\_id       & int(11)      & \\
+  subject\_id    & int(11)      & \\
+  head           & varchar(255) & Tytuł aktualności \\
+  body           & text         & Treść aktualności \\
+  ip             & varchar(15)  & IP z której dodano aktualność \\
+  date           & datetime     & Data dodania \\
+  times\_readed  & int(11)      & Ilość przeczytań \\
+  for\_year      & int(11)      & Dla których lat \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{news}\label{tab:news}}
+\end{table}
+
+\begin{itemize}
+  \item Tabelka ta zawiera aktualności.
+  \item Pole \emph{for\_year} to maska roczników których dotyczy aktualność, przy czym najmłodszy bit to pierwszy rok, najstarszy -- piąty. Jeżeli pole ma wartość ,,0'' to aktualność dotyczy wszystkich.
+\end{itemize}
+
+\subsubsection{Tabela \emph{uploaded\_files}}
+\label{subsub:uploaded_files}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id           & int(11)      & \\
+  subject\_id  & int(11)      & \\
+  user\_id     & int(11)      & \\
+  uploader\_id & int(11)      & \\
+  filename     & varchar(255) & Nazwa pliku \\
+  head         & varchar(255) & Tytuł pliku \\
+  body         & text         & Opis pliku \\
+  date         & datetime     & Data dodania \\
+  kind         & varchar(15)  & Rodzaj \\
+  downloads    & int(11)      & Ilość pobrań \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{uploaded\_files}\label{tab:uploaded_files}}
+\end{table}
+
+\begin{itemize}
+  \item Tabelka ta zawiera informacje o plikach wgranych do systemu (materiałach lub ocenach). Jest także tabelką pośredniczącą dla relacji wiele-do-wielu między prowadzącymi a przedmiotami (zob. rozdz.~\ref{rel:subjects_users}, str.~\pageref{rel:subjects_users}).
+  \item Pole \emph{filename} zawiera tylko nazwę pliku. System sam określi ścieżkę.
+  \item Pole \emph{kind} określa rodzaj pliku. Możliwe są dwa stany:
+  \begin{itemize}
+    \item \emph{material} -- plik z materiałami,
+    \item \emph{grade} -- plik z ocenami.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Tabela \emph{groups}}
+\label{subsub:groups}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id       & int(11)      & \\
+  user\_id & int(11)      & \\
+  head     & varchar(255) & Nazwa grupy \\
+  body     & text         & Opis grupy \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{groups}\label{tab:groups}}
+\end{table}
+\begin{itemize}
+  \item Tabelka zawiera grupy użytkowników. Podstawowe typy grup to:
+  \begin{itemize}
+    \item Administratorzy,
+    \item Zalogowani,
+    \item Specjalności (Elektronik, Telekomunikacja),
+    \item Lata (Rok I -- Rok V),
+    \item Grupy dziekanatowe (1 -- 10).
+  \end{itemize}
+  \item Każdy prowadzący może dodawać swoje grupy.
+  \item Grupy pełnią istotną rolę przy określaniu uprawnień do plików, dzięki nim możliwe jest dodawanie materiałów np. tylko dla III roku albo tylko dla Elektroniki.
+\end{itemize}
+
+\newpage
+\subsubsection{Tabela \emph{polls\_questions}}
+\label{subsub:polls_questions}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id          & int(11)      & \\
+  user\_id    & int(11)      & \\
+  question    & varchar(200) & Pytanie \\
+  start\_time & datetime     & Czas rozpoczęcia \\
+  end\_time   & datetime     & Czas zakończenia \\
+  anonymous   & tinyint(1)   & Czy anonimowa? \\\hline
+
+  \end{tabular}
+  \caption{Tabela \emph{polls\_questions}\label{tab:polls_questions}}
+\end{table}
+\begin{itemize}
+  \item Tabelka zawiera informacje o ankietach wraz z pytaniem.
+  \item Pole \emph{question} zawiera pytanie, jakie będzie zadane w ankiecie.
+  \item Pole \emph{end\_time} określa czas zakończenia ankiety. Po jego upływie, ankieta zostaje automatycznie zamknięta. Jeśli pozostanie puste, ankieta jest bezterminowa.
+  \item Pole \emph{anonymous} informuja czy ankieta jest anonimowa. Na stronie maksymalnie mogą być aktywne naraz dwie ankiety -- jedna anonimowa, druga nie.
+\end{itemize}
+
+\subsubsection{Tabela \emph{polls\_answers}}
+\label{subsub:polls_answers}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id          & int(11)      & \\
+  polls\_question\_id & int(11)      & \\
+  answer              & varchar(200) & Odpowiedź \\
+  quantity            & int(11)      & Ilość udzieleń \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{polls\_answers}\label{tab:polls_answers}}
+\end{table}
+\begin{itemize}
+  \item Tabelka zawiera odpowiedzi do pytań zadanych w ankietach. Jedna ankieta może mieć maksymalnie sześć odpowiedzi (baza tego nie sprawdza).
+  \item Pole \emph{quantity} zawiera ilość użytkowników którzy wybrali tą odpowiedź. Na podstawie tego pola, później jest liczony procentowy udział tego wyboru.
+\end{itemize}
+
+\newpage
+
+\subsubsection{Tabela \emph{exams\_names}}
+\label{subsub:exams_names}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id   & varchar(3)   & Kod \\
+  head & varchar(255) & Nazwa \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{exams\_names}\label{tab:exams_names}}
+\end{table}
+
+\begin{itemize}
+  \item Tabelka ta zawiera nazwy odpowiednich kombinacji typu studiów, roku i kierunku przyporządkowane do ich kodu.
+  \item Pole \emph{id} wyjątkowo nie jest tu wartością liczbową, a kombinacją trzech znaków. Jest jednak jednoznacznie identyfikowalne i ma odnoszący się do niego klucz obcy w tabeli \emph{exams}.
+\end{itemize}
+
+\subsubsection{Tabela \emph{exams}}
+\label{subsub:exams}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id   & int(11)   &  \\
+  subject\_id     & int(11)      & \\
+  user\_id        & int(11)      & \\
+  exams\_name\_id & varchar(3)   & \\
+  examiner        & varchar(255) & Dane egzaminatora \\
+  date            & datetime     & Data egzaminu \\
+  place           & varchar(255) & Miejsce egzaminu \\
+  term            & int(11)      & Termin \\\hline
+
+  \end{tabular}
+  \caption{Tabela \emph{exams}\label{tab:exams}}
+\end{table}
+
+\begin{itemize}
+  \item Tabelka ta zawiera informacje o egzaminach w najbliższej sesji.
+  \item Pole \emph{examiner} zawiera dane egzaminatora wpisane na sztywno, a nie referencję do odpowiedniego rekordu. Bierze się to stąd, że czasami egzamin może przeprowadzać osoba spoza katedry.
+  \item Pole \emph{term} określa termin egzaminy i powinno zawierać się w przedziale <0;3>.
+\end{itemize}
+
+\newpage
+\subsubsection{Tabela \emph{events}}
+\label{subsub:events}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id   & int(11)   & \\
+  beginning  & date         & Początek \\
+  ending     & date         & Koniec \\
+  head       & varchar(255) & Opis \\
+  for\_year  & int(11)      & Dla których lat \\
+  url        & varchar(255) & Link \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{events}\label{tab:events}}
+\end{table}
+
+\begin{itemize}
+  \item Tabelka ta zawiera kalendarz studenta.
+  \item Pole \emph{for\_year} funkcjonuje na identycznej zasadzie, jak to z tabelki \emph{news} (zob. rozdz.~\ref{subsub:news}, str.~\ref{subsub:news}).
+  \item Pole \emph{url} nie jest obowiązkowe. Jeśli jednak zostanie podane, cały tytuł będzie linkiem do podanego w \emph{url} adresu.
+\end{itemize}
+
+\subsubsection{Tabela \emph{declarations}}
+\label{subsub:declarations}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id   & int(11)   & \\
+  available\_from & date         & Dostępna od... \\
+  available\_to   & date         & Dostępna do... \\
+  code            & varchar(255) & Kod deklaracji \\
+  head            & varchar(255) & Nazwa deklaracji \\
+  year            & int(11)      & Dla którego roku \\
+  how\_many       & int(11)      & Ile opcji \\\hline
+
+  \end{tabular}
+  \caption{Tabela \emph{declarations}\label{tab:declarations}}
+\end{table}
+
+\begin{itemize}
+  \item Tabelka ta zawiera informacje o samych deklaracjach jako takich. Nie zawiera informacji o wyborach dokonanych przez studentów.
+  \item Pola \emph{available\_from} i \emph{available\_to} zawierają przedział czasowy w którym dana deklaracja jest dostępna do wypełnienia. Rok nie jest brany pod uwagę.
+  \item Pole \emph{year} określa, którego roku akademickiego taka deklaracja dotyczy. Nie działa tu mechanizm znany z \emph{for\_year} -- jedna deklaracja jest tylko dla jednego roku.
+  \item Pole \emph{how\_many} dotyczy tylko deklaracji odnoszących się do wyboru przedmiotów obieralnych. Jest to liczba dwucyfrowa. Liczba dziesiątek oznacza ilość przedmiotów dla Elektroniki, jedności -- dla Telekomunikacji.
+\end{itemize}
+
+\subsubsection{Tabela \emph{declarations\_subjects}}
+\label{subsub:declarations_subjects}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id   & int(11)   & \\
+  declaration\_id   & int(11)      & \\
+  subject\_id       & int(11)      & \\
+  user\_id          & int(11)      & \\
+  price             & int(11)      & Cena materiałów \\
+  name              & varchar(255) & Nazwa po angielsku \\
+  grade             & decimal(2,1) & Ocena \\
+  year              & int(11)      & Rok rozpoczęcia studiów \\
+  speciality\_id    & int(11)      & Kierunek \\
+  date              & date         & Data złożenia \\
+  language          & varchar(4)   & Język przedmiotu \\
+  print             & tinyint(1)   & Drukować materiały? \\
+  study\_type       & varchar(1)   & Typ studiów \\
+  study\_speciality & int(11)      & Specjalność \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{declarations\_subjects}\label{tab:declarations_subjects}}
+\end{table}
+
+\begin{itemize}
+  \item Tabelka ta zawiera szczegółowe informacje o deklaracjach, a także informacje wypełniane przez studentów. Tabelkę tę można dowolnie modyfikować. Więcej na ten temat zostało przedstawione w dziale Deklaracje (zob. rozdz.~\ref{sec:deklaracje}, str.~\ref{sec:deklaracje}).
+  \item Pole \emph{price} dotyczy tylko deklaracji dotyczących druku materiałów. Oznacza ona cenę materiałów w złotówkach pomnożoną przez 10. Nie wypełniają go studenci.
+  \item Pole \emph{name} dotyczy tylko deklaracji wyboru języka przedmiotów. Zawiera angielski odpowiednik nazwy przedmiotu. Nie wypełniają go studenci.
+  \item Pole \emph{grade} dotyczy tylko deklaracji wyboru kierunku studiów. Oznacza ono ocenę z danego przedmiotu. Jest wypełniane przez studentów. Dodatkowo model oferuje metodę \emph{average}, która obliczą średnią ocen danego studenta.
+  \item Pole \emph{year} dotyczy tylko deklaracji wyboru kierunku studiów. Oznacza ono rok, w którym dany student rozpoczął studiowanie na Elektronice i Telekomunikacji. Jest wypełniane przez studentów.
+  \item Pole \emph{speciality\_id} dotyczy tylko deklaracji wyboru kierunku studiów. Zawiera id kierunku (referencja do specialities) na którym dany student chciałby kontynuuować swoją edukację. Jest wypełniane przez studentów.
+  \item Pole \emph{date} zawiera dotyczy wszystkich deklaracji. Zawiera datę ich złożenia. Jest wypełniane przez system automatycznie.
+  \item Pole \emph{language} dotyczy tylko deklaracji wyboru języka przedmiotów. Zawiera dwuliteroww kody języków wybrane przez studenta w formacie WWDD, gdzie WW to kod dla wykładu, a DD to kod dla zajęc dodatkowych (laboratoriów, ćwiczeń, etc.). Jest wypełniane przez studentów.
+  \item Pole \emph{print} dotyczy tylko deklaracji dotyczących druku materiałów. Jeśli jest ustawione na 1, oznacza, że dany student życzy sobie materiały w formie papierowej dla danego przedmiotu. Jest wypełniane przez studentów.
+  \item Pole \emph{study\_type} dotyczy tylko deklaracji wyboru specjalności. Określa ono rodzaj studiów -- M to studia magisterskie, I to studia inżynierskie. Jest wypełniane przez studentów.
+  \item Pole \emph{study\_speciality} dotyczy tylko deklaracji wyboru specjalności. Zawiera ono cyfrowy kod specjalności. Jest wypełniane przez studentów.
+\end{itemize}
+
+\newpage
+\subsubsection{Tabela \emph{declarations\_experiences}}
+\label{subsub:declarations_experiences}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|l|}\hline
+  Pole & Typ & Opis \\\hline
+  id   & int(11)   & \\
+  declaration\_id       & int(11)      & \\
+  firstname             & varchar(255) & Imię studenta \\
+  lastname              & varchar(255) & Nazwisko studenta \\
+  sindex                & int(6)       & Numer indeksu \\
+  speciality\_id        & int(11)      & \\
+  student\_street       & varchar(255) & Adres zamieszkania \\
+  student\_postal\_code & varchar(255) & Kod pocztowy\\
+  student\_city         & varchar(255) & Miasto \\
+  place\_name           & varchar(255) & Miejsce praktyki \\
+  place\_street         & varchar(255) & Adres zakładu pracy \\
+  place\_postal\_code   & varchar(255) & Kod pocztowy\\
+  place\_city           & varchar(255) & Miasto \\
+  beginning             & date         & Termin rozpoczęcia \\
+  beginning\_additional & date         & Dodatkowy termin \\
+  ending\_additional    & date         & Koniec dodatkowego terminu \\
+  dormitory             & tinyint(1)   & Czy chce akademik? \\
+  policy\_type          & varchar(255) & Rodzaj ubezpieczenia \\
+  policy\_name          & varchar(255) & Nazwa polisy \\
+  policy\_number        & varchar(255) & Numer polisy \\
+  confirmations         & int(11)      & Potwierdzenia \\
+  created\_at           & datetime     & Utworzono \\
+  updated\_at           & datetime     & Poprawiono \\\hline
+  \end{tabular}
+  \caption{Tabela \emph{declarations\_experiences}\label{tab:declarations_experiences}}
+\end{table}
+
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|}\hline
+  E & D & C & B & A \\\hline
+  \end{tabular}
+  \begin{itemize}
+    \item A -- dostarczone zaświadczenie z miejsca praktyki
+    \item B -- dostarczona informacja o ubezpieczeniu
+    \item C -- dostarczone potwierdzenie odbycia praktyki i sprawozdanie
+    \item D -- praktyka bezpłatna
+    \item E -- wpis do indeksu
+  \end{itemize}
+  \caption{Struktura pola \emph{confirmations}\label{fig:confirmations}}
+\end{figure}
+
+\begin{itemize}
+  \item Tabelka ta zawiera szczegółowe informacje dotyczące praktyki zawodowej danego studenta.
+  \item Pola \emph{student\_street}, \emph{student\_postal\_code}, \emph{student\_city} dotyczą adresu zameldowania studenta.
+  \item Pola \emph{place\_name}, \emph{place\_street}, \emph{place\_postal\_code}, \emph{pace\_city} dotyczą informacji o zakładzie pracy, w którym będzie odbywać się praktyka.
+  \item Pole \emph{beginning} to termin rozpoczęcia praktyki.
+  \item Pola \emph{beginning\_additional} i \emph{ending\_additional} określają dodatkowy termin praktyki, w przypadku gdyby praktyka była dwuetapowa.
+  \item Pole \emph{dormitory} określa, czy student jest zainteresowany pobytem w akademiku na czas praktyki.
+  \item Pola \emph{policy\_type}, \emph{policy\_name} i \emph{policy\_number} dotyczą obowiązkowego dokumentu, potwierdzającego ubezpieczenie na czas praktyki.
+  \item Pole \emph{confirmations} zawiera potwierdzenia dla opiekuna praktyk, a jego struktura została przedstawiona na ryskunku \ref{fig:confirmations}.
+\end{itemize}
+
+
+\subsection{Opis relacji}
+\label{sub:relacje}
+
+\section{Konwersja bazy danych}
+\label{sec:db-konwersja}
+
+\section{Mapa serwisu}
+\label{sec:mapa}
+
+\section{Opis poszczególnych kontrolerów i akcji}
+\label{sec:kontrolery}
+
+\section{Deklaracje}
+\label{sec:deklaracje}
+
+\section{Przemapowanie hiperłączy}
+\label{sec:mapa-linkow}
+
+\section{Testowanie i instalacja}
+\label{sec:testowanie}
+
+\chapter{Zakończenie}
+\label{cha:end}
+
 
 \end{document}
