@@ -227,12 +227,26 @@ JavaScript jest skryptowym językiem programowania, który został opracowany pr
 Nazwa nasuwa skojarzenie z językiem Java, jednak oba języki nie mają ze sobą wiele wspólnego, oprócz tego że ich składnia jest zaczerpnięta z języka C. W połączeniu z Document Object Model\footnote{Zobacz \url{http://www.w3.org/DOM/}} JavaScript stał się o wiele bardziej potężną technologią niż przewidywali jej twórcy. Po załadowaniu strony programista ma możliwość manipulacji strukturą dokumentu (załadowanej do przeglądarki strony), może także tworzyć funkcje, które reagują na zdarzenia występujące w oknie przeglądarki (ruchy, klikniecie myszką, naciśnięcie klawisza na klawiaturze etc.). Połączenie HTML ze skryptami języka JavaScript nazywane jest Dynamic HTML (DHTML), czyli dynamiczny HTML, aby uwydatnić różnicę ze statycznymi stronami HTML. 
 Przełomem w DHTML było udostępnienie obiektu XMLHttpRequest (XHR). XHR umożliwia wysyłanie żądań HTTP z poziomu języka JavaScript już po załadowaniu się strony internetowej w trakcie interakcji z użytkownikiem. Otrzymane odpowiedzi serwera są wówczas wykorzystywane do modyfikacji załadowanego dokumentu. Możliwość asynchronicznego wykonywania żądań sprawia, że są one wykonywane w tle i nie przerywają interakcji użytkownika ze stroną, dynamicznie ją zmieniając. Technika wykorzystania obiektu XHR została nazwana AJAX (ang. Asynchronous JavaScript and XML, asynchroniczny JavaScript i XML) . Dzisiaj każda przeglądarka udostępnia XHR. AJAX sprawdza się tam gdzie nie ma potrzeby przeładowywania całej strony, a tylko jej części lub gdzie w ogóle nie trzeba dokonywać przeładowania a jedynie wysłać informację do serwera WWW. AJAX oszczędza czas użytkownika (w trakcie doładowywania informacji może on przeglądać stronę, która dalej jest dla niego dostępna) oraz zmniejsza obciążenie serwera (doładowywanie tylko części informacji zamiast całej strony ogranicza ilość danych wysyłanych do przeglądarki). 
 
+\section{RSS}
+\label{sec:rss}
+RSS (ang. Really Simple Syndication, bardzo proste rozpowszechnianie artykułów) jest to format języków znacznikowych używany do publikowania często zmieniającej się treści, takiej jak wpisy na blogach, nagłówki wiadomości, podcasty etc. Dokument RSS zawiera zazwyczaj podsumowanie przypisanej mu strony WWW lub jej pełną zawartość. 
+
+RSS umożliwia ludziom, bycie na bieżąco ze stronami internetowymi dzięki automatycznym programom zwanymi ,,czytnikami RSS''. Aplikacje te, zbierają wiadomości z witryn wybranych przez użytkownika, a następnie przedstawiają w skondensowanej i przystępnej formie. Dzięki temu, nie ma potrzeby odwiedzania każdej witryny -- wszystkie można przeglądać z poziomu jednej aplikacji. Oznacza to więc znaczną oszczędność czasu. Zasada działania agregatora RSS jest prosta. Co jakiś czas (aplikacja działająca w tle, lub agregator internetowy\footnote{Na przykład \url{http://reader.google.com/}}) lub przy każdym uruchomieniu następuje sprawdzenie wszystkich wpisanych kanałów RSS, pod kątem nowej zawartości. Jeśli zostanie odnaleziona, następuje jej ściągnięcie i oznaczenie jako nieprzeczytana. 
+
+Oczywiście wiadomość RSS nie jest w żaden sposób ograniczona w stosunku do normalnej strony WWW. Z racji tego, że jest to zwykły plik XML, może zawierać odnośniki, grafikę a nawet informacje multimedialne. Każda wiadomość RSS zawiera także hiperlink do oryginału (co jest istotne w przypadku skrótów). 
+
+Wyróżnia się następujące ,,rodziny'' RSS:
+\begin{itemize}
+  \item Really Simple Syndication (RSS 2.0)
+  \item RDF Site Summary (RSS 1.0 i RSS 0.90)
+  \item Rich Site Summary (RSS 0.91).
+\end{itemize}
 \section{Przeglądarki Internetowe}
 \label{sec:przegladarki}
 
 Przeglądarka internetowa jest to aplikacja, mająca na celu pobieranie i wyświetlanie treści tzw. stron internetowych. Strony internetowe to dokumenty w jednym z języków SGML (najczęściej HTML, XHTML lub XML), zawierające tekst, grafikę i pliki multimedialne.
 
-Na rynku istnieje wiele przeglądarek, jednak tak naprawdę nie jest istotna ich nazwa a silnik jaki wykorzystują do wyświetlania stron. Cztery najważniejsze silniki to: Trident (Internet Explorer), Gecko (np. Firefox, Netscape, Flock, SeaMonkey, Camino etc.), KHTML/WebKit (np. Konqueror, Safari), oraz Presto (Opera). Jeżeli chodzi o udział przeglądarek w rynku przedstawia się jak na rysunku \ref{fig:przegladarki}
+Na rynku istnieje wiele przeglądarek, jednak tak naprawdę nie jest istotna ich nazwa a silnik jaki wykorzystują do wyświetlania stron. Cztery najważniejsze silniki to: Trident (Internet Explorer), Gecko (np. Firefox, Netscape, Flock, SeaMonkey, Camino etc.), KHTML/WebKit (np. Konqueror, Safari), oraz Presto (Opera). Z ciekawostek warto jeszcze wspomnieć o przeglądarkach w trybie tekstowym. Są to Lynx, Links i eLinks -- z czego ta ostatnia, potrafi renderować JavaScript. Jeżeli chodzi o udział przeglądarek w rynku przedstawia się jak na rysunku \ref{fig:przegladarki}
 \begin{figure}[h]
 \centering
   \includegraphics{browsers.png}
@@ -243,7 +257,7 @@ Na rynku istnieje wiele przeglądarek, jednak tak naprawdę nie jest istotna ich
   }
 \end{figure}
 
-Niestety silniki nie są ze sobą ze sobą kompatybilne, każdy trochę inaczej interpretuje HTML, CSS, JavaScript, nie wszystkie mają wbudowane najnowsze technologie w tym samym stopniu. Największe trudności sprawia programistom przeglądarka Internet Explorer w wersji 6, która zajmuje największą część rynku i zarazem jest najbardziej przestarzałą (2001 r.).  Ta wersja jest niezgodna ze standardami zatwierdzonymi przez W3C i posiada wiele błędów. Niestety przeglądarka IE 6 wygrała pierwszą ,,wojnę przeglądarek''\footnote{Zobacz \url{http://en.wikipedia.org/wiki/Browser_wars}} i niemalże zmonopolizowała rynek. Następna wersja Internet Explorera (wersja 7) pojawiła się dopiero pod koniec 2006 roku. Zanim wersja 6 zniknie z rynku minie jeszcze kilka lat, w czasie których rozwój aplikacji po stronie klienta będzie ograniczony możliwościami tej przeglądarki.
+Niestety silniki nie są ze sobą ze sobą kompatybilne, każdy trochę inaczej interpretuje HTML, CSS, JavaScript, nie wszystkie mają wbudowane najnowsze technologie w tym samym stopniu. Największe trudności sprawia programistom przeglądarka Internet Explorer w wersji 6, która zajmuje największą część rynku i zarazem jest najbardziej przestarzałą (2001 r.). Ta wersja jest niezgodna ze standardami zatwierdzonymi przez W3C i posiada wiele błędów, często nazywana jest ,,zmorą programistów''. Niestety przeglądarka IE 6 wygrała pierwszą ,,wojnę przeglądarek''\footnote{Zobacz \url{http://en.wikipedia.org/wiki/Browser_wars}} i niemalże zmonopolizowała rynek. Następna wersja Internet Explorera (wersja 7) pojawiła się dopiero pod koniec 2006 roku. Zanim wersja 6 zniknie z rynku minie jeszcze kilka lat, w czasie których rozwój aplikacji po stronie klienta będzie ograniczony możliwościami tej przeglądarki.
 
 \chapter[Rozwiązania koncepcyjne]{Koncepcje spotykane w aplikacjach internetowych}
 \label{cha:koncepcje}
@@ -622,7 +636,7 @@ Projektując bazę programista powinien trzymać się konwencji nazewnictwa tabe
 \begin{landscape}
 \begin{figure}
 \centering
-  \includegraphics{database.png}
+%  \includegraphics{database.png}
   \caption{
   Schemat bazy danych EiT.
   \label{fig:database}
@@ -1105,7 +1119,7 @@ Projektując bazę programista powinien trzymać się konwencji nazewnictwa tabe
 \end{table}
 
 \begin{itemize}
-  \item Tabelka ta zawiera szczegółowe informacje o deklaracjach, a także informacje wypełniane przez studentów. Tabelkę tę można dowolnie modyfikować. Więcej na ten temat zostało przedstawione w dziale Deklaracje (zob. rozdz.~\ref{sec:deklaracje}, str.~\ref{sec:deklaracje}).
+  \item Tabelka ta zawiera szczegółowe informacje o deklaracjach, a także informacje wypełniane przez studentów. Tabelkę tę można dowolnie modyfikować. Więcej na ten temat zostało przedstawione w dziale Deklaracje (zob. rozdz.~\ref{sub:deklaracje}, str.~\ref{sub:deklaracje}).
   \item Pole \emph{price} dotyczy tylko deklaracji dotyczących druku materiałów. Oznacza ona cenę materiałów w złotówkach pomnożoną przez 10. Nie wypełniają go studenci.
   \item Pole \emph{name} dotyczy tylko deklaracji wyboru języka przedmiotów. Zawiera angielski odpowiednik nazwy przedmiotu. Nie wypełniają go studenci.
   \item Pole \emph{grade} dotyczy tylko deklaracji wyboru kierunku studiów. Oznacza ono ocenę z danego przedmiotu. Jest wypełniane przez studentów. Dodatkowo model oferuje metodę \emph{average}, która obliczą średnią ocen danego studenta.
@@ -1183,17 +1197,588 @@ Projektując bazę programista powinien trzymać się konwencji nazewnictwa tabe
 \subsection{Opis relacji}
 \label{sub:relacje}
 
+\subsubsection{Relacja \emph{users}$\to$\emph{users\_students}}
+\label{subsub:users-users_students}
+\begin{itemize}
+  \item Typ relacji: 1 do 1
+  \item Pole: \emph{users\_students}.\emph{user\_id}
+  \item Klucz obcy: \emph{users\_students\_ibfk\_1}
+  \item Obowiązkowa
+  \item Dodaje dodatkowe informacje o studencie, specyficzne tylko dla niego.
+\end{itemize}
+
+\subsubsection{Relacja \emph{specialities}$\to$\emph{users\_students}}
+\label{subsub:specialities-users_students}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{users\_students}.\emph{speciality\_id}
+  \item Klucz obcy: \emph{users\_students\_ibfk\_2}
+  \item Obowiązkowa
+  \item Informacje o kierunku studiów studenta. Jeśli jeszcze nie został wybrany, pole przyjmuje wartość 1 (zob. tab.~\ref{subsub:specialities}, str.~\pageref{subsub:specialities}).
+\end{itemize}
+
+\subsubsection{Relacja \emph{cathedrals}$\to$\emph{users\_lecturers}}
+\label{subsub:cathedrals-users_lecturers}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{users\_lecturers}.\emph{cathedral\_id}
+  \item Klucz obcy: \emph{users\_lecturers\_ibfk\_1}
+  \item Obowiązkowa
+  \item Katedra do której dany prowadzący należy.
+\end{itemize}
+
+\subsubsection{Relacja \emph{users}$\to$\emph{users\_lecturers}}
+\label{subsub:users-users_lecturers}
+\begin{itemize}
+  \item Typ relacji: 1 do 1
+  \item Pole: \emph{users\_lecturers}.\emph{user\_id}
+  \item Klucz obcy: \emph{users\_lecturers\_ibfk\_2}
+  \item Obowiązkowa
+  \item Dodatkowe informacje o prowadzącym, specyficzne tylko dla niego.
+\end{itemize}
+
+\subsubsection{Relacja \emph{subjects\_types}$\to$\emph{subjects}}
+\label{subsub:subjects_types-subjects}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{subjects}.\emph{subjects\_type\_id}
+  \item Klucz obcy: \emph{subjects\_ibfk\_1}
+  \item Nieobowiązkowa
+  \item Informacje o rodzaju danego przedmiotu.
+\end{itemize}
+
+\subsubsection{Relacja \emph{users}$\leftrightarrow$\emph{subjects}}
+\label{subsub:users-subjects}
+\begin{itemize}
+  \item Typ relacji: wiele do wielu
+  \item Pola: \emph{uploaded\_files}.\emph{user\_id}, \emph{uploaded\_files}.\emph{subject\_id}
+  \item Tabelka pośrednicząca: \emph{uploaded\_files}
+  \item Klucze obce: \emph{uploaded\_files\_ibfk\_1}, \emph{uploaded\_files\_ibfk\_2}
+  \item Obowiązkowa
+  \item Relacja wykorzystywana do określenia, które przedmioty prowadzi jaki wykładowca. Aby uniknąć z każdym semestrem ręcznego ich dodawania, wszystko dzieje automatycznie. Kryterium bycia prowadzącym, jest dodanie pliku do systemu i przypisanie siebie jak prowadzącego do określonego przedmiotu. Wtedy taka osoba (oczywiście, jeśli dodatkowo jest wykładowcą, czyli jest wpisana do tabelki \emph{users\_lecturers}) automatycznie tworzy sobie relację z tym przedmiotem poprzez tabelkę \emph{uploaded\_files}, co system odczytuje również jako prowadzenie tychże zajęć.
+\end{itemize}
+
+\subsubsection{Relacja \emph{news\_types}$\to$\emph{news}}
+\label{subsub:news_types-news}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{news}.\emph{news\_type\_id}
+  \item Klucz obcy: \emph{news\_ibfk\_1}
+  \item Nieobowiązkowa
+  \item Informacje o rodzaju aktualności. Obecnie niewykorzystywane. Zachowane dla wstecznej zgodności i na poczet przyszłych zastosowań.
+\end{itemize}
+
+\subsubsection{Relacja \emph{users}$\to$\emph{news}}
+\label{subsub:users-news}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{news}.\emph{user\_id}
+  \item Klucz obcy: \emph{news\_ibfk\_2}
+  \item Obowiązkowa
+  \item Określa autora danej aktualności.
+\end{itemize}
+
+\subsubsection{Relacja \emph{subjects}$\to$\emph{news}}
+\label{subsub:subjects-news}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{news}.\emph{subject\_id}
+  \item Klucz obcy: \emph{news\_ibfk\_3}
+  \item Nieobowiązkowa
+  \item Określa przedmiot, którego dotyczy dana aktualność.
+\end{itemize}
+
+\subsubsection{Relacja \emph{users}$\to$\emph{uploaded\_files}}
+\label{subsub:users-uploaded_files}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{uploaded\_files}.\emph{uploader\_id}
+  \item Klucz obcy: \emph{uploaded\_files\_ibfk\_3}
+  \item Obowiązkowa
+  \item Informacja o tym kto dodał dany plik dla danego przedmiotu. Nie jest to jednoznaczne z byciem prowadzącym. Podczas dodawania pliku, można określić, kto prowadzi dany przedmiot i może to być osoba inna od osoby dodającej plik.
+\end{itemize}
+
+\subsubsection{Relacja \emph{users}$\to$\emph{groups}}
+\label{subsub:users-groups}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{groups}.\emph{user\_id}
+  \item Klucz obcy: \emph{groups\_ibfk\_1}
+  \item Nieobowiązkowa
+  \item Informacja kto jest właścicielem danej grupy.
+\end{itemize}
+
+\subsubsection{Relacja \emph{groups}$\leftrightarrow$\emph{users}}
+\label{subsub:groups-users}
+\begin{itemize}
+  \item Typ relacji: wiele do wielu
+  \item Tabelka pośrednicząca: \emph{groups\_users}
+  \item Pola: \emph{groups\_users}.\emph{group\_id}, \emph{groups\_users}.\emph{user\_id}
+  \item Klucze obce: \emph{groups\_users\_ibfk\_1}, \emph{groups\_users\_ibfk\_2}
+  \item Obowiązkowa
+  \item Informacje o przypisaniu użytkowników do grup.
+\end{itemize}
+
+\subsubsection{Relacja \emph{groups}$\leftrightarrow$\emph{news}}
+\label{subsub:groups-news}
+\begin{itemize}
+  \item Typ relacji: wiele do wielu
+  \item Tabelka pośrednicząca: \emph{groups\_news}
+  \item Pola: \emph{groups\_news}.\emph{group\_id}, \emph{groups\_news}.\emph{news\_id}
+  \item Klucze obce: \emph{groups\_news\_ibfk\_1}, \emph{groups\_news\_ibfk\_2}
+  \item Obowiązkowa
+  \item Informacje o uprawnieniach do odczytu określonych wiadomości przez grupy. W starym systemie funkcjonalność praktycznie nieużywana. W nowym porzucona, zachowana tylko na poczet przyszłych ustaleń.
+\end{itemize}
+
+\subsubsection{Relacja \emph{groups}$\leftrightarrow$\emph{uploaded\_files}}
+\label{subsub:groups-uploaded_files}
+\begin{itemize}
+  \item Typ relacji: wiele do wielu
+  \item Tabelka pośrednicząca: \emph{groups\_uploaded\_files}
+  \item Pola: \emph{groups\_uploaded\_files}.\emph{group\_id}, \emph{groups\_uploaded\_files}.\emph{uploaded\_file\_id}
+  \item Klucze obce: \emph{groups\_uploaded\_files\_ibfk\_1}, \emph{groups\_uploaded\_files\_ibfk\_2}
+  \item Obowiązkowa
+  \item Uprawnienia grup do określonych plików. Bardzo ważna funkcjonalność, która zabezpiecza np. materiały dla studentów określonego roku, przed ściągnięciem ich przez studentów innych lat.
+\end{itemize}
+
+\subsubsection{Relacja \emph{users}$\to$\emph{polls\_questions}}
+\label{subsub:users-polls_questions}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{polls\_questions}.\emph{user\_id}
+  \item Klucz obcy: \emph{polls\_questions\_ibfk\_1}
+  \item Obowiązkowa
+  \item Określa autora ankiety.
+\end{itemize}
+
+\subsubsection{Relacja \emph{polls\_questions}$\to$\emph{polls\_answers}}
+\label{subsub:polls_questions-polls_answers}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{polls\_answers}.\emph{polls\_question\_id}
+  \item Klucz obcy: \emph{polls\_answers\_ibfk\_1}
+  \item Obowiązkowa
+  \item Przypisuje daną odpowiedź do określonej ankiety.
+\end{itemize}
+
+\subsubsection{Relacja \emph{subjects}$\to$\emph{exams}}
+\label{subsub:subjects-exams}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{exams}.\emph{subject\_id}
+  \item Klucz obcy: \emph{exams\_ibfk\_1}
+  \item Obowiązkowa
+  \item Przedmiot z którego odbędzie się egzamin.
+\end{itemize}
+
+\subsubsection{Relacja \emph{users}$\to$\emph{exams}}
+\label{subsub:users-exams}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{exams}.\emph{user\_id}
+  \item Klucz obcy: \emph{exams\_ibfk\_2}
+  \item Obowiązkowa
+  \item Osoba, która dodała informację o egzaminie.
+\end{itemize}
+
+\subsubsection{Relacja \emph{exams\_names}$\to$\emph{exams}}
+\label{subsub:exams_names-exams}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{exams}.\emph{exams\_name\_id}
+  \item Klucz obcy: \emph{exams\_ibfk\_3}
+  \item Obowiązkowa
+  \item Specyficzna relacja, gdyż kluczem obcym nie jest tu liczba a trzyznakowy kod. Kod ten to kombinacja typu studiów, roku i kierunku studiów. Wszystkie egzaminy w systemie są pogrupowane wg. tych kodów, a te relacja służy ich rozwinięciu na pełną nazwę.
+\end{itemize}
+
+\subsubsection{Relacja \emph{declarations}$\to$\emph{declarations\_subjects}}
+\label{subsub:declarations-declarations_subjects}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{declarations\_subjects}.\emph{declaration\_id}
+  \item Klucz obcy: \emph{declrations\_subjects\_ibfk\_1}
+  \item Obowiązkowa
+  \item Relacja przypisująca parametry, danej deklaracji.
+\end{itemize}
+
+\subsubsection{Relacja \emph{subjects}$\to$\emph{declarations\_subjects}}
+\label{subsub:subjects-declarations_subjects}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{declarations\_subjects}.\emph{subject\_id}
+  \item Klucz obcy: \emph{declrations\_subjects\_ibfk\_2}
+  \item Nieobowiązkowa
+  \item Przedmiot jakiego dotyczy dana deklaracja.
+\end{itemize}
+
+\subsubsection{Relacja \emph{users}$\to$\emph{declarations\_subjects}}
+\label{subsub:users-declarations_subjects}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{declarations\_subjects}.\emph{user\_id}
+  \item Klucz obcy: \emph{declrations\_subjects\_ibfk\_3}
+  \item Nieobowiązkowa
+  \item Użytkownik, którego dotyczy deklaracja. Zawsze powinna być ustalona, jeśli student dodaje jakąś deklarację. Jest nieobowiązkowa tylko w przypadku, gdy wpis określa parametry samej deklaracji (zob. rozdz.~\ref{sub:deklaracje} str.~\pageref{sub:deklaracje})
+\end{itemize}
+
+\subsubsection{Relacja \emph{specialities}$\to$\emph{declarations\_subjects}}
+\label{subsub:specialities-declarations_subjects}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{declarations\_subjects}.\emph{speciality\_id}
+  \item Klucz obcy: \emph{declrations\_subjects\_ibfk\_4}
+  \item Nieobowiązkowa
+  \item Określa kierunek wybrany przez studenta. Istotna tylko dla deklaracji wyboru modułu.
+\end{itemize}
+
+\subsubsection{Relacja \emph{declarations}$\to$\emph{declarations\_experiences}}
+\label{subsub:declarations-declarations_experiences}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{declarations\_experiences}.\emph{declaration\_id}
+  \item Klucz obcy: \emph{declrations\_experiences\_ibfk\_1}
+  \item Obowiązkowa
+  \item Relacja parametrów deklaracji praktyki, do określonej deklaracji praktyki.
+\end{itemize}
+
+\subsubsection{Relacja \emph{specialities}$\to$\emph{declarations\_experiences}}
+\label{subsub:specialities-declarations_experiences}
+\begin{itemize}
+  \item Typ relacji: 1 do wielu
+  \item Pole: \emph{declarations\_experiences}.\emph{speciality\_id}
+  \item Klucz obcy: \emph{declrations\_experiences\_ibfk\_2}
+  \item Obowiązkowa
+  \item Moduł studiów studenta zgłaszającego się na praktykę.
+\end{itemize}
+
 \section{Konwersja bazy danych}
 \label{sec:db-konwersja}
+TODO
 
 \section{Mapa serwisu}
 \label{sec:mapa}
+Kolejnym krokiem będzie zbudowanie mapy serwisu, tak aby spełniała wymogi projektu funkcjonalnego. Bardzo ważne jest aby na etapie projektu mapy zaprojektować także adresy URL. Użytkownicy używają ich na różne sposoby. Wysyłają je do innych osób poprzez e-mail, publikują je na forach internetowych, dyktują przez telefon. Najczęściej nie są to adresy strony głównej ale adresy podstrony. Warto więc zadbać aby adres był krótki i opisowy, ułatwi to w znaczny sposób korzystanie z serwisu.
+
+\newpage
+\thispagestyle{empty}
+\addtolength{\textwidth}{4cm}
+\addtolength{\hoffset}{-2.5cm}
+\addtolength{\textheight}{5cm}
+\addtolength{\voffset}{-3.5cm}
+\begin{landscape}
+\begin{figure}
+\centering
+%  \includegraphics{mapa_eit.png}
+  \caption{
+  Mapa strony kierunku Elektronika i Telekomunikacja.
+  \label{fig:eitmap}
+  }
+\end{figure}
+\end{landscape}
+\newpage
+\addtolength{\textwidth}{-4cm}
+\addtolength{\hoffset}{2.5cm}
+\addtolength{\textheight}{-5cm}
+\addtolength{\voffset}{3.5cm}
+
+
 
 \section{Opis poszczególnych kontrolerów i akcji}
 \label{sec:kontrolery}
 
-\section{Deklaracje}
-\label{sec:deklaracje}
+\subsection{\emph{IndexController}}
+\label{con:index}
+  Główny kontroler, uruchamiany przy pierwszym wejściu na stronę.
+\begin{itemize}
+  \item \emph{index} -- akcja odpowiedzialna za wyświetlanie pierwszej, ,,zbiorczej'' strony EiT. Ładuje siedem ostatnich aktualności, siedem ostatnio dodanych materiałów, ostatnie ankiety oraz ostatnio dodane oceny. 
+\end{itemize}
+
+\subsection{\emph{AboutController}}
+\label{con:about}
+  Kontroler wyświetlający informacje o samej stronie EiT i ludziach, którzy ją tworzyli.
+\begin{itemize}
+  \item \emph{index} -- rys historyczny powstawania strony Elektroniki i Telekomunikacji,
+  \item \emph{eiteam} -- ludzie odpowiedzialni za stronę,
+  \item \emph{map} -- mapa serwisu
+  \item \emph{faq} -- najczęściej zadawane pytania odnośnie witryny
+\end{itemize}
+
+\subsection{\emph{CsvController}}
+\label{con:csv}
+  Kontroler odpowiedzialny za generowanie plików \emph{.csv} i wysyłanie ich użytkownikom. Głównie stosowany, przy podsumowaniach deklaracji. Każda akcja wysyła określony plik csv.
+\begin{itemize}
+  \item \emph{language} -- informacje o językach prowadzenia przedmiotów, wybranych przez poszczególnych studentów,
+  \item \emph{print} -- informacje o zainteresowaniu wydrukiem materiałów
+  \item \emph{module} -- kto wybrał jaki moduł
+  \item \emph{subjects} -- przypisanie studentów, do poszczególnych przedmiotów obieralnych
+  \item \emph{experience} -- zbiorcze deklaracje praktyk
+  \item \emph{speciality} -- informacje o wyborze kierunku studiów i specjalności
+\end{itemize}
+
+\subsection{\emph{DeaneryController}}
+\label{con:deanery}
+  Kontroler odpowiedzialny za wyświetlanie informacji z dziekanatu.
+\begin{itemize}
+  \item \emph{index} -- wyświetla podstawowe informacje o osobach pracujących w dziekanacie i godzinach przyjęć.
+  \item \emph{skeds} -- lista planów zajęć do pobrania, w formacie XLS.
+  \item \emph{experience} -- informacje dotyczące praktyk zawodowów na III i IV roku.
+  \item \emph{subjects} -- lista wszystkich przedmiotów z podziałem na lata, kierunki i moduły. 
+  \item \emph{eligible} -- lista przedmiotów obieralnych dla poszczególnych modułów i semestrów, wraz z liczbą studentów, którzy je wybrali.
+  \item \emph{english} -- informacje o przedmiotach prowadzonych w języku angielskim.
+  \item \emph{iep} -- informacje o międzynarodowym programie edukacyjnym.
+  \item \emph{declarations} -- sekcja wymagająca zalogowania się. Dostępna tylko dla studentów. Umożliwia wszystkich aktualnie dostępnych deklaracji a także zawiera informacje na ich temat. Więcej informacji w sekcji ,,Deklaracje'' rozdz.~\ref{sub:deklaracje}, str.~\pageref{sub:deklaracje}.
+  \item \emph{calendar} -- kalendarz studenta. Wszystkie istotne wydarzenia z punktu widzenia studenta (sesje, ferie, terminy składania podań, etc.).
+\end{itemize}
+
+\subsection{\emph{FileController}}
+\label{con:file}
+  Kontroler odpowiedzialny za pobieranie plików z serwisu.
+\begin{itemize}
+  \item \emph{download} -- zgodnie z polityką bezpieczeństwa, wszystkie pliki dodawane przez użytkowników, nie są trzymane w katalogu widocznym z poziomu serwera WWW. Bierze się to stąd, że wtedy każdy mógłby podać bezpośredniego linka do takiego pliku i cały mechanizm logowania i zabezpieczania materiałów byłby niepotrzebny. Zamiast tego, pliki leżą w specjalnym katalogu (tu \emph{/files}) i są przerabiane przez skrypt. Przerabianie to polega na sprawdzeniu czy plik istnieje, oraz czy użytkownik, który się do niego odwołuje ma do niego prawa dostępu. Jeśli tak, następuje pobranie, jeśli nie, strona zwraca błąd braku uprawnień.
+\end{itemize}
+
+\subsection{\emph{LecturersController}}
+\label{con:lecturers}
+  Kontroler wyświetlający informacje o wszystkich prowadzących dopisanych do systemu.
+\begin{itemize}
+  \item \emph{index} -- wyświetla listę wszystkich prowadzących, wraz z linkami do ich profili.
+  \item \emph{electronics} -- j.w., ale tylko prowadzący Elektroniki
+  \item \emph{telecommunication} -- j.w., ale tylko prowadzący Telekomunikacji
+\end{itemize}
+
+\subsection{\emph{MaterialsController}}
+\label{con:materials}
+  Kontroler odpowiedzialny za wyświetlanie i wyszukiwanie materiałów i ocen dodanych do serwisu.
+\begin{itemize}
+  \item \emph{index} -- wyświetla 10 ostatnich materiałów, oraz stanowi punkt wyjścia przy wyszukiwaniu kolejnych. Kiedy użytkownik wypełni pola i uruchomi wyszukiwanie, akcja ta pobiera zapytanie POST w formularza i przetwarza je na zapytanie GET. W takiej postaci przesyłane jest ono do akcji \emph{search}. Całe to przetwanie zrobione jest po to, aby można było również podawać zapytania do wyszukiwarki bezpośrednio w postaci linków -- w wielu miejscach, są np. linki do materiałów konkretnego prowadzącego, które nie są niczym innym jak odpowiednio spreparowanym zapytaniem dla akcji \emph{search}.
+  \item \emph{search} -- pobiera zapytanie, stanowiące pięć kryteriów oddzielonych przecinkami. Są to kolejno:
+  \begin{itemize}
+    \item zakodowane ID przedmiotu
+    \item zakodowane ID prowadzącego
+    \item numer semestru
+    \item treść wyszukiwania
+    \item rodzaj sortowania wyników
+  \end{itemize}
+  w przypadku braku którejkolwiek z wartości, nie jest ona brana pod uwagę przy wyszukiwaniu.
+  \item \emph{grades} -- dostępne tylko dla zalogowanych użytkowników listy ocen. Kryterium wyszukiwania jest grupa -- jeśli użytkownik i plik z oceną należą do tej samej, to link do pliku jest wyświetlany.
+\end{itemize}
+
+\subsection{\emph{NewsController}}
+\label{con:news}
+  Kontroler odpowiadający za wyświetlanie aktualności.
+\begin{itemize}
+  \item \emph{index} -- akcja wyświetlająca wszystkie aktualności (stronami, po 10) a także robiąca za przekaźnik wyszukiwarki (patrz niżej). 
+  \item \emph{search} -- wyszukiwarka aktualności. Przyjmuje parametry rozdzielone przecinkami, przez GET. W przypadku ich braku wyświetla formularz. Mechanizm działania jest następujący -- użytkownik wpisuje szukaną informacje i określa kryteria wyszukiwania; następnie całość jest składana w zapytanie typu POST i zostaje przekierowane do akcji index; akcja index rozpakowuje zapytanie, buduje odpowiedni request GET dla akcji search a następnie wysyła go do akcji search; akcja search wyświetla posegregowana wyniki wyszukiwania (stronami, po 10).
+  \item \emph{read} -- akcja, która jako parametr przyjmuje zakodowane ID wiadomości (zob. rozdz.~\ref{sub:idencoder}, str.~\pageref{sub:idencoder}), odkodowuje je, a następnie wyświetla aktualność o tym numerze.
+  \item \emph{exams} -- akcja wyświetlające informacje o egzaminach w aktualnej sesji. Dodatkowo, jeżeli użytkownik posiada stosowne uprawnienia, umożliwia dodawanie, edycję i usuwanie egzaminów. 
+\end{itemize}
+
+\subsection{\emph{PostgraduateController}}
+\label{con:postgraduate}
+  Kontroler odpowiadający za wyświetlanie informacji na temat studiów podyplomowych.
+\begin{itemize}
+  \item \emph{index} -- ulotka reklamowa,
+  \item \emph{regulations} -- regulamin,
+  \item \emph{schedule} -- harmonogram,
+  \item \emph{program} -- program,
+  \item \emph{sked} -- plan zajęć.
+\end{itemize}
+
+\subsection{\emph{ProfileController}}
+\label{con:profile}
+  Kontroler odpowiedzialny za wyświetlanie informacji o użytkownikach.
+\begin{itemize}
+  \item \emph{view} -- wyświetla informacje o użytkowniku, którego zakodowane ID przyjmuje jako parametr. Zalogowany użytkownik może wyświetlić informacje o każdym, niezalogowany -- tylko o prowadzących.
+\end{itemize}
+
+\subsection{\emph{RedirectController}}
+\label{con:redirect}
+  Kontroler odpowiedzialny za odpowiednie przekierowywanie ze starych linków na nowe (zob. rozdz.~\ref{sec:mapa-linkow}, str.~\pageref{sec:mapa-linkow})
+\begin{itemize}
+  \item \emph{index} -- przekierowuje na adres podany w parametrze
+\end{itemize}
+
+\subsection{\emph{RegisterController}}
+\label{con:register}
+  Kontroler odpowiedzialny za rejestrację. Cały mechanizm rejestracji jest dość specyficzny, z racji tego, że nie każdy może dołączyć do serwisu. Dopisać się mogą tylko ludzie, znajdujący się na liście studentów corocznie dostarczanej przez dziekanat. Takie osoby są dopisywane do bazy, bez przydzielonego logina i hasła. Proces rejestracj polega więc, wpierw na uwierzytelnieniu się swoim imieniem, nazwiskiem i numerem indeksu, a następnie na podaniu pozostałych informacji o sobie. Po pomyślnym jego przejściu, student staje się użytkownikiem systemu.
+\begin{itemize}
+  \item \emph{index} -- przeprowadzenie procesu rejestracji, tylko dla niezalogowanych użytkowników.
+\end{itemize}
+
+\subsection{\emph{RssController}}
+\label{con:rss}
+  Kontroler generujący treść dla czytników RSS (zob. rozdz.~\ref{sec:rss}, str.~\pageref{sec:rss}).
+
+\begin{itemize}
+  \item \emph{index} -- zwraca 15 ostatnich aktualności w formacie zgodnym z RSS.
+\end{itemize}
+
+\subsection{\emph{RtfController}}
+\label{con:rtf}
+  Kontroler stworzony w celu serwowania predefiniowanych, dynamicznie uzupełnianych dokumentów \emph{.rtf}.
+\begin{itemize}
+  \item \emph{experience} -- wysyła użytkownikowi (oczywiście, jeśli ma odpowiednie uprawnienia), komplet gotowych umów o praktykę, między studentami (którzy wypełnili deklaracje praktyk) a ich zakładami pracy.
+\end{itemize}
+
+\subsection{\emph{SettingsController}}
+\label{con:settings}
+  Kontroler zbiorczy, odpowiedzialny za wszystkie zadania związane z administracją serwisu.
+\begin{itemize}
+  \item \emph{index} -- wyświetlenie strony powitalnej, zawierającej odnośniki do wszystkich sekcji administracyjnych wraz z określeniem praw dostępu (zielona kropka -- dostęp dozwolony, czerwona -- zabroniony).
+  \item \emph{news} -- administracja aktualnościami
+  \item \emph{materials} -- dodawanie materiałów oraz ustalanie do nich praw dostępu
+  \item \emph{grades} -- j.w. tyle, że oceny
+  \item \emph{groups} -- administrowanie grupami studentów. Nie można zmienić domyślnie zadeklarowanych, można jednak dodawać, usuwać i edytować swoje.
+  \item \emph{polls} -- dodawanie ankiet. W systemie mogą być maksymalnie dwie -- jedna anonimowa i jedna nie, dodanie każdej nowej spowoduje zamknięcie poprzedniej.
+  \item \emph{declarations} -- wyświetlenie informacji o deklaracjach wypełnionych przez studentów oraz zarządzanie nimi (zob. rozdz.~\ref{sub:deklaracje}, str.~\pageref{sub:deklaracje}.
+  \item \emph{calendar} -- zarządzanie kalendarzem studenta
+  \item \emph{profile} -- zarządzanie profilem aktualnie zalogowanego użytkownika. Z poziomu tej akcji, można zmienić swój login, hasło i kilka innych danych.
+\end{itemize}
+
+\subsection{\emph{SigninController}}
+\label{con:signin}
+  Kontroler obsługujący wszelkie akcje związane z logowaniem użytkownika do systemu.
+\begin{itemize}
+  \item \emph{index} -- akcja odpowiadająca za logowanie użytkownika,
+  \item \emph{signout} -- wylogowuje zalogowanego,
+  \item \emph{remindme} -- uruchamia procedure odzyskania zapomnianego hasła. Wpierw użytkownik proszony jest o podanie imienia, nazwiska i numeru indeksu. Jeżeli dane te zostaną pomyślnie zweryfikowane użytkownikowi wyświetlone jest pytanie kontrolne. Odpowiedź na nie, jest przekierowywana do akcji \emph{answer}. W przypadku, kiedy użytkownik nie zadeklarował pytania ratunkowego, wyświetlana jest stosowna informacja.
+  \item \emph{answer} -- ta akcja sprawdza odpowiedź podaną przez użytkownika na pytanie kontrolne. Jeśli jest poprawna, następuje zalogowanie do systemu.
+\end{itemize}
+
+\subsection{\emph{StudentsController}}
+\label{con:students}
+  Kontroler zawierający wszelkie informacje dotyczące samych studentów.
+\begin{itemize}
+  \item \emph{index} -- wyszukiwarka studentów, dostępna tylko dla zalogowanych użytkowników. Pozwala na wybór kryteriów wyszukiwania, wpływ na wyświetlane wyniki i określenie kolumny po której odbędzie się końcowe sortowanie. Całe zapytanie POST z formularza jest przesyłane do akcji \emph{results}.
+  \item \emph{results} -- przetwarza zapytanie POST z wyszukiwarki i wyświetla pasujące do kryteriów wyszukiwania wyniki, odpowiednio posortowane i opisane.
+  \item \emph{own\_webpage} -- informacje dla studentów chcących sobie założyć własną stronę WWW na serwerach EiT.
+  \item \emph{webpages} -- lista wszystkich stron WWW na serwerze EiT. Lista jest tworzona, poprzez przeszukanie wszystkich katalogów domowych użytkowników pod kątem katalogu \emph{public\_html}. Wszyscy użytkownicy, którzy mają taki katalog a ich loginy, zgadzają się z loginami w bazie zostają wyświetleni. Dodatkowo, w rubryce ,,Opis strony domowej'' pojawia się zawartość pliku \emph{.webinfo} znajdującego się w katalogu ze stroną (o ile istnieje).
+\end{itemize}
+
+\subsection{\emph{SubjectController}}
+\label{con:subject}
+  Kontroler wyświetlający informacje o przedmiocie.
+\begin{itemize}
+  \item \emph{method\_missing} -- jest to specjalna metoda w Rubym. Jest ona zawsze wywoływana, gdy obiekt próbuje odwołać się do nieistniejącej metody. Jako pierwszy parametr, przyjmuje jej nazwę. W tym przypadku, nazwa ta jest interpretowana jako akronim nazwy przedmiotu i jeśli zostanie odnaleziony w bazie, wszelkie informacje na temat tych zajęć są wyświetlane użytkownikowi.
+\end{itemize}
+
+\section{Komponenty}
+\label{sec:components}
+  Aby aplikacja działała poprawnie, niezbędne okazało się stworzenie kilku komponentół -- małych klas, stworzonych w jednym, skonkretyzowanym celu. Dzięki temu, zgodnie z regułą DRY (zob. rozdz.~\ref{sec:dry}, str.~\pageref{sec:dry}), wszystko jest w jednym miejscu.
+\subsection{IdEncoder}
+\label{sub:idencoder}
+  IdEncoder to klasa krytyczna z punktu widzenia bezpieczeństwa aplikacji. Jej zadaniem jest kodowanie cyfr (zazwyczaj numerów \emph{id} wierszy, stąd nazwa \emph{IdEncoder}) na trudny do złamania ciąg znaków. Głównym celem takiego postępowania jest zabezpieczenie się przed wszelkiego rodzaju botami, które chodząc po stronie mogłyby inkrementować liczniki co 1 i w ten sposób powyciągać wszystkie informacje z bazy. Dodatkowo zabezpiecza to przed ,,sprytnymi'' użytkownikami, którzy mając dostęp do materiału o id np. 3, a nie mając do 4, próbowaliby podmieniać cyfry w adresach URL. Po instalacji aplikacji, należy w klasie IdEncoder ustawić dwie zmienne:
+\begin{itemize}
+  \item \emph{hash} -- jest to liczba z zakresu <0;4294967295>, z którą id będzie poddane opearacji ExOR na początku kodowania,
+  \item \emph{salt} -- jest to dwudziestocyfrowa liczba, z której 10 cyfr będzie użyte do zaciemnienia wyniku w końcowym etapie kodowania.
+\end{itemize}
+Schemat kodowania jest następujący:
+\begin{equation}
+  id_{XOR} = id \oplus hash
+\end{equation}
+\begin{equation}
+  salt_{M} = salt_{MARKER} = id_{XOR}~mod~10
+\end{equation}
+\begin{equation}
+  id_{ENC} = \left(\frac{salt~mod~10^{20 - salt_{M}} - salt~mod~10^{20 - salt_{M} - 10}}{10^{20 - salt_{M} - 10}} * 10 + salt_{M}\right)_{(28)}
+  \label{equ:idenc}
+\end{equation}
+Rozkodowywanie odbywa się w analogiczny sposób, tylko w drugę stronę.
+
+Dodatkowo, algorytm został tak pomyślany, że nawet znając schemat postępowania niemożliwe jest rozkodowanie liczby, bez znajomości \emph{hash} i \emph{salt}.
+
+Użycie klasy jest bardzo proste:
+\begin{figure}[h]
+\begin{verbatim}IdEncoder.encode(id)         # zakoduj id
+IdEncoder.decode(encoded_id) # zdekoduj id\end{verbatim}
+\caption{Użycie polecenia IdEncoder\label{fig:idenc}}
+\end{figure}
+
+\subsection{Pager}
+\label{sub:pager}
+Klasa \emph{Pager} jest wykorzystywana wszędzie tam, gdzie zwracana ilość wyników jest zbyt duża i umieszczenie ich na jednej stronie znacznie zmniejszyłoby czytelność, lub wręcz ją uniemożliwiło (wygenerowana strona byłaby tak duża, że ściągnięcie jej zajęłoby zbyt dużo czasu). Konstrukcja konstruktora jest następująca:
+
+\begin{figure}[h]
+\begin{verbatim}def initialize params, results, params_key = :id, actual_page = nil,
+               results_per_page = 10\end{verbatim}
+\caption{Struktura konstruktora klasy Page\label{fig:page}}
+\end{figure}
+
+
+Gdzie parametry to:
+\begin{itemize}
+  \item \emph{params} -- tablica params z kontrolera. Z racji tego, że komponenty są oddzielone od warstwy aplikacji, nie widzą domyślnych tablic Ruby~on~Rails (m.in. params), dlatego należy je przekazać. Jest to konieczne, aby Pager mógł poprawnie budować odnośniki.
+  \item \emph{results} -- zawiera obiekt modelu danych wyciągniętych bezpośrednio z bazy, które mają być podzielone na strony.
+  \item \emph{params\_key} -- domyślnie \emph{:id}. Określa który parametr routera Rails, ma być interpretowany jako numer kolejnej strony z wynikami (czasami zdarza się, że \emph{:id} jest już wykorzystane do czegoś innego, wtedy ta opcja się przydaje).
+  \item \emph{actual\_page} -- wymuszenie zwrócenia wyników dla określonej strony. Domyślnie, brana jest strona z params[params\_key] (lub pierwsza, jeśli podana wartość jest błędna lub nieistniejąca).
+  \item \emph{results\_per\_page} -- określa ile wyników ma być zareprezentowanych na jednej stronie. Domyślnie jest to 10.
+\end{itemize}
+Dodatkowo Pager zawiera wiele przydatnych metod, użytecznych przy budowaniu widoków. Są to:
+\begin{itemize}
+  \item \emph{count} -- zwraca ilość stron,
+  \item \emph{array\_of\_pages} -- zwraca pasek nawigacyjny Pagera. To te cyfry z numerami stron i strzałkami ,,poprzednia'', ,,następna'' etc. (zobacz rysunek \ref{fig:array_of_pages}). Przyjmuje dwa parametry:
+  \begin{itemize}
+    \item \emph{page\_number} -- względem której strony ma być wyskalowany. Domyślnie jest to aktualna strona.
+    \item \emph{pages\_padding} -- odnośniki do ilu stron wokół aktywnej, mają zostać wyświetlone. Domyślnie trzy.
+  \end{itemize}
+  \item \emph{last\_page} -- zwraca numer ostatniej strony,
+  \item \emph{results} -- zwraca wyniki w zakresie odpowiednim dla aktualnej strony,
+  \item \emph{all\_results} -- zwraca wszystkie wyniki (czyli tak naprawdę obiekt \emph{results} przekazany do konstruktora),
+  \item \emph{results\_count} -- zwraca liczbę wszystkich wyników,
+  \item \emph{results\_range} -- zwraca pełny zakres dostępnych stron oddzielonych separatorem przekazanym jako parametr. Czyli np. ,,1 - 123'', zobacz rysunek \ref{fig:array_of_pages}
+  \item \emph{actual\_page} -- zwraca numer aktualnej strony
+  \item \emph{next\_page} -- zwraca numer następnej strony
+  \item \emph{previous\_page} -- zwraca numer poprzedniej strony
+\end{itemize}
+\begin{figure}[h]
+\centering
+\includegraphics{array_of_pages.png}
+\caption{Ilustracja wykorzystania \emph{array\_of\_pages}, gdzie \emph{page\_number} = 100, a \emph{pages\_padding} = 3\label{fing:array_of_pages}. Dodatkowo na górze po lewej, efekt działania \emph{results\_range} z domyślnym separatorem}
+\end{figure}
+
+Dodatkowo Pager ma przygotowany, predefiniowany dla serwisu EiT widok wyświetlający nawigację, który można znaleźć w \emph{app/views/\_partials/\_pager.rhtml}.
+
+\subsection{Imieniny}
+\label{sub:nameday}
+Klasa \emph{NameDay} to bardzo prosta, statyczna klasa o jednej metodzie -- \emph{get}. Przyjmuje ona dwa parametry: dzień i miesiąc, a następnie zwraca gotowy łancuch znaków zawierający oddzielone przecinkiem imieniny osób w tym dniu.
+
+\subsection{Deklaracje}
+\label{sub:deklaracje}
+System deklaracji to najdynamiczniej zmieniająca się część serwisu. Niektóre deklaracje stają się przestarzałe, czasami dochodzą nowe. Projektując system deklaracji, od początku trzeba było mieć to na uwadze. Oznacza to, że deklaracji nie można było po prostu ,,zaszyć'' w kontrolerze. Dlatego też autor wybrał inne rozwiązanie -- system deklaracji, jako system wtyczek. Każdy rodzaj deklaracji ma swój własny oddzielny plugin. Dzięki temu, łatwo w przyszłości będzie dodawać nowe deklaracje, bez naruszenia integralności serwisu. 
+
+\subsubsection{Pliki}
+\label{subsub:dec-files}
+Pliki do systemu deklaracji znajdują się w trzech miejscach:
+\begin{itemize}
+  \item \emph{components/declarations/} -- tutaj znajdują się klasy deklaracji. Każdy rodzaj deklaracji, ma swoją oddzielną klasę. Więcej szczegółów odnośnie klas, znajduje się w dalszej części tego rozdziału.
+  \item \emph{app/views/deanery/declarations/} -- widoki deklaracji, przeznaczone dla studentów. To właśnie one są wyświetlane, w momencie kiedy student wypełnia deklarację. Należy trzymać się konwencji \emph{nazwa deklaracji}$\to$\emph{nazwa widoku}. Jeśli widoków dla jednej deklaracji będzie więcej, informację identyfikującą należy dodawać po twardej spacji.
+  \item \emph{app/views/settings/declarations/} -- analogicznie jak powyżej, tyle że widoki przeznaczone są dla prowadzących mających dostęp do ustawień deklaracji.
+\end{itemize}
+
+\subsubsection{Klasa główna}
+Wszystkie klasy deklaracji powinny dziedziczyć z klasy \emph{Declarations}, która znajduje się w \emph{components/declarations.rb}. Klasa ta, dostarcza klasom potomnym nastęþujące zmienne klasy:
+\begin{itemize}
+  \item \emph{@logged\_user} -- obiekt zalogowanego użytkownika
+  \item \emph{@declarations\_subjects} -- obiekt modelu DeclarationsSubject (tabela \emph{declarations\_subjects}, zob. rozdz.~\ref{subsub:declarations_subjects}, str.~\pageref{subsub:declarations_subjects}) zawierający tylko przedmioty dotyczące deklaracji potomnej
+  \item \emph{@merged\_subjects} -- początkowo pusta. Domyślnie powinna zawierać przedmioty podane w deklaracji przez użytkownika (jeżeli jest to konieczne). Wcześniej należy przepuścić je przez specjalny skrypt, który usuwa wszystkie podejrzane lub błędne wpisy (zabezpieczenie przed fałszerstwem) -- skrypt ten, to \emph{merge\_subjects}
+  \item \emph{@flash\_notice} -- wiadomość, jaka ma zostać wyświetlona w czasie wypełniania deklaracji. Domyślnie jest pusta, ale nic nie stoi, aby klasa potomna ją ustawiła w razie potrzeby.
+  \item \emph{@template} -- nazwa widoku, który ma zostać wyrenderowany. Aplikacja sama dobierze ścieżkę.
+  \item \emph{@declaration\_name} -- nazwa deklaracji (pole \emph{head} w tabeli \emph{declarations}, zob. rozdz.~\ref{subsub:declarations}, str.~\pageref{subsub:declarations})
+  \item \emph{@declaration\_id} -- numer \emph{id} deklaracji
+\end{itemize}
+
+\subsubsection{Klasy potomne}
+Każda klasa potomna powinna mieć dwie metody -- \emph{execute} oraz \emph{setup}. Obie powinny przyjmować jeden parametr -- będzie to \emph{params} z Ruby~on~Rails. Metoda execute wywołuje się w kontrolerze \emph{DeaneryController}, jest więc przeznaczona dla studentów wypełniających deklaracje. Metoda \emph{setup} wywoła się w kontrolerze \emph{SettingsController}, jest więc przeznaczona dla prowadzących zarządzających deklaracjami. Najważniejsze o czym należy pamiętać w klasach potomnych, to ustawianie zmiennej \emph{@template} z odpowiednim widokiem oraz o tym, aby później inicjalizacje klas potomnych dopisać do metod \emph{declarations} w wyżej wymienionych kontrolerach.
+
+\subsubsection{Struktura bazy danych i relacji}
+Wszystkie informacje odnośnie deklaracji po stronie bazy danych zostały opisane w:
+\begin{itemize}
+  \item Rozdz.~\ref{sub:tabele}, str.~\pageref{subsub:declarations} (Tabela \emph{declarations})
+  \item Rozdz.~\ref{sub:tabele}, str.~\pageref{subsub:declarations_subjects} (Tabela \emph{declarations\_subjects})
+  \item Rozdz.~\ref{sub:relacje}, str.~\pageref{subsub:declarations-declarations_subjects}
+\end{itemize}
+
+Po utworzeniu nowego plugina należy dopisać odpowiednie deklaracje do tabeli \emph{declarations}, oraz ewentualnie utworzyć nowe kolumny w tabeli \emph{declarations\_columns} i wypełnić je danymi początkowymi.
 
 \section{Przemapowanie hiperłączy}
 \label{sec:mapa-linkow}
