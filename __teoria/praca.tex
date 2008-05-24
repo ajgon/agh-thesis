@@ -160,9 +160,6 @@ Python bywa często wykorzystywany w aplikacjach internetowych. Najbardziej znan
 \label{sec:ror}
 Ruby (dosł. rubin) to interpretowany, w pełni obiektowy język programowania stworzony w 1995 roku przez Yukihiro Matsumoto. Jak twierdzi jego autor\footnote{Porównaj http://www.informit.com/articles/article.aspx?p=18225\&rl=1} Ruby został zaprojektowany dla wydajności programistów, przy zachowaniu zasady dobrego interfejsu. Ze względu na pochodzenie języka (Japonia), początkowo był on mało popularny z powodu braku angielskiej dokumentacji. Jednak dzięki Internetowi rosła jego popularność i z czasem zaczęły się pojawiać artykuły w języku angielskim a wraz z nimi społeczność skupiona wokół tego języka. Przełomem była prezentacja w 2003 roku frameworku Ruby On Rails (dosł. rubin na szynach). Rails posiadają wszystko co jest niezbędne do budowy aplikacji webowych i znakomicie nadają się do bardzo szybkiej budowy małych aplikacji a także budowania prototypów aplikacji. Interpretery Rubiego istnieją na każdą platformę. Jedyną wadą języka zdaje się być jego wydajność (podobnie jak we wczesnych wersjach Javy), którą jednak można zwiększyć wykorzystując JRuby (implementację interpretera w języku Java). Ruby posiada swoje dwa serwery WWW -- Mongrel oraz Webrick, można używać także serwera Apache za pośrednictwem CGI lub rozszerzenia mod\_ruby.
 
-Największą aplikacja napisaną całkowicie w technologii RoR jest Basecamp\footnote{Zobacz http://www.basecamphq.com/}. Basecamp jest aplikacją wspomagającą zarządzanie projektami, która obecnie obsługuje ponad milion użytkowników. Drugą duża aplikacją jest Twitter\footnote{Zobacz http://www.twitter.com/}. Twitter jest z kolei platformą służącą do ,,mikroblogowania'' (czyli pisania wpisów nie dłuższych niż 140 znaków). Obecnie cała społeczność Ruby~on~Rails śledzi z zapartym tchem dzieje Twittera, gdyż ma on ogromne problemy wydajnościowe. Od tego jak je rozwiąże, zależy jak inwestorzy komercyjni ocenią przydatność samego frameworka.
-
-Obecnie RoR jest wykorzystywany głównie do budowy małych aplikacji (takich jak ta prezentowana w tej pracy), oraz prototypowania aplikacji, które docelowo zostaną przepisane na bardziej wydajną platformę.
 \begin{itemize}
 \item Plusy:
   \begin{itemize}
@@ -180,6 +177,38 @@ Obecnie RoR jest wykorzystywany głównie do budowy małych aplikacji (takich ja
   \item brak znanych udanych wdrożeń
   \end{itemize}
 \end{itemize}
+
+\section{Ruby on Rails}
+\label{sec:ror}
+
+Współdziałanie frameworka Rails i języka Ruby ma umożliwiać programiście szybkie, wydajne i bezbolesne tworzenie aplikacji internetowych. Efekt taki uzyskano łącząc cechy dynamicznego i obiektowego języka ze sprawdzonymi wzorcami i schematami dotyczącymi projektowania aplikacji internetowych.
+
+,,Często ludzie, zwłaszcza inżynierowie oprogramowania skupiają się na maszynach. Sądzą oni iż robiąc to tak sprawimy, iż maszyna będzie pracowała szybciej. Jeśli znów zmienimy coś innego to znów maszyna przyśpieszy. Skupiają się tylko na procesorach i wydajności. Tak naprawdę potrzebujemy skupić się na programistach. Na tym jak ludzie chcą aby ich aplikacje były zaprojektowane i jak działały. To my jesteśmy władcami. One są niewolnikami.”\footnote{Yukihiro Matsumoto, The Philosophy of Ruby, 2003}. Słowa te najlepiej obrazują filozofię języka jak i to co można uzyskać używając połączonych sił Ruby i Rails. 
+
+\begin{itemize}
+  \item Szybkość, łatwość i przyjemność z pisania,
+  \item Reguła DRY (zob. rozdz.~\ref{sec:dry}, str.~\pageref{sec:dry}),
+  \item Reguła Convention over Configuration (zob. rozdz.~\ref{sec:coc}, str.~\pageref{sec:coc}),
+  \item Architektura MVC jako sprawdzony wzorzec budowania aplikacji internetowych (zob. rozdz.~\ref{sec:mvc}, str.~\pageref{sec:mvc}),
+  \item Integralną częścią aplikacji są wszelakie testy, które pomagają i automatyzują proces wyszukiwania błędów,
+  \item Prostota w dodawaniu wtyczek, które rozszerzają aplikację o całą gamę gotowych funkcjonalności od prostego logowania do całych modułów zarządzających.
+\end{itemize}
+
+Framework Rails zbudowany jest z trzech zasadniczych elementów:
+
+\begin{itemize}
+\item \emph{Active Record} -- mechanizm ORM (zob. rozdz.~\ref{sec:orm}, str.~\pageref{sec:orm}) odpowiada za odwzorowanie obiektowej architektury obiektów na relacyjną strukturę bazy danych. Różni się on od zwyczajnych systemów ORM minimalizacją potrzebnych konfiguracji ze strony programisty. Jednocześnie jest bardzo potężnym narzędziem. Odpowiada za generowanie modeli czyli za literkę „M” w MVC.
+\item \emph{Action Pack} -- w którego skład wchodzą klasy obsługujące widoki (literka „V” w MVC) oraz kontrolery (literka „C” w MVC). Dzięki uniwersalnemu podejściu widoki nie muszą tylko i wyłącznie ograniczać się do produkowania kodu HTML który potem wyświetlany jest w przeglądarce. W bardzo prosty sposób możemy przekształcać nasze widoki do XML’a , generować dynamiczny JavaScript , używać protokołu SOAP oraz wiele innych. Kontrolery natomiast są logiką całej naszej aplikacji. Zarządzają interakcjami między użytkownikami a systemem, modelami a widokami itd.
+\item Mechanizm ,,scaffolding'' -- służy bardzo szybkiemu tworzeniu gotowych powiązań między modelem a kontrolerem a widokami. W praktyce jest to po prostu generator gotowego kodu źródłowego dla danego modelu. Tworzone są wszystkie podstawowe akcje jak stwórz, czytaj, edytuj, kasuj (zob. rozdz.~\ref{sec:crud}, str.~\pageref{sec:crud}). Zwalnia to programistę z pisania po raz setny tych samych wspólnych zachowań dla modelu i pozwala skupić się na tym jak aplikacja ma działać a nie na wymyślaniu kolejnego systemu walidacji danych.
+\end{itemize}
+
+Kolejnym ważnym elementem przemawiającym za, jest ilość dostępnych darmowych wtyczek które automatyzują/ułatwiają wykonywanie określonych zadań. Główny serwis http://rubyforge.org który zajmuje się zbieraniem i informowaniem o wtyczkach posiada obecnie 5912\footnote{Stan na 24 maja 2008 r.} różnych wtyczek które możemy użyć w naszym projekcie.
+
+W używaniu Ruby~on~Rails jest coś magicznego, coś co bardzo ciężko opisać czy poczuć przy pierwszym zetknięciu się. Najprościej można powiedzieć, że to po prostu działa i jest zrobione tak jak powinno. Wszystko ma swoje określone miejsce, zachowanie i działa dokładnie tak jak tego oczekujemy.
+
+Dzięki uniwersalności i prostocie możemy stosować połączenie Ruby~on~Rails wszędzie tam gdzie potrzebujemy szybko, przyjemnie i bezproblemowo stworzyć aplikację internetową. W bardzo krótkim czasie możemy stworzyć gotowe elementy naszego systemu. Każdy kawałek kodu ma swoje jedno dokładnie pasujące miejsce i nawet tworząc tylko podstawowy szkielet aplikacji mamy już bardzo dużo rzeczy zrobionych za nas, czekających tylko do wykorzystania.
+
+Największą aplikacja napisaną całkowicie w technologii Ruby~on~Rails jest Basecamp\footnote{Zobacz http://www.basecamphq.com/}. Basecamp jest aplikacją wspomagającą zarządzanie projektami, która obecnie obsługuje ponad milion użytkowników. Drugą duża aplikacją jest Twitter\footnote{Zobacz http://www.twitter.com/}. Twitter jest z kolei platformą służącą do ,,mikroblogowania'' (czyli pisania wpisów nie dłuższych niż 140 znaków). Obecnie cała społeczność Ruby~on~Rails śledzi z zapartym tchem dzieje Twittera, gdyż ma on ogromne problemy wydajnościowe. Od tego jak je rozwiąże, zależy jak inwestorzy komercyjni ocenią przydatność samego frameworka.
 
 \chapter[Technologie po stronie klienta]{Technologie po stronie klienta wykorzystywane w aplikacjach internetowych}
 \label{cha:klient}
@@ -241,6 +270,15 @@ Wyróżnia się następujące ,,rodziny'' RSS:
   \item RDF Site Summary (RSS 1.0 i RSS 0.90)
   \item Rich Site Summary (RSS 0.91).
 \end{itemize}
+
+\section{YAML}
+\label{sec:yaml}
+YAML to łatwy w odczycie dla człowieka sposób serializacji danych, który czerpie pomysły z języków takich jak XML, C, Python czy Perl. YAML po raz pierwszy zaprezentował Clark Evans w 2001 roku.
+
+YAML to akronim rekursywny oznaczający ,,YAML Ain't a Markup Language'' (YAML nie jest językiem znaczników). Na początku rozwoju, YAML oznaczało ,,Yet Another Markup Language'' (kolejny język znaczników), ale rozwinięcie zostało zmienione, głównie po to aby zwrócić uwagę, że YAML koncentruje się na samej informacji a nie jej reprezentacji i semantyczności.
+
+YAML został zaprojektowany w taki sposób, aby był łatwo przenoszalny na typy danych stosowane w językach wysokiego poziomu -- listy, hashe i tablice. Język ten świetnie nadaje się do zastosowań w których niezbędna jej ingerencja człowieka, który nie zna rozwiązań zastosowanych w aplikacji -- czyli do plików konfiguracyjnych, nagłówków, logów i informacji kontrolnych. Jego prosta i klarowna struktura znacznie ułatwia projektowanie takich plików i późniejsze przenoszenie ich między systemami.
+
 \section{Przeglądarki Internetowe}
 \label{sec:przegladarki}
 
@@ -1453,7 +1491,76 @@ Projektując bazę programista powinien trzymać się konwencji nazewnictwa tabe
 
 \section{Konwersja bazy danych}
 \label{sec:db-konwersja}
-TODO
+Najważniejszym problemem jaki należało rozwiązać była konwersja starej bazy danych na format zgodny z Active~Record. Dodatkowym utrudnieniem był fakt, że stara baza miała rozwiązane w różny sposób relacje -- raz były to klucze liczbowe, innym razem tekstowe. Dodatkowo nazwy kolumn często były mylące. Kolejnym problemem było kodowanie polskich znaków -- różnie rozwiązane w różnych tabelkach.
+
+Rozwiązaniem tych problemów, jest specjalny konwerter. Został on zaprojektowany jako \emph{rake task}, który dokona automagicznie konwersji bez jakiejkolwiek ingerencji użytkownika. Jedyne co trzeba zrobić, to przygotować wcześniej specjalny plik konfiguracyjny \emph{config/convert\_map.yml}. Jest to plik YAML (zob. rozdz.~\ref{sec:yaml}, str.\pageref{sec:yaml}), zawierający wszelkie wytyczne informujące konwerter jak ma przeprowadzić proces przeniesienia.
+
+\subsection{Łączenie konwertera z bazami}
+\label{sub:convert-base}
+Do połączenia z bazami, konwerter wykorzystuje standardowy plik konfiguracyjny w Ruby~on~Rails \emph{config/database.yml}. Należy zdefiniować dwie nowe reguły \emph{original} (dotyczącą połączenia ze starą bazą) i \emph{converted} (połączenie do nowej bazy). Bardzo ważne aby pamiętać o określeniu kodowania. Jeśli kodowanie w \emph{original} i \emph{converted} będą się różnić, aplikacja sama zrzutuje jeden standard znaków na drugi. Dlatego należy pamiętać aby w systemie była zainstalowana biblioteka \emph{iconv}, który odpowiada właśnie za to rzutowanie.
+\begin{figure}[h]
+\centering
+\begin{verbatim}original:
+  adapter: mysql
+  database: eit_old
+  username: eit
+  password: haslo
+  encoding: latin2
+converted:
+  adapter: mysql
+  database: eit_new
+  username: eit
+  password: haslo
+  encoding: utf8\end{verbatim}
+\caption{Przykładowe wpisy konwertera w pliku \emph{config/database.yml}\label{fig:database-yml}}
+\end{figure}
+
+\subsection{Plik konfiguracyjny}
+\label{sub:convert-conf}
+
+Struktura pliku jest następująca:
+\begin{figure}[h]
+\centering
+\begin{verbatim}<liczba porządkowa>_<nowa nazwa tabeli>:
+  <stara nazwa tabeli>:
+    <... opcje tabeli ...>
+    <stara nazwa kolumny>:
+      <... opcje kolumny ...>
+    <kolejna stara kolumna>:
+      <... opcje kolumny ...>
+<liczba porządkowa>_<kolejna tabela>:
+  <... itd. ...>\end{verbatim}
+\caption{Struktura pliku konfiguracyjnego konwertera (\emph{config/convert\_map.yml})\label{fig:convert_map}}
+\end{figure}
+
+Opcje w pliku można podzielić na dwie grupy -- opcje tabeli i opcje kolumny. Opcje tabeli to:
+\begin{itemize}
+  \item \emph{\_\_BEFORE} -- określa zapytanie SQL, które ma zostać wykonane przed rozpoczęciem konwersji na starej tabeli. Użyteczne, gdy trzeba wcześniej poprawić jakieś niespójne dane, aby później ułatwić w ten sposób pracę konwerterowi. Znak ,,@'' (at) przy składaniu zapytania zostani zamieniony na nazwę starej tabeli.
+  \item \emph{\_\_AFTER} -- analogicznie jak powyżej, tylko zapytanie zostanie wykonane po konwersji. Zazwyczaj używane do odwrócenia zmian wykonanych w \emph{\_\_BEFORE}, aby pozostawić starą bazę danych w nienaruszonym stanie.
+  \item \emph{\_\_WHERE} -- ta opcja spowoduje dodanie klauzuli \emph{WHERE} do zapytania wyciągającego dane ze starej tabeli. Dzięki temu, konwersji mogą zostać poddane tylko określone wiersze (ponieważ np. pozostałe są już przestarzałe i nie ma dla nich miejsca w nowej bazie, albo chcemy rozbic konwersję na kilka etapów i każdy z nich przeprowadzić osobno).
+\end{itemize}
+
+Opcje kolumn stanowią:
+\begin{itemize}
+  \item \emph{action} -- akcja jaką należy podjąć na tej kolumnie. Dostępne są dwie: \emph{copy} i \emph{remove}. Pierwsza kopiuje dane z kolumny do nowej tabeli, druga nie bierze pod uwagę tej kolumny przy konwersji. Domyślna akacja to \emph{copy}.
+  \item \emph{name} -- nowa nazwa kolumny. Domyślnie kopiowana jest stara.
+  \item \emph{from} -- funkcja mappera wartości. Często zdarza się tak, że przy kopiowaniu starych tabel na nowe, niektóre pola nie spełniają kryteriów nowej bazy danych i są odrzucane. Skutkiem czego, zmienia się ułożenie wierszy w tabeli, a co za tym idzie, także wartości pól \emph{id}. Podczas pracy konwertera, działa również specjalny mapper, który odwzorowuje stary numer \emph{id} na nowy. Dzięki temu zachowane zostają relację i spójność bazy danych. Opcja \emph{from} określa, mapa której tabeli ma zostać wykorzystana przy konwersji obcych \emph{id}. Na przykład, przenoszona jest tabelka \emph{users} i zniknęło kilkudziesięciu użytkowników. Zmieniły się więc numery \emph{id} użytkowników bezpośrednio po nich. Teraz następuje przenoszenie tabelki \emph{users\_students}. która ma jednak referencję do tabelki \emph{users}. Gdyby nie zastosowano mapowania, referowane \emph{user\_id} przeniosłyby się tak jak były skutkiem czego wskazywałyby na zupełnie innych użytkowników. Ważna uwaga -- parametr \emph{from} jako nazwę mapy ustawia sobie nazwę nowej tabelki. Jeśli więc przenosiliśmy np. tabelkę \emph{specs} na \emph{subjects}, to mapa będzie miała nazwę \emph{subjects} i taką należy podać temu parametrowi.
+  \item \emph{field} -- polecenie określające po jakim polu odbywa się mapowanie. Domyślnie jest to \emph{id} i w większości wypadków nie należy tego zmieniać.
+  \item \emph{function} -- funkcja SQL, której działaniu zostanie poddana nowa dana, zanim zostanie wpisana do nowej tabeli. Samą daną reprezentuje ,,@'' (at). Na przykład, \verb+function: SHA1(@)+ spowoduje, że wszystkie dane z tej kolumny będą poddawane hashowaniu SHA1, zanim zostaną wpisane do nowej bazy.
+  \item \emph{connect} -- służy do łączenia wartości kilku kolumn w starej tabeli w jedną w nowej. Nazwy kolumn należy oddzielić przecinkiem, np. \emph{"dt\_year, dt\_month, dt\_day, dt\_hour, dt\_min"}
+  \item \emph{pattern} -- wymagane razem z connect. Określa schemat połączenia kolumn. Np. \emph{"\{dt\_year\}-\{dt\_month\}-\{dt\_day\} \{dt\_hour\}:\{dt\_min\}"} stworzy z pięciu kolumn reprezentujących datę, jedną zgodną z formatem DATETIME.
+\end{itemize}
+
+\subsection{Uruchamianie konwertera}
+\label{sub:conv-run}
+
+Przed rozpoczęciem konwersji warto wyczyścić wcześniej nową bazę danych (jeżeli dokonujemy zmian). Konwerter uruchamia się, wpisując w głównym katalogu aplikacji polecenie:
+\begin{figure}
+\centering
+\begin{verbatim}$ rake eit:db:convert\end{verbatim}
+\caption{Polecenie wykonujące konwersję baz danych\label{fig:raketask}}
+\end{figure}
+Wszystkie błędy w czasie działania konwertera, są zapisywane w pliku \emph{log/conversion.log} -- wpisy w nim niekoniecznie oznaczają, że coś poszło nie tak. Informują one o tym, które wiersze nie zostały przeniesione do nowej bazy -- zazwyczaj powodem tego jest to, że nie spełniają one warunków nowej bazy (np. w nowej tabeli kolumna ma atrybut \emph{NOT NULL}, skutkiem czego wszystkie dane, które były \emph{NULL} nie zostaną przeniesione).
 
 \section{Mapa serwisu}
 \label{sec:mapa}
@@ -1782,9 +1889,23 @@ Po utworzeniu nowego plugina należy dopisać odpowiednie deklaracje do tabeli \
 
 \section{Przemapowanie hiperłączy}
 \label{sec:mapa-linkow}
+Ostatnim problemem jaki należało rozwiązać był problem linków. Nowa aplikacja posiada zupełnie inaczej rozwiązany system odnośników. Nie są to już trzyliterowe, nic nie mówiące skróty, tylko pełne nazwy angielskie. Takie podejście ułatwia pracę robotom wsyszukiwarek, pozycjonuje wyżej stronę, ułatwia ludziom zapamiętanie linka i przygotowuje grunt pod przyszłe tłumaczenie serwisu. Niestety na chwilę obecną, cała strona EiT jest zaindeksowana pod starymi adresami i wrzucenie nowej aplikacji zakończyłoby się ogromną ilością martwych linków. Użytkownik wyszukiwarki po kliknięciu na takie hiperłącze zostałby oddelegowany w próżnię. Aby tego uniknąć stworzony został mapper do linków. Jest to po prostu zestaw regułek w pliku \emph{config/routes.rb}, który tłumaczy stare linki na nowe.
+
+Niestety same wpisy w \emph{routes.rb} nie wystarczą, gdyż wtedy skończylbyśmy z nową treścią renderowaną pod starym adresem URL. Nie jest to zachowanie oczekiwane, gdyż w ten sposób stare linki nigdy nie zniknęłyby z wyszukiwarek. Dlatego trzeba jeszcze dodać przekierowanie -- czyli zastosować kod HTTP~301 \emph{Moved permanently}. Niestety system routingu w Ruby~on~Rails nie przewiduje takiego zastosowania, dlatego trzeba posłużyć się pewnym obejściem. Mianowicie, wszystkie zapytania o stare linki są wpierw kierowane do kontrolera \emph{RedirectController}, a jako parametr podawany jest nowy adres. Kontroler ten, wysyła następnie kod 301 i przekierowuje użytkownika na odpowiednią stronę.
+
+Rozwiązanie takie ma dwie zalety. Po pierwsze, użytkownik klikając w wyszukiwarce na odnośnik, znajduje się już na nowej stronie i od razu widzi w pasku adresu nowy link, dzięki temu nie przywiązuje się do starych oznaczeń. Po drugie, wyszukiwarki dużo szybciej usuwają stare linki i przeindeksowują je sobie na nowe, jeśli napotykają kod \emph{Moved Permamently}.
 
 \section{Testowanie i instalacja}
 \label{sec:testowanie}
+Cześć implementacji projektu została zakończona. Ruby~on~Rails posiada także wbudowaną funkcjonalność pozwalającą na kompleksowe testowanie aplikacji. Zarówno na poziomie jednostkowym, jak i funkcjonalnym. Nie da się ukryć że tworzenie testów bardzo pomaga w rozwoju aplikacji i chociaż jest bardzo pracochłonne w dłuższej perspektywie pozwala zaoszczędzić czas. Jednak aplikacja opisana w pracy na chwilę obecną jest mała a całość kodu został napisana przez jednego programistę. Dopisanie testów zajęło by kilka dobrych dni. Autor jest w stanie samodzielnie kompleksowo ją przetestować, dlatego zrezygnował z pisania testów.
+Instalacja i uruchomienie ogranicza się do przekopiowania całości kodu na docelowy serwer, który będzie posiadał wszystkie niezbędne komponenty (wymienione w podrozdziale Przygotowanie środowiska pracy, zob. str.~\pageref{sec:srodowisko}). Następnie wystarczy skonfigurować odpowiednie połączenia z bazami w pliku \emph{config/database.yml} (zob. rozdz.~\ref{sub:convert-base}, str.~\pageref{sub:convert-base}), przygotować strukturę w nowej bazie danych (uruchamiając polecenie \verb+rake db:migrate+) i przekonwertować starą bazę na nową (polecenie \verb+rake eit:db:convert+). Potem już tylko wystarczy uruchomić serwer i gotowe.
+\begin{figure}[h]
+\centering
+\begin{verbatim}rake db:migrate
+rake eit:db:convert
+mongrel_rails start -p 80 -l ./log/mongrel.log -e production)\end{verbatim}
+\caption{Kompletny zestaw poleceń, niezbędny do uruchomienia aplikacji\label{fig:runapp}}
+\end{figure}
 
 \chapter{Zakończenie}
 \label{cha:end}
