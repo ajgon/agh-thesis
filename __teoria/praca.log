@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2007.6.27)  24 MAY 2008 17:02
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2007.6.27)  30 MAY 2008 22:52
 entering extended mode
 **praca.tex
 (./praca.tex
@@ -408,23 +408,20 @@ driver: pdftex
 
 (1in=72.27pt, 1cm=28.45pt)
 -----------------------
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 19.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 19.
-LaTeX Font Info:    Try loading font information for U+lasy on input line 19.
- (/usr/share/texmf/tex/latex/base/ulasy.fd
-File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-) [1
+ [1
 
-{/usr/share/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1] (./praca.toc
+{/usr/share/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./praca.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 4.
- [2
+LaTeX Font Info:    Try loading font information for U+lasy on input line 4.
+
+(/usr/share/texmf/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+) [2
 
 ] [3])
 \tf@toc=\write4
@@ -440,11 +437,13 @@ Rozdzia\l  2.
 
 ]
 LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 49.
+LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 49.
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 49.
  (/usr/share/texmf/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-) [7] [8]
+) [7]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 69.
 
 (/usr/share/texmf/tex/latex/base/omscmr.fd
@@ -452,18 +451,29 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 69.
- [9] [10] [11] [12] [13] [14]
-[15]
+ [8] [9] [10] [11] [12] [13]
+Overfull \hbox (3.13779pt too wide) in paragraph at lines 200--201
+[]\T1/cmr/m/it/12 Active Re-cord \T1/cmr/m/n/12 -- me-cha-nizm ORM (Object-rela
+tional Map-ping) (zob. rozdz. 4.2[],
+ []
+
+[14] [15]
 Rozdzia\l  3.
 [16
 
-] [17] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 254--254
+] [17]
+Overfull \hbox (3.87639pt too wide) in paragraph at lines 248--249
+\T1/cmr/m/n/12 Gªów-nym za-ªo-»e-niem pro-jek-to-wym byªa se-pa-ra-cja war-stwy
+ tre-±ci (za-pi-sa-nej w HTML
+ []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 252--252
 [][]\T1/cmr/m/n/10 Peªny stan-dard $\T1/cmtt/m/n/10 http : / / www . ecma-[]int
 ernational . org / publications / files / ECMA-[]ST /
  []
 
-[19] [20] <browsers.png, id=84, 303.09154pt x 152.06813pt>
+[19] [20] <browsers.png, id=79, 303.09154pt x 152.06813pt>
 File: browsers.png Graphic file (type png)
  <use browsers.png>
 
@@ -473,151 +483,157 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Rozdzia\l  4.
 [23
 
-] [24] [25] [26] [27] [28]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[29]
-Underfull \hbox (badness 10000) in paragraph at lines 435--435
+] [24] [25] [26] [27] [28] [29]
+Underfull \hbox (badness 10000) in paragraph at lines 439--439
 [][]\T1/cmr/m/n/10 Wi¦cej in-for-ma-cji na http://www.w3.org/TR/2007/REC-wsdl20
 -adjuncts-
  []
 
-[30] [31] [32] [33] [34] [35] [36]
+[30] [31]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[32] [33] [34] [35] [36]
 Rozdzia\l  5.
 [37
 
 ] [38] [39]
-Underfull \hbox (badness 5008) in paragraph at lines 581--581
+Underfull \hbox (badness 5008) in paragraph at lines 585--585
 [][]\T1/cmr/m/n/10 Do po-bra-nia m.in. na $\T1/cmtt/m/n/10 http : / / linuxpack
 ages . telecoms . bg / Slackware-[]11 . 0 / ken /
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [40]
-Underfull \hbox (badness 2799) in paragraph at lines 607--607
+Underfull \hbox (badness 2799) in paragraph at lines 611--611
 [][]\T1/cmr/m/n/10 MySQL mo»na po-bra¢ z $\T1/cmtt/m/n/10 ftp : / / ftp . slack
 ware . com / pub / slackware / slackware-[]12 . 1 /
  []
 
 
-Underfull \hbox (badness 3724) in paragraph at lines 607--607
+Underfull \hbox (badness 3724) in paragraph at lines 611--611
 [][]\T1/cmr/m/n/10 GLIBC mo»na po-bra¢ z $\T1/cmtt/m/n/10 ftp : / / ftp . slack
 ware . com / pub / slackware / slackware-[]12 . 1 /
  []
 
-[41]
-Underfull \hbox (badness 10000) in paragraph at lines 625--625
+
+Underfull \hbox (badness 10000) in paragraph at lines 630--630
 [][]\T1/cmr/m/n/10 Do po-bra-nia z $\T1/cmtt/m/n/10 http : / / download . netbe
 ans . org / netbeans / 6 . 1 / final / bundles /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 635--635
-[][]\T1/cmr/m/n/10 Do po-bra-nia z $\T1/cmtt/m/n/10 http : / / linuxpackages . 
-telecoms . bg / Slackware-[]10 . 1 / X11 /
+Overfull \hbox (20.89641pt too wide) in paragraph at lines 630--631
+\T1/cmr/m/n/12 Najlepszym, zda-niem au-tora, edy-to-rem wspo-ma-ga-j¡-cym two-r
+ze-nie apli-ka-cji Ruby on Ra-
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 636--636
-[][]\T1/cmr/m/n/10 Do po-bra-nia z $\T1/cmtt/m/n/10 http : / / linuxpackages . 
-telecoms . bg / Slackware-[]10 . 2 / X11 /
- []
-
-[42] [43] [44] [45] [46]
-Underfull \hbox (badness 10000) in paragraph at lines 741--741
+[41] [42] [43] [44] [45]
+Underfull \hbox (badness 10000) in paragraph at lines 729--729
 [][]\T1/cmr/m/n/10 Standard do-st¦pny pod $\T1/cmtt/m/n/10 http : / / csrc . ni
 st . gov / publications / fips / fips180-[]2 /
  []
 
-[47
-
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 781--782
-
- []
-
-[48] [49] [50] [51]
-
-LaTeX Warning: Reference `rel:subjects_users' on page 52 undefined on input lin
-e 958.
-
-
-LaTeX Warning: Reference `rel:subjects_users' on page 52 undefined on input lin
-e 958.
-
-[52] [53] [54] [55] [56] [57] [58]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[59] [60] [61] [62] [63]
-Overfull \hbox (7.9579pt too wide) in paragraph at lines 1376--1377
+[46
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 780--781
+
+ []
+
+[47] [48] [49] [50] [51] [52] [53]
+Overfull \hbox (0.32094pt too wide) in paragraph at lines 1059--1060
+[]\T1/cmr/m/n/12 Pole \T1/cmr/m/it/12 exa-mi-ner \T1/cmr/m/n/12 za-wiera dane e
+g-za-mi-na-tora wpi-sane w po-staci tek-stu (tab. 5.15[]),
+ []
+
+[54] [55] [56] [57] [58] [59] [60]
+Overfull \hbox (4.03377pt too wide) in paragraph at lines 1278--1279
+\T1/cmr/m/n/12 ta-kiej osoby (oczy-wi-±cie, je-±li do-dat-kowo jest wpi-sana do
+ ta-beli \T1/cmr/m/it/12 users_lecturers\T1/cmr/m/n/12 )
+ []
+
+
+Overfull \hbox (3.13272pt too wide) in paragraph at lines 1278--1279
+\T1/cmr/m/n/12 au-to-ma-tycz-nie two-rzy re-la-cj¦ z tym przed-mio-tem po-przez
+ ta-bel¦ \T1/cmr/m/it/12 uplo-aded_files\T1/cmr/m/n/12 ,
+ []
+
+[61] [62]
+Overfull \hbox (7.9579pt too wide) in paragraph at lines 1358--1359
 []\T1/cmr/m/n/12 Pola: \T1/cmr/m/it/12 gro-ups_uploaded_files\T1/cmr/m/n/12 .\T
 1/cmr/m/it/12 group_id\T1/cmr/m/n/12 , \T1/cmr/m/it/12 gro-ups_uploaded_files\T
 1/cmr/m/n/12 .\T1/cmr/m/it/12 uploaded_file_id 
  []
 
-[64] [65] [66] [67]
+[63] [64] [65] [66]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 1533--1533
-[]\T1/cmr/m/n/12 Rysunek 5.8: Struk-tura pliku kon-fi-gu-ra-cyj-nego kon-wer-te
-ra (\T1/cmr/m/it/12 con-
+[67]
+Overfull \hbox (425.1506pt too wide) in paragraph at lines 1543--1543
+[]    \T1/cmtt/m/n/12 __BEFORE: INSERT INTO @ (id) SELECT id FROM users WHERE i
+d NOT IN (SELECT id FROM users_k1) AND id NOT IN (SELECT id from users_k2) AN[]
+ 
  []
+
+
+Overfull \hbox (375.76266pt too wide) in paragraph at lines 1543--1543
+[]      \T1/cmtt/m/n/12 function: IF((SELECT (SUBSTRING(NOW(),1,4) - CONCAT('20
+', SUBSTRING(@, 2,2))) > 2),IF((SELECT SUBSTRING(@, 4,1)) > 3,2,3),1)[] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 [68] [69] [70] [71] [72] [73
 
 
 ] [74] [75] [76] [77] [78] [79] [80]
-
-LaTeX Warning: Reference `fig:array_of_pages' on page 81 undefined on input lin
-e 1826.
-
-[81]
-
-LaTeX Warning: Reference `fig:array_of_pages' on page 82 undefined on input lin
-e 1835.
-
-<array_of_pages.png, id=303, 427.54121pt x 52.6828pt>
+<array_of_pages.png, id=295, 427.54121pt x 52.6828pt>
 File: array_of_pages.png Graphic file (type png)
  <use array_of_pages.png>
-Overfull \hbox (0.74881pt too wide) in paragraph at lines 1842--1843
+Overfull \hbox (0.74881pt too wide) in paragraph at lines 1847--1848
  [][] 
  []
 
-[82 <./array_of_pages.png>] [83]
-Overfull \hbox (2.86484pt too wide) in paragraph at lines 1888--1889
-\T1/cmr/m/it/12 dec-la-ra-tions\T1/cmr/m/n/12 , oraz ewen-tu-al-nie utwo-rzy¢ n
-owe ko-lumny w ta-beli \T1/cmr/m/it/12 dec-la-ra-tions_columns
+[81] [82 <./array_of_pages.png>]
+Overfull \hbox (15.76857pt too wide) in paragraph at lines 1889--1890
+\T1/cmr/m/n/12 bª¦dne wpisy (za-bez-pie-cze-nie przed faª-szer-stwem) -- skrypt
+ ten, to \T1/cmr/m/it/12 merge_subjects\T1/cmr/m/n/12 , 
  []
 
-[84] [85] [86]
-Rozdzia\l  6.
-[87
+[83]
+Overfull \hbox (21.54222pt too wide) in paragraph at lines 1907--1908
+\T1/cmr/m/n/12 beli \T1/cmr/m/it/12 dec-la-ra-tions \T1/cmr/m/n/12 oraz ewen-tu
+-al-nie utwo-rzy¢ nowe ko-lumny w ta-beli \T1/cmr/m/it/12 dec-la-ra-tions_colum
+ns
+ []
 
-] (./praca.aux)
+[84]
+Overfull \hbox (0.39203pt too wide) in paragraph at lines 1919--1920
+\T1/cmr/m/n/12 W ra-mach ni-niej-szej pracy im-ple-men-ta-cja pro-jektu zo-staª
+a za-ko«-czona. Ruby on Ra-
+ []
 
-LaTeX Warning: There were undefined references.
-
+[85] [86] (./praca.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2435 strings out of 94500
- 29635 string characters out of 1176766
- 85993 words of memory out of 1000000
- 5566 multiletter control sequences out of 10000+50000
- 21489 words of font info for 52 fonts, out of 500000 for 2000
+ 2429 strings out of 94500
+ 29534 string characters out of 1176766
+ 87031 words of memory out of 1000000
+ 5561 multiletter control sequences out of 10000+50000
+ 19698 words of font info for 47 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 1000
- 25i,8n,24p,1787b,340s stack positions out of 1500i,500n,5000p,200000b,5000s
+ 25i,9n,24p,1786b,343s stack positions out of 1500i,500n,5000p,200000b,5000s
 PDF statistics:
- 322 PDF objects out of 300000
+ 314 PDF objects out of 300000
  0 named destinations out of 131072
  11 words of extra memory for PDF output out of 65536
 </usr/share/texmf/fonts/type1/bluesky/cm/cmmi6.pfb></usr/share/texmf/fonts/ty
@@ -636,7 +652,5 @@ pen/ec/ecrm0800.600pk> </home/ajgon/.texmf-var/pk/ljfour/jknappen/ec/ecbx1728.6
 00pk> </home/ajgon/.texmf-var/pk/ljfour/jknappen/ec/ecsl1200.600pk> </home/ajgo
 n/.texmf-var/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/ajgon/.texmf-var/pk/l
 jfour/jknappen/ec/ecbx1200.600pk> </home/ajgon/.texmf-var/pk/ljfour/jknappen/ec
-/ecbx2488.600pk> </home/ajgon/.texmf-var/pk/ljfour/jknappen/ec/ecti1200.600pk> 
-</home/ajgon/.texmf-var/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/ajgon/.tex
-mf-var/pk/ljfour/jknappen/ec/ecrm2074.600pk>
-Output written on praca.pdf (88 pages, 513251 bytes).
+/ecbx2488.600pk> </home/ajgon/.texmf-var/pk/ljfour/jknappen/ec/ecti1200.600pk>
+Output written on praca.pdf (86 pages, 499481 bytes).
