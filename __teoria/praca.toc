@@ -1,134 +1,135 @@
 \select@language {polish}
-\contentsline {chapter}{\numberline {1}Wst\IeC {\k e}p}{5}
-\contentsline {chapter}{\numberline {2}Techniki po stronie serwera}{6}
-\contentsline {section}{\numberline {2.1}Interfejs CGI}{6}
-\contentsline {section}{\numberline {2.2}Java}{8}
-\contentsline {section}{\numberline {2.3}C\#.NET}{9}
-\contentsline {section}{\numberline {2.4}PHP}{10}
-\contentsline {section}{\numberline {2.5}Python}{11}
-\contentsline {section}{\numberline {2.6}Ruby}{12}
-\contentsline {section}{\numberline {2.7}Ruby on Rails}{13}
-\contentsline {chapter}{\numberline {3}Techniki po stronie klienta}{16}
-\contentsline {section}{\numberline {3.1}HTTP}{16}
-\contentsline {section}{\numberline {3.2}HTML}{17}
-\contentsline {section}{\numberline {3.3}CSS}{18}
-\contentsline {section}{\numberline {3.4}JavaScript}{19}
-\contentsline {section}{\numberline {3.5}RSS}{20}
-\contentsline {section}{\numberline {3.6}YAML}{21}
-\contentsline {section}{\numberline {3.7}Przegl\IeC {\k a}darki internetowe}{21}
-\contentsline {chapter}{\numberline {4}Koncepcje w aplikacjach internetowych}{23}
-\contentsline {section}{\numberline {4.1}Model-view-controller}{23}
-\contentsline {subsection}{\numberline {4.1.1}Kr\IeC {\'o}tka historia}{23}
-\contentsline {subsection}{\numberline {4.1.2}Opis wzorca}{24}
-\contentsline {subsection}{\numberline {4.1.3}Zastosowanie w aplikacjach internetowych}{24}
-\contentsline {subsection}{\numberline {4.1.4}MVC w Ruby on Rails}{25}
-\contentsline {section}{\numberline {4.2}Mapowanie ORM}{25}
-\contentsline {subsection}{\numberline {4.2.1}Opis problemu mapowania}{25}
-\contentsline {subsection}{\numberline {4.2.2}Implementacje}{26}
-\contentsline {subsection}{\numberline {4.2.3}Zastosowanie w aplikacjach internetowych}{27}
-\contentsline {section}{\numberline {4.3}Metodologia REST}{28}
-\contentsline {subsection}{\numberline {4.3.1}Za\IeC {\l }o\IeC {\.z}enia projektowe}{28}
-\contentsline {subsection}{\numberline {4.3.2}Zastosowanie w aplikacjach internetowych}{29}
-\contentsline {section}{\numberline {4.4}J\IeC {\k e}zyk DSL}{31}
-\contentsline {subsection}{\numberline {4.4.1}Przyk\IeC {\l }ady zastosowa\IeC {\'n}}{31}
-\contentsline {subsection}{\numberline {4.4.2}Zastosowanie w aplikacjach internetowych}{32}
-\contentsline {section}{\numberline {4.5}Metody CRUD}{32}
-\contentsline {subsection}{\numberline {4.5.1}CRUD w relacyjnych bazach danych}{32}
-\contentsline {subsection}{\numberline {4.5.2}Zastosowanie w aplikacjach internetowych}{33}
-\contentsline {section}{\numberline {4.6}Regu\IeC {\l }a DRY}{33}
-\contentsline {subsection}{\numberline {4.6.1}Ograniczenia idei DRY}{34}
-\contentsline {subsection}{\numberline {4.6.2}Zastosowanie w aplikacjach internetowych}{35}
-\contentsline {section}{\numberline {4.7}Zasada Convention over Configuration}{35}
-\contentsline {subsection}{\numberline {4.7.1}Geneza}{35}
-\contentsline {subsection}{\numberline {4.7.2}Zastosowanie w aplikacjach internetowych}{36}
-\contentsline {chapter}{\numberline {5}Realizacja serwisu WWW}{37}
-\contentsline {section}{\numberline {5.1}Opis funkcjonalny aplikacji}{37}
-\contentsline {section}{\numberline {5.2}\IeC {\'S}rodowisko narz\IeC {\k e}dziowe}{39}
-\contentsline {subsection}{\numberline {5.2.1}Ruby i pochodne}{39}
-\contentsline {subsection}{\numberline {5.2.2}Dodatkowe pakiety}{41}
-\contentsline {subsection}{\numberline {5.2.3}Aplikacje wspomagaj\IeC {\k a}ce tworzenie projektu}{41}
-\contentsline {subsubsection}{\IeC {\'S}rodowisko programistyczne}{42}
-\contentsline {subsubsection}{Aplikacje wspomagaj\IeC {\k a}ce prac\IeC {\k e} z baz\IeC {\k a} danych}{42}
-\contentsline {subsubsection}{Przegl\IeC {\k a}darki internetowe i dodatki}{43}
-\contentsline {section}{\numberline {5.3}Projekt bazy danych}{44}
-\contentsline {subsection}{\numberline {5.3.1}Opis tabel}{46}
-\contentsline {subsubsection}{Tabela \emph {users}}{46}
-\contentsline {subsubsection}{Tabela \emph {cathedrals}}{47}
-\contentsline {subsubsection}{Tabela \emph {specialities}}{47}
-\contentsline {subsubsection}{Tabela \emph {users\_students}}{48}
-\contentsline {subsubsection}{Tabela \emph {users\_lecturers}}{49}
-\contentsline {subsubsection}{Tabela \emph {subjects\_types}}{49}
-\contentsline {subsubsection}{Tabela \emph {subjects}}{50}
-\contentsline {subsubsection}{Tabela \emph {news\_types}}{50}
-\contentsline {subsubsection}{Tabela \emph {news}}{51}
-\contentsline {subsubsection}{Tabela \emph {uploaded\_files}}{51}
-\contentsline {subsubsection}{Tabela \emph {groups}}{52}
-\contentsline {subsubsection}{Tabela \emph {polls\_questions}}{53}
-\contentsline {subsubsection}{Tabela \emph {polls\_answers}}{53}
-\contentsline {subsubsection}{Tabela \emph {exams\_names}}{54}
-\contentsline {subsubsection}{Tabela \emph {exams}}{54}
-\contentsline {subsubsection}{Tabela \emph {events}}{55}
-\contentsline {subsubsection}{Tabela \emph {declarations}}{55}
-\contentsline {subsubsection}{Tabela \emph {declarations\_subjects}}{56}
-\contentsline {subsubsection}{Tabela \emph {declarations\_experiences}}{58}
-\contentsline {subsection}{\numberline {5.3.2}Opis relacji}{59}
-\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {users\_students}}{59}
-\contentsline {subsubsection}{Relacja \emph {specialities}$\to $\emph {users\_students}}{59}
-\contentsline {subsubsection}{Relacja \emph {cathedrals}$\to $\emph {users\_lecturers}}{60}
-\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {users\_lecturers}}{60}
-\contentsline {subsubsection}{Relacja \emph {subjects\_types}$\to $\emph {subjects}}{60}
-\contentsline {subsubsection}{Relacja \emph {users}$\leftrightarrow $\emph {subjects}}{61}
-\contentsline {subsubsection}{Relacja \emph {news\_types}$\to $\emph {news}}{61}
-\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {news}}{61}
-\contentsline {subsubsection}{Relacja \emph {subjects}$\to $\emph {news}}{62}
-\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {uploaded\_files}}{62}
-\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {groups}}{62}
-\contentsline {subsubsection}{Relacja \emph {groups}$\leftrightarrow $\emph {users}}{63}
-\contentsline {subsubsection}{Relacja \emph {groups}$\leftrightarrow $\emph {news}}{63}
-\contentsline {subsubsection}{Relacja \emph {groups}$\leftrightarrow $\emph {uploaded\_files}}{63}
-\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {polls\_questions}}{64}
-\contentsline {subsubsection}{Relacja \emph {polls\_questions}$\to $\emph {polls\_answers}}{64}
-\contentsline {subsubsection}{Relacja \emph {subjects}$\to $\emph {exams}}{64}
-\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {exams}}{64}
-\contentsline {subsubsection}{Relacja \emph {exams\_names}$\to $\emph {exams}}{65}
-\contentsline {subsubsection}{Relacja \emph {declarations}$\to $\emph {declarations\_subjects}}{65}
-\contentsline {subsubsection}{Relacja \emph {subjects}$\to $\emph {declarations\_subjects}}{65}
-\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {declarations\_subjects}}{66}
-\contentsline {subsubsection}{Relacja \emph {specialities}$\to $\emph {declarations\_subjects}}{66}
-\contentsline {subsubsection}{Relacja \emph {declarations}$\to $\emph {declarations\_experiences}}{66}
-\contentsline {subsubsection}{Relacja \emph {specialities}$\to $\emph {declarations\_experiences}}{67}
-\contentsline {section}{\numberline {5.4}Konwersja bazy danych}{67}
-\contentsline {subsection}{\numberline {5.4.1}\IeC {\L }\IeC {\k a}czenie konwertera z bazami}{67}
-\contentsline {subsection}{\numberline {5.4.2}Plik konfiguracyjny konwersji}{68}
-\contentsline {subsection}{\numberline {5.4.3}Uruchamianie konwertera}{70}
-\contentsline {section}{\numberline {5.5}Mapa serwisu}{71}
-\contentsline {section}{\numberline {5.6}Opis poszczeg\IeC {\'o}lnych kontroler\IeC {\'o}w i akcji}{73}
-\contentsline {subsection}{\numberline {5.6.1}\emph {IndexController}}{73}
-\contentsline {subsection}{\numberline {5.6.2}\emph {AboutController}}{73}
-\contentsline {subsection}{\numberline {5.6.3}\emph {CsvController}}{73}
-\contentsline {subsection}{\numberline {5.6.4}\emph {DeaneryController}}{73}
-\contentsline {subsection}{\numberline {5.6.5}\emph {FileController}}{74}
-\contentsline {subsection}{\numberline {5.6.6}\emph {LecturersController}}{74}
-\contentsline {subsection}{\numberline {5.6.7}\emph {MaterialsController}}{75}
-\contentsline {subsection}{\numberline {5.6.8}\emph {NewsController}}{75}
-\contentsline {subsection}{\numberline {5.6.9}\emph {PostgraduateController}}{76}
-\contentsline {subsection}{\numberline {5.6.10}\emph {ProfileController}}{76}
-\contentsline {subsection}{\numberline {5.6.11}\emph {RedirectController}}{77}
-\contentsline {subsection}{\numberline {5.6.12}\emph {RegisterController}}{77}
-\contentsline {subsection}{\numberline {5.6.13}\emph {RssController}}{77}
-\contentsline {subsection}{\numberline {5.6.14}\emph {RtfController}}{77}
-\contentsline {subsection}{\numberline {5.6.15}\emph {SettingsController}}{77}
-\contentsline {subsection}{\numberline {5.6.16}\emph {SigninController}}{78}
-\contentsline {subsection}{\numberline {5.6.17}\emph {StudentsController}}{79}
-\contentsline {subsection}{\numberline {5.6.18}\emph {SubjectController}}{79}
-\contentsline {section}{\numberline {5.7}Komponenty}{79}
-\contentsline {subsection}{\numberline {5.7.1}IdEncoder}{80}
-\contentsline {subsection}{\numberline {5.7.2}Pager}{81}
-\contentsline {subsection}{\numberline {5.7.3}Imieniny}{82}
-\contentsline {subsection}{\numberline {5.7.4}Deklaracje}{83}
-\contentsline {subsubsection}{Pliki}{83}
-\contentsline {subsubsection}{Klasa g\IeC {\l }\IeC {\'o}wna}{83}
-\contentsline {subsubsection}{Klasy potomne}{84}
-\contentsline {subsubsection}{Struktura bazy danych i relacji}{84}
-\contentsline {section}{\numberline {5.8}Przemapowanie hiper\IeC {\l }\IeC {\k a}czy}{85}
-\contentsline {section}{\numberline {5.9}Testowanie i instalacja}{85}
+\contentsline {chapter}{Spis tre\'sci}{i}
+\contentsline {chapter}{\numberline {1}Wst\IeC {\k e}p}{1}
+\contentsline {chapter}{\numberline {2}Techniki po stronie serwera}{2}
+\contentsline {section}{\numberline {2.1}Interfejs CGI}{2}
+\contentsline {section}{\numberline {2.2}Java}{3}
+\contentsline {section}{\numberline {2.3}C\#.NET}{5}
+\contentsline {section}{\numberline {2.4}PHP}{5}
+\contentsline {section}{\numberline {2.5}Python}{6}
+\contentsline {section}{\numberline {2.6}Ruby}{7}
+\contentsline {section}{\numberline {2.7}Ruby on Rails}{8}
+\contentsline {chapter}{\numberline {3}Techniki po stronie klienta}{11}
+\contentsline {section}{\numberline {3.1}HTTP}{11}
+\contentsline {section}{\numberline {3.2}HTML}{12}
+\contentsline {section}{\numberline {3.3}CSS}{13}
+\contentsline {section}{\numberline {3.4}JavaScript}{14}
+\contentsline {section}{\numberline {3.5}RSS}{14}
+\contentsline {section}{\numberline {3.6}YAML}{15}
+\contentsline {section}{\numberline {3.7}Przegl\IeC {\k a}darki internetowe}{16}
+\contentsline {chapter}{\numberline {4}Koncepcje w aplikacjach internetowych}{18}
+\contentsline {section}{\numberline {4.1}Model-view-controller}{18}
+\contentsline {subsection}{\numberline {4.1.1}Kr\IeC {\'o}tka historia}{18}
+\contentsline {subsection}{\numberline {4.1.2}Opis wzorca}{19}
+\contentsline {subsection}{\numberline {4.1.3}Zastosowanie w aplikacjach internetowych}{19}
+\contentsline {subsection}{\numberline {4.1.4}MVC w Ruby on Rails}{20}
+\contentsline {section}{\numberline {4.2}Mapowanie ORM}{20}
+\contentsline {subsection}{\numberline {4.2.1}Opis problemu mapowania}{20}
+\contentsline {subsection}{\numberline {4.2.2}Implementacje}{21}
+\contentsline {subsection}{\numberline {4.2.3}Zastosowanie w aplikacjach internetowych}{22}
+\contentsline {section}{\numberline {4.3}Metodologia REST}{22}
+\contentsline {subsection}{\numberline {4.3.1}Za\IeC {\l }o\IeC {\.z}enia projektowe}{23}
+\contentsline {subsection}{\numberline {4.3.2}Zastosowanie w aplikacjach internetowych}{24}
+\contentsline {section}{\numberline {4.4}J\IeC {\k e}zyk DSL}{25}
+\contentsline {subsection}{\numberline {4.4.1}Przyk\IeC {\l }ady zastosowa\IeC {\'n}}{25}
+\contentsline {subsection}{\numberline {4.4.2}Zastosowanie w aplikacjach internetowych}{26}
+\contentsline {section}{\numberline {4.5}Metody CRUD}{27}
+\contentsline {subsection}{\numberline {4.5.1}CRUD w relacyjnych bazach danych}{27}
+\contentsline {subsection}{\numberline {4.5.2}Zastosowanie w aplikacjach internetowych}{27}
+\contentsline {section}{\numberline {4.6}Regu\IeC {\l }a DRY}{28}
+\contentsline {subsection}{\numberline {4.6.1}Ograniczenia idei DRY}{28}
+\contentsline {subsection}{\numberline {4.6.2}Zastosowanie w aplikacjach internetowych}{29}
+\contentsline {section}{\numberline {4.7}Zasada Convention over Configuration}{29}
+\contentsline {subsection}{\numberline {4.7.1}Geneza}{29}
+\contentsline {subsection}{\numberline {4.7.2}Zastosowanie w aplikacjach internetowych}{30}
+\contentsline {chapter}{\numberline {5}Realizacja serwisu WWW}{31}
+\contentsline {section}{\numberline {5.1}Opis funkcjonalny aplikacji}{31}
+\contentsline {section}{\numberline {5.2}\IeC {\'S}rodowisko narz\IeC {\k e}dziowe}{33}
+\contentsline {subsection}{\numberline {5.2.1}Ruby i pochodne}{33}
+\contentsline {subsection}{\numberline {5.2.2}Dodatkowe pakiety}{34}
+\contentsline {subsection}{\numberline {5.2.3}Aplikacje wspomagaj\IeC {\k a}ce tworzenie projektu}{35}
+\contentsline {subsubsection}{\IeC {\'S}rodowisko programistyczne}{35}
+\contentsline {subsubsection}{Aplikacje wspomagaj\IeC {\k a}ce prac\IeC {\k e} z baz\IeC {\k a} danych}{36}
+\contentsline {subsubsection}{Przegl\IeC {\k a}darki internetowe i dodatki}{36}
+\contentsline {section}{\numberline {5.3}Projekt bazy danych}{37}
+\contentsline {subsection}{\numberline {5.3.1}Opis tabel}{40}
+\contentsline {subsubsection}{Tabela \emph {users}}{40}
+\contentsline {subsubsection}{Tabela \emph {cathedrals}}{41}
+\contentsline {subsubsection}{Tabela \emph {specialities}}{41}
+\contentsline {subsubsection}{Tabela \emph {users\_students}}{41}
+\contentsline {subsubsection}{Tabela \emph {users\_lecturers}}{43}
+\contentsline {subsubsection}{Tabela \emph {subjects\_types}}{43}
+\contentsline {subsubsection}{Tabela \emph {subjects}}{44}
+\contentsline {subsubsection}{Tabela \emph {news\_types}}{44}
+\contentsline {subsubsection}{Tabela \emph {news}}{45}
+\contentsline {subsubsection}{Tabela \emph {uploaded\_files}}{45}
+\contentsline {subsubsection}{Tabela \emph {groups}}{46}
+\contentsline {subsubsection}{Tabela \emph {polls\_questions}}{47}
+\contentsline {subsubsection}{Tabela \emph {polls\_answers}}{47}
+\contentsline {subsubsection}{Tabela \emph {exams\_names}}{48}
+\contentsline {subsubsection}{Tabela \emph {exams}}{48}
+\contentsline {subsubsection}{Tabela \emph {events}}{49}
+\contentsline {subsubsection}{Tabela \emph {declarations}}{49}
+\contentsline {subsubsection}{Tabela \emph {declarations\_subjects}}{50}
+\contentsline {subsubsection}{Tabela \emph {declarations\_experiences}}{52}
+\contentsline {subsection}{\numberline {5.3.2}Opis relacji}{53}
+\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {users\_students}}{53}
+\contentsline {subsubsection}{Relacja \emph {specialities}$\to $\emph {users\_students}}{53}
+\contentsline {subsubsection}{Relacja \emph {cathedrals}$\to $\emph {users\_lecturers}}{54}
+\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {users\_lecturers}}{54}
+\contentsline {subsubsection}{Relacja \emph {subjects\_types}$\to $\emph {subjects}}{54}
+\contentsline {subsubsection}{Relacja \emph {users}$\leftrightarrow $\emph {subjects}}{54}
+\contentsline {subsubsection}{Relacja \emph {news\_types}$\to $\emph {news}}{55}
+\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {news}}{55}
+\contentsline {subsubsection}{Relacja \emph {subjects}$\to $\emph {news}}{55}
+\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {uploaded\_files}}{56}
+\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {groups}}{56}
+\contentsline {subsubsection}{Relacja \emph {groups}$\leftrightarrow $\emph {users}}{56}
+\contentsline {subsubsection}{Relacja \emph {groups}$\leftrightarrow $\emph {news}}{56}
+\contentsline {subsubsection}{Relacja \emph {groups}$\leftrightarrow $\emph {uploaded\_files}}{57}
+\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {polls\_questions}}{57}
+\contentsline {subsubsection}{Relacja \emph {polls\_questions}$\to $\emph {polls\_answers}}{57}
+\contentsline {subsubsection}{Relacja \emph {subjects}$\to $\emph {exams}}{58}
+\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {exams}}{58}
+\contentsline {subsubsection}{Relacja \emph {exams\_names}$\to $\emph {exams}}{58}
+\contentsline {subsubsection}{Relacja \emph {declarations}$\to $\emph {declarations\_subjects}}{58}
+\contentsline {subsubsection}{Relacja \emph {subjects}$\to $\emph {declarations\_subjects}}{59}
+\contentsline {subsubsection}{Relacja \emph {users}$\to $\emph {declarations\_subjects}}{59}
+\contentsline {subsubsection}{Relacja \emph {specialities}$\to $\emph {declarations\_subjects}}{59}
+\contentsline {subsubsection}{Relacja \emph {declarations}$\to $\emph {declarations\_experiences}}{59}
+\contentsline {subsubsection}{Relacja \emph {specialities}$\to $\emph {declarations\_experiences}}{60}
+\contentsline {section}{\numberline {5.4}Konwersja bazy danych}{60}
+\contentsline {subsection}{\numberline {5.4.1}\IeC {\L }\IeC {\k a}czenie konwertera z bazami}{60}
+\contentsline {subsection}{\numberline {5.4.2}Plik konfiguracyjny konwersji}{60}
+\contentsline {subsection}{\numberline {5.4.3}Uruchamianie konwertera}{63}
+\contentsline {section}{\numberline {5.5}Mapa serwisu}{63}
+\contentsline {section}{\numberline {5.6}Opis poszczeg\IeC {\'o}lnych kontroler\IeC {\'o}w i akcji}{66}
+\contentsline {subsection}{\numberline {5.6.1}\emph {IndexController}}{66}
+\contentsline {subsection}{\numberline {5.6.2}\emph {AboutController}}{66}
+\contentsline {subsection}{\numberline {5.6.3}\emph {CsvController}}{66}
+\contentsline {subsection}{\numberline {5.6.4}\emph {DeaneryController}}{66}
+\contentsline {subsection}{\numberline {5.6.5}\emph {FileController}}{67}
+\contentsline {subsection}{\numberline {5.6.6}\emph {LecturersController}}{67}
+\contentsline {subsection}{\numberline {5.6.7}\emph {MaterialsController}}{68}
+\contentsline {subsection}{\numberline {5.6.8}\emph {NewsController}}{68}
+\contentsline {subsection}{\numberline {5.6.9}\emph {PostgraduateController}}{69}
+\contentsline {subsection}{\numberline {5.6.10}\emph {ProfileController}}{69}
+\contentsline {subsection}{\numberline {5.6.11}\emph {RedirectController}}{69}
+\contentsline {subsection}{\numberline {5.6.12}\emph {RegisterController}}{70}
+\contentsline {subsection}{\numberline {5.6.13}\emph {RssController}}{70}
+\contentsline {subsection}{\numberline {5.6.14}\emph {RtfController}}{70}
+\contentsline {subsection}{\numberline {5.6.15}\emph {SettingsController}}{70}
+\contentsline {subsection}{\numberline {5.6.16}\emph {SigninController}}{71}
+\contentsline {subsection}{\numberline {5.6.17}\emph {StudentsController}}{71}
+\contentsline {subsection}{\numberline {5.6.18}\emph {SubjectController}}{72}
+\contentsline {section}{\numberline {5.7}Komponenty}{72}
+\contentsline {subsection}{\numberline {5.7.1}IdEncoder}{72}
+\contentsline {subsection}{\numberline {5.7.2}Pager}{73}
+\contentsline {subsection}{\numberline {5.7.3}Imieniny}{75}
+\contentsline {subsection}{\numberline {5.7.4}Deklaracje}{75}
+\contentsline {subsubsection}{Pliki}{75}
+\contentsline {subsubsection}{Klasa g\IeC {\l }\IeC {\'o}wna}{76}
+\contentsline {subsubsection}{Klasy potomne}{76}
+\contentsline {subsubsection}{Struktura bazy danych i relacji}{76}
+\contentsline {section}{\numberline {5.8}Przemapowanie hiper\IeC {\l }\IeC {\k a}czy}{77}
+\contentsline {section}{\numberline {5.9}Testowanie i instalacja}{77}

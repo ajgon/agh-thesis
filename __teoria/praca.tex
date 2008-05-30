@@ -4,10 +4,12 @@
 \usepackage[T1]{fontenc}
 \usepackage{url}
 \usepackage{graphicx}
-\usepackage[a4paper,tmargin=4.5cm,rmargin=2.5cm,bmargin=2.5cm,lmargin=3.5cm,pdftex]{geometry}
+\usepackage{listings}
+\usepackage[a4paper,tmargin=2.5cm,rmargin=2.5cm,bmargin=2.5cm,lmargin=3.5cm,pdftex]{geometry}
 \usepackage{setspace}
 \usepackage{latexsym}
 \usepackage{lscape}
+\usepackage{tocbibind}
 % Dane o pracy
 \author{Igor~Rzegocki}
 \title{Migracja serwisu WWW z techniki PHP na Ruby~on~Rails}
@@ -17,17 +19,37 @@
 
 \begin{document}
 %\maketitle
-
+\pagenumbering{alph}
+\begin{titlepage}
+  \begin{center}
+%  \textsc{\Huge Akademia Górniczo--Hutnicza}\\
+%  \textsc{\Large im. Stanisława Staszica w Krakowie}\\[0.5cm]
+  \includegraphics[keepaspectratio]{agh-logo.jpg}\\[0.5cm]
+  \textsc{\large Wydział Elektrotechniki, Automatyki, Informatyki i Elektroniki}\\[0.5cm]
+  \textsc{\large Katedra Telekomunikacji}\\[1.5cm]
+  \textbf{\huge Praca dyplomowa}\\[1cm]
+  \textbf{\large magisterska}\\[2.5cm]
+  \begin{tabbing}
+    \hspace{0.45\textwidth}\=\kill
+    \large Imię i nazwisko \> \large \bfseries Igor Rzegocki\\[0.25cm]
+    \large Kierunek studiów \> \large Elektronika i Telekomunikacja\\[0.25cm]
+    \large Temat pracy dyplomowej \> \parbox{0.55\textwidth}{\large \bfseries ,,Migracja serwisu WWW z techniki PHP na Ruby~on~Rails''}\\[2cm]
+    \large Opiekun pracy \> \large dr inż. Krzysztof Juszkiewicz\\[2cm]
+  \end{tabbing}
+  \vfill
+  {\large Kraków, rok 2008}
+  \end{center}
+\end{titlepage}
 % Dedykacja
 \thispagestyle{empty}
 \begin{flushright}
 \vspace*{13cm}
 \emph{Pracę swą dedykuję Grzegorzowi, którego nagła i niespodziewana śmierć pozostawiła ogromną pustkę w sercach jego przyjaciół}
 \end{flushright}
-
+\clearpage\pagenumbering{roman}
 
 \tableofcontents
-
+\clearpage\pagenumbering{arabic}
 \chapter{Wstęp}
 \label{cha:wstep}
 
