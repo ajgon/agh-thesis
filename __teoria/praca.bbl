@@ -1,0 +1,63 @@
+\begin{thebibliography}{10}
+
+\bibitem{bullet}
+Dan Cederholm.
+\newblock {\em {B}ulletproof {W}eb {D}esign: {I}mproving flexibility and
+  protecting against worst-case scenarios with XHTML and CSS, {S}econd
+  {E}dition}.
+\newblock New Riders Press, 2007.
+
+\bibitem{recipes}
+Chad Fowler.
+\newblock {\em {R}ails {R}ecipes}.
+\newblock Pragmatic Bookshelf, 2006.
+
+\bibitem{pickaxe}
+Dave Thomas~Chad Fowler and Andrew Hunt.
+\newblock {\em {P}rogramming {R}uby: {T}he {P}ragmatic {P}rogrammers {G}uide,
+  {S}econd {E}dition}.
+\newblock Pragmatic Bookshelf, 2004.
+
+\bibitem{pragmatic}
+Andrew Hunt and David Thomas.
+\newblock {\em {T}he {P}ragmatic {P}rogrammer: {F}rom {J}ourneyman to
+  {M}aster}.
+\newblock Addison-Wesley Professional, 1999.
+
+\bibitem{build}
+Patrick Lenz.
+\newblock {\em {B}uild {Y}our {O}wn {R}uby on {R}ails {W}eb {A}pplications}.
+\newblock SitePoint, 2007.
+
+\bibitem{patterns}
+Russ Olsen.
+\newblock {\em {D}esign {P}atterns in {R}uby}.
+\newblock Addison-Wesley Professional, 2007.
+
+\bibitem{ar}
+Kevin Marshall~Chad Pytel and Jon Yurek.
+\newblock {\em {P}ro {A}ctive {R}ecord: {D}atabases with {R}uby and {R}ails}.
+\newblock Apress, 2007.
+
+\bibitem{restful}
+Leonard Richardson and Sam Ruby.
+\newblock {\em {R}{E}{S}{T}ful {W}eb {S}ervices}.
+\newblock O'Reilly Media, Inc., 2007.
+
+\bibitem{zen}
+Dave Shea.
+\newblock {\em {T}he {Z}en of {C}{S}{S} {D}esign: {V}isual {E}nlightenment for
+  the {W}eb}.
+\newblock Peachpit Press, 2005.
+
+\bibitem{agile}
+Dave Thomas and David~Heinemeier Hansson.
+\newblock {\em {A}gile {W}eb {D}evelopment with {R}ails, {S}econd {E}dition}.
+\newblock Pragmatic Bookshelf, 2006.
+
+\bibitem{css}
+Jeffrey Zeldman.
+\newblock {\em {D}esigning with {W}eb {S}tandards, {S}econd {E}dition}.
+\newblock Peachpit Press, 2006.
+
+\end{thebibliography}
