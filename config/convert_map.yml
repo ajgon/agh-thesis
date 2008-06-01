@@ -22,6 +22,8 @@
 #   <...>
 01_users:
   users:
+    __BEFORE: ALTER TABLE users_k1 ADD band2 varchar(4);
+    __AFTER: UPDATE users_k1 SET band2 = band
     pass:
       name: password
       function: SHA1(@)
@@ -48,10 +50,10 @@
       action: remove
     activated:
       function: '1'
-02_cathedrals:
-  cathedrals:
-    __BEFORE: ALTER TABLE users_k1 ADD band2 varchar(4);
-    __AFTER: UPDATE users_k1 SET band2 = band
+#02_cathedrals:
+#  cathedrals:
+#    __BEFORE: ALTER TABLE users_k1 ADD band2 varchar(4);
+#    __AFTER: UPDATE users_k1 SET band2 = band
 03_users_students:
   users_k1:
     __BEFORE: INSERT INTO @ (id) SELECT id FROM users WHERE id NOT IN (SELECT id FROM users_k1) AND id NOT IN (SELECT id from users_k2) AND login IS NOT NULL AND kind = 1
@@ -82,8 +84,8 @@
       from: users
       name: user_id
     cathedral:
-      from: cathedrals
       name: cathedral_id
+      function: @ + 1
     consul:
       name: consultations
 05_subjects_types:

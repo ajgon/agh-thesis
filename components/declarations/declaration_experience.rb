@@ -36,8 +36,13 @@ class DeclarationExperience < Declarations
       params[:declarations_experience][:sindex] = params[:users_student][:sindex]
       params[:declarations_experience][:speciality_id] = @logged_user.users_student.speciality_id
       params[:declarations_experience][:beginning] = Time.mktime(params[:declarations_experiences_dates][:beginning][0..3].to_i, params[:declarations_experiences_dates][:beginning][5..6].to_i, params[:declarations_experiences_dates][:beginning][8..9].to_i)
+      begin
       params[:declarations_experience][:beginning_additional] = Time.mktime(params[:declarations_experiences_dates][:beginning_additional_year].to_i, params[:declarations_experiences_dates][:beginning_additional_month].to_i, params[:declarations_experiences_dates][:beginning_additional_day].to_i)
       params[:declarations_experience][:ending_additional] = Time.mktime(params[:declarations_experiences_dates][:ending_additional_year].to_i, params[:declarations_experiences_dates][:ending_additional_month].to_i, params[:declarations_experiences_dates][:ending_additional_day].to_i)
+      rescue
+      params[:declarations_experience][:beginning_additional] = nil
+      params[:declarations_experience][:ending_additional] = nil
+      end
       @declarations_experience = DeclarationsExperience.new(params[:declarations_experience])
       if(@declarations_experience.valid? and declaration_previous = DeclarationsExperience.find_by_sindex(params[:declarations_experience][:sindex]))
         @declarations_experience = DeclarationsExperience.update(declaration_previous.id, params[:declarations_experience])

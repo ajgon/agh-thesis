@@ -12,7 +12,9 @@
 ActiveRecord::Schema.define(:version => 22) do
 
   create_table "cathedrals", :force => true do |t|
-    t.string "name", :limit => 50, :null => false
+    t.string "name",      :limit => 50, :null => false
+    t.string "action",                  :null => false
+    t.string "menu_name",               :null => false
   end
 
   create_table "declarations", :force => true do |t|

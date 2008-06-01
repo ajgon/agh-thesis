@@ -135,7 +135,6 @@ class NewsController < ApplicationController
         end
         @news = News.find(:all, :conditions => conditions, :order => 'date DESC')
       end
-      raise 'x'
       @pager = Pager.new({:controller => params[:controller], :action => params[:action], :id => params[:id], :page => params[:page]}, @news, :page)
       @criteria = HashWithMethods.new(params[:criteria])
     end

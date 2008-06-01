@@ -16,5 +16,7 @@
 <%   end %>
     <li><a href="<%= url_for :controller => 'profile', :action => lecturer.user.login %>"><strong><%= lecturer.user.firstname %> <%= lecturer.user.lastname %></strong>, <%= lecturer.title %></a> <em><%= lecturer.cathedral.name %></em></li>
 <% end %>
+<% unless @lecturers.empty? %>
   </ul>
+<% end %>
 </div>

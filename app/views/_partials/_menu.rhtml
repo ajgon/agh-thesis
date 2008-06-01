@@ -67,8 +67,9 @@
   <li class="submenu"<%= show_list_item_if_controllers 'lecturers' %>>
     <ul>
       <li><a href="<%= url_for :controller => 'lecturers', :action => nil %>">Wszyscy</a></li>
-      <li><a href="<%= url_for :controller => 'lecturers', :action => 'electronics', :id => nil %>">Elektronika</a></li>
-      <li><a href="<%= url_for :controller => 'lecturers', :action => 'telecommunication', :id => nil %>">Telekomunikacja</a></li>
+<% @users_cathedrals.each do |users_cathedral| %>
+      <li><a href="<%= url_for :controller => 'lecturers', :action => users_cathedral.cathedral.action, :id => nil %>"><%= users_cathedral.cathedral.menu_name %></a></li>
+<% end %>
     </ul>
   </li>
   <li><a href="<%= url_for :controller => 'students', :action => nil %>" class="menu-item">Studenci</a></li>

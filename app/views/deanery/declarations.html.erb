@@ -18,7 +18,7 @@
   <p>Wybierz deklarację, którą chcesz wypełnić. Obecnie masz dostępne następujące deklaracje: </p>
 <%     fields_for :declaration do |d| %>
   <dl class="data long">
-<%       unless @declarations %>
+<%       if @declarations.empty? %>
     <%= dt_dd '', '--- brak aktualnie dostępnych deklaracji ---' %>
 <%       else %>
 <%         @declarations.each do |declaration| %>

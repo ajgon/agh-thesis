@@ -28,6 +28,7 @@ class DeaneryController < ApplicationController
   end
   
   def english
+    #TODO zrobić wydruk materiałów nie na sztywno, tylko wyciągnąć z declarations
   end
   
   def iep
@@ -75,7 +76,7 @@ class DeaneryController < ApplicationController
           render :template => 'deanery/declarations/' + @declaration.template
         end
       end
-      @declarations = Declaration.find(:all, :conditions => ['year = ?', @logged_user.users_student.year]) if @logged_user.is_student?
+      @declarations = Declaration.find(:all, :conditions => ['year = ? AND available_from < NOW() AND available_to > NOW()', @logged_user.users_student.year]) if @logged_user.is_student?
     else
       render :template => 'signin/signin'
     end

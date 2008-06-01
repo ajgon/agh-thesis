@@ -36,7 +36,7 @@ class StudentsController < ApplicationController
           criteria[:speciality_id] = IdEncoder.decode(criteria[:speciality_id]) if criteria[:speciality_id]
           conditions = [criteria.keys.join(' = ? AND ') + ' = ?'] + criteria.values
           unless params[:criteria][:year].nil? or params[:criteria][:year].empty?
-            year = 'K%' + ((UsersStudent.find(:first, :order => 'sgroup DESC').sgroup[1..2].to_i + 1) - params[:criteria][:year].to_i).to_s + '_'
+            year = 'K%' + (Time.now.year - params[:criteria][:year].to_i + (Time.now.month > 9 ? 1 : 0)).to_s[2..3] + '_'
             conditions[0] += ' AND sgroup LIKE ?'
             conditions.push year
           end

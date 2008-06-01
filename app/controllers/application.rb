@@ -4,7 +4,7 @@ require 'digest/sha1'
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  before_filter :set_charset, :check_logged_user
+  before_filter :set_charset, :check_logged_user, :create_lecturers_menu
   layout 'index'
 
   def initialize
@@ -62,6 +62,10 @@ class ApplicationController < ActionController::Base
       @logged_user.pass = @logged_user.pass_confirmation = '3aed121ab9caaf2e277f716312aa62e67d1d3ba0'
       @logged_user.save
     end
+  end
+  
+  def create_lecturers_menu
+    @users_cathedrals = UsersLecturer.find(:all, :include => :cathedral, :group => 'cathedral_id')
   end
   
   # See ActionController::RequestForgeryProtection for details

@@ -5,20 +5,17 @@ class LecturersController < ApplicationController
     @title = 'Wszyscy'
   end
   
-  def electronics
-    @lecturers = UsersLecturer.find(:all, :conditions => 'cathedral_id = 3', :include => [:user, :cathedral], :order => 'users.lastname, users.firstname')
-    @letters = letters_from @lecturers
-    @title = 'Elektronika'
-    render :template => 'lecturers/index'
+  def method_missing cathedral_name
+    if cathedral = Cathedral.find_by_action(cathedral_name)
+      @lecturers = UsersLecturer.find(:all, :conditions => ['cathedral_id = ?', cathedral.id], :include => [:user, :cathedral], :order => 'users.lastname, users.firstname')
+      @letters = letters_from @lecturers
+      @title = cathedral.name
+      render :template => 'lecturers/index'
+    else
+      redirect_to :controller => 'lecturers', :action => 'index'
+    end
   end
-  
-  def telecommunication
-    @lecturers = UsersLecturer.find(:all, :conditions => 'cathedral_id = 2', :include => [:user, :cathedral], :order => 'users.lastname, users.firstname')
-    @letters = letters_from @lecturers
-    @title = 'Telekomunikacja'
-    render :template => 'lecturers/index'
-  end
-  
+    
   private
   def letters_from lecturers
     letters = []
